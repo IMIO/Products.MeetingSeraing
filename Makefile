@@ -4,7 +4,7 @@ all: run
 
 .PHONY: bootstrap
 bootstrap:
-	/srv/python268/bin/virtualenv --no-site-packages .
+	/srv/python/python273/bin/virtualenv --no-site-packages .
 	./bin/python bootstrap.py
 
 .PHONY: buildout
