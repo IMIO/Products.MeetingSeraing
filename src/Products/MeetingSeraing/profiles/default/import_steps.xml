@@ -5,21 +5,21 @@
 
 
  <import-step 
-    id="MeetingCommunes-Update-RoleMappings" 
-    handler="Products.MeetingCommunes.setuphandlers.updateRoleMappings"
-    title="Update Workflow role mappings for MeetingCommunes"
-    version="2013-03-15T13:46:07.890327">
-   <dependency step="MeetingCommunes-QI-dependencies"/>
-   updates the workflow role mappings for MeetingCommunes
+    id="MeetingSeraing-Update-RoleMappings" 
+    handler="Products.MeetingSeraing.setuphandlers.updateRoleMappings"
+    title="Update Workflow role mappings for MeetingSeraing"
+    version="2013-04-17T15:30:16.171450">
+   <dependency step="MeetingSeraing-QI-dependencies"/>
+   updates the workflow role mappings for MeetingSeraing
  </import-step>
 
  <import-step 
-    id="MeetingCommunes-postInstall" 
-    handler="Products.MeetingCommunes.setuphandlers.postInstall"
-    title="manual coded post-install for MeetingCommunes"
-    version="2013-03-15T13:46:07.890327">
-   <dependency step="MeetingCommunes-QI-dependencies"/>
-   manual coded post-install for MeetingCommunes
+    id="MeetingSeraing-postInstall" 
+    handler="Products.MeetingSeraing.setuphandlers.postInstall"
+    title="manual coded post-install for MeetingSeraing"
+    version="2013-04-17T15:30:16.171450">
+   <dependency step="MeetingSeraing-QI-dependencies"/>
+   manual coded post-install for MeetingSeraing
  </import-step>
 
 <!-- ##code-section ADDITIONALSTEPS -->

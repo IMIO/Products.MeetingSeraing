@@ -9,14 +9,14 @@
 # GNU General Public License (GPL)
 #
 
-__author__ = """Gauthier Bastien <g.bastien@imio.be>, Stephan Geulette <s.geulette@imio.be>"""
+__author__ = """Andre NUYENS <andre@imio.be>"""
 __docformat__ = 'plaintext'
 
 
 import logging
-logger = logging.getLogger('MeetingCommunes: setuphandlers')
-from Products.MeetingCommunes.config import PROJECTNAME
-from Products.MeetingCommunes.config import DEPENDENCIES
+logger = logging.getLogger('MeetingSeraing: setuphandlers')
+from Products.MeetingSeraing.config import PROJECTNAME
+from Products.MeetingSeraing.config import DEPENDENCIES
 import os
 from Products.CMFCore.utils import getToolByName
 import transaction
@@ -25,16 +25,15 @@ from Products.PloneMeeting.config import TOPIC_TYPE, TOPIC_SEARCH_SCRIPT, TOPIC_
 from Products.PloneMeeting.exportimport.content import ToolInitializer
 ##/code-section HEAD
 
-
-def isNotMeetingCommunesProfile(context):
-    return context.readDataFile("MeetingCommunes_marker.txt") is None
+def isNotMeetingSeraingProfile(context):
+    return context.readDataFile("MeetingSeraing_marker.txt") is None
 
 
 
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
-    if isNotMeetingCommunesProfile(context): return
+    if isNotMeetingSeraingProfile(context): return
     wft = getToolByName(context.getSite(), 'portal_workflow')
     wft.updateRoleMappings()
 
