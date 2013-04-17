@@ -25,13 +25,13 @@
 from DateTime import DateTime
 from AccessControl import Unauthorized
 from plone.app.testing import login
-from Products.MeetingCommunes.config import *
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.config import *
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testWorkflows import testWorkflows as pmtw
 
-class testWorkflows(MeetingCommunesTestCase, pmtw):
-    """Tests the default workflows implemented in MeetingCommunes."""
+class testWorkflows(MeetingSeraingTestCase, pmtw):
+    """Tests the default workflows implemented in MeetingSeraing."""
 
     def test_mc_VerifyTestNumbers(self):
         """

@@ -23,10 +23,10 @@
 #
 
 from plone.app.testing import login
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 
-class testMeetingGroup(MeetingCommunesTestCase):
+class testMeetingGroup(MeetingSeraingTestCase):
     '''Tests the MeetingGroup adapted methods.'''
 
     def testListEchevinServices(self):

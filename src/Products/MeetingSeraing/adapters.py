@@ -39,7 +39,7 @@ from Products.PloneMeeting.Meeting import MeetingWorkflowActions, \
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItemCustom, \
     IMeetingGroupCustom, IMeetingConfigCustom
-from Products.MeetingCommunes.interfaces import \
+from Products.MeetingSeraing.interfaces import \
     IMeetingItemCollegeWorkflowConditions, IMeetingItemCollegeWorkflowActions,\
     IMeetingCollegeWorkflowConditions, IMeetingCollegeWorkflowActions, \
     IMeetingItemCouncilWorkflowConditions, IMeetingItemCouncilWorkflowActions,\

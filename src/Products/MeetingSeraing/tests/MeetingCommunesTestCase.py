@@ -24,11 +24,11 @@ from plone.app.testing import login, logout
 
 from Products.PloneMeeting.tests.PloneMeetingTestCase import PloneMeetingTestCase
 
-from Products.MeetingCommunes.testing import MC_TESTS_PROFILE_FUNCTIONAL
+from Products.MeetingSeraing.testing import MC_TESTS_PROFILE_FUNCTIONAL
 
 
-class MeetingCommunesTestCase(PloneMeetingTestCase):
-    """Base class for defining MeetingCommunes test cases."""
+class MeetingSeraingTestCase(PloneMeetingTestCase):
+    """Base class for defining MeetingSeraing test cases."""
 
     # Some default content
     descriptionText = '<p>Some description</p>'

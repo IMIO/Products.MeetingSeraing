@@ -26,18 +26,18 @@
 from plone.app.testing import login
 
 from Products.PloneMeeting.tests.testVotes import testVotes as pmtv
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 
 
-class testVotes(MeetingCommunesTestCase, pmtv):
+class testVotes(MeetingSeraingTestCase, pmtv):
     '''Tests various aspects of votes management.
        Advices are enabled for PloneMeeting Assembly, not for PloneGov Assembly.
        By default, vote are encoded by 'theVoterHimself'.'''
 
     def setUp(self):
         # call parent setUp
-        MeetingCommunesTestCase.setUp(self)
+        MeetingSeraingTestCase.setUp(self)
         # avoid recurring items
         login(self.portal, 'admin')
         self.meetingConfig.recurringitems.manage_delObjects([self.meetingConfig.recurringitems.objectValues()[0].getId(),])

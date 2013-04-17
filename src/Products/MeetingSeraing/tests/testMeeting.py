@@ -23,12 +23,12 @@
 #
 
 from plone.app.testing import login
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testMeeting import testMeeting as pmtm
 
 
-class testMeeting(MeetingCommunesTestCase, pmtm):
+class testMeeting(MeetingSeraingTestCase, pmtm):
     """
         Tests the Meeting class methods.
     """

@@ -40,7 +40,7 @@ def updateRoleMappings(context):
 def postInstall(context):
     """Called as at the end of the setup process. """
     # the right place for your custom code
-    if isNotMeetingCommunesProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
     logStep("postInstall", context)
     site = context.getSite()
@@ -57,30 +57,30 @@ def logStep(method, context):
     logger.info("Applying '%s' in profile '%s'"%(method, '/'.join(context._profile_path.split(os.sep)[-3:])))
 
 
-def isMeetingCommunesConfigureProfile(context):
-    return context.readDataFile("MeetingCommunes_examples_fr_marker.txt") or \
-        context.readDataFile("MeetingCommunes_examples_marker.txt") or \
-        context.readDataFile("MeetingCommunes_cpas_marker.txt") or \
-        context.readDataFile("MeetingCommunes_tests_marker.txt")
+def isMeetingSeraingConfigureProfile(context):
+    return context.readDataFile("MeetingSeraing_examples_fr_marker.txt") or \
+        context.readDataFile("MeetingSeraing_examples_marker.txt") or \
+        context.readDataFile("MeetingSeraing_cpas_marker.txt") or \
+        context.readDataFile("MeetingSeraing_tests_marker.txt")
 
 
-def isMeetingCommunesMigrationProfile(context):
-    return context.readDataFile("MeetingCommunes_migrations_marker.txt")
+def isMeetingSeraingMigrationProfile(context):
+    return context.readDataFile("MeetingSeraing_migrations_marker.txt")
 
 
-def installMeetingCommunes(context):
+def installMeetingSeraing(context):
     """ Run the default profile"""
-    if not isMeetingCommunesConfigureProfile(context):
+    if not isMeetingSeraingConfigureProfile(context):
         return
-    logStep("installMeetingCommunes", context)
+    logStep("installMeetingSeraing", context)
     portal = context.getSite()
-    portal.portal_setup.runAllImportStepsFromProfile('profile-Products.MeetingCommunes:default')
+    portal.portal_setup.runAllImportStepsFromProfile('profile-Products.MeetingSeraing:default')
 
 
 def initializeTool(context):
     '''Initialises the PloneMeeting tool based on information from the current
        profile.'''
-    if not isMeetingCommunesConfigureProfile(context):
+    if not isMeetingSeraingConfigureProfile(context):
         return
 
     logStep("initializeTool", context)
@@ -153,7 +153,7 @@ def reinstallPloneMeeting(context, site):
     '''Reinstall PloneMeeting so after install methods are called and applied,
        like performWorkflowAdaptations for example.'''
 
-    if isNotMeetingCommunesProfile(context): return
+    if isNotMeetingSeraingProfile(context): return
 
     logStep("reinstallPloneMeeting", context)
     _installPloneMeeting(context)
@@ -169,7 +169,7 @@ def showHomeTab(context, site):
     """
        Make sure the 'home' tab is shown...
     """
-    if isNotMeetingCommunesProfile(context): return
+    if isNotMeetingSeraingProfile(context): return
 
     logStep("showHomeTab", context)
 
@@ -182,10 +182,10 @@ def showHomeTab(context, site):
 
 def reinstallPloneMeetingSkin(context, site):
     """
-       Reinstall Products.plonemeetingskin as the reinstallation of MeetingCommunes
+       Reinstall Products.plonemeetingskin as the reinstallation of MeetingSeraing
        change the portal_skins layers order
     """
-    if isNotMeetingCommunesProfile(context) and not isMeetingCommunesConfigureProfile: return
+    if isNotMeetingSeraingProfile(context) and not isMeetingSeraingConfigureProfile: return
 
     logStep("reinstallPloneMeetingSkin", context)
     try:
@@ -202,7 +202,7 @@ def finalizeExampleInstance(context):
        Some parameters can not be handled by the PloneMeeting installation,
        so we handle this here
     """
-    if not isMeetingCommunesConfigureProfile(context): return
+    if not isMeetingSeraingConfigureProfile(context): return
 
     site = context.getSite()
 
@@ -242,12 +242,12 @@ def finalizeExampleInstance(context):
          getattr(mc_council.topics, 'searchitemstovalidate'),
          getattr(mc_council.topics, 'searchallitemsincopy'),
          ])
-    #finally, re-launch plonemeetingskin and MeetingCommunes skins step
+    #finally, re-launch plonemeetingskin and MeetingSeraing skins step
     # because PM has been installed before the import_data profile and messed up skins layers
-    site.portal_setup.runImportStepFromProfile(u'profile-Products.MeetingCommunes:default', 'skins')
+    site.portal_setup.runImportStepFromProfile(u'profile-Products.MeetingSeraing:default', 'skins')
     site.portal_setup.runImportStepFromProfile(u'profile-plonetheme.imioapps:default', 'skins')
     site.portal_setup.runImportStepFromProfile(u'profile-plonetheme.imioapps:plonemeetingskin', 'skins')
-    # call reoerderCss again because it is correctly called while re-installing MeetingCommunes
+    # call reoerderCss again because it is correctly called while re-installing MeetingSeraing
     # but not while a profile is called from PloneMeeting
     reorderCss(context, site)
 
@@ -257,13 +257,13 @@ def reorderCss(context, site):
        Make sure CSS are correctly reordered in portal_css so things
        work as expected...
     """
-    if isNotMeetingCommunesProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("reorderCss", context)
 
     portal_css = site.portal_css
-    css = ['plonemeeting.css', 'meeting.css', 'meetingitem.css', 'meetingcommunes.css', 'imioapps.css', 'plonemeetingskin.css', 'ploneCustom.css']
+    css = ['plonemeeting.css', 'meeting.css', 'meetingitem.css', 'meetingseraing.css', 'imioapps.css', 'plonemeetingskin.css', 'ploneCustom.css']
     css.reverse()
     for resource in css:
         portal_css.moveResourceToBottom(css)

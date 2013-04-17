@@ -22,13 +22,13 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingCommunes.config import *
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.config import *
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testAdvices import testAdvices as pmta
 
 
-class testAdvices(MeetingCommunesTestCase, pmta):
+class testAdvices(MeetingSeraingTestCase, pmta):
     '''Tests various aspects of advices management.
        Advices are enabled for PloneGov Assembly, not for PloneMeeting Assembly.'''
 

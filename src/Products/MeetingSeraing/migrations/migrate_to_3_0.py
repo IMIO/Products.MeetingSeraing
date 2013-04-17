@@ -1,16 +1,16 @@
 # ------------------------------------------------------------------------------
 import logging
-logger = logging.getLogger('MeetingCommunes')
+logger = logging.getLogger('MeetingSeraing')
 from Products.PloneMeeting.config import TOPIC_SEARCH_SCRIPT, POWEROBSERVERS_GROUP_SUFFIX
 
 
 def migrate(context):
     '''Call every migration steps.'''
-    logger.info('Migrating to MeetingCommunes 3.0...')
+    logger.info('Migrating to MeetingSeraing 3.0...')
     portal = context.portal_url.getPortalObject()
     _adaptItemsToValidateTopic(portal)
     _removeGlobalPowerObservers(portal)
-    portal.portal_setup.runAllImportStepsFromProfile(u'profile-Products.MeetingCommunes:default')
+    portal.portal_setup.runAllImportStepsFromProfile(u'profile-Products.MeetingSeraing:default')
 
 
 def _adaptItemsToValidateTopic(portal):

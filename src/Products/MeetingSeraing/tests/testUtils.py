@@ -25,22 +25,22 @@
 from AccessControl import Unauthorized
 from plone.app.testing import login
 from Products.ExternalMethod.ExternalMethod import manage_addExternalMethod
-from Products.MeetingCommunes.config import *
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.config import *
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 
 
-class testUtils(MeetingCommunesTestCase):
+class testUtils(MeetingSeraingTestCase):
     """
         Tests the Extensions/utils methods.
     """
 
     def setUp(self):
-        MeetingCommunesTestCase.setUp(self)
+        MeetingSeraingTestCase.setUp(self)
         #add the ExternalMethod export_meetinggroups in Zope
-        manage_addExternalMethod(self.portal.aq_inner.aq_parent, 'export_meetinggroups', '', 'Products.MeetingCommunes.utils', 'export_meetinggroups')
+        manage_addExternalMethod(self.portal.aq_inner.aq_parent, 'export_meetinggroups', '', 'Products.MeetingSeraing.utils', 'export_meetinggroups')
         #add the ExternalMethod import_meetinggroups in Zope
-        manage_addExternalMethod(self.portal.aq_inner.aq_parent, 'import_meetinggroups', '', 'Products.MeetingCommunes.utils', 'import_meetinggroups')
+        manage_addExternalMethod(self.portal.aq_inner.aq_parent, 'import_meetinggroups', '', 'Products.MeetingSeraing.utils', 'import_meetinggroups')
 
     def _exportMeetingGroups(self):
         return self.portal.export_meetinggroups()

@@ -31,7 +31,7 @@ from Products.PloneMeeting.interfaces import \
 # ------------------------------------------------------------------------------
 class IMeetingItemCollegeWorkflowActions(IMeetingItemWorkflowActions):
     '''This interface represents a meeting item as viewed by the specific
-       item workflow that is defined in this MeetingCommunes product.'''
+       item workflow that is defined in this MeetingSeraing product.'''
     def doPresent():
         """
           Triggered while doing the 'present' transition
@@ -46,7 +46,7 @@ class IMeetingItemCollegeWorkflowActions(IMeetingItemWorkflowActions):
         """
 class IMeetingItemCollegeWorkflowConditions(IMeetingItemWorkflowConditions):
     '''This interface represents a meeting item as viewed by the specific
-       item workflow that is defined in this MeetingCommunes product.'''
+       item workflow that is defined in this MeetingSeraing product.'''
     def mayDecide():
         """
           Guard for the 'decide' transition
@@ -65,7 +65,7 @@ class IMeetingItemCollegeWorkflowConditions(IMeetingItemWorkflowConditions):
         """
 class IMeetingCollegeWorkflowActions(IMeetingWorkflowActions):
     '''This interface represents a meeting as viewed by the specific meeting
-       workflow that is defined in this MeetingCommunes product.'''
+       workflow that is defined in this MeetingSeraing product.'''
     def doClose():
         """
           Triggered while doing the 'close' transition
@@ -84,7 +84,7 @@ class IMeetingCollegeWorkflowActions(IMeetingWorkflowActions):
         """
 class IMeetingCollegeWorkflowConditions(IMeetingWorkflowConditions):
     '''This interface represents a meeting as viewed by the specific meeting
-       workflow that is defined in this MeetingCommunes product.'''
+       workflow that is defined in this MeetingSeraing product.'''
     def mayFreeze():
         """
           Guard for the 'freeze' transition
@@ -107,7 +107,7 @@ class IMeetingCollegeWorkflowConditions(IMeetingWorkflowConditions):
         """
 class IMeetingItemCouncilWorkflowActions(IMeetingItemWorkflowActions):
     '''This interface represents a meeting item as viewed by the specific
-       item workflow that is defined in this MeetingCommunes product.'''
+       item workflow that is defined in this MeetingSeraing product.'''
     def doPresent():
         """
           Triggered while doing the 'present' transition
@@ -122,7 +122,7 @@ class IMeetingItemCouncilWorkflowActions(IMeetingItemWorkflowActions):
         """
 class IMeetingItemCouncilWorkflowConditions(IMeetingItemWorkflowConditions):
     '''This interface represents a meeting item as viewed by the specific
-       meeting item workflow that is defined in this MeetingCommunes product.'''
+       meeting item workflow that is defined in this MeetingSeraing product.'''
     def mayDecide():
         """
           Guard for the 'decide' transition
@@ -141,7 +141,7 @@ class IMeetingItemCouncilWorkflowConditions(IMeetingItemWorkflowConditions):
         """
 class IMeetingCouncilWorkflowActions(IMeetingWorkflowActions):
     '''This interface represents a meeting as viewed by the specific meeting
-       workflow that is defined in this MeetingCommunes product.'''
+       workflow that is defined in this MeetingSeraing product.'''
     def doClose():
         """
           Triggered while doing the 'close' transition
@@ -160,7 +160,7 @@ class IMeetingCouncilWorkflowActions(IMeetingWorkflowActions):
         """
 class IMeetingCouncilWorkflowConditions(IMeetingWorkflowConditions):
     '''This interface represents a meeting as viewed by the specific meeting
-       workflow that is defined in this MeetingCommunes product.'''
+       workflow that is defined in this MeetingSeraing product.'''
     def mayFreeze():
         """
           Guard for the 'freeze' transition

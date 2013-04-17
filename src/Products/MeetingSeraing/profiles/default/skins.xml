@@ -6,15 +6,6 @@
         cookie_persistence="False"
         request_varname="plone_skin">
 
- <object name="meetingcommunes_images"
-         meta_type="Filesystem Directory View"
-         directory="MeetingSeraing/skins/meetingcommunes_images"/>
- <object name="meetingcommunes_styles"
-         meta_type="Filesystem Directory View"
-         directory="MeetingSeraing/skins/meetingcommunes_styles"/>
- <object name="meetingcommunes_templates"
-         meta_type="Filesystem Directory View"
-         directory="MeetingSeraing/skins/meetingcommunes_templates"/>
  <object name="meetingseraing_images"
          meta_type="Filesystem Directory View"
          directory="MeetingSeraing/skins/meetingseraing_images"/>
@@ -26,12 +17,6 @@
          directory="MeetingSeraing/skins/meetingseraing_templates"/>
  
  <skin-path name="*">
-  <layer insert-after="custom" 
-         name="meetingcommunes_images"/>
-  <layer insert-after="custom" 
-         name="meetingcommunes_styles"/>
-  <layer insert-after="custom" 
-         name="meetingcommunes_templates"/>
   <layer insert-after="custom" 
          name="meetingseraing_images"/>
   <layer insert-after="custom" 

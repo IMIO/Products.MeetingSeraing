@@ -26,12 +26,12 @@ from DateTime import DateTime
 from AccessControl import Unauthorized
 from plone.app.testing import login
 from Products.CMFCore.utils import getToolByName
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testMeetingItem import testMeetingItem as pmtmi
 
 
-class testMeetingItem(MeetingCommunesTestCase, pmtmi):
+class testMeetingItem(MeetingSeraingTestCase, pmtmi):
     """
         Tests the MeetingItem class methods.
     """

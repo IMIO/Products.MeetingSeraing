@@ -26,11 +26,11 @@ from zope.component import getUtility, getMultiAdapter
 from plone.app.testing import login
 from plone.portlets.interfaces import IPortletManager, IPortletRenderer
 from Products.PloneMeeting.browser import portlet_plonemeeting as pm
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import \
-    MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testPortlets import testPortlets as pmtp
 
-class testPortlets(MeetingCommunesTestCase, pmtp):
+class testPortlets(MeetingSeraingTestCase, pmtp):
     '''Tests the portlets methods.'''
 
     def test_mc_call_PortletPMAvailableTemplates(self):

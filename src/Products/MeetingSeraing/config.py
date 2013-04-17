@@ -57,8 +57,8 @@ WriteDecision = 'PloneMeeting: Write decision'
 setDefaultRoles(ReadDecision, ('Manager',))
 setDefaultRoles(WriteDecision, ('Manager',))
 
-STYLESHEETS = [{'id': 'meetingcommunes.css',
-                'title': 'MeetingCommunes CSS styles'}]
+STYLESHEETS = [{'id': 'meetingseraing.css',
+                'title': 'MeetingSeraing CSS styles'}]
 
 ##/code-section config-bottom
 
