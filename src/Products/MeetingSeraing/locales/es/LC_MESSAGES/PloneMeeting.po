@@ -1,9 +1,9 @@
-# translation of MeetingCommunes-es.po to Spanish
+# translation of MeetingSeraing-es.po to Spanish
 # Leonardo Caballero <leonardocaballero@gmail.com>, 2009.
 # Spanish translation team <plone-conosur@lists.plone.org>
 msgid ""
 msgstr ""
-"Project-Id-Version: MeetingCommunes\n"
+"Project-Id-Version: MeetingSeraing\n"
 "POT-Creation-Date: 2005-05-17 15:00-100\n"
 "PO-Revision-Date: 2009-03-10 11:17-0430\n"
 "Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"

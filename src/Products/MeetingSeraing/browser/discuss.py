@@ -1,4 +1,4 @@
-from Products.PloneMeeting.browser.discuss import Discuss
+from Products.PloneMeeting.browser.async import Discuss
 
 class CustomDiscuss(Discuss):
 

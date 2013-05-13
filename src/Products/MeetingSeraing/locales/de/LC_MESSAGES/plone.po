@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: MeetingCommunes\n"
+"Project-Id-Version: MeetingSeraing\n"
 "POT-Creation-Date: 2007-08-29 07:12-100\n"
 "PO-Revision-Date: 2009-11-10 11:35+0100\n"
 "Last-Translator: Arnold François <arnold.francois@oshz-eupen.be>\n"
