@@ -1,0 +1,6 @@
+Migration vers MeetingLalouviere 3.2.0.1
+========================================
+
+Execute upgrade steps :
+1) PloneMeeting to 3.2.0.1
+2) MeetingLalouviere to 3.2.0.1

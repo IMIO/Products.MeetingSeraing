@@ -1,5 +1,1 @@
-.. contents::
-
-Introduction
-============
-
+Check 'docs/README.txt'

@@ -3,9 +3,9 @@ import os
 
 version = '3.0dev'
 
-setup(name='Products.MeetingSeraing',
+setup(name='Products.MeetingLalouviere',
       version=version,
-      description="Official meetings management for college and council of Seraing (PloneMeeting extension profile)",
+      description="PloneMeeting profile for city of La Louviere",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
@@ -22,11 +22,16 @@ setup(name='Products.MeetingSeraing',
       include_package_data=True,
       zip_safe=False,
       extras_require=dict(
-            test=['unittest2', 'zope.testing', 'plone.testing',
-                  'testfixtures',
-                  'plone.app.testing','communesplone.iconified_document_actions',
-                  'Products.CMFPlacefulWorkflow', 'zope.testing',
-                  'Products.PloneTestCase', 'collective.ckeditor', 'plonetheme.imioapps'],
+            test=['unittest2',
+                  'zope.testing',
+                  'plone.testing',
+                  'plone.app.testing',
+                  'communesplone.iconified_document_actions',
+                  'Products.CMFPlacefulWorkflow',
+                  'zope.testing',
+                  'Products.MeetingCommunes',
+                  'collective.ckeditor',
+                  'plonetheme.imioapps'],
             templates=['Genshi',
                   ]),
       install_requires=[
@@ -34,11 +39,9 @@ setup(name='Products.MeetingSeraing',
           'appy',
           'Products.CMFPlone',
           'Pillow',
-          'testfixtures',
           'communesplone.iconified_document_actions',
           'Products.PloneMeeting',
           'collective.ckeditor',
           'plonetheme.imioapps'],
       entry_points={},
       )
-
