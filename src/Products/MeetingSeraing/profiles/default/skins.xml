@@ -6,15 +6,15 @@
         cookie_persistence="False"
         request_varname="plone_skin">
 
- <object name="meetinglalouviere_images"
+ <object name="meetingSeraing_images"
          meta_type="Filesystem Directory View"
-         directory="MeetingSeraing/skins/meetinglalouviere_images"/>
- <object name="meetinglalouviere_styles"
+         directory="MeetingSeraing/skins/meetingSeraing_images"/>
+ <object name="meetingSeraing_styles"
          meta_type="Filesystem Directory View"
-         directory="MeetingSeraing/skins/meetinglalouviere_styles"/>
- <object name="meetinglalouviere_templates"
+         directory="MeetingSeraing/skins/meetingSeraing_styles"/>
+ <object name="meetingSeraing_templates"
          meta_type="Filesystem Directory View"
-         directory="MeetingSeraing/skins/meetinglalouviere_templates"/>
+         directory="MeetingSeraing/skins/meetingSeraing_templates"/>
  <object name="meetingseraing_images"
          meta_type="Filesystem Directory View"
          directory="MeetingSeraing/skins/meetingseraing_images"/>
@@ -27,11 +27,11 @@
  
  <skin-path name="*">
   <layer insert-after="custom" 
-         name="meetinglalouviere_images"/>
+         name="meetingSeraing_images"/>
   <layer insert-after="custom" 
-         name="meetinglalouviere_styles"/>
+         name="meetingSeraing_styles"/>
   <layer insert-after="custom" 
-         name="meetinglalouviere_templates"/>
+         name="meetingSeraing_templates"/>
   <layer insert-after="custom" 
          name="meetingseraing_images"/>
   <layer insert-after="custom" 

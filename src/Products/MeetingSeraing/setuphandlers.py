@@ -24,7 +24,7 @@ import transaction
 from Products.PloneMeeting.utils import updateIndexes
 from Products.PloneMeeting.exportimport.content import ToolInitializer
 from Products.PloneMeeting.config import TOPIC_TYPE, TOPIC_SEARCH_SCRIPT, TOPIC_TAL_EXPRESSION
-from Products.MeetingLalouviere.config import COUNCIL_COMMISSION_IDS, \
+from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
     COUNCIL_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
 ##/code-section HEAD
 
@@ -43,7 +43,7 @@ def updateRoleMappings(context):
 def postInstall(context):
     """Called as at the end of the setup process. """
     # the right place for your custom code
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
     site = context.getSite()
     # Reinstall PloneMeeting
@@ -60,7 +60,7 @@ def postInstall(context):
     showHomeTab(context, site)
     # Reinstall the skin
     reinstallPloneMeetingSkin(context, site)
-    # reorder skins so we are sure that the meetinglalouviere_xxx skins are just under custom
+    # reorder skins so we are sure that the meetingSeraing_xxx skins are just under custom
     reorderSkinsLayers(context, site)
 
 
@@ -70,31 +70,31 @@ def logStep(method, context):
     logger.info("Applying '%s' in profile '%s'" % (method, '/'.join(context._profile_path.split(os.sep)[-3:])))
 
 
-def isNotMeetingLalouviereLalouviereProfile(context):
-    return context.readDataFile("MeetingLalouviere_lalouviere_marker.txt") is None
+def isNotMeetingSeraingSeraingProfile(context):
+    return context.readDataFile("MeetingSeraing_Seraing_marker.txt") is None
 
 
-def installMeetingLalouviere(context):
-    """ Run the default profile before bing able to run the lalouviere profile"""
-    if isNotMeetingLalouviereLalouviereProfile(context):
+def installMeetingSeraing(context):
+    """ Run the default profile before bing able to run the Seraing profile"""
+    if isNotMeetingSeraingSeraingProfile(context):
         return
 
-    logStep("installMeetingLalouviere", context)
+    logStep("installMeetingSeraing", context)
     portal = context.getSite()
-    portal.portal_setup.runAllImportStepsFromProfile('profile-Products.MeetingLalouviere:default')
+    portal.portal_setup.runAllImportStepsFromProfile('profile-Products.MeetingSeraing:default')
 
 
 def reinstallPloneMeeting(context, site):
     '''Reinstall PloneMeeting so after install methods are called and applied,
        like performWorkflowAdaptations for example.'''
 
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("reinstallPloneMeeting", context)
     _installPloneMeeting(context)
-    # launch skins step for MeetingLalouviere so MeetingLalouviere skin layers are before PM ones
-    site.portal_setup.runImportStepFromProfile('profile-Products.MeetingLalouviere:default', 'skins')
+    # launch skins step for MeetingSeraing so MeetingSeraing skin layers are before PM ones
+    site.portal_setup.runImportStepFromProfile('profile-Products.MeetingSeraing:default', 'skins')
 
 
 def _installPloneMeeting(context):
@@ -106,7 +106,7 @@ def _installPloneMeeting(context):
 def initializeTool(context):
     '''Initialises the PloneMeeting tool based on information from the current
        profile.'''
-    if isNotMeetingLalouviereLalouviereProfile(context):
+    if isNotMeetingSeraingSeraingProfile(context):
         return
 
     logStep("initializeTool", context)
@@ -116,9 +116,9 @@ def initializeTool(context):
 
 def addAdditionalIndexes(context, portal):
     '''
-       Add some specific indexes used by MeetingLalouviere
+       Add some specific indexes used by MeetingSeraing
     '''
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     indexInfo = {
@@ -134,7 +134,7 @@ def addCommissionEditorGroups(context, portal):
     '''
        Add groups for council commissions that will contain MeetingCommissionEditors
     '''
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("addCommissionEditorGroups", context)
@@ -151,7 +151,7 @@ def addSearches(context, portal):
     '''
        Add additional searches
     '''
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("addCouncilSearches", context)
@@ -275,7 +275,7 @@ def setDefaultPreMeetingsAssembly(context, portal):
     '''
        Define a default value for each MeetingConfig.preMeetingAssembly_default
     '''
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("setDefaultPreMeetingsAssembly", context)
@@ -334,7 +334,7 @@ def showHomeTab(context, site):
     """
        Make sure the 'home' tab is shown...
     """
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("showHomeTab", context)
@@ -351,7 +351,7 @@ def reinstallPloneMeetingSkin(context, site):
        Reinstall Products.plonemeetingskin as the reinstallation of MeetingCommunes
        change the portal_skins layers order
     """
-    if isNotMeetingLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context):
         return
 
     logStep("reinstallPloneMeetingSkin", context)
@@ -366,17 +366,17 @@ def reinstallPloneMeetingSkin(context, site):
 
 def reorderSkinsLayers(context, site):
     """
-       Reinstall Products.plonemeetingskin and re-apply MeetingLalouviere skins.xml step
-       as the reinstallation of MeetingLalouviere and PloneMeeting changes the portal_skins layers order
+       Reinstall Products.plonemeetingskin and re-apply MeetingSeraing skins.xml step
+       as the reinstallation of MeetingSeraing and PloneMeeting changes the portal_skins layers order
     """
-    if isNotMeetingLalouviereProfile(context) and isNotMeetingLalouviereLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context) and isNotMeetingSeraingSeraingProfile(context):
         return
 
     logStep("reorderSkinsLayers", context)
     try:
         site.portal_setup.runAllImportStepsFromProfile(u'profile-plonetheme.imioapps:default')
         site.portal_setup.runAllImportStepsFromProfile(u'profile-plonetheme.imioapps:plonemeetingskin')
-        site.portal_setup.runImportStepFromProfile(u'profile-Products.MeetingLalouviere:default', 'skins')
+        site.portal_setup.runImportStepFromProfile(u'profile-Products.MeetingSeraing:default', 'skins')
     except KeyError:
         # if the Products.plonemeetingskin profile is not available
         # (not using plonemeetingskin or in testing?) we pass...
@@ -396,7 +396,7 @@ def reorderCss(context):
        Make sure CSS are correctly reordered in portal_css so things
        work as expected...
     """
-    if isNotMeetingLalouviereProfile(context) and isNotMeetingLalouviereLalouviereProfile(context):
+    if isNotMeetingSeraingProfile(context) and isNotMeetingSeraingSeraingProfile(context):
         return
 
     site = context.getSite()
@@ -406,7 +406,7 @@ def reorderCss(context):
     css = ['plonemeeting.css',
            'meeting.css',
            'meetingitem.css',
-           'meetinglalouviere.css',
+           'meetingSeraing.css',
            'imioapps.css',
            'plonemeetingskin.css',
            'imioapps_IEFixes.css',

@@ -25,11 +25,11 @@
 from DateTime import DateTime
 
 from Products.PloneMeeting.config import POWEROBSERVERS_GROUP_SUFFIX
-from Products.MeetingLalouviere.tests.MeetingLalouviereTestCase import MeetingLalouviereTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
 
 
-class testMeetingItem(MeetingLalouviereTestCase, mctmi):
+class testMeetingItem(MeetingSeraingTestCase, mctmi):
     """
         Tests the MeetingItem class methods.
     """
@@ -73,9 +73,9 @@ class testMeetingItem(MeetingLalouviereTestCase, mctmi):
         # pmReviewer2 can access the item and isPrivacyViewable
         self.failUnless(self.hasPermission('View', secretItem))
         self.failUnless(self.hasPermission('View', publicItem))
-        # XXX Begin change for MeetingLalouviere
+        # XXX Begin change for MeetingSeraing
         self.failUnless(secretItem.isPrivacyViewable())
-        # XXX End change for MeetingLalouviere
+        # XXX End change for MeetingSeraing
         self.failUnless(publicItem.isPrivacyViewable())
         # a user in the same proposingGroup can fully access the secret item
         self.changeUser('pmCreator1')

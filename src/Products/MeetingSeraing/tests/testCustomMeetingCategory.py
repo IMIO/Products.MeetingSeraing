@@ -22,9 +22,9 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingLalouviere.tests.MeetingLalouviereTestCase import \
-    MeetingLalouviereTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import \
+    MeetingSeraingTestCase
 
 
-class testCustomMeetingCategory(MeetingLalouviereTestCase):
+class testCustomMeetingCategory(MeetingSeraingTestCase):
     '''Tests the MeetingGroup adapted methods.'''

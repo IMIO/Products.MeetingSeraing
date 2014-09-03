@@ -260,7 +260,7 @@
         </table>
         </tal:users>
         <tal:comment replace="nothing">Information for the pre-meeting</tal:comment>
-        <tal:comment replace="nothing">XXX begin changes by MeetingLalouviere</tal:comment>
+        <tal:comment replace="nothing">XXX begin changes by MeetingSeraing</tal:comment>
           <tal:premeetings condition="python: 'preMeetingDate' in usedAttrs">
            <tal:comment replace='nothing'>Manage fields to display, before 2013 there were 7 commissions and 5 after</tal:comment>
            <fieldset tal:repeat="commissionNumber python: (not context.getDate() or context.getDate().year() >= 2013) and range(1,6) or range(1,8)" tal:condition="python: 'preMeetingDate' in usedAttrs">
@@ -290,7 +290,7 @@
           </table>
         </fieldset>
         </tal:comment>
-        <tal:comment replace="nothing">XXX end changes by MeetingLalouviere</tal:comment>
+        <tal:comment replace="nothing">XXX end changes by MeetingSeraing</tal:comment>
         <tal:field define="fieldName python: 'observations'"
                    condition="python: context.showObs('observations')">
           <metal:f use-macro="context/@@pm-macros/editContentField"/>

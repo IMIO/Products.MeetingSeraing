@@ -362,10 +362,10 @@
        <tal:translate condition="python: followUp == 'follow_up_provided' and isManager" i18n:translate="provided_followup_actions_itemview">Actions.</tal:translate>
        <tal:translate tal:condition="python: followUp == 'follow_up_provided_not_printed'" i18n:translate="provided_followup_not_printed_itemview">The needed follow-up has been provided.  Click here if you want to define that a follow-up is still needed or click here to deactivate needed follow-up.</tal:translate>
        <tal:translate condition="python: followUp == 'follow_up_provided_not_printed' and isManager" i18n:translate="provided_followup_not_printed_actions_itemview">Actions.</tal:translate>
-       <fieldset><legend i18n:translate="MeetingLalouviere_label_neededFollowUp">Needed follow-up</legend>
+       <fieldset><legend i18n:translate="MeetingSeraing_label_neededFollowUp">Needed follow-up</legend>
         <span metal:use-macro="python: here.widget('neededFollowUp', mode='view')" />
        </fieldset>
-       <fieldset><legend i18n:translate="MeetingLalouviere_label_providedFollowUp">Provided follow-up</legend>
+       <fieldset><legend i18n:translate="MeetingSeraing_label_providedFollowUp">Provided follow-up</legend>
         <span metal:use-macro="python: here.widget('providedFollowUp', mode='view')" />
        </fieldset>
       </tal:providedFollowUp>

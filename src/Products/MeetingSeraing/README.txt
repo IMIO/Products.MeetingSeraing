@@ -1,6 +1,6 @@
 1. Overview
 ===========
-MeetingLalouviere is a specific profile for the package Products.PloneMeeting
+MeetingSeraing is a specific profile for the package Products.PloneMeeting
 
 It configures PloneMeeting to be useable for college and council of city of La Louviere
 
@@ -11,7 +11,7 @@ Homepage:       http://www.plonegov.org/
 Project page:   http://plonegov.org/software/products/plonemeeting
 Mailing list:   https://lists.plonegov.org/cgi-bin/mailman/listinfo/
                 https://lists.communesplone.org/cgi-bin/mailman/listinfo
-SVN repository: http://svn.communesplone.org/svn/communesplone/Products.Lalouviere/
+SVN repository: http://svn.communesplone.org/svn/communesplone/Products.Seraing/
 IRC:            irc://freenode.net/#plone.be
 
 3. License

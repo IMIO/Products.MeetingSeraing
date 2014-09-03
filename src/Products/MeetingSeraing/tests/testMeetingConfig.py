@@ -21,11 +21,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
 #
-from Products.MeetingLalouviere.tests.MeetingLalouviereTestCase import MeetingLalouviereTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testMeetingConfig import testMeetingConfig as mctmc
 
 
-class testMeetingConfig(MeetingLalouviereTestCase, mctmc):
+class testMeetingConfig(MeetingSeraingTestCase, mctmc):
     '''Call testMeetingConfig tests.'''
 
     def test_subproduct_call_searchItemsToPrevalidate(self):

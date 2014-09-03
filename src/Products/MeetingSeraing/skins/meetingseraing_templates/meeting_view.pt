@@ -372,7 +372,7 @@
        <span tal:replace="structure python: context.getSignatures().replace('\r\n', '<br/>').replace('\n', '<br/>')"/>
   </div>
 
-  <tal:comment replace="nothing">XXX begin changes for MeetingLalouviere</tal:comment>
+  <tal:comment replace="nothing">XXX begin changes for MeetingSeraing</tal:comment>
 
   <tal:comment replace="nothing">Pre-meeting info</tal:comment>
 
@@ -418,7 +418,7 @@
         </dd>
       </dl>
 </tal:premeetings>
-  <tal:comment replace="nothing">XXX end changes for MeetingLalouviere</tal:comment>
+  <tal:comment replace="nothing">XXX end changes for MeetingSeraing</tal:comment>
 
   <tal:comment replace="nothing">Show items that may be presented into the current meeting</tal:comment>
   <fieldset tal:define="whichItems string:availableItems" tal:condition="showAvailableItems">

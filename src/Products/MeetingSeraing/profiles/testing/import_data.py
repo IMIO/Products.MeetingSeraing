@@ -163,12 +163,12 @@ collegeMeeting.xhtmlTransformFields = ('MeetingItem.description', 'MeetingItem.d
                                        'MeetingItem.decision', 'MeetingItem.observations',
                                        'MeetingItem.interventions', 'MeetingItem.commissionTranscript')
 collegeMeeting.xhtmlTransformTypes = ('removeBlanks',)
-collegeMeeting.itemWorkflow = 'meetingitemcollegelalouviere_workflow'
-collegeMeeting.meetingWorkflow = 'meetingcollegelalouviere_workflow'
-collegeMeeting.itemConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCollegeLalouviereWorkflowConditions'
-collegeMeeting.itemActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCollegeLalouviereWorkflowActions'
-collegeMeeting.meetingConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCollegeLalouviereWorkflowConditions'
-collegeMeeting.meetingActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCollegeLalouviereWorkflowActions'
+collegeMeeting.itemWorkflow = 'meetingitemcollegeSeraing_workflow'
+collegeMeeting.meetingWorkflow = 'meetingcollegeSeraing_workflow'
+collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
+collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
+collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
+collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
                                   'proposed_to_divisionhead', 'proposed_to_director', 'validated',
                                   'presented', 'itemfrozen', 'accepted', 'refused',
@@ -289,12 +289,12 @@ councilMeeting.usedMeetingAttributes = (
     'preMeetingDate_7', 'preMeetingPlace_7', 'preMeetingAssembly_7', 'startDate', 'endDate', )
 councilMeeting.recordMeetingHistoryStates = []
 councilMeeting.workflowAdaptations = ['return_to_proposing_group', ]
-councilMeeting.itemWorkflow = 'meetingitemcouncillalouviere_workflow'
-councilMeeting.meetingWorkflow = 'meetingcouncillalouviere_workflow'
-councilMeeting.itemConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCouncilLalouviereWorkflowConditions'
-councilMeeting.itemActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCouncilLalouviereWorkflowActions'
-councilMeeting.meetingConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCouncilLalouviereWorkflowConditions'
-councilMeeting.meetingActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCouncilLalouviereWorkflowActions'
+councilMeeting.itemWorkflow = 'meetingitemcouncilSeraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingcouncilSeraing_workflow'
+councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions'
+councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
+councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
+councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions'
 #show every items states
 councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_director', 'validated', 'presented', 'itemfrozen',
                                   'item_in_committee', 'item_in_council', 'returned_to_service', 'accepted',

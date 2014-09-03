@@ -25,12 +25,12 @@
 from AccessControl import Unauthorized
 from DateTime import DateTime
 from plone.app.testing.helpers import setRoles
-from Products.MeetingLalouviere.tests.MeetingLalouviereTestCase import MeetingLalouviereTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
 
 
-class testWorkflows(MeetingLalouviereTestCase, mctw):
-    """Tests the default workflows implemented in MeetingLalouviere.
+class testWorkflows(MeetingSeraingTestCase, mctw):
+    """Tests the default workflows implemented in MeetingSeraing.
 
        WARNING:
        The Plone test system seems to be bugged: it does not seem to take into

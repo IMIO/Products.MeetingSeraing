@@ -26,11 +26,11 @@ from DateTime import DateTime
 
 from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 
-from Products.MeetingLalouviere.tests.MeetingLalouviereTestCase import MeetingLalouviereTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
 
 
-class testWFAdaptations(MeetingLalouviereTestCase, mctwfa):
+class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
     '''Tests various aspects of votes management.'''
 
     def test_subproduct_call_WFA_availableWFAdaptations(self):
@@ -76,7 +76,7 @@ class testWFAdaptations(MeetingLalouviereTestCase, mctwfa):
 
     def _return_to_proposing_group_inactive(self):
         '''Tests while 'return_to_proposing_group' wfAdaptation is inactive.'''
-        # this is active by default in MeetingLalouviere council wf
+        # this is active by default in MeetingSeraing council wf
         return
 
     def _return_to_proposing_group_active_state_to_clone(self):
@@ -135,7 +135,7 @@ class testWFAdaptations(MeetingLalouviereTestCase, mctwfa):
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
         self.assertEquals(item.queryState(), 'presented')
-        # XXX changed by MeetingLalouviere
+        # XXX changed by MeetingSeraing
         # send the item back to proposing group, set the meeting in_committee then send the item back to the meeting
         # the item should be now in the item state corresponding to the meeting frozen state, so 'itemfrozen'
         self.do(item, 'return_to_proposing_group')

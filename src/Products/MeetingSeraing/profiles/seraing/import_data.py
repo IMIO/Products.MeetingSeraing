@@ -193,103 +193,103 @@ chefBureauCompta = UserDescriptor('chefBureauCompta', [], email="test@test.be")
 echevinPers = UserDescriptor('echevinPers', [], email="test@test.be")
 emetteuravisPers = UserDescriptor('emetteuravisPers', [], email="test@test.be")
 jgobert = UserDescriptor('jgobert',  ['MeetingPowerObserver'],
-                         fullname='Jaques Gobert', email="jgobert@lalouviere.be")
+                         fullname='Jaques Gobert', email="jgobert@Seraing.be")
 asabbatini = UserDescriptor('asabbatini', ['MeetingPowerObserver'],
-                            fullname='Annie Sabbatini', email="asabbatini@lalouviere.be")
+                            fullname='Annie Sabbatini', email="asabbatini@Seraing.be")
 jgodin = UserDescriptor('jgodin', ['MeetingPowerObserver'],
-                        fullname='Jean Godin', email="jgodin@lalouviere.be")
+                        fullname='Jean Godin', email="jgodin@Seraing.be")
 odestrebecq = UserDescriptor('odestrebecq', ['MeetingPowerObserver'],
-                             fullname='Olivier Destrebecq', email="odestrebecq@lalouviere.be")
+                             fullname='Olivier Destrebecq', email="odestrebecq@Seraing.be")
 ghaine = UserDescriptor('ghaine', ['MeetingPowerObserver'],
-                        fullname='Georges Haine', email="ghaine@lalouviere.be")
+                        fullname='Georges Haine', email="ghaine@Seraing.be")
 adupont = UserDescriptor('adupont', ['MeetingPowerObserver'],
-                         fullname='Alexandra Dupont', email="adupont@lalouviere.be")
+                         fullname='Alexandra Dupont', email="adupont@Seraing.be")
 fghiot = UserDescriptor('fghiot', ['MeetingPowerObserver'],
-                        fullname='Françoise Ghiot', email="fghiot@lalouviere.be")
+                        fullname='Françoise Ghiot', email="fghiot@Seraing.be")
 jcwargnie = UserDescriptor('jcwargnie', ['MeetingPowerObserver'],
-                           fullname='Jean-Claude Wargnie', email="jcwargnie@lalouviere.be")
+                           fullname='Jean-Claude Wargnie', email="jcwargnie@Seraing.be")
 dstaquet = UserDescriptor('dstaquet', ['MeetingPowerObserver'],
-                          fullname='Danièle Staquet', email="dstaquet@lalouviere.be")
+                          fullname='Danièle Staquet', email="dstaquet@Seraing.be")
 bliebin = UserDescriptor('bliebin', ['MeetingPowerObserver'],
-                         fullname='Bernard Liebin', email="bliebin@lalouviere.be")
+                         fullname='Bernard Liebin', email="bliebin@Seraing.be")
 cburgeon = UserDescriptor('cburgeon', ['MeetingPowerObserver'],
-                          fullname='Colette Burgeon', email="cburgeon@lalouviere.be")
+                          fullname='Colette Burgeon', email="cburgeon@Seraing.be")
 mdubois = UserDescriptor('mdubois', ['MeetingPowerObserver'],
-                         fullname='Michel Dubois', email="mdubois@lalouviere.be")
+                         fullname='Michel Dubois', email="mdubois@Seraing.be")
 ydrugmand = UserDescriptor('ydrugmand', ['MeetingPowerObserver'],
-                           fullname='Yves Drugmand', email="ydrugmand@lalouviere.be")
+                           fullname='Yves Drugmand', email="ydrugmand@Seraing.be")
 gmaggiordomo = UserDescriptor('gmaggiordomo', ['MeetingPowerObserver'],
-                              fullname='Giuseppe Maggiordomo', email="gmaggiordomo@lalouviere.be")
+                              fullname='Giuseppe Maggiordomo', email="gmaggiordomo@Seraing.be")
 ozrihen = UserDescriptor('ozrihen', ['MeetingPowerObserver'],
-                         fullname='Olga Zrihen', email="ozrihen@lalouviere.be")
+                         fullname='Olga Zrihen', email="ozrihen@Seraing.be")
 mdimattia = UserDescriptor('mdimattia', ['MeetingPowerObserver'],
-                           fullname='Michele Di Mattia', email="mdimattia@lalouviere.be")
+                           fullname='Michele Di Mattia', email="mdimattia@Seraing.be")
 trotolo = UserDescriptor('trotolo', ['MeetingPowerObserver'],
-                         fullname='Térèsa Rotolo', email="trotolo@lalouviere.be")
+                         fullname='Térèsa Rotolo', email="trotolo@Seraing.be")
 fromeo = UserDescriptor('fromeo', ['MeetingPowerObserver'],
-                        fullname='Francesco Romeo', email="fromeo@lalouviere.be")
+                        fullname='Francesco Romeo', email="fromeo@Seraing.be")
 mhanot = UserDescriptor('mhanot', ['MeetingPowerObserver'],
-                        fullname='Muriel Hanot', email="mhanot@lalouviere.be")
+                        fullname='Muriel Hanot', email="mhanot@Seraing.be")
 ivansteen = UserDescriptor('ivansteen', ['MeetingPowerObserver'],
-                           fullname='Isabelle Van Steen', email="ivansteen@lalouviere.be")
+                           fullname='Isabelle Van Steen', email="ivansteen@Seraing.be")
 jkeijzer = UserDescriptor('jkeijzer', ['MeetingPowerObserver'],
-                          fullname='Jan Keijzer', email="jkeijzer@lalouviere.be")
+                          fullname='Jan Keijzer', email="jkeijzer@Seraing.be")
 afagbemi = UserDescriptor('afagbemi', ['MeetingPowerObserver'],
-                          fullname='Affissou Fagbemi', email="afagbemi@lalouviere.be")
+                          fullname='Affissou Fagbemi', email="afagbemi@Seraing.be")
 agava = UserDescriptor('agava', ['MeetingPowerObserver'],
-                       fullname='Antonio Gava', email="agava@lalouviere.be")
+                       fullname='Antonio Gava', email="agava@Seraing.be")
 apourbaix = UserDescriptor('apourbaix', ['MeetingPowerObserver'],
-                           fullname='Alain Pourbaix', email="apourbaix@lalouviere.be")
+                           fullname='Alain Pourbaix', email="apourbaix@Seraing.be")
 lduval = UserDescriptor('lduval', ['MeetingPowerObserver'],
-                        fullname='Lucien Duval', email="lduval@lalouviere.be")
+                        fullname='Lucien Duval', email="lduval@Seraing.be")
 jchristiaens = UserDescriptor('jchristiaens', ['MeetingPowerObserver'],
-                              fullname='Jonathan Christiaens', email="jchristiaens@lalouviere.be")
+                              fullname='Jonathan Christiaens', email="jchristiaens@Seraing.be")
 mvanhooland = UserDescriptor('mvanhooland', ['MeetingPowerObserver'],
-                             fullname='Michaël Van Hooland', email="mvanhooland@lalouviere.be")
+                             fullname='Michaël Van Hooland', email="mvanhooland@Seraing.be")
 frmili = UserDescriptor('frmili', ['MeetingPowerObserver'],
-                        fullname='Fatima Rmili', email="frmili@lalouviere.be")
+                        fullname='Fatima Rmili', email="frmili@Seraing.be")
 pwaterlot = UserDescriptor('pwaterlot', ['MeetingPowerObserver'],
-                           fullname='Philippe Waterlot', email="pwaterlot@lalouviere.be")
+                           fullname='Philippe Waterlot', email="pwaterlot@Seraing.be")
 abuscemi = UserDescriptor('abuscemi', ['MeetingPowerObserver'],
-                          fullname='Antonio Buscemi', email="abuscemi@lalouviere.be")
+                          fullname='Antonio Buscemi', email="abuscemi@Seraing.be")
 lwimlot = UserDescriptor('lwimlot', ['MeetingPowerObserver'],
-                         fullname='Laurent Wimlot', email="lwimlot@lalouviere.be")
+                         fullname='Laurent Wimlot', email="lwimlot@Seraing.be")
 cboulangier = UserDescriptor('cboulangier', ['MeetingPowerObserver'],
-                             fullname='Cécile Boulangier', email="cboulangier@lalouviere.be")
+                             fullname='Cécile Boulangier', email="cboulangier@Seraing.be")
 vlibois = UserDescriptor('vlibois', ['MeetingPowerObserver'],
-                         fullname='Vincent Libois', email="vlibois@lalouviere.be")
+                         fullname='Vincent Libois', email="vlibois@Seraing.be")
 ammarin = UserDescriptor('ammarin', ['MeetingPowerObserver'],
-                         fullname='Anne-Marie Marin', email="ammarin@lalouviere.be")
+                         fullname='Anne-Marie Marin', email="ammarin@Seraing.be")
 agorez = UserDescriptor('agorez', ['MeetingPowerObserver'],
-                        fullname='André Gorez', email="agorez@lalouviere.be")
+                        fullname='André Gorez', email="agorez@Seraing.be")
 jpmichiels = UserDescriptor('jpmichiels', ['MeetingPowerObserver'],
-                            fullname='Jean-Pierre Michiels', email="jpmichiels@lalouviere.be")
+                            fullname='Jean-Pierre Michiels', email="jpmichiels@Seraing.be")
 cdelplancq = UserDescriptor('cdelplancq', ['MeetingPowerObserver'],
-                            fullname='Christophe Delplancq', email="cdelplancq@lalouviere.be")
+                            fullname='Christophe Delplancq', email="cdelplancq@Seraing.be")
 fvermeer = UserDescriptor('fvermeer', ['MeetingPowerObserver'],
-                          fullname='Fabienne Vermeer', email="fvermeer@lalouviere.be")
+                          fullname='Fabienne Vermeer', email="fvermeer@Seraing.be")
 lbaccareladurso = UserDescriptor('lbaccareladurso', ['MeetingPowerObserver'],
-                                 fullname='Louisa Baccarela d\'Urso', email="lbaccareladurso@lalouviere.be")
+                                 fullname='Louisa Baccarela d\'Urso', email="lbaccareladurso@Seraing.be")
 clicata = UserDescriptor('clicata', ['MeetingPowerObserver'],
-                         fullname='Cosimo Licata', email="clicata@lalouviere.be")
+                         fullname='Cosimo Licata', email="clicata@Seraing.be")
 mroland = UserDescriptor('mroland', ['MeetingPowerObserver'],
-                         fullname='Marie Roland', email="mroland@lalouviere.be")
+                         fullname='Marie Roland', email="mroland@Seraing.be")
 collegecommunal = UserDescriptor('collegecommunal', ['MeetingPowerObserver'],
-                                 fullname='Collège communal', email="collegecommunal@lalouviere.be")
+                                 fullname='Collège communal', email="collegecommunal@Seraing.be")
 groupeps = UserDescriptor('groupeps', ['MeetingPowerObserver'],
-                          fullname='Groupe PS', email="groupeps@lalouviere.be")
+                          fullname='Groupe PS', email="groupeps@Seraing.be")
 groupemr = UserDescriptor('groupemr', ['MeetingPowerObserver'],
-                          fullname='Groupe MR', email="groupemr@lalouviere.be")
+                          fullname='Groupe MR', email="groupemr@Seraing.be")
 groupecdh = UserDescriptor('groupecdh', ['MeetingPowerObserver'],
-                           fullname='Groupe cdH', email="groupecdh@lalouviere.be")
+                           fullname='Groupe cdH', email="groupecdh@Seraing.be")
 groupeecolo = UserDescriptor('groupeecolo', ['MeetingPowerObserver'],
-                             fullname='Groupe Ecolo', email="groupeecolo@lalouviere.be")
+                             fullname='Groupe Ecolo', email="groupeecolo@Seraing.be")
 groupeptb = UserDescriptor('groupeptb', ['MeetingPowerObserver'],
-                           fullname='Groupe PTB+', email="groupeptb@lalouviere.be")
+                           fullname='Groupe PTB+', email="groupeptb@Seraing.be")
 groupefn = UserDescriptor('groupefn', ['MeetingPowerObserver'],
-                          fullname='Groupe FN', email="groupefn@lalouviere.be")
+                          fullname='Groupe FN', email="groupefn@Seraing.be")
 groupeindependant = UserDescriptor('groupeindependant', ['MeetingPowerObserver'],
-                                   fullname='Groupe Indépendant', email="groupeindependant@lalouviere.be")
+                                   fullname='Groupe Indépendant', email="groupeindependant@Seraing.be")
 
 jgobert_mu = MeetingUserDescriptor('jgobert', duty='Bourgmestre', usages=['asker', ], active=False)
 asabbatini_mu = MeetingUserDescriptor('asabbatini', gender='f', duty='1er Echevin', usages=['asker', ], active=False)
@@ -477,12 +477,12 @@ collegeMeeting.xhtmlTransformFields = ('MeetingItem.description', 'MeetingItem.d
                                        'MeetingItem.decision', 'MeetingItem.observations',
                                        'MeetingItem.interventions', 'MeetingItem.commissionTranscript')
 collegeMeeting.xhtmlTransformTypes = ('removeBlanks',)
-collegeMeeting.itemWorkflow = 'meetingitemcollegelalouviere_workflow'
-collegeMeeting.meetingWorkflow = 'meetingcollegelalouviere_workflow'
-collegeMeeting.itemConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCollegeLalouviereWorkflowConditions'
-collegeMeeting.itemActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCollegeLalouviereWorkflowActions'
-collegeMeeting.meetingConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCollegeLalouviereWorkflowConditions'
-collegeMeeting.meetingActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCollegeLalouviereWorkflowActions'
+collegeMeeting.itemWorkflow = 'meetingitemcollegeSeraing_workflow'
+collegeMeeting.meetingWorkflow = 'meetingcollegeSeraing_workflow'
+collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
+collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
+collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
+collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposedToServiceHead', 'proposedToOfficeManager',
                                   'proposedToDivisionHead', 'proposedToDirector', 'proposedToAlderman',
                                   'validated', 'presented', 'itemfrozen', 'accepted', 'refused', 'delayed',
@@ -633,12 +633,12 @@ councilMeeting.usedMeetingAttributes = ('place', 'observations', 'signatures', '
                                         'preMeetingPlace_7', 'preMeetingAssembly_7', 'startDate', 'endDate', )
 councilMeeting.recordMeetingHistoryStates = []
 councilMeeting.workflowAdaptations = ['return_to_proposing_group', ]
-councilMeeting.itemWorkflow = 'meetingitemcouncillalouviere_workflow'
-councilMeeting.meetingWorkflow = 'meetingcouncillalouviere_workflow'
-councilMeeting.itemConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCouncilLalouviereWorkflowConditions'
-councilMeeting.itemActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingItemCouncilLalouviereWorkflowActions'
-councilMeeting.meetingConditionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCouncilLalouviereWorkflowConditions'
-councilMeeting.meetingActionsInterface = 'Products.MeetingLalouviere.interfaces.IMeetingCouncilLalouviereWorkflowActions'
+councilMeeting.itemWorkflow = 'meetingitemcouncilSeraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingcouncilSeraing_workflow'
+councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions'
+councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
+councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
+councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions'
 #show every items states
 councilMeeting.itemTopicStates = ('itemcreated',
                                   'proposed_to_officemanager',

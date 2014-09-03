@@ -24,7 +24,7 @@ from DateTime import DateTime
 from Products.MeetingCommunes.tests.helpers import MeetingCommunesTestingHelpers
 
 
-class MeetingLalouviereTestingHelpers(MeetingCommunesTestingHelpers):
+class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
     '''Override some values of PloneMeetingTestingHelpers.'''
 
     TRANSITIONS_FOR_PROPOSING_ITEM_1 = ('proposeToServiceHead',
