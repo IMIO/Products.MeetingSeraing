@@ -10,7 +10,7 @@
               handler="Products.MeetingSeraing.setuphandlers.initializeTool"
               title="Initialize MeetingSeraing with examples.">
   <dependency step="installMeetingSeraing"/>
-  Initialize portal_plonemeeting folders for La Louviere.
+  Initialize portal_plonemeeting folders for Seraing.
  </import-step>
  <import-step id="finalizeInstanceMeetingSeraing" version="20131114-01"
               handler="Products.MeetingSeraing.setuphandlers.finalizeInstance"
