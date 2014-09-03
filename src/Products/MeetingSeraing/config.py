@@ -46,14 +46,14 @@ PRODUCT_DEPENDENCIES = []
 
 ##code-section config-bottom #fill in your manual code here
 from Products.PloneMeeting import config as PMconfig
-LALOUVIEREROLES = {}
-LALOUVIEREROLES['budgetimpactreviewers'] = 'MeetingBudgetImpactReviewer'
-LALOUVIEREROLES['serviceheads'] = 'MeetingServiceHead'
-LALOUVIEREROLES['officemanagers'] = 'MeetingOfficeManager'
-LALOUVIEREROLES['divisionheads'] = 'MeetingDivisionHead'
-LALOUVIEREROLES['directors'] = 'MeetingDirector'
-LALOUVIEREROLES['followupwriters'] = 'MeetingFollowUpWriter'
-PMconfig.MEETINGROLES.update(LALOUVIEREROLES)
+SERAINGROLES = {}
+SERAINGROLES['budgetimpactreviewers'] = 'MeetingBudgetImpactReviewer'
+SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
+SERAINGROLES['officemanagers'] = 'MeetingOfficeManager'
+SERAINGROLES['divisionheads'] = 'MeetingDivisionHead'
+SERAINGROLES['directors'] = 'MeetingDirector'
+SERAINGROLES['followupwriters'] = 'MeetingFollowUpWriter'
+PMconfig.MEETINGROLES.update(SERAINGROLES)
 PMconfig.MEETING_GROUP_SUFFIXES = PMconfig.MEETINGROLES.keys()
 
 # see doc in Products.PloneMeeting.config.py
