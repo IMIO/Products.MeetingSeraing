@@ -5,7 +5,6 @@
     <role name="MeetingCommissionEditor"/>
     <role name="MeetingDirector"/>
     <role name="MeetingDivisionHead"/>
-    <role name="MeetingFollowUpWriter"/>
     <role name="MeetingManager"/>
     <role name="MeetingMember"/>
     <role name="MeetingObserverGlobal"/>

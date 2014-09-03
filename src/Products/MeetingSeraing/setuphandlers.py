@@ -9,14 +9,14 @@
 # GNU General Public License (GPL)
 #
 
-__author__ = """Gauthier Bastien <g.bastien@imio.be>, Stephan Geulette <s.geulette@imio.be>"""
+__author__ = """Andre NUYENS <andre.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
 
 import logging
-logger = logging.getLogger('MeetingLalouviere: setuphandlers')
-from Products.MeetingLalouviere.config import PROJECTNAME
-from Products.MeetingLalouviere.config import DEPENDENCIES
+logger = logging.getLogger('MeetingSeraing: setuphandlers')
+from Products.MeetingSeraing.config import PROJECTNAME
+from Products.MeetingSeraing.config import DEPENDENCIES
 import os
 from Products.CMFCore.utils import getToolByName
 import transaction
@@ -28,15 +28,15 @@ from Products.MeetingLalouviere.config import COUNCIL_COMMISSION_IDS, \
     COUNCIL_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
 ##/code-section HEAD
 
-def isNotMeetingLalouviereProfile(context):
-    return context.readDataFile("MeetingLalouviere_marker.txt") is None
+def isNotMeetingSeraingProfile(context):
+    return context.readDataFile("MeetingSeraing_marker.txt") is None
 
 
 
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
-    if isNotMeetingLalouviereProfile(context): return
+    if isNotMeetingSeraingProfile(context): return
     wft = getToolByName(context.getSite(), 'portal_workflow')
     wft.updateRoleMappings()
 

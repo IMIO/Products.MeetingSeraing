@@ -5,21 +5,21 @@
 
 
  <import-step 
-    id="MeetingLalouviere-Update-RoleMappings" 
-    handler="Products.MeetingLalouviere.setuphandlers.updateRoleMappings"
-    title="Update Workflow role mappings for MeetingLalouviere"
-    version="2014-08-18T11:32:01.187343">
-   <dependency step="MeetingLalouviere-QI-dependencies"/>
-   updates the workflow role mappings for MeetingLalouviere
+    id="MeetingSeraing-Update-RoleMappings" 
+    handler="Products.MeetingSeraing.setuphandlers.updateRoleMappings"
+    title="Update Workflow role mappings for MeetingSeraing"
+    version="2014-09-03T13:14:32.621319">
+   <dependency step="MeetingSeraing-QI-dependencies"/>
+   updates the workflow role mappings for MeetingSeraing
  </import-step>
 
  <import-step 
-    id="MeetingLalouviere-postInstall" 
-    handler="Products.MeetingLalouviere.setuphandlers.postInstall"
-    title="manual coded post-install for MeetingLalouviere"
-    version="2014-08-18T11:32:01.187343">
-   <dependency step="MeetingLalouviere-QI-dependencies"/>
-   manual coded post-install for MeetingLalouviere
+    id="MeetingSeraing-postInstall" 
+    handler="Products.MeetingSeraing.setuphandlers.postInstall"
+    title="manual coded post-install for MeetingSeraing"
+    version="2014-09-03T13:14:32.621319">
+   <dependency step="MeetingSeraing-QI-dependencies"/>
+   manual coded post-install for MeetingSeraing
  </import-step>
 
 <!-- ##code-section ADDITIONALSTEPS -->

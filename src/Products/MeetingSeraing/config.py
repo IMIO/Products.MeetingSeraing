@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: config.py
+# File: MeetingSeraing.py
 #
 # Copyright (c) 2014 by Imio.be
 # Generator: ArchGenXML Version 2.7
@@ -9,7 +9,7 @@
 # GNU General Public License (GPL)
 #
 
-__author__ = """André NUYENS <a.nuyens@imio.be>""
+__author__ = """Andre NUYENS <andre.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
 

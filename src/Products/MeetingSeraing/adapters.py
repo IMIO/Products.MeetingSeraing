@@ -40,12 +40,12 @@ from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingGroup import MeetingGroup
 from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItemCustom, \
     IMeetingConfigCustom, IMeetingGroupCustom
-from Products.MeetingLalouviere.interfaces import \
-    IMeetingItemCollegeLalouviereWorkflowConditions, IMeetingItemCollegeLalouviereWorkflowActions,\
-    IMeetingCollegeLalouviereWorkflowConditions, IMeetingCollegeLalouviereWorkflowActions, \
-    IMeetingItemCouncilLalouviereWorkflowConditions, IMeetingItemCouncilLalouviereWorkflowActions,\
-    IMeetingCouncilLalouviereWorkflowConditions, IMeetingCouncilLalouviereWorkflowActions
-from Products.MeetingLalouviere.config import COUNCIL_COMMISSION_IDS, \
+from Products.MeetingSeraing.interfaces import \
+    IMeetingItemCollegeSeraingWorkflowConditions, IMeetingItemCollegeSeraingWorkflowActions,\
+    IMeetingCollegeSeraingWorkflowConditions, IMeetingCollegeSeraingWorkflowActions, \
+    IMeetingItemCouncilSeraingWorkflowConditions, IMeetingItemCouncilSeraingWorkflowActions,\
+    IMeetingCouncilSeraingWorkflowConditions, IMeetingCouncilSeraingWorkflowActions
+from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
     COUNCIL_COMMISSION_IDS_2013, COUNCIL_MEETING_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
 
 # disable most of wfAdaptations
@@ -81,7 +81,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     'PloneMeeting: Read item observations':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
      'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
-    'MeetingLalouviere: Read commission transcript':
+    'MeetingSeraing: Read commission transcript':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
      'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     # edit permissions
@@ -110,7 +110,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     ['Manager', 'MeetingManager', ],
     'PloneMeeting: Write item observations':
     ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
-    'MeetingLalouviere: Write commission transcript':
+    'MeetingSeraing: Write commission transcript':
     ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
 }
 
@@ -381,7 +381,7 @@ class CustomMeeting(Meeting):
         '''Returns the label to use for field MeetingItem.description
           The label is different between college and council'''
         if self.portal_type == 'MeetingItemCouncil':
-            return self.utranslate("MeetingLalouviere_label_councildescription", domain="PloneMeeting")
+            return self.utranslate("MeetingSeraing_label_councildescription", domain="PloneMeeting")
         else:
             return self.utranslate("PloneMeeting_label_description", domain="PloneMeeting")
     MeetingItem.getLabelDescription = getLabelDescription
@@ -392,7 +392,7 @@ class CustomMeeting(Meeting):
         '''Returns the label to use for field MeetingItem.category
           The label is different between college and council'''
         if self.portal_type == 'MeetingItemCouncil':
-            return self.utranslate("MeetingLalouviere_label_councilcategory", domain="PloneMeeting")
+            return self.utranslate("MeetingSeraing_label_councilcategory", domain="PloneMeeting")
         else:
             return self.utranslate("PloneMeeting_label_category", domain="PloneMeeting")
     MeetingItem.getLabelCategory = getLabelCategory
@@ -403,7 +403,7 @@ class CustomMeeting(Meeting):
         '''Returns the label to use for field Meeting.observations
            The label is different between college and council'''
         if self.portal_type == 'MeetingCouncil':
-            return self.utranslate("MeetingLalouviere_label_meetingcouncilobservations", domain="PloneMeeting")
+            return self.utranslate("MeetingSeraing_label_meetingcouncilobservations", domain="PloneMeeting")
         else:
             return self.utranslate("PloneMeeting_label_meetingObservations", domain="PloneMeeting")
     Meeting.getLabelObservations = getLabelObservations
@@ -1001,7 +1001,7 @@ class CustomMeetingConfig(MeetingConfig):
         groupIds = groupsTool.getGroupsForPrincipal(member)
         res = []
         for groupId in groupIds:
-            # XXX change by MeetingLalouviere
+            # XXX change by MeetingSeraing
             # if groupId.endswith('_reviewers'):
             if groupId.endswith('_directors'):
                 # append group name without suffix
@@ -1011,7 +1011,7 @@ class CustomMeetingConfig(MeetingConfig):
         usePreValidationWFAdaptation = 'pre_validation' in self.getWorkflowAdaptations()
         params = {'portal_type': self.getItemTypeName(),
                   'getProposingGroup': res,
-                  # XXX change by MeetingLalouviere
+                  # XXX change by MeetingSeraing
                   # 'review_state': usePreValidationWFAdaptation and ('prevalidated', ) or ('proposed', ),
                   'review_state': usePreValidationWFAdaptation and ('prevalidated', ) or ('proposed_to_director', ),
                   'sort_on': sortKey,
@@ -1047,11 +1047,11 @@ class CustomMeetingGroup(MeetingGroup):
     MeetingGroup.validate_signatures = validate_signatures
 
 
-class MeetingCollegeLalouviereWorkflowActions(MeetingWorkflowActions):
+class MeetingCollegeSeraingWorkflowActions(MeetingWorkflowActions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingCollegeWorkflowActions'''
 
-    implements(IMeetingCollegeLalouviereWorkflowActions)
+    implements(IMeetingCollegeSeraingWorkflowActions)
     security = ClassSecurityInfo()
 
     def _adaptEveryItemsOnMeetingClosure(self):
@@ -1094,11 +1094,11 @@ class MeetingCollegeLalouviereWorkflowActions(MeetingWorkflowActions):
         pass
 
 
-class MeetingCollegeLalouviereWorkflowConditions(MeetingWorkflowConditions):
+class MeetingCollegeSeraingWorkflowConditions(MeetingWorkflowConditions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingCollegeWorkflowConditions'''
 
-    implements(IMeetingCollegeLalouviereWorkflowConditions)
+    implements(IMeetingCollegeSeraingWorkflowConditions)
     security = ClassSecurityInfo()
 
     security.declarePublic('mayFreeze')
@@ -1154,11 +1154,11 @@ class MeetingCollegeLalouviereWorkflowConditions(MeetingWorkflowConditions):
         return res
 
 
-class MeetingItemCollegeLalouviereWorkflowActions(MeetingItemWorkflowActions):
+class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingItemCollegeWorkflowActions'''
 
-    implements(IMeetingItemCollegeLalouviereWorkflowActions)
+    implements(IMeetingItemCollegeSeraingWorkflowActions)
     security = ClassSecurityInfo()
 
     security.declarePrivate('doAccept_but_modify')
@@ -1212,11 +1212,11 @@ class MeetingItemCollegeLalouviereWorkflowActions(MeetingItemWorkflowActions):
         pass
 
 
-class MeetingItemCollegeLalouviereWorkflowConditions(MeetingItemWorkflowConditions):
+class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingItemCollegeWorkflowConditions'''
 
-    implements(IMeetingItemCollegeLalouviereWorkflowConditions)
+    implements(IMeetingItemCollegeSeraingWorkflowConditions)
     security = ClassSecurityInfo()
 
     useHardcodedTransitionsForPresentingAnItem = True
@@ -1410,11 +1410,11 @@ class MeetingItemCollegeLalouviereWorkflowConditions(MeetingItemWorkflowConditio
         return res
 
 
-class MeetingCouncilLalouviereWorkflowActions(MeetingWorkflowActions):
+class MeetingCouncilSeraingWorkflowActions(MeetingWorkflowActions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingCouncilWorkflowActions'''
 
-    implements(IMeetingCouncilLalouviereWorkflowActions)
+    implements(IMeetingCouncilSeraingWorkflowActions)
     security = ClassSecurityInfo()
 
     security.declarePrivate('doSetInCommittee')
@@ -1476,11 +1476,11 @@ class MeetingCouncilLalouviereWorkflowActions(MeetingWorkflowActions):
         pass
 
 
-class MeetingCouncilLalouviereWorkflowConditions(MeetingWorkflowConditions):
+class MeetingCouncilSeraingWorkflowConditions(MeetingWorkflowConditions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingCouncilWorkflowConditions'''
 
-    implements(IMeetingCouncilLalouviereWorkflowConditions)
+    implements(IMeetingCouncilSeraingWorkflowConditions)
     security = ClassSecurityInfo()
 
     def __init__(self, meeting):
@@ -1539,11 +1539,11 @@ class MeetingCouncilLalouviereWorkflowConditions(MeetingWorkflowConditions):
         return res
 
 
-class MeetingItemCouncilLalouviereWorkflowActions(MeetingItemWorkflowActions):
+class MeetingItemCouncilSeraingWorkflowActions(MeetingItemWorkflowActions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingItemCouncilWorkflowActions'''
 
-    implements(IMeetingItemCouncilLalouviereWorkflowActions)
+    implements(IMeetingItemCouncilSeraingWorkflowActions)
     security = ClassSecurityInfo()
 
     security.declarePrivate('doProposeToDirector')
@@ -1591,11 +1591,11 @@ class MeetingItemCouncilLalouviereWorkflowActions(MeetingItemWorkflowActions):
         pass
 
 
-class MeetingItemCouncilLalouviereWorkflowConditions(MeetingItemWorkflowConditions):
+class MeetingItemCouncilSeraingWorkflowConditions(MeetingItemWorkflowConditions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
        interface IMeetingItemCouncilWorkflowConditions'''
 
-    implements(IMeetingItemCouncilLalouviereWorkflowConditions)
+    implements(IMeetingItemCouncilSeraingWorkflowConditions)
     security = ClassSecurityInfo()
 
     useHardcodedTransitionsForPresentingAnItem = True
@@ -1704,12 +1704,12 @@ InitializeClass(CustomMeetingItem)
 InitializeClass(CustomMeeting)
 InitializeClass(CustomMeetingConfig)
 InitializeClass(CustomMeetingGroup)
-InitializeClass(MeetingCollegeLalouviereWorkflowActions)
-InitializeClass(MeetingCollegeLalouviereWorkflowConditions)
-InitializeClass(MeetingItemCollegeLalouviereWorkflowActions)
-InitializeClass(MeetingItemCollegeLalouviereWorkflowConditions)
-InitializeClass(MeetingCouncilLalouviereWorkflowActions)
-InitializeClass(MeetingCouncilLalouviereWorkflowConditions)
-InitializeClass(MeetingItemCouncilLalouviereWorkflowActions)
-InitializeClass(MeetingItemCouncilLalouviereWorkflowConditions)
+InitializeClass(MeetingCollegeSeraingWorkflowActions)
+InitializeClass(MeetingCollegeSeraingWorkflowConditions)
+InitializeClass(MeetingItemCollegeSeraingWorkflowActions)
+InitializeClass(MeetingItemCollegeSeraingWorkflowConditions)
+InitializeClass(MeetingCouncilSeraingWorkflowActions)
+InitializeClass(MeetingCouncilSeraingWorkflowConditions)
+InitializeClass(MeetingItemCouncilSeraingWorkflowActions)
+InitializeClass(MeetingItemCouncilSeraingWorkflowConditions)
 # ------------------------------------------------------------------------------

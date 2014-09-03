@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: MeetingLalouviere.py
+# File: MeetingSeraing.py
 #
 # Copyright (c) 2014 by Imio.be
 # Generator: ArchGenXML Version 2.7
@@ -24,7 +24,7 @@
 # 02110-1301, USA.
 #
 
-__author__ = """Gauthier Bastien <g.bastien@imio.be>, Stephan Geulette <s.geulette@imio.be>"""
+__author__ = """Andre NUYENS <andre.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
 
@@ -37,7 +37,7 @@ __docformat__ = 'plaintext'
 #       use the protected code section at the bottom of initialize().
 
 import logging
-logger = logging.getLogger('MeetingLalouviere')
+logger = logging.getLogger('MeetingSeraing')
 logger.debug('Installing Product')
 
 import os
