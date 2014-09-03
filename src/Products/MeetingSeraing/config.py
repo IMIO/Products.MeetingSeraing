@@ -9,7 +9,7 @@
 # GNU General Public License (GPL)
 #
 
-__author__ = """Gauthier Bastien <g.bastien@imio.be>, Stephan Geulette <s.geulette@imio.be>"""
+__author__ = """André NUYENS <a.nuyens@imio.be>""
 __docformat__ = 'plaintext'
 
 
@@ -28,7 +28,7 @@ import os
 ##/code-section config-head
 
 
-PROJECTNAME = "MeetingLalouviere"
+PROJECTNAME = "MeetingSeraing"
 
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
@@ -96,6 +96,6 @@ COMMISSION_EDITORS_SUFFIX = '_commissioneditors'
 
 # Load custom configuration not managed by archgenxml
 try:
-    from Products.MeetingLalouviere.AppConfig import *
+    from Products.MeetingSeraing.AppConfig import *
 except ImportError:
     pass

@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '3.0dev'
+version = '3.2.0dev'
 
-setup(name='Products.MeetingLalouviere',
+setup(name='Products.MeetingSeraing',
       version=version,
-      description="PloneMeeting profile for city of La Louviere",
+      description="PloneMeeting profile for city of Seraing",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
