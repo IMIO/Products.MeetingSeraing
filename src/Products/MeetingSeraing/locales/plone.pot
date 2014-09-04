@@ -63,7 +63,7 @@ msgstr ""
 msgid "ask_advices_by_itemcreator"
 msgstr ""
 
-msgid "backToProposedToDirector"
+msgid "backToProposed"
 msgstr ""
 
 msgid "backToProposedToDivisionHead"
@@ -139,7 +139,7 @@ msgstr ""
 msgid "proposeToBudgetImpactReviewer"
 msgstr ""
 
-msgid "proposeToDirector"
+msgid "propose"
 msgstr ""
 
 msgid "proposeToDivisionHead"
@@ -156,7 +156,7 @@ msgid "proposed_to_budgetimpact_reviewer"
 msgstr ""
 
 #. Default: "Proposed to director"
-msgid "proposed_to_director"
+msgid "proposed"
 msgstr ""
 
 #. Default: "Proposed to division head"
@@ -206,7 +206,7 @@ msgid "backToProposedToDivisionHead"
 msgstr ""
 
 #. Default: "send back"
-msgid "backToProposedToDirector"
+msgid "backToProposed"
 msgstr ""
 
 #. Default: "bo to item frozen"

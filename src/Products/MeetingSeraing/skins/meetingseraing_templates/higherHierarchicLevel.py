@@ -12,7 +12,7 @@
 groups = context.portal_groups.getGroupsForPrincipal(member)
 
 #du plus grand au plus petit, chefs de service, chefs de bureau, chefs de division, directeurs, echevins=validateurs
-hierarchies = ('_reviewers', '_directors', '_divisionheads', '_officemanagers', '_serviceheads', )
+hierarchies = ('_reviewers', '_divisionheads', '_officemanagers', '_serviceheads', )
 
 groupsstr = str(groups)
 

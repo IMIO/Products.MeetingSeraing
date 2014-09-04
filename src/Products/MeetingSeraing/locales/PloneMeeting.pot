@@ -54,18 +54,8 @@ msgid "divisionheads"
 msgstr ""
 
 # Suffix
-#. Default: "directors"
-msgid "directors"
-msgstr ""
-
-# Suffix
 #. Default: "budget impact reviewers"
 msgid "budgetimpactreviewers"
-msgstr ""
-
-# Suffix
-#. Default: "follow-up writers"
-msgid "followupwriters"
 msgstr ""
 
 #import what was done in MeetingCommunes
@@ -107,22 +97,6 @@ msgstr ""
 
 #. Default: "items of my commissions to edit"
 msgid "searchitemsofmycommissionstoedit"
-msgstr ""
-
-#. Default: "items to follow"
-msgid "searchitemstofollow"
-msgstr ""
-
-#. Default: "items with follow-up provided"
-msgid "searchitemswithfollowupprovided"
-msgstr ""
-
-#. Default: "follow-up dashboard"
-msgid "searchitemsfollowupdashboard"
-msgstr ""
-
-#. Default: "Dashboard"
-msgid "Dashboard"
 msgstr ""
 
 #portal_tabs
@@ -185,46 +159,6 @@ msgstr ""
 
 #. Default: "Premeeting observations"
 msgid "MeetingSeraing_label_meetingcouncilobservations"
-msgstr ""
-
-#. Default: "Follow-up"
-msgid "MeetingSeraing_label_followUp"
-msgstr ""
-
-#. Default: "Follow-up"
-msgid "MeetingSeraing_descr_followUp"
-msgstr ""
-
-#. Default: "Needed follow-up"
-msgid "MeetingSeraing_label_neededFollowUp"
-msgstr ""
-
-#. Default: "Needed follow-up"
-msgid "MeetingSeraing_descr_neededFollowUp"
-msgstr ""
-
-#. Default: "Provided follow-up"
-msgid "MeetingSeraing_label_providedFollowUp"
-msgstr ""
-
-#. Default: "Provided follow-up"
-msgid "MeetingSeraing_descr_providedFollowUp"
-msgstr ""
-
-#. Default: "A follow up is needed"
-msgid "follow_up_yes"
-msgstr ""
-
-#. Default: "No follow up is needed"
-msgid "follow_up_no"
-msgstr ""
-
-#. Default: "The needed follow up has been provided (printed in dashboard)"
-msgid "follow_up_provided"
-msgstr ""
-
-#. Default: "The needed follow up has been provided (no more printed in dashboard)"
-msgid "follow_up_provided_not_printed"
 msgstr ""
 
 #. Default: "Default date for the pre-meeting"
@@ -425,46 +359,6 @@ msgstr ""
 
 #. Default: "Please enter 12 lines for signatures delegations"
 msgid "signatures_length_error"
-msgstr ""
-
-#. Default: "<span class='follow_up_no'>No follow-up needed.</span>"
-msgid "no_followup_needed_itemview"
-msgstr ""
-
-#. Default: "<span class='activate_follow_up'><a href='activateFollowUp'>Click here</a> if you want to define that a follow-up is needed.</span>"
-msgid "no_followup_needed_actions_itemview"
-msgstr ""
-
-#. Default: "<span class='follow_up_yes'>A follow-up is needed.</span>"
-msgid "yes_followup_needed_itemview"
-msgstr ""
-
-#. Default: "<a href='deactivateFollowUp'>Click here</a> if you want to deactivate the needed follow-up or <a href='confirmFollowUp'>click here</a> if you want to specify that needed follow-up has been provided.</span>"
-msgid "yes_followup_needed_actions_itemview"
-msgstr ""
-
-#. Default: "<span class='follow_up_provided'>The needed follow-up has been provided.</span>"
-msgid "provided_followup_itemview"
-msgstr ""
-
-#. Default: "<a href='activateFollowUp'>Click here</a> if you want to define that a follow-up is still needed or <a href='deactivateFollowUp'>click here</a> to deactivate needed follow-up."
-msgid "provided_followup_actions_itemview"
-msgstr ""
-
-#. Default: "<span class='follow_up_provided'>The needed follow-up has been provided.</span>"
-msgid "provided_followup_not_printed_itemview"
-msgstr ""
-
-#. Default: "<a href='activateFollowUp'>Click here</a> if you want to define that a follow-up is still needed or <a href='deactivateFollowUp'>click here</a> to deactivate needed follow-up."
-msgid "provided_followup_not_printed_actions_itemview"
-msgstr ""
-
-#. Default: "Follow-up needed"
-msgid "icon_help_follow_up_needed"
-msgstr ""
-
-#. Default: "Follow-up provided but still printed in the dashboard"
-msgid "icon_help_follow_up_provided"
 msgstr ""
 
 #. Default: "Accepted but modified"

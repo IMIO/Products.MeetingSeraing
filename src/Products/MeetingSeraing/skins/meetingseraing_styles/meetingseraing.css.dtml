@@ -35,13 +35,13 @@
 .state-proposed_to_servicehead, .label-state-proposed_to_servicehead,
 .state-proposed_to_officemanager, .label-state-proposed_to_officemanager,
 .state-proposed_to_divisionhead, .label-state-proposed_to_divisionhead,
-.state-proposed_to_director, .label-state-proposed_to_director {
+.state-proposed, .label-state-proposed {
     color: DarkOrange !important;
 }
 #plone-contentmenu-workflow .state-proposed_to_servicehead,
 #plone-contentmenu-workflow .state-proposed_to_officemanager,
 #plone-contentmenu-workflow .state-proposed_to_divisionhead,
-#plone-contentmenu-workflow .state-proposed_to_director {
+#plone-contentmenu-workflow .state-proposed {
     border-radius: 0.5em 0.5em 0.5em 0.5em;
     background-color: DarkOrange;
     padding: 0 0.5em;
@@ -154,26 +154,6 @@
     font-size: 120%;
 }
 
-.follow_up_no {
-background: transparent url(&dtml-portal_url;/follow_up_no.png) no-repeat scroll 0 1px;
-padding: 1px 0 1px 18px;
-color: grey;
-font-weight: bold;
-}
-
-.follow_up_yes {
-background: transparent url(&dtml-portal_url;/follow_up_yes.png) no-repeat scroll 0 1px;
-padding: 1px 0 1px 18px;
-color: red;
-font-weight: bold;
-}
-
-.follow_up_provided, .follow_up_provided_not_printed {
-background: transparent url(&dtml-portal_url;/follow_up_provided.png) no-repeat scroll 0 1px;
-padding: 1px 0 1px 18px;
-color: green;
-font-weight: bold;
-}
 
 /* </dtml-with> */
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */

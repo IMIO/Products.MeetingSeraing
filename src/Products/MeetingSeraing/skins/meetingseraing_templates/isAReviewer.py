@@ -13,7 +13,7 @@ groups = context.portal_groups.getGroupsForPrincipal(member)
 
 #check if the user is at least in one of the following sub group
 
-reviewSuffixes = ('_reviewers', '_directors', '_divisionheads', '_officemanagers', '_serviceheads', )
+reviewSuffixes = ('_reviewers', '_divisionheads', '_officemanagers', '_serviceheads', )
 
 strgroups = str(groups)
 

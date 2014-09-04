@@ -86,12 +86,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # the DivisionHead validation level
         self.changeUser('pmDivisionHead1')
         self.failUnless(self.hasPermission('Modify portal content', (item1, annex1)))
-        self.do(item1, 'proposeToDirector')
+        self.do(item1, 'propose')
         self.assertRaises(Unauthorized, self.addAnnex, item1, decisionRelated=True)
         self.failIf(self.transitions(item1))  # He may trigger no more action
         self.failIf(self.hasPermission('PloneMeeting: Add annex', item1))
         # the Director validation level
-        self.changeUser('pmDirector1')
+        self.changeUser('pmReviewer1')
         self.failUnless(self.hasPermission('Modify portal content', (item1, annex1)))
         self.do(item1, 'validate')
         self.assertRaises(Unauthorized, self.addAnnex, item1, decisionRelated=True)
@@ -116,7 +116,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.changeUser('admin')
         self.do(item2, 'proposeToOfficeManager')
         self.do(item2, 'proposeToDivisionHead')
-        self.do(item2, 'proposeToDirector')
+        self.do(item2, 'propose')
         # pmManager inserts item1 into the meeting and publishes it
         self.changeUser('pmManager')
         managerAnnex = self.addAnnex(item1)
@@ -166,12 +166,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # the item is not proposable until it has a category
         self.failIf(self.transitions(item1))  # He may trigger no more action
         item1.setCategory('deployment')
-        self.do(item1, 'proposeToDirector')
+        self.do(item1, 'propose')
         self.failIf(self.hasPermission('Modify portal content', item1))
         # The creator cannot add a decision annex on proposed item
         self.assertRaises(Unauthorized, self.addAnnex, item1, decisionRelated=True)
         self.failIf(self.transitions(item1))  # He may trigger no more action
-        self.changeUser('pmDirector1')
+        self.changeUser('pmReviewer1')
         self.addAnnex(item1, decisionRelated=True)
         self.do(item1, 'validate')
         self.failIf(self.hasPermission('Modify portal content', item1))
@@ -187,7 +187,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         item2 = self.create('MeetingItem', title='The second item',
                             preferredMeeting=meeting.UID())
         item2.setCategory('events')
-        self.do(item2, 'proposeToDirector')
+        self.do(item2, 'propose')
         # pmManager inserts item1 into the meeting and freezes it
         self.changeUser('pmManager')
         managerAnnex = self.addAnnex(item1)
@@ -200,7 +200,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.changeUser('pmManager')
         self.do(meeting, 'setInCommittee')
         # pmReviewer2 validates item2
-        self.changeUser('pmDirector2')
+        self.changeUser('pmReviewer2')
         self.do(item2, 'validate')
         # pmManager inserts item2 into the meeting, as late item, and adds an
         # annex to it

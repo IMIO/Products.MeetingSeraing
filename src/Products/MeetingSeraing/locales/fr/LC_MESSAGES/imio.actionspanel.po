@@ -68,7 +68,7 @@ msgid "backToPresented_done_descr"
 msgstr "Le gel du point a été annulé."
 
 #. Default: "This item has been send back to the director."
-msgid "backToProposedToDirector_done_descr"
+msgid "backToProposed_done_descr"
 msgstr "Le point a été renvoyé au directeur."
 
 #. Default: "This item has been send back to the division head."
@@ -112,8 +112,8 @@ msgstr "Le point a été gelé."
 msgid "proposeToBudgetImpactReviewer_done_descr"
 msgstr "Le point a été envoyé au correspondant financier."
 
-#. Default: "proposeToDirector_done_descr"
-msgid "proposeToDirector_done_descr"
+#. Default: "propose_done_descr"
+msgid "propose_done_descr"
 msgstr "Le point a été envoyé au directeur."
 
 #. Default: "proposeToDivisionHead_done_descr"

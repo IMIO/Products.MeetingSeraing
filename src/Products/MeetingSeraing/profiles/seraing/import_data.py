@@ -4,7 +4,6 @@ from Products.PloneMeeting.profiles import CategoryDescriptor
 from Products.PloneMeeting.profiles import GroupDescriptor
 from Products.PloneMeeting.profiles import MeetingConfigDescriptor
 from Products.PloneMeeting.profiles import MeetingFileTypeDescriptor
-from Products.PloneMeeting.profiles import MeetingUserDescriptor
 from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import RecurringItemDescriptor
@@ -46,9 +45,6 @@ collegePVTemplate = PodTemplateDescriptor('college-pv', 'PV')
 collegePVTemplate.podTemplate = 'college_pv.odt'
 collegePVTemplate.podCondition = 'python:(here.meta_type=="Meeting") and ' \
                                  'here.portal_plonemeeting.isManager()'
-collegeDashboardTemplate = PodTemplateDescriptor('college-dashboard', 'Tableau de bord')
-collegeDashboardTemplate.podTemplate = 'college_dashboard.odt'
-collegeDashboardTemplate.podCondition = 'python:False'
 councilDelibTemplate = PodTemplateDescriptor('conseil-deliberation', 'Délibération')
 councilDelibTemplate.podTemplate = 'conseil_deliberation.odt'
 councilDelibTemplate.podCondition = 'python:(here.meta_type=="MeetingItem") and ' \
@@ -192,155 +188,6 @@ chefCompta = UserDescriptor('chefCompta', [], email="test@test.be")
 chefBureauCompta = UserDescriptor('chefBureauCompta', [], email="test@test.be")
 echevinPers = UserDescriptor('echevinPers', [], email="test@test.be")
 emetteuravisPers = UserDescriptor('emetteuravisPers', [], email="test@test.be")
-jgobert = UserDescriptor('jgobert',  ['MeetingPowerObserver'],
-                         fullname='Jaques Gobert', email="jgobert@Seraing.be")
-asabbatini = UserDescriptor('asabbatini', ['MeetingPowerObserver'],
-                            fullname='Annie Sabbatini', email="asabbatini@Seraing.be")
-jgodin = UserDescriptor('jgodin', ['MeetingPowerObserver'],
-                        fullname='Jean Godin', email="jgodin@Seraing.be")
-odestrebecq = UserDescriptor('odestrebecq', ['MeetingPowerObserver'],
-                             fullname='Olivier Destrebecq', email="odestrebecq@Seraing.be")
-ghaine = UserDescriptor('ghaine', ['MeetingPowerObserver'],
-                        fullname='Georges Haine', email="ghaine@Seraing.be")
-adupont = UserDescriptor('adupont', ['MeetingPowerObserver'],
-                         fullname='Alexandra Dupont', email="adupont@Seraing.be")
-fghiot = UserDescriptor('fghiot', ['MeetingPowerObserver'],
-                        fullname='Françoise Ghiot', email="fghiot@Seraing.be")
-jcwargnie = UserDescriptor('jcwargnie', ['MeetingPowerObserver'],
-                           fullname='Jean-Claude Wargnie', email="jcwargnie@Seraing.be")
-dstaquet = UserDescriptor('dstaquet', ['MeetingPowerObserver'],
-                          fullname='Danièle Staquet', email="dstaquet@Seraing.be")
-bliebin = UserDescriptor('bliebin', ['MeetingPowerObserver'],
-                         fullname='Bernard Liebin', email="bliebin@Seraing.be")
-cburgeon = UserDescriptor('cburgeon', ['MeetingPowerObserver'],
-                          fullname='Colette Burgeon', email="cburgeon@Seraing.be")
-mdubois = UserDescriptor('mdubois', ['MeetingPowerObserver'],
-                         fullname='Michel Dubois', email="mdubois@Seraing.be")
-ydrugmand = UserDescriptor('ydrugmand', ['MeetingPowerObserver'],
-                           fullname='Yves Drugmand', email="ydrugmand@Seraing.be")
-gmaggiordomo = UserDescriptor('gmaggiordomo', ['MeetingPowerObserver'],
-                              fullname='Giuseppe Maggiordomo', email="gmaggiordomo@Seraing.be")
-ozrihen = UserDescriptor('ozrihen', ['MeetingPowerObserver'],
-                         fullname='Olga Zrihen', email="ozrihen@Seraing.be")
-mdimattia = UserDescriptor('mdimattia', ['MeetingPowerObserver'],
-                           fullname='Michele Di Mattia', email="mdimattia@Seraing.be")
-trotolo = UserDescriptor('trotolo', ['MeetingPowerObserver'],
-                         fullname='Térèsa Rotolo', email="trotolo@Seraing.be")
-fromeo = UserDescriptor('fromeo', ['MeetingPowerObserver'],
-                        fullname='Francesco Romeo', email="fromeo@Seraing.be")
-mhanot = UserDescriptor('mhanot', ['MeetingPowerObserver'],
-                        fullname='Muriel Hanot', email="mhanot@Seraing.be")
-ivansteen = UserDescriptor('ivansteen', ['MeetingPowerObserver'],
-                           fullname='Isabelle Van Steen', email="ivansteen@Seraing.be")
-jkeijzer = UserDescriptor('jkeijzer', ['MeetingPowerObserver'],
-                          fullname='Jan Keijzer', email="jkeijzer@Seraing.be")
-afagbemi = UserDescriptor('afagbemi', ['MeetingPowerObserver'],
-                          fullname='Affissou Fagbemi', email="afagbemi@Seraing.be")
-agava = UserDescriptor('agava', ['MeetingPowerObserver'],
-                       fullname='Antonio Gava', email="agava@Seraing.be")
-apourbaix = UserDescriptor('apourbaix', ['MeetingPowerObserver'],
-                           fullname='Alain Pourbaix', email="apourbaix@Seraing.be")
-lduval = UserDescriptor('lduval', ['MeetingPowerObserver'],
-                        fullname='Lucien Duval', email="lduval@Seraing.be")
-jchristiaens = UserDescriptor('jchristiaens', ['MeetingPowerObserver'],
-                              fullname='Jonathan Christiaens', email="jchristiaens@Seraing.be")
-mvanhooland = UserDescriptor('mvanhooland', ['MeetingPowerObserver'],
-                             fullname='Michaël Van Hooland', email="mvanhooland@Seraing.be")
-frmili = UserDescriptor('frmili', ['MeetingPowerObserver'],
-                        fullname='Fatima Rmili', email="frmili@Seraing.be")
-pwaterlot = UserDescriptor('pwaterlot', ['MeetingPowerObserver'],
-                           fullname='Philippe Waterlot', email="pwaterlot@Seraing.be")
-abuscemi = UserDescriptor('abuscemi', ['MeetingPowerObserver'],
-                          fullname='Antonio Buscemi', email="abuscemi@Seraing.be")
-lwimlot = UserDescriptor('lwimlot', ['MeetingPowerObserver'],
-                         fullname='Laurent Wimlot', email="lwimlot@Seraing.be")
-cboulangier = UserDescriptor('cboulangier', ['MeetingPowerObserver'],
-                             fullname='Cécile Boulangier', email="cboulangier@Seraing.be")
-vlibois = UserDescriptor('vlibois', ['MeetingPowerObserver'],
-                         fullname='Vincent Libois', email="vlibois@Seraing.be")
-ammarin = UserDescriptor('ammarin', ['MeetingPowerObserver'],
-                         fullname='Anne-Marie Marin', email="ammarin@Seraing.be")
-agorez = UserDescriptor('agorez', ['MeetingPowerObserver'],
-                        fullname='André Gorez', email="agorez@Seraing.be")
-jpmichiels = UserDescriptor('jpmichiels', ['MeetingPowerObserver'],
-                            fullname='Jean-Pierre Michiels', email="jpmichiels@Seraing.be")
-cdelplancq = UserDescriptor('cdelplancq', ['MeetingPowerObserver'],
-                            fullname='Christophe Delplancq', email="cdelplancq@Seraing.be")
-fvermeer = UserDescriptor('fvermeer', ['MeetingPowerObserver'],
-                          fullname='Fabienne Vermeer', email="fvermeer@Seraing.be")
-lbaccareladurso = UserDescriptor('lbaccareladurso', ['MeetingPowerObserver'],
-                                 fullname='Louisa Baccarela d\'Urso', email="lbaccareladurso@Seraing.be")
-clicata = UserDescriptor('clicata', ['MeetingPowerObserver'],
-                         fullname='Cosimo Licata', email="clicata@Seraing.be")
-mroland = UserDescriptor('mroland', ['MeetingPowerObserver'],
-                         fullname='Marie Roland', email="mroland@Seraing.be")
-collegecommunal = UserDescriptor('collegecommunal', ['MeetingPowerObserver'],
-                                 fullname='Collège communal', email="collegecommunal@Seraing.be")
-groupeps = UserDescriptor('groupeps', ['MeetingPowerObserver'],
-                          fullname='Groupe PS', email="groupeps@Seraing.be")
-groupemr = UserDescriptor('groupemr', ['MeetingPowerObserver'],
-                          fullname='Groupe MR', email="groupemr@Seraing.be")
-groupecdh = UserDescriptor('groupecdh', ['MeetingPowerObserver'],
-                           fullname='Groupe cdH', email="groupecdh@Seraing.be")
-groupeecolo = UserDescriptor('groupeecolo', ['MeetingPowerObserver'],
-                             fullname='Groupe Ecolo', email="groupeecolo@Seraing.be")
-groupeptb = UserDescriptor('groupeptb', ['MeetingPowerObserver'],
-                           fullname='Groupe PTB+', email="groupeptb@Seraing.be")
-groupefn = UserDescriptor('groupefn', ['MeetingPowerObserver'],
-                          fullname='Groupe FN', email="groupefn@Seraing.be")
-groupeindependant = UserDescriptor('groupeindependant', ['MeetingPowerObserver'],
-                                   fullname='Groupe Indépendant', email="groupeindependant@Seraing.be")
-
-jgobert_mu = MeetingUserDescriptor('jgobert', duty='Bourgmestre', usages=['asker', ], active=False)
-asabbatini_mu = MeetingUserDescriptor('asabbatini', gender='f', duty='1er Echevin', usages=['asker', ], active=False)
-jgodin_mu = MeetingUserDescriptor('jgodin', gender='m', duty='2ème Echevin', usages=['asker', ], active=False)
-odestrebecq_mu = MeetingUserDescriptor('odestrebecq', duty='3ème Echevin', usages=['asker', ], active=False)
-ghaine_mu = MeetingUserDescriptor('ghaine', duty='4ème Echevin', usages=['asker', ], active=False)
-adupont_mu = MeetingUserDescriptor('adupont', gender='f', duty='5ème Echevin', usages=['asker', ], active=False)
-fghiot_mu = MeetingUserDescriptor('fghiot', gender='f', duty='6ème Echevin', usages=['asker', ], active=False)
-jcwargnie_mu = MeetingUserDescriptor('jcwargnie', duty='7ème Echevin', usages=['asker', ], active=False)
-dstaquet_mu = MeetingUserDescriptor('dstaquet', gender='f', duty='Présidente du CPAS', usages=['asker', ])
-bliebin_mu = MeetingUserDescriptor('bliebin', duty='Conseiller communal', usages=['asker', ])
-cburgeon_mu = MeetingUserDescriptor('cburgeon', gender='f', duty='Conseillère communale', usages=['asker', ])
-mdubois_mu = MeetingUserDescriptor('mdubois', duty='Conseiller communal', usages=['asker', ])
-ydrugmand_mu = MeetingUserDescriptor('ydrugmand', duty='Conseiller communal', usages=['asker', ])
-gmaggiordomo_mu = MeetingUserDescriptor('gmaggiordomo', duty='Conseiller communal', usages=['asker', ])
-ozrihen_mu = MeetingUserDescriptor('ozrihen', gender='f', duty='Conseillère communale', usages=['asker', ])
-mdimattia_mu = MeetingUserDescriptor('mdimattia', duty='Conseiller communal', usages=['asker', ])
-trotolo_mu = MeetingUserDescriptor('trotolo', gender='f', duty='Conseillère communale', usages=['asker', ])
-fromeo_mu = MeetingUserDescriptor('fromeo', duty='Conseiller communal', usages=['asker', ])
-mhanot_mu = MeetingUserDescriptor('mhanot', gender='f', duty='Conseillère communale', usages=['asker', ])
-ivansteen_mu = MeetingUserDescriptor('ivansteen', gender='f', duty='Conseillère communale', usages=['asker', ])
-jkeijzer_mu = MeetingUserDescriptor('jkeijzer', duty='Conseiller communal', usages=['asker', ])
-afagbemi_mu = MeetingUserDescriptor('afagbemi', duty='Conseiller communal', usages=['asker', ])
-agava_mu = MeetingUserDescriptor('agava', duty='Conseiller communal', usages=['asker', ])
-apourbaix_mu = MeetingUserDescriptor('apourbaix', duty='Conseiller communal', usages=['asker', ])
-lduval_mu = MeetingUserDescriptor('lduval', duty='Conseiller communal', usages=['asker', ])
-jchristiaens_mu = MeetingUserDescriptor('jchristiaens', duty='Conseiller communal', usages=['asker', ])
-mvanhooland_mu = MeetingUserDescriptor('mvanhooland', duty='Conseiller communal', usages=['asker', ])
-frmili_mu = MeetingUserDescriptor('frmili', gender='f', duty='Conseillère communale', usages=['asker', ])
-pwaterlot_mu = MeetingUserDescriptor('pwaterlot', duty='Conseiller communal', usages=['asker', ])
-abuscemi_mu = MeetingUserDescriptor('abuscemi', duty='Conseiller communal', usages=['asker', ])
-lwimlot_mu = MeetingUserDescriptor('lwimlot', duty='Conseiller communal', usages=['asker', ])
-cboulangier_mu = MeetingUserDescriptor('cboulangier', gender='f', duty='Conseillère communale', usages=['asker', ])
-vlibois_mu = MeetingUserDescriptor('vlibois', duty='Conseiller communal', usages=['asker', ])
-ammarin_mu = MeetingUserDescriptor('ammarin', gender='f', duty='Conseillère communale', usages=['asker', ])
-agorez_mu = MeetingUserDescriptor('agorez', duty='Conseiller communal', usages=['asker', ])
-jpmichiels_mu = MeetingUserDescriptor('jpmichiels', duty='Conseiller communal', usages=['asker', ])
-cdelplancq_mu = MeetingUserDescriptor('cdelplancq', duty='Conseiller communal', usages=['asker', ])
-fvermeer_mu = MeetingUserDescriptor('fvermeer', gender='f', duty='Conseillère communale', usages=['asker', ])
-lbaccareladurso_mu = MeetingUserDescriptor('lbaccareladurso', gender='f',
-                                           duty='Conseillère communale', usages=['asker', ])
-clicata_mu = MeetingUserDescriptor('clicata', duty='Conseiller communal', usages=['asker', ])
-mroland_mu = MeetingUserDescriptor('mroland', gender='f', duty='Conseillère communale', usages=['asker', ])
-collegecommunal_mu = MeetingUserDescriptor('collegecommunal', gender='', duty='', usages=['asker', ])
-groupeps_mu = MeetingUserDescriptor('groupeps', gender='', duty='', usages=['asker', ])
-groupemr_mu = MeetingUserDescriptor('groupemr', gender='', duty='', usages=['asker', ])
-groupecdh_mu = MeetingUserDescriptor('groupecdh', gender='', duty='', usages=['asker', ])
-groupeecolo_mu = MeetingUserDescriptor('groupeecolo', gender='', duty='', usages=['asker', ])
-groupeptb_mu = MeetingUserDescriptor('groupeptb', gender='', duty='', usages=['asker', ])
-groupefn_mu = MeetingUserDescriptor('groupefn', gender='', duty='', usages=['asker', ])
-groupeindependant_mu = MeetingUserDescriptor('groupeindependant', gender='', duty='', usages=['asker', ])
 
 groups = [GroupDescriptor('dirgen', 'Directeur Général', 'DG'),
           GroupDescriptor('secretariat', 'Secretariat communal', 'Secr',
@@ -407,56 +254,6 @@ groups[4].reviewers.append(dgen)
 groups[4].observers.append(agentTrav)
 groups[4].advisers.append(agentTrav)
 
-groups[5].observers.append(jgobert)
-groups[5].observers.append(asabbatini)
-groups[5].observers.append(jgodin)
-groups[5].observers.append(odestrebecq)
-groups[5].observers.append(ghaine)
-groups[5].observers.append(adupont)
-groups[5].observers.append(fghiot)
-groups[5].observers.append(jcwargnie)
-groups[5].observers.append(dstaquet)
-groups[5].observers.append(bliebin)
-groups[5].observers.append(cburgeon)
-groups[5].observers.append(mdubois)
-groups[5].observers.append(ydrugmand)
-groups[5].observers.append(gmaggiordomo)
-groups[5].observers.append(ozrihen)
-groups[5].observers.append(mdimattia)
-groups[5].observers.append(trotolo)
-groups[5].observers.append(fromeo)
-groups[5].observers.append(mhanot)
-groups[5].observers.append(ivansteen)
-groups[5].observers.append(jkeijzer)
-groups[5].observers.append(afagbemi)
-groups[5].observers.append(agava)
-groups[5].observers.append(apourbaix)
-groups[5].observers.append(lduval)
-groups[5].observers.append(jchristiaens)
-groups[5].observers.append(mvanhooland)
-groups[5].observers.append(frmili)
-groups[5].observers.append(pwaterlot)
-groups[5].observers.append(abuscemi)
-groups[5].observers.append(lwimlot)
-groups[5].observers.append(cboulangier)
-groups[5].observers.append(vlibois)
-groups[5].observers.append(ammarin)
-groups[5].observers.append(agorez)
-groups[5].observers.append(jpmichiels)
-groups[5].observers.append(cdelplancq)
-groups[5].observers.append(fvermeer)
-groups[5].observers.append(lbaccareladurso)
-groups[5].observers.append(clicata)
-groups[5].observers.append(mroland)
-groups[5].observers.append(collegecommunal)
-groups[5].observers.append(groupeps)
-groups[5].observers.append(groupemr)
-groups[5].observers.append(groupecdh)
-groups[5].observers.append(groupeecolo)
-groups[5].observers.append(groupeptb)
-groups[5].observers.append(groupefn)
-groups[5].observers.append(groupeindependant)
-
 # Meeting configurations -------------------------------------------------------
 # college
 collegeMeeting = MeetingConfigDescriptor(
@@ -472,19 +269,19 @@ collegeMeeting.shortName = 'College'
 collegeMeeting.meetingFileTypes = [annexe, annexeBudget, annexeCahier,
                                    annexeDecision, annexeAvis, annexeAvisLegal]
 collegeMeeting.usedItemAttributes = ['budgetInfos', 'observations', 'toDiscuss',
-                                     'motivation', 'neededFollowUp', 'providedFollowUp', ]
+                                     'motivation', ]
 collegeMeeting.xhtmlTransformFields = ('MeetingItem.description', 'MeetingItem.detailedDescription',
                                        'MeetingItem.decision', 'MeetingItem.observations',
                                        'MeetingItem.interventions', 'MeetingItem.commissionTranscript')
 collegeMeeting.xhtmlTransformTypes = ('removeBlanks',)
-collegeMeeting.itemWorkflow = 'meetingitemcollegeSeraing_workflow'
-collegeMeeting.meetingWorkflow = 'meetingcollegeSeraing_workflow'
+collegeMeeting.itemWorkflow = 'meetingitemcollegeseraing_workflow'
+collegeMeeting.meetingWorkflow = 'meetingcollegeseraing_workflow'
 collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
 collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
 collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
 collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposedToServiceHead', 'proposedToOfficeManager',
-                                  'proposedToDivisionHead', 'proposedToDirector', 'proposedToAlderman',
+                                  'proposedToDivisionHead', 'proposed', 
                                   'validated', 'presented', 'itemfrozen', 'accepted', 'refused', 'delayed',
                                   'pre_accepted', 'removed', 'accepted_but_modified', )
 collegeMeeting.meetingTopicStates = ('created', 'frozen')
@@ -595,24 +392,7 @@ categories = [CategoryDescriptor('recurrent', 'Point récurrent',
 councilMeeting = MeetingConfigDescriptor(
     'meeting-config-council', 'Conseil Communal',
     'Conseil Communal')
-councilMeeting.assembly = """M.J.GOBERT, Bourgmestre-Président
-Mme A.SABBATINI, MM.J.GODIN, O.DESTREBECQ, G.HAINE,
-Mmes A.DUPONT, F.GHIOT, M.J.C.WARGNIE, Echevins
-Mme D.STAQUET, Présidente du CPAS
-M.B.LIEBIN, Mme C.BURGEON, MM.M.DUBOIS, Y.DRUGMAND,
-G.MAGGIORDOMO, O.ZRIHEN, M.DI MATTIA, Mme T.ROTOLO, M.F.ROMEO,
-Mmes M.HANOT, I.VAN STEEN, MM.J.KEIJZER, A.FAGBEMI,
-A.GAVA, A.POURBAIX, L.DUVAL, J.CHRISTIAENS, M.VAN HOOLAND,
-Mme F.RMILI, MM.P.WATERLOT, A.BUSCEMI, L.WIMLOT,
-Mme C.BOULANGIER, M.V.LIBOIS, Mme A.M.MARIN, MM.A.GOREZ,
-J.P.MICHIELS, C.DELPLANCQ, Mmes F.VERMEER, L.BACCARELLA D'URSO,
-M.C.LICATA et Mme M.ROLAND, Conseillers communaux
-M.R.ANKAERT, Secrétaire
-En présence de M.L.DEMOL, Chef de Corps, en ce qui concerne les points « Police »"""
-councilMeeting.signatures = """Le Secrétaire,
-R.ANKAERT
-Le Président,
-J.GOBERT"""
+councilMeeting.assembly = """Assemblée du Conseil"""
 councilMeeting.categories = categories
 councilMeeting.shortName = 'Council'
 councilMeeting.meetingFileTypes = [annexe, annexeBudget, annexeCahier, annexeRemarks,
@@ -633,8 +413,8 @@ councilMeeting.usedMeetingAttributes = ('place', 'observations', 'signatures', '
                                         'preMeetingPlace_7', 'preMeetingAssembly_7', 'startDate', 'endDate', )
 councilMeeting.recordMeetingHistoryStates = []
 councilMeeting.workflowAdaptations = ['return_to_proposing_group', ]
-councilMeeting.itemWorkflow = 'meetingitemcouncilSeraing_workflow'
-councilMeeting.meetingWorkflow = 'meetingcouncilSeraing_workflow'
+councilMeeting.itemWorkflow = 'meetingitemcouncilseraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingcouncilseraing_workflow'
 councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions'
 councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
 councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
@@ -703,15 +483,7 @@ councilMeeting.recurringItems = [
         decision='',
         meetingTransitionInsertingMe='setInCouncil'),
 ]
-councilMeeting.meetingUsers = [jgobert_mu, asabbatini_mu, jgodin_mu, odestrebecq_mu, ghaine_mu,
-                               adupont_mu, fghiot_mu, jcwargnie_mu, dstaquet_mu, bliebin_mu, cburgeon_mu,
-                               mdubois_mu, ydrugmand_mu, gmaggiordomo_mu, ozrihen_mu, mdimattia_mu, trotolo_mu,
-                               fromeo_mu, mhanot_mu, ivansteen_mu, jkeijzer_mu, afagbemi_mu, agava_mu,
-                               apourbaix_mu, lduval_mu, jchristiaens_mu, mvanhooland_mu, frmili_mu, pwaterlot_mu,
-                               abuscemi_mu, lwimlot_mu, cboulangier_mu, vlibois_mu, ammarin_mu, agorez_mu,
-                               jpmichiels_mu, cdelplancq_mu, fvermeer_mu, lbaccareladurso_mu, clicata_mu, mroland_mu,
-                               collegecommunal_mu, groupeps_mu, groupemr_mu, groupecdh_mu, groupeecolo_mu,
-                               groupeptb_mu, groupefn_mu, groupeindependant_mu, ]
+councilMeeting.meetingUsers = []
 
 data = PloneMeetingConfiguration(meetingFolderTitle='Mes séances',
                                  meetingConfigs=(collegeMeeting, councilMeeting),

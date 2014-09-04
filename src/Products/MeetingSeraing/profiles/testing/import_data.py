@@ -68,10 +68,8 @@ pmReviewer1 = UserDescriptor('pmReviewer1', [])
 pmServiceHead1 = UserDescriptor('pmServiceHead1', [])
 pmOfficeManager1 = UserDescriptor('pmOfficeManager1', [])
 pmDivisionHead1 = UserDescriptor('pmDivisionHead1', [])
-pmDirector1 = UserDescriptor('pmDirector1', [])
 pmCreator2 = UserDescriptor('pmCreator2', [])
 pmReviewer2 = UserDescriptor('pmReviewer2', [])
-pmDirector2 = UserDescriptor('pmDirector2', [])
 pmAdviser1 = UserDescriptor('pmAdviser1', [])
 voter1 = UserDescriptor('voter1', [], fullname='M. Voter One')
 voter2 = UserDescriptor('voter2', [], fullname='M. Voter Two')
@@ -98,10 +96,6 @@ developers.officemanagers.append(pmOfficeManager1)
 developers.officemanagers.append(pmManager)
 developers.divisionheads.append(pmDivisionHead1)
 developers.divisionheads.append(pmManager)
-developers.directors.append(pmDirector1)
-developers.directors.append(pmReviewer1)
-developers.directors.append(pmManager)
-developers.directors.append(admin)
 developers.reviewers.append(pmReviewer1)
 developers.reviewers.append(pmManager)
 developers.reviewers.append(admin)
@@ -116,8 +110,6 @@ setattr(developers, 'echevinServices', 'developers')
 #give an advice on recurring items
 vendors = GroupDescriptor('vendors', 'Vendors', 'Devil')
 vendors.creators.append(pmCreator2)
-vendors.directors.append(pmReviewer2)
-vendors.directors.append(pmDirector2)
 vendors.reviewers.append(pmReviewer2)
 vendors.observers.append(pmReviewer2)
 vendors.advisers.append(pmReviewer2)
@@ -163,20 +155,20 @@ collegeMeeting.xhtmlTransformFields = ('MeetingItem.description', 'MeetingItem.d
                                        'MeetingItem.decision', 'MeetingItem.observations',
                                        'MeetingItem.interventions', 'MeetingItem.commissionTranscript')
 collegeMeeting.xhtmlTransformTypes = ('removeBlanks',)
-collegeMeeting.itemWorkflow = 'meetingitemcollegeSeraing_workflow'
-collegeMeeting.meetingWorkflow = 'meetingcollegeSeraing_workflow'
+collegeMeeting.itemWorkflow = 'meetingitemcollegeseraing_workflow'
+collegeMeeting.meetingWorkflow = 'meetingcollegeseraing_workflow'
 collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
 collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
 collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
 collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
-                                  'proposed_to_divisionhead', 'proposed_to_director', 'validated',
+                                  'proposed_to_divisionhead', 'proposed', 'validated',
                                   'presented', 'itemfrozen', 'accepted', 'refused',
                                   'delayed', 'pre_accepted', 'removed',)
 collegeMeeting.meetingTopicStates = ('created', 'frozen')
 collegeMeeting.decisionTopicStates = ('decided', 'closed')
-collegeMeeting.itemAdviceStates = ['proposed_to_director', ]
-collegeMeeting.itemAdviceEditStates = ['proposed_to_director', 'validated']
+collegeMeeting.itemAdviceStates = ['proposed', ]
+collegeMeeting.itemAdviceEditStates = ['proposed', 'validated']
 collegeMeeting.itemAdviceViewStates = ['presented', ]
 collegeMeeting.recordItemHistoryStates = ['', ]
 collegeMeeting.useGroupsAsCategories = True
@@ -289,20 +281,20 @@ councilMeeting.usedMeetingAttributes = (
     'preMeetingDate_7', 'preMeetingPlace_7', 'preMeetingAssembly_7', 'startDate', 'endDate', )
 councilMeeting.recordMeetingHistoryStates = []
 councilMeeting.workflowAdaptations = ['return_to_proposing_group', ]
-councilMeeting.itemWorkflow = 'meetingitemcouncilSeraing_workflow'
-councilMeeting.meetingWorkflow = 'meetingcouncilSeraing_workflow'
+councilMeeting.itemWorkflow = 'meetingitemcouncilseraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingcouncilseraing_workflow'
 councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions'
 councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
 councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
 councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions'
 #show every items states
-councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_director', 'validated', 'presented', 'itemfrozen',
+councilMeeting.itemTopicStates = ('itemcreated', 'proposed', 'validated', 'presented', 'itemfrozen',
                                   'item_in_committee', 'item_in_council', 'returned_to_service', 'accepted',
                                   'accepted_but_modified', 'refused', 'delayed')
 councilMeeting.meetingTopicStates = ('created', 'frozen', 'in_committee')
 councilMeeting.decisionTopicStates = ('in_council', 'closed')
-councilMeeting.itemAdviceStates = ['proposed_to_director', ]
-councilMeeting.itemAdviceEditStates = ['proposed_to_director', 'validated']
+councilMeeting.itemAdviceStates = ['proposed', ]
+councilMeeting.itemAdviceEditStates = ['proposed', 'validated']
 councilMeeting.itemAdviceViewStates = ['presented', ]
 councilMeeting.transitionReinitializingDelays = 'backToItemCreated'
 councilMeeting.recordItemHistoryStates = ['', ]

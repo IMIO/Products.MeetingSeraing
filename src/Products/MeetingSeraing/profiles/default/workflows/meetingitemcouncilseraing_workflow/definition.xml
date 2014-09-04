@@ -36,7 +36,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -54,7 +53,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -85,7 +83,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -99,7 +96,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -113,7 +109,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -127,7 +122,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -141,7 +135,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -181,7 +174,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -200,7 +192,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -218,7 +209,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -249,7 +239,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -263,7 +252,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -277,7 +265,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -291,7 +278,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -305,7 +291,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -345,7 +330,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -364,7 +348,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -382,7 +365,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -413,7 +395,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -427,7 +408,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -441,7 +421,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -455,7 +434,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -469,7 +447,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -509,7 +486,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -529,7 +505,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -548,7 +523,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -583,7 +557,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -597,7 +570,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -611,7 +583,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -625,7 +596,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -639,7 +609,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -684,7 +653,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -707,7 +675,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -726,7 +693,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -760,7 +726,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -774,7 +739,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -788,7 +752,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -802,7 +765,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -816,7 +778,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -861,7 +822,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -871,7 +831,7 @@
  <state state_id="itemcreated"
         title="itemcreated"
         i18n:attributes="title">
-  <exit-transition transition_id="proposeToDirector"/>
+  <exit-transition transition_id="propose"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
@@ -998,7 +958,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1016,7 +975,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1049,7 +1007,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1062,7 +1019,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1075,7 +1031,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1088,7 +1043,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1101,7 +1055,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1145,14 +1098,13 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
  </state>
- <state state_id="proposed_to_director"
-        title="proposed_to_director"
+ <state state_id="proposed"
+        title="proposed"
         i18n:attributes="title">
   <exit-transition transition_id="backToItemCreated"/>
   <exit-transition transition_id="validate"/>
@@ -1162,7 +1114,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1177,7 +1129,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1189,17 +1141,17 @@
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Add MeetingFile"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Add annex"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Read budget infos"
                   acquired="False">
@@ -1207,7 +1159,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1217,7 +1169,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1227,7 +1179,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1237,7 +1189,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1247,40 +1199,40 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Write budget infos"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingBudgetImpactEditor</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Write decision"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Write decision annex"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Write item observations"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="PloneMeeting: Write optional advisers"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
   </permission-map>
   <permission-map name="View"
                   acquired="False">
@@ -1288,7 +1240,7 @@
    <permission-role>MeetingMember</permission-role>
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
-   <permission-role>MeetingDirector</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
   </permission-map>
@@ -1305,7 +1257,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1323,7 +1274,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1354,7 +1304,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1368,7 +1317,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1382,7 +1330,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1396,7 +1343,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1410,7 +1356,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1450,7 +1395,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1462,7 +1406,7 @@
         i18n:attributes="title">
   <exit-transition transition_id="present"/>
   <exit-transition transition_id="backToItemCreated"/>
-  <exit-transition transition_id="backToProposedToDirector"/>
+  <exit-transition transition_id="backToProposed"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
@@ -1471,7 +1415,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1489,7 +1432,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1522,7 +1464,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1535,7 +1476,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1548,7 +1488,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1561,7 +1500,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1574,7 +1512,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1618,7 +1555,6 @@
    <permission-role>MeetingServiceHead</permission-role>
    <permission-role>MeetingOfficeManager</permission-role>
    <permission-role>MeetingDivisionHead</permission-role>
-   <permission-role>MeetingDirector</permission-role>
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
@@ -1696,14 +1632,14 @@
     <guard-expression>python:here.wfConditions().mayCorrect()</guard-expression>
   </guard>
  </transition>
- <transition transition_id="backToProposedToDirector"
-             title="backToProposedToDirector"
-             new_state="proposed_to_director"
+ <transition transition_id="backToProposed"
+             title="backToProposed"
+             new_state="proposed"
              trigger="USER"
              before_script=""
              after_script=""
              i18n:attributes="title">
-  <action url="" category="workflow" i18n:translate="">backToProposedToDirector</action>
+  <action url="" category="workflow" i18n:translate="">backToProposed</action>
   <guard>
     <guard-expression>python:here.wfConditions().mayCorrect()</guard-expression>
   </guard>
@@ -1744,16 +1680,16 @@
     <guard-expression>python:here.wfConditions().mayPresent()</guard-expression>
   </guard>
  </transition>
- <transition transition_id="proposeToDirector"
-             title="proposeToDirector"
-             new_state="proposed_to_director"
+ <transition transition_id="propose"
+             title="propose"
+             new_state="proposed"
              trigger="USER"
              before_script=""
              after_script=""
              i18n:attributes="title">
-  <action url="" category="workflow" i18n:translate="">proposeToDirector</action>
+  <action url="" category="workflow" i18n:translate="">propose</action>
   <guard>
-    <guard-expression>python:here.wfConditions().mayProposeToDirector()</guard-expression>
+    <guard-expression>python:here.wfConditions().mayPropose()</guard-expression>
   </guard>
  </transition>
  <transition transition_id="refuse"

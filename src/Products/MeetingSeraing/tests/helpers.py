@@ -30,21 +30,21 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
     TRANSITIONS_FOR_PROPOSING_ITEM_1 = ('proposeToServiceHead',
                                         'proposeToOfficeManager',
                                         'proposeToDivisionHead',
-                                        'proposeToDirector', )
-    TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('proposeToDirector', )
+                                        'propose', )
+    TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('propose', )
     TRANSITIONS_FOR_VALIDATING_ITEM_1 = ('proposeToServiceHead',
                                          'proposeToOfficeManager',
                                          'proposeToDivisionHead',
-                                         'proposeToDirector',
+                                         'propose',
                                          'validate', )
-    TRANSITIONS_FOR_VALIDATING_ITEM_2 = ('proposeToDirector', 'validate', )
+    TRANSITIONS_FOR_VALIDATING_ITEM_2 = ('propose', 'validate', )
     TRANSITIONS_FOR_PRESENTING_ITEM_1 = ('proposeToServiceHead',
                                          'proposeToOfficeManager',
                                          'proposeToDivisionHead',
-                                         'proposeToDirector',
+                                         'propose',
                                          'validate',
                                          'present', )
-    TRANSITIONS_FOR_PRESENTING_ITEM_2 = ('proposeToDirector', 'validate', 'present', )
+    TRANSITIONS_FOR_PRESENTING_ITEM_2 = ('propose', 'validate', 'present', )
     TRANSITIONS_FOR_ACCEPTING_ITEMS_1 = ('freeze', 'decide', )
     TRANSITIONS_FOR_ACCEPTING_ITEMS_2 = ('setInCommittee', 'setInCouncil', )
 
@@ -61,15 +61,15 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         'itemcreated': ('backToItemFrozen',
                         'backToPresented',
                         'backToValidated',
-                        'backToProposedToDirector',
+                        'backToProposed',
                         'backToProposedToDivisionHead',
                         'backToProposedToOfficeManager',
                         'backToProposedToServiceHead',
                         'backToItemCreated'),
-        'proposed_to_director': ('backToItemFrozen',
+        'proposed': ('backToItemFrozen',
                                  'backToPresented',
                                  'backToValidated',
-                                 'backToProposedToDirector', ),
+                                 'backToProposed', ),
         'validated': ('backToItemFrozen',
                       'backToPresented',
                       'backToValidated', )}
@@ -77,18 +77,18 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         'itemcreated': ('backToItemFrozen',
                         'backToPresented',
                         'backToValidated',
-                        'backToProposedToDirector',
+                        'backToProposed',
                         'backToItemCreated'),
-        'proposed_to_director': ('backToItemFrozen',
+        'proposed': ('backToItemFrozen',
                                  'backToPresented',
                                  'backToValidated',
-                                 'backToProposedToDirector', ),
+                                 'backToProposed', ),
         'validated': ('backToItemFrozen',
                       'backToPresented',
                       'backToValidated', )}
 
     WF_STATE_NAME_MAPPINGS = {'itemcreated': 'itemcreated',
-                              'proposed': 'proposed_to_director',
+                              'proposed': 'proposed',
                               'validated': 'validated',
                               'presented': 'presented'}
 

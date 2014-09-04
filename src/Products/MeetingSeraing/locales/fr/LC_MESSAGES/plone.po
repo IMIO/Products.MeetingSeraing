@@ -76,7 +76,7 @@ msgid "backToPresented"
 msgstr "Remettre en présenté"
 
 #. Default: "send back"
-msgid "backToProposedToDirector"
+msgid "backToProposed"
 msgstr "Renvoyer au directeur"
 
 #. Default: "send back"
@@ -139,7 +139,7 @@ msgstr "Description dans l'ordre du jour"
 msgid "proposeToBudgetImpactReviewer"
 msgstr "Proposer au correspondant financier"
 
-msgid "proposeToDirector"
+msgid "propose"
 msgstr "Proposer au directeur"
 
 msgid "proposeToDivisionHead"
@@ -156,7 +156,7 @@ msgid "proposed_to_budgetimpact_reviewer"
 msgstr "Proposé au correspondant financier"
 
 #. Default: "Proposed to director"
-msgid "proposed_to_director"
+msgid "proposed"
 msgstr "Proposé au directeur"
 
 #. Default: "Proposed to division head"

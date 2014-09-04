@@ -48,8 +48,6 @@ def postInstall(context):
     site = context.getSite()
     # Reinstall PloneMeeting
     reinstallPloneMeeting(context, site)
-    # Add additional indexes
-    addAdditionalIndexes(context, site)
     # Add groups for council commissions that will contain MeetingCommissionEditors
     addCommissionEditorGroups(context, site)
     # Add some more topics
@@ -71,7 +69,7 @@ def logStep(method, context):
 
 
 def isNotMeetingSeraingSeraingProfile(context):
-    return context.readDataFile("MeetingSeraing_Seraing_marker.txt") is None
+    return context.readDataFile("MeetingSeraing_seraing_marker.txt") is None
 
 
 def installMeetingSeraing(context):
@@ -114,22 +112,6 @@ def initializeTool(context):
     return ToolInitializer(context, PROJECTNAME).run()
 
 
-def addAdditionalIndexes(context, portal):
-    '''
-       Add some specific indexes used by MeetingSeraing
-    '''
-    if isNotMeetingSeraingProfile(context):
-        return
-
-    indexInfo = {
-        'getFollowUp': 'FieldIndex',
-    }
-
-    logStep("addAdditionalIndexes", context)
-    # Create or update indexes
-    updateIndexes(portal, indexInfo, logger)
-
-
 def addCommissionEditorGroups(context, portal):
     '''
        Add groups for council commissions that will contain MeetingCommissionEditors
@@ -163,13 +145,13 @@ def addSearches(context, portal):
         ('proposed_to_officemanager', ),
         '',
         'python: not here.portal_plonemeeting.userIsAmong("officemanagers")',),
-        # Items in state 'proposed_to_director'
+        # Items in state 'proposed'
         # Used in the "todo" portlet
         ('searchitemstovalidate',
         (('Type', 'ATPortalTypeCriterion', 'MeetingItem'),),
-        ('proposed_to_director', ),
+        ('proposed', ),
         '',
-        'python: here.portal_plonemeeting.userIsAmong("directors")',),
+        'python: here.portal_plonemeeting.userIsAmong("reviewers")',),
         # Items in state 'validated'
         ('searchvalidateditems',
         (('Type', 'ATPortalTypeCriterion', 'MeetingItem'),),
@@ -192,29 +174,6 @@ def addSearches(context, portal):
         ('searchdecideditems',
         (('Type', 'ATPortalTypeCriterion', 'MeetingItem'),),
         ('accepted', 'refused', 'delayed', 'accepted_but_modified'),
-        '',
-        '',),
-    )
-
-    topicsInfo['meeting-config-college'] = (
-        # Items that need a follow-up (getFollowUp == follow_up_yes)
-        ('searchitemstofollow',
-        (('Type', 'ATPortalTypeCriterion', 'MeetingItem'),
-         ('getFollowUp', 'ATSimpleStringCriterion', 'follow_up_yes'),),
-        (),
-        '',
-        'python: here.portal_plonemeeting.isManager()',),
-        # Items that needed a follow-up that has been provided (getFollowUp == follow_up_provided)
-        ('searchitemswithfollowupprovided',
-        (('Type', 'ATPortalTypeCriterion', 'MeetingItem'),
-         ('getFollowUp', 'ATListCriterion', ['follow_up_provided', 'follow_up_provided_not_printed', ]),),
-        (),
-        '', 'python: here.portal_plonemeeting.isManager()',),
-        # The follow-up dashboard showing items with follow_up_needed and items with follow_up_confirmed to print
-        ('searchitemsfollowupdashboard',
-        (('Type', 'ATPortalTypeCriterion', 'MeetingItem'),
-         ('getFollowUp', 'ATListCriterion', ['follow_up_yes', 'follow_up_provided', ]),),
-        (),
         '',
         '',),
     )

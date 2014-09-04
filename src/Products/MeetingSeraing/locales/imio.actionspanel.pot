@@ -39,8 +39,8 @@ msgstr ""
 msgid "proposeToServiceHead_done_descr"
 msgstr ""
 
-#. Default: "proposeToDirector_done_descr"
-msgid "proposeToDirector_done_descr"
+#. Default: "propose_done_descr"
+msgid "propose_done_descr"
 msgstr ""
 
 #. Default: "accept_but_modify_done_descr"
@@ -137,7 +137,7 @@ msgid "backToProposedToDivisionHead_done_descr"
 msgstr ""
 
 #. Default: "This item has been send back to the director."
-msgid "backToProposedToDirector_done_descr"
+msgid "backToProposed_done_descr"
 msgstr ""
 
 #. Default: "The decision taken on this item has been canceled."

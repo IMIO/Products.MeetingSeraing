@@ -15,10 +15,6 @@ msgstr ""
 "Domain: PloneMeeting\n"
 "X-is-fallback-for: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-#. Default: "Dashboard"
-msgid "Dashboard"
-msgstr "Tableau de bord"
-
 # portal_tabs
 #. Default: "College"
 msgid "Meeting config Seraing College"
@@ -36,21 +32,9 @@ msgstr "Laissez ce champ vide pour utiliser l'assemblée qui sera définie sur l
 msgid "MeetingSeraing_descr_commissionTranscript"
 msgstr " "
 
-#. Default: "Follow-up"
-msgid "MeetingSeraing_descr_followUp"
-msgstr " "
-
 #. Default: "Transcription of interventions"
 msgid "MeetingSeraing_descr_interventions"
 msgstr "Retranscription des interventions"
-
-#. Default: "Needed follow-up"
-msgid "MeetingSeraing_descr_neededFollowUp"
-msgstr " "
-
-#. Default: "Provided follow-up"
-msgid "MeetingSeraing_descr_providedFollowUp"
-msgstr " "
 
 # MeetingGroup
 #. Default: "Leave empty to use the signatures defined on the meeting"
@@ -73,10 +57,6 @@ msgstr "Délibération"
 msgid "MeetingSeraing_label_councildescription"
 msgstr "Note explicative"
 
-#. Default: "Follow-up"
-msgid "MeetingSeraing_label_followUp"
-msgstr "Suivi"
-
 #. Default: "Interventions"
 msgid "MeetingSeraing_label_interventions"
 msgstr "Interventions"
@@ -88,10 +68,6 @@ msgstr "Assemblée spécifique liée à ce point"
 #. Default: "Premeeting observations"
 msgid "MeetingSeraing_label_meetingcouncilobservations"
 msgstr "Avant-séance"
-
-#. Default: "Needed follow-up"
-msgid "MeetingSeraing_label_neededFollowUp"
-msgstr "Suivi à apporter"
 
 #. Default: "Assembly"
 msgid "MeetingSeraing_label_preMeetingAssembly"
@@ -148,10 +124,6 @@ msgstr "Assemblée par défaut de la commission 7"
 #. Default: "Premeeting 1 default assembly"
 msgid "MeetingSeraing_label_preMeetingAssembly_default"
 msgstr "Assemblée par défaut de la commission 1"
-
-#. Default: "Provided follow-up"
-msgid "MeetingSeraing_label_providedFollowUp"
-msgstr "Suivi apporté"
 
 # MeetingItem
 #. Default: "Signatures delegation"
@@ -259,35 +231,9 @@ msgid "default_meetingitem_decision"
 msgstr "Définissez ici le texte prédéfini qui sera présent dans le champ 'Délibération/Extrait du Procès-verbal' chaque fois qu'un utilisateur crée un nouveau point."
 
 # Suffix
-#. Default: "directors"
-msgid "directors"
-msgstr "directeurs"
-
-# Suffix
 #. Default: "division heads"
 msgid "divisionheads"
 msgstr "chefs de division"
-
-#. Default: "No follow up is needed"
-msgid "follow_up_no"
-msgstr "Pas de suivi à apporter"
-
-#. Default: "The needed follow up has been provided (printed in dashboard)"
-msgid "follow_up_provided"
-msgstr "Le suivi nécessaire a été apporté (imprimé dans le tableau de bord)"
-
-#. Default: "The needed follow up has been provided (no more printed in dashboard)"
-msgid "follow_up_provided_not_printed"
-msgstr "Le suivi nécessaire a été apporté (pas imprimé dans le tableau de bord)"
-
-#. Default: "A follow up is needed"
-msgid "follow_up_yes"
-msgstr "Un suivi est à apporter"
-
-# Suffix
-#. Default: "follow-up writers"
-msgid "followupwriters"
-msgstr "rédacteurs de suivi"
 
 #. Default: "Welcome to HubSessions!"
 msgid "hs_welcome_title"
@@ -296,14 +242,6 @@ msgstr "Bienvenue sur PloneMeeting!"
 #. Default: "Accepted but modified"
 msgid "icon_help_accepted_but_modified"
 msgstr "Accepté provisoirement"
-
-#. Default: "Follow-up needed"
-msgid "icon_help_follow_up_needed"
-msgstr "Un suivi est nécessaire"
-
-#. Default: "Follow-up provided but still printed in the dashboard"
-msgid "icon_help_follow_up_provided"
-msgstr "Un suivi a été apporté mais le point est encore imprimé dans le tableau de bord"
 
 #. Default: "Item in committee"
 msgid "icon_help_item_in_committee"
@@ -366,14 +304,6 @@ msgstr "Commission"
 msgid "listingheader_premeeting_place"
 msgstr "Lieu"
 
-#. Default: "<span class='activate_follow_up'><a href='activateFollowUp'>Click here</a> if you want to define that a follow-up is needed.</span>"
-msgid "no_followup_needed_actions_itemview"
-msgstr "<br /><span class='discreet'>Actions disponibles : </span><a href='activateFollowUp' title='Activer le suivi pour ce point.'><img src='follow_up_yes.png' /></a></span>"
-
-#. Default: "<span class='follow_up_no'>No follow-up needed.</span>"
-msgid "no_followup_needed_itemview"
-msgstr "<span class='follow_up_no'>Aucun suivi nécessaire.</span>"
-
 # Suffix
 #. Default: "office managers"
 msgid "officemanagers"
@@ -427,26 +357,10 @@ msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exe
 msgid "premeeting_assembly_descr"
 msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
 
-#. Default: "<a href='activateFollowUp'>Click here</a> if you want to define that a follow-up is still needed or <a href='deactivateFollowUp'>click here</a> to deactivate needed follow-up."
-msgid "provided_followup_actions_itemview"
-msgstr "<br /><span class='discreet'>Actions disponibles : </span><a href='activateFollowUp' title='Activer à nouveau le suivi.'><img src='follow_up_yes.png' ></a>&nbsp;<a href='deactivateFollowUp' title='Désactiver le suivi (aucun suivi n était nécessaire).'><img src='follow_up_no.png' /></a>&nbsp;<a href='followUpNotPrinted' title='A ne pas imprimer dans le tableau de bord.'><img src='not_printed_in_dashboard.gif' /></a></span>"
-
-#. Default: "<span class='follow_up_provided'>The needed follow-up has been provided.</span>"
-msgid "provided_followup_itemview"
-msgstr "<span class='follow_up_provided'>Le suivi nécessaire a été apporté sur ce point (<img src='printed_in_dashboard.gif' /> imprimé dans le tableau de bord).</span>"
-
-#. Default: "<a href='activateFollowUp'>Click here</a> if you want to define that a follow-up is still needed or <a href='deactivateFollowUp'>click here</a> to deactivate needed follow-up."
-msgid "provided_followup_not_printed_actions_itemview"
-msgstr "<br /><span class='discreet'>Actions disponibles : </span><a href='activateFollowUp' title='Activer à nouveau le suivi'><img src='follow_up_yes.png' ></a>&nbsp;<a href='deactivateFollowUp' title='Désactiver le suivi (aucun suivi n était nécessaire).'><img src='follow_up_no.png' /></a>&nbsp;<a href='confirmFollowUp' title='A imprimer dans le tableau de bord.'><img src='printed_in_dashboard.gif' /></a></span>"
-
-#. Default: "<span class='follow_up_provided'>The needed follow-up has been provided.</span>"
-msgid "provided_followup_not_printed_itemview"
-msgstr "<span class='follow_up_provided_not_printed'>Le suivi nécessaire a été apporté sur ce point (<img src='not_printed_in_dashboard.gif' /> pas imprimé dans le tableau de bord).</span>"
-
 # Suffix
 #. Default: "reviewers"
 msgid "reviewers"
-msgstr "échevins"
+msgstr "directeurs"
 
 #. Default: "Every decisions"
 msgid "searchalldecisions"
@@ -456,10 +370,6 @@ msgstr "tous les PVs"
 msgid "searchdecideditems"
 msgstr "points décidés"
 
-#. Default: "follow-up dashboard"
-msgid "searchitemsfollowupdashboard"
-msgstr "tableau de bord"
-
 #. Default: "items of my commissions"
 msgid "searchitemsofmycommissions"
 msgstr "points de mes commissions"
@@ -468,17 +378,9 @@ msgstr "points de mes commissions"
 msgid "searchitemsofmycommissionstoedit"
 msgstr "points de mes commissions éditables"
 
-#. Default: "items to follow"
-msgid "searchitemstofollow"
-msgstr "points à suivre"
-
 #. Default: "items to validate"
 msgid "searchitemstovalidate"
 msgstr "points à valider"
-
-#. Default: "items with follow-up provided"
-msgid "searchitemswithfollowupprovided"
-msgstr "points suivi apporté"
 
 # searches
 #. Default: "proposed items"
@@ -497,12 +399,3 @@ msgstr "chefs de service"
 #. Default: "Please enter 12 lines for signatures delegations"
 msgid "signatures_length_error"
 msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas être surchargée (si la signature définie dans la configuration de séance dans le champ 'Signatures certifiées' doit être utilisée), renseignez un tiret (-)."
-
-#. Default: "<a href='deactivateFollowUp'>Click here</a> if you want to deactivate the needed follow-up or <a href='confirmFollowUp'>click here</a> if you want to specify that needed follow-up has been provided.</span>"
-msgid "yes_followup_needed_actions_itemview"
-msgstr "<br /><span class='discreet'>Actions disponibles : </span><a href='confirmFollowUp' title='Marquer que le suivi nécesaire a été apporté.'><img src='follow_up_provided.png' ></a>&nbsp;<a href='deactivateFollowUp' title='Désactiver le suivi (aucun suivi n était nécessaire).'><img src='follow_up_no.png' /></a></span>"
-
-#. Default: "<span class='follow_up_yes'>A follow-up is needed.</span>"
-msgid "yes_followup_needed_itemview"
-msgstr "<span class='follow_up_yes'>Un suivi est nécessaire.</span>"
-

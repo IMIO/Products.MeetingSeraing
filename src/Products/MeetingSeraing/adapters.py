@@ -29,7 +29,6 @@ from Globals import InitializeClass
 from zope.interface import implements
 from Products.CMFCore.permissions import ReviewPortalContent, ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.atapi import DisplayList
 from Products.PloneMeeting.MeetingItem import MeetingItem, \
     MeetingItemWorkflowConditions, MeetingItemWorkflowActions
 from Products.PloneMeeting.utils import checkPermission, prepareSearchValue
@@ -62,28 +61,28 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     # view permissions
     'Access contents information':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'View':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'PloneMeeting: Read budget infos':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'PloneMeeting: Read decision':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'PloneMeeting: Read optional advisers':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'PloneMeeting: Read decision annex':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'PloneMeeting: Read item observations':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     'MeetingSeraing: Read commission transcript':
     ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingDirector', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     # edit permissions
     'Modify portal content':
     ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
@@ -549,7 +548,7 @@ class CustomMeetingItem(MeetingItem):
                                      'proposed_to_servicehead',
                                      'proposed_to_officemanager',
                                      'proposed_to_divisionhead',
-                                     'proposed_to_director',
+                                     'proposed',
                                      'validated', )
     MeetingItem.beforePublicationStates = customBeforePublicationStates
     #this list is used by doPresent defined in PloneMeeting
@@ -566,21 +565,6 @@ class CustomMeetingItem(MeetingItem):
     def __init__(self, item):
         self.context = item
 
-    security.declarePublic('listFollowUps')
-
-    def listFollowUps(self):
-        '''List available values for vocabulary of the 'followUp' field.'''
-        d = 'PloneMeeting'
-        u = self.utranslate
-        res = DisplayList((
-            ("follow_up_no", u('follow_up_no', domain=d)),
-            ("follow_up_yes", u('follow_up_yes', domain=d)),
-            ("follow_up_provided", u('follow_up_provided', domain=d)),
-            ("follow_up_provided_not_printed", u('follow_up_provided_not_printed', domain=d)),
-        ))
-        return res
-    MeetingItem.listFollowUps = listFollowUps
-
     security.declarePublic('mayBeLinkedToTasks')
 
     def mayBeLinkedToTasks(self):
@@ -590,45 +574,6 @@ class CustomMeetingItem(MeetingItem):
         if (item.queryState() in ('accepted', 'refused', 'delayed', 'accepted_but_modified', )):
             res = True
         return res
-
-    security.declarePublic('activateFollowUp')
-
-    def activateFollowUp(self):
-        '''Activate follow-up by setting followUp to 'follow_up_yes'.'''
-        self.setFollowUp('follow_up_yes')
-        #initialize the neededFollowUp field with the available content of the 'decision' field
-        if not self.getNeededFollowUp():
-            self.setNeededFollowUp(self.getDecision())
-        self.reindexObject(idxs=['getFollowUp', ])
-        return self.REQUEST.RESPONSE.redirect(self.absolute_url() + '#followup')
-    MeetingItem.activateFollowUp = activateFollowUp
-
-    security.declarePublic('deactivateFollowUp')
-
-    def deactivateFollowUp(self):
-        '''Deactivate follow-up by setting followUp to 'follow_up_no'.'''
-        self.setFollowUp('follow_up_no')
-        self.reindexObject(idxs=['getFollowUp', ])
-        return self.REQUEST.RESPONSE.redirect(self.absolute_url() + '#followup')
-    MeetingItem.deactivateFollowUp = deactivateFollowUp
-
-    security.declarePublic('confirmFollowUp')
-
-    def confirmFollowUp(self):
-        '''Confirm follow-up by setting followUp to 'follow_up_provided'.'''
-        self.setFollowUp('follow_up_provided')
-        self.reindexObject(idxs=['getFollowUp', ])
-        return self.REQUEST.RESPONSE.redirect(self.absolute_url() + '#followup')
-    MeetingItem.confirmFollowUp = confirmFollowUp
-
-    security.declarePublic('followUpNotPrinted')
-
-    def followUpNotPrinted(self):
-        '''While follow-up is confirmed, we may specify that we do not want it printed in the dashboard.'''
-        self.setFollowUp('follow_up_provided_not_printed')
-        self.reindexObject(idxs=['getFollowUp', ])
-        return self.REQUEST.RESPONSE.redirect(self.absolute_url() + '#followup')
-    MeetingItem.followUpNotPrinted = followUpNotPrinted
 
     security.declarePublic('onDuplicatedFromConfig')
 
@@ -771,20 +716,12 @@ class CustomMeetingItem(MeetingItem):
         item = self.getSelf()
         res = []
         itemState = item.queryState()
-        # add some icons specific for dashboard if we are actually on the dashboard...
-        if itemState in item.itemDecidedStates and \
-           item.REQUEST.form.get('topicId', '') == 'searchitemsfollowupdashboard':
-            itemFollowUp = item.getFollowUp()
-            if itemFollowUp == 'follow_up_yes':
-                res.append(('follow_up_yes.png', 'icon_help_follow_up_needed'))
-            elif itemFollowUp == 'follow_up_provided':
-                res.append(('follow_up_provided.png', 'icon_help_follow_up_provided'))
         # Default PM item icons
         res = res + MeetingItem.getIcons(item, inMeeting, meeting)
         # Add our icons for wf states
         if itemState == 'accepted_but_modified':
             res.append(('accepted_but_modified.png', 'icon_help_accepted_but_modified'))
-        elif itemState == 'proposed_to_director':
+        elif itemState == 'proposed':
             res.append(('proposeToDirector.png', 'icon_help_proposed_to_director'))
         elif itemState == 'proposed_to_divisionhead':
             res.append(('proposeToDivisionHead.png', 'icon_help_proposed_to_divisionhead'))
@@ -825,15 +762,11 @@ class CustomMeetingConfig(MeetingConfig):
         # a user is reviewer for his level of hierarchy and every levels below in a group
         # so find the different groups (a user could be divisionhead in groupA and director in groupB)
         # and find the different states we have to search for this group (proposingGroup of the item)
-        reviewSuffixes = ('_reviewers', '_directors', '_divisionheads', '_officemanagers', '_serviceheads', )
+        reviewSuffixes = ('_reviewers', '_divisionheads', '_officemanagers', '_serviceheads', )
         statesMapping = {'_reviewers': ('proposed_to_servicehead',
                                         'proposed_to_officemanager',
                                         'proposed_to_divisionhead',
-                                        'proposed_to_director'),
-                         '_directors': ('proposed_to_servicehead',
-                                        'proposed_to_officemanager',
-                                        'proposed_to_divisionhead',
-                                        'proposed_to_director'),
+                                        'proposed'),
                          '_divisionheads': ('proposed_to_servicehead',
                                             'proposed_to_officemanager',
                                             'proposed_to_divisionhead'),
@@ -948,84 +881,6 @@ class CustomMeetingConfig(MeetingConfig):
         catalog = getToolByName(self, 'portal_catalog')
         return catalog(**params)
     MeetingConfig.searchItemsOfMyCommissionsToEdit = searchItemsOfMyCommissionsToEdit
-
-    security.declarePublic('searchItemsForDashboard')
-
-    def searchItemsForDashboard(self, sortKey, sortOrder, filterKey, filterValue, **kwargs):
-        '''Returns a list of items that will be used for the dashboard.'''
-        params = {'Type': unicode(self.getItemTypeName(), 'utf-8'),
-                  'review_state': ['accepted', 'refused', 'delayed', 'accepted_but_modified', ],
-                  'getFollowUp': ['follow_up_yes', 'follow_up_provided', ],
-                  'sort_on': sortKey,
-                  'sort_order': sortOrder
-                  }
-        # Manage filter
-        if filterKey:
-            params[filterKey] = prepareSearchValue(filterValue)
-        # update params with kwargs
-        params.update(kwargs)
-        # Perform the query in portal_catalog
-        catalog = getToolByName(self, 'portal_catalog')
-        brains = catalog(**params)
-        # sort elements by proposing-group keeping order from MeetingGroups
-        tool = getToolByName(self, 'portal_plonemeeting')
-        existingGroupIds = tool.objectIds('MeetingGroup')
-
-        def sortBrainsByMeetingDate(x, y):
-            '''First sort by meetingDate.'''
-            return cmp(y.getDate, x.getDate)
-
-        def sortBrainsByProposingGroup(x, y):
-            '''Second sort by proposing group (of the same meetingDate).'''
-            if not x.getDate == y.getDate:
-                return 0
-            else:
-                return cmp(existingGroupIds.index(x.getProposingGroup), existingGroupIds.index(y.getProposingGroup))
-
-        brains = list(brains)
-        # sort first by meeting date
-        brains.sort(sortBrainsByMeetingDate)
-        # then by proposing group
-        brains.sort(sortBrainsByProposingGroup)
-        return brains
-    MeetingConfig.searchItemsForDashboard = searchItemsForDashboard
-
-    security.declarePublic('searchItemsToValidate')
-
-    def searchItemsToValidate(self, sortKey, sortOrder, filterKey, filterValue, **kwargs):
-        '''See docstring in Products.PloneMeeting.MeetingConfig.
-           We override it here because relevant groupIds and wf state are no the same...'''
-        membershipTool = getToolByName(self, 'portal_membership')
-        member = membershipTool.getAuthenticatedMember()
-        groupsTool = getToolByName(self, 'portal_groups')
-        groupIds = groupsTool.getGroupsForPrincipal(member)
-        res = []
-        for groupId in groupIds:
-            # XXX change by MeetingSeraing
-            # if groupId.endswith('_reviewers'):
-            if groupId.endswith('_directors'):
-                # append group name without suffix
-                res.append(groupId[:-10])
-        # if we use pre_validation, the state in which are items to validate is 'prevalidated'
-        # if not using the WFAdaptation 'pre_validation', the items are in state 'proposed'
-        usePreValidationWFAdaptation = 'pre_validation' in self.getWorkflowAdaptations()
-        params = {'portal_type': self.getItemTypeName(),
-                  'getProposingGroup': res,
-                  # XXX change by MeetingSeraing
-                  # 'review_state': usePreValidationWFAdaptation and ('prevalidated', ) or ('proposed', ),
-                  'review_state': usePreValidationWFAdaptation and ('prevalidated', ) or ('proposed_to_director', ),
-                  'sort_on': sortKey,
-                  'sort_order': sortOrder
-                  }
-        # Manage filter
-        if filterKey:
-            params[filterKey] = prepareSearchValue(filterValue)
-        # update params with kwargs
-        params.update(kwargs)
-        # Perform the query in portal_catalog
-        catalog = getToolByName(self, 'portal_catalog')
-        return catalog(**params)
-    MeetingConfig.searchItemsToValidate = searchItemsToValidate
 
 
 class CustomMeetingGroup(MeetingGroup):
@@ -1181,9 +1036,9 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def doWaitAdvices(self, stateChange):
         pass
 
-    security.declarePrivate('doProposeToDirector')
+    security.declarePrivate('doPropose')
 
-    def doProposeToDirector(self, stateChange):
+    def doPropose(self, stateChange):
         pass
 
     security.declarePrivate('doProposeToOfficeManager')
@@ -1223,7 +1078,7 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
     transitionsForPresentingAnItem = ('proposeToServiceHead',
                                       'proposeToOfficeManager',
                                       'proposeToDivisionHead',
-                                      'proposeToDirector',
+                                      'propose',
                                       'validate',
                                       'present')
 
@@ -1362,9 +1217,9 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
                 res = True
         return res
 
-    security.declarePublic('mayProposeToDirector')
+    security.declarePublic('mayProposeT')
 
-    def mayProposeToDirector(self):
+    def mayPropose(self):
         """
           Check that the user has the 'Review portal content'
         """
@@ -1546,9 +1401,9 @@ class MeetingItemCouncilSeraingWorkflowActions(MeetingItemWorkflowActions):
     implements(IMeetingItemCouncilSeraingWorkflowActions)
     security = ClassSecurityInfo()
 
-    security.declarePrivate('doProposeToDirector')
+    security.declarePrivate('doPropose')
 
-    def doProposeToDirector(self, stateChange):
+    def doPropose(self, stateChange):
         pass
 
     security.declarePrivate('doSetItemInCommittee')
@@ -1599,15 +1454,15 @@ class MeetingItemCouncilSeraingWorkflowConditions(MeetingItemWorkflowConditions)
     security = ClassSecurityInfo()
 
     useHardcodedTransitionsForPresentingAnItem = True
-    transitionsForPresentingAnItem = ('proposeToDirector', 'validate', 'present')
+    transitionsForPresentingAnItem = ('propose', 'validate', 'present')
 
     def __init__(self, item):
         self.context = item  # Implements IMeetingItem
         self.sm = getSecurityManager()
 
-    security.declarePublic('mayProposeToDirector')
+    security.declarePublic('mayPropose')
 
-    def mayProposeToDirector(self):
+    def mayPropose(self):
         """
           Check that the user has the 'Review portal content'
           If the item comes from the college, check that it has a defined

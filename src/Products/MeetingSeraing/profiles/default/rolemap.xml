@@ -3,7 +3,6 @@
   <roles>
     <role name="MeetingBudgetImpactEditor"/>
     <role name="MeetingCommissionEditor"/>
-    <role name="MeetingDirector"/>
     <role name="MeetingDivisionHead"/>
     <role name="MeetingManager"/>
     <role name="MeetingMember"/>

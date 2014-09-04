@@ -51,8 +51,6 @@ SERAINGROLES['budgetimpactreviewers'] = 'MeetingBudgetImpactReviewer'
 SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
 SERAINGROLES['officemanagers'] = 'MeetingOfficeManager'
 SERAINGROLES['divisionheads'] = 'MeetingDivisionHead'
-SERAINGROLES['directors'] = 'MeetingDirector'
-SERAINGROLES['followupwriters'] = 'MeetingFollowUpWriter'
 PMconfig.MEETINGROLES.update(SERAINGROLES)
 PMconfig.MEETING_GROUP_SUFFIXES = PMconfig.MEETINGROLES.keys()
 
