@@ -447,12 +447,17 @@ class CustomMeeting(Meeting):
         if renumber:
             #return a list of tuple with first element the number and second
             #element the item itself
-            i = firstNumber
-            res = []
-            for item in items:
-                res.append((i, item))
-                i = i + 1
-            items = res
+            final_items = []
+            final_res = []
+            for elts in res:
+                item_num = 1
+                # we received a list of tuple (cat, items_list)
+                for item in elts[1:]:
+                    # we received a list of items
+                    final_items.append((item_num, item))
+                    item_num = item_num + 1
+                final_res.append([elts[0], final_items])
+            res = final_res
         return res
 
     #helper methods used in templates
