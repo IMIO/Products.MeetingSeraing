@@ -16,29 +16,28 @@ __docformat__ = 'plaintext'
 import logging
 logger = logging.getLogger('MeetingSeraing: setuphandlers')
 from Products.MeetingSeraing.config import PROJECTNAME
-from Products.MeetingSeraing.config import DEPENDENCIES
 import os
 from Products.CMFCore.utils import getToolByName
-import transaction
 ##code-section HEAD
-from Products.PloneMeeting.utils import updateIndexes
 from Products.PloneMeeting.exportimport.content import ToolInitializer
 from Products.PloneMeeting.config import TOPIC_TYPE, TOPIC_SEARCH_SCRIPT, TOPIC_TAL_EXPRESSION
 from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
     COUNCIL_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
 ##/code-section HEAD
 
+
 def isNotMeetingSeraingProfile(context):
     return context.readDataFile("MeetingSeraing_marker.txt") is None
-
 
 
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
-    if isNotMeetingSeraingProfile(context): return
+    if isNotMeetingSeraingProfile(context):
+        return
     wft = getToolByName(context.getSite(), 'portal_workflow')
     wft.updateRoleMappings()
+
 
 def postInstall(context):
     """Called as at the end of the setup process. """
@@ -60,7 +59,6 @@ def postInstall(context):
     reinstallPloneMeetingSkin(context, site)
     # reorder skins so we are sure that the meetingSeraing_xxx skins are just under custom
     reorderSkinsLayers(context, site)
-
 
 
 ##code-section FOOT
@@ -222,7 +220,6 @@ def addSearches(context, portal):
     mc_council.setToDoListTopics([
         getattr(mc_council.topics, 'searchdecideditems'),
         getattr(mc_council.topics, 'searchitemstovalidate'),
-        getattr(mc_council.topics, 'searchreturnedtoserviceitems'),
         getattr(mc_council.topics, 'searchcorrecteditems'),
         getattr(mc_council.topics, 'searchitemsofmycommissionstoedit'),
         getattr(mc_council.topics, 'searchallitemstoadvice'),
