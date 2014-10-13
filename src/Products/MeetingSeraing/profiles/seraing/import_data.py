@@ -330,12 +330,7 @@ collegeMeeting.podTemplates = collegeTemplates
 collegeMeeting.meetingConfigsToCloneTo = ['meeting-config-council']
 collegeMeeting.sortingMethodOnAddItem = 'on_proposing_groups'
 collegeMeeting.useGroupsAsCategories = True
-collegeMeeting.defaultMeetingItemMotivation = """<p>Vu l'arrêté du Gouvernement Wallon du 22 avril 2004 portant
-codification de la législation relative aux pouvoirs locaux; dit le code de la démocratie locale et de la
-décentralisation;</p>
-<p>Vu le décret du 27 mai 2004 portant confirmation dudit arrêté du gouvernement Wallon du 22 avril 2004;</p>
-<p>Vu la nouvelle Loi communale;</p> <p>Vu l'article 123 de la nouvelle Loi communale;</p>
-<p>Vu l'article L1123-23 du code de la Démocratie locale et de la Décentralisation;</p>"""
+collegeMeeting.defaultMeetingItemMotivation = ""
 collegeMeeting.recurringItems = []
 collegeMeeting.meetingUsers = []
 
@@ -457,14 +452,7 @@ councilMeeting.podTemplates = councilTemplates
 councilMeeting.transitionsToConfirm = ['MeetingItem.return_to_service']
 councilMeeting.sortingMethodOnAddItem = 'on_privacy_then_categories'
 councilMeeting.useGroupsAsCategories = False
-councilMeeting.defaultMeetingItemMotivation = """<p>Le Conseil,</p>
-<p>&nbsp;</p>
-<p>Vu, d'une part, l'arrêté du Gouvernement  Wallon du 22 avril 2004 portant codification de la législation relative aux
-pouvoirs locaux et d'autre part, le décret du 27 mai 2004 portant  confirmation dudit arrêté;</p>
-<p>&nbsp;</p>
-<p>Vu l'article 117 de la nouvelle Loi Communale;</p>
-<p>&nbsp;</p>
-<p>Vu l'article L 1122-30 du Code de Démocratie Locale et de la Décentralisation;</p>"""
+councilMeeting.defaultMeetingItemMotivation = ""
 councilMeeting.recurringItems = [
     RecurringItemDescriptor(
         id='recurrent-approuve-pv',
