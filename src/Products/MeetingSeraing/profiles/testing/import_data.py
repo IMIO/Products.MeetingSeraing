@@ -163,7 +163,7 @@ collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.
 collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
                                   'proposed_to_divisionhead', 'proposed', 'validated',
-                                  'presented', 'itemfrozen', 'accepted', 'refused',
+                                  'presented', 'itemfrozen', 'accepted',
                                   'delayed', 'pre_accepted', 'removed',)
 collegeMeeting.meetingTopicStates = ('created', 'frozen')
 collegeMeeting.decisionTopicStates = ('decided', 'closed')
@@ -182,8 +182,8 @@ collegeMeeting.enforceAdviceMandatoriness = False
 collegeMeeting.enableAdviceInvalidation = False
 collegeMeeting.useCopies = True
 collegeMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
-collegeMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
-collegeMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
+collegeMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed')
+collegeMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
 collegeMeeting.sortingMethodOnAddItem = 'on_proposing_groups'
 collegeMeeting.useGroupsAsCategories = True
 collegeMeeting.defaultMeetingItemMotivation = """<p>Vu l'arrêté du Gouvernement Wallon du 22 avril 2004 portant
@@ -290,7 +290,7 @@ councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMe
 #show every items states
 councilMeeting.itemTopicStates = ('itemcreated', 'proposed', 'validated', 'presented', 'itemfrozen',
                                   'item_in_committee', 'item_in_council', 'returned_to_service', 'accepted',
-                                  'accepted_but_modified', 'refused', 'delayed')
+                                  'accepted_but_modified', 'delayed')
 councilMeeting.meetingTopicStates = ('created', 'frozen', 'in_committee')
 councilMeeting.decisionTopicStates = ('in_council', 'closed')
 councilMeeting.itemAdviceStates = ['proposed', ]
@@ -309,7 +309,7 @@ councilMeeting.enableAdviceInvalidation = False
 councilMeeting.useCopies = True
 councilMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
 councilMeeting.itemPowerObserversStates = collegeMeeting.itemPowerObserversStates
-councilMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified']
+councilMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified']
 councilMeeting.podTemplates = []
 councilMeeting.transitionsToConfirm = ['MeetingItem.return_to_service', ]
 councilMeeting.sortingMethodOnAddItem = 'on_categories'

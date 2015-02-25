@@ -352,7 +352,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # only Managers may 'delay' and 'refuse' an item...
         self.changeUser('admin')
         self.do(item5, 'delay')
-        self.do(item6, 'refuse')
+        self.do(item6, 'accept')
         self.changeUser('pmManager')
         #we close the meeting
         self.do(meeting, 'close')
@@ -365,7 +365,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         #accepted_but_modified rest accepted_but_modified (it's already a 'decide' state)
         self.assertEquals('accepted_but_modified', wftool.getInfoFor(item4, 'review_state'))
         self.assertEquals('delayed', wftool.getInfoFor(item5, 'review_state'))
-        self.assertEquals('refused', wftool.getInfoFor(item6, 'review_state'))
+        self.assertEquals('accepted', wftool.getInfoFor(item6, 'review_state'))
         #presented change into accepted
         self.assertEquals('accepted', wftool.getInfoFor(item7, 'review_state'))
 

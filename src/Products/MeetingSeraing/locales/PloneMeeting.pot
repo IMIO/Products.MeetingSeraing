@@ -53,11 +53,6 @@ msgstr ""
 msgid "divisionheads"
 msgstr ""
 
-# Suffix
-#. Default: "budget impact reviewers"
-msgid "budgetimpactreviewers"
-msgstr ""
-
 #import what was done in MeetingCommunes
 
 # MeetingItem
@@ -389,10 +384,6 @@ msgstr ""
 msgid "icon_help_proposed_to_servicehead"
 msgstr ""
 
-#. Default: "Proposed to budget impact reviewer"
-msgid "icon_help_proposed_to_budgetimpact_reviewer"
-msgstr ""
-
-#. Default: "Waiting advices"
-msgid "icon_help_itemcreated_waiting_advices"
+#. Default: "Removed"
+msgid "icon_help_removed"
 msgstr ""

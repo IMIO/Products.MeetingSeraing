@@ -123,20 +123,12 @@ msgstr ""
 msgid "frozen"
 msgstr ""
 
-# Workflow states
-#. Default: "Waiting advices"
-msgid "itemcreated_waiting_advices"
-msgstr ""
-
 #. Default: "Frozen"
 msgid "itemfrozen"
 msgstr ""
 
 #. Default: "Description"
 msgid "meeting_item_description"
-msgstr ""
-
-msgid "proposeToBudgetImpactReviewer"
 msgstr ""
 
 msgid "propose"
@@ -149,10 +141,6 @@ msgid "proposeToOfficeManager"
 msgstr ""
 
 msgid "proposeToServiceHead"
-msgstr ""
-
-#. Default: "Proposed to budget impact reviewer"
-msgid "proposed_to_budgetimpact_reviewer"
 msgstr ""
 
 #. Default: "Proposed to director"
@@ -180,9 +168,6 @@ msgstr ""
 
 #. Default: "Validate"
 msgid "validate"
-msgstr ""
-
-msgid "validateByBudgetImpactReviewer"
 msgstr ""
 
 #. Default: "Validated"

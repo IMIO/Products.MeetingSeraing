@@ -2,7 +2,7 @@
 #
 # File: MeetingSeraing.py
 #
-# Copyright (c) 2014 by Imio.be
+# Copyright (c) 2015 by Imio.be
 # Generator: ArchGenXML Version 2.7
 #            http://plone.org/products/archgenxml
 #
@@ -47,7 +47,6 @@ PRODUCT_DEPENDENCIES = []
 ##code-section config-bottom #fill in your manual code here
 from Products.PloneMeeting import config as PMconfig
 SERAINGROLES = {}
-SERAINGROLES['budgetimpactreviewers'] = 'MeetingBudgetImpactReviewer'
 SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
 SERAINGROLES['officemanagers'] = 'MeetingOfficeManager'
 SERAINGROLES['divisionheads'] = 'MeetingDivisionHead'

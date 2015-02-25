@@ -85,25 +85,31 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
      'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
     # edit permissions
     'Modify portal content':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     'PloneMeeting: Write budget infos':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', 'MeetingBudgetImpactEditor'],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'MeetingBudgetImpactEditor'],
     'PloneMeeting: Write decision':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     'Review portal content':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingReviewer', 'MeetingManager', ],
     'Add portal content':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     'PloneMeeting: Add annex':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     'PloneMeeting: Add MeetingFile':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     'PloneMeeting: Write decision annex':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     'PloneMeeting: Write optional advisers':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
-    'PloneMeeting: Write optional advisers':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
     # MeetingManagers edit permissions
     'Delete objects':
     ['Manager', 'MeetingManager', ],
@@ -763,7 +769,7 @@ class CustomMeetingItem(MeetingItem):
 
     customItemPositiveDecidedStates = ('accepted', 'accepted_but_modified', )
     MeetingItem.itemPositiveDecidedStates = customItemPositiveDecidedStates
-    customItemDecidedStates = ('accepted', 'refused', 'delayed', 'accepted_but_modified', 'removed', )
+    customItemDecidedStates = ('accepted', 'delayed', 'accepted_but_modified', 'removed', )
     MeetingItem.itemDecidedStates = customItemDecidedStates
     customBeforePublicationStates = ('itemcreated',
                                      'proposed_to_servicehead',
@@ -792,7 +798,7 @@ class CustomMeetingItem(MeetingItem):
         '''See doc in interfaces.py.'''
         item = self.getSelf()
         res = False
-        if (item.queryState() in ('accepted', 'refused', 'delayed', 'accepted_but_modified', )):
+        if (item.queryState() in ('accepted', 'delayed', 'accepted_but_modified', )):
             res = True
         return res
 
@@ -954,10 +960,8 @@ class CustomMeetingItem(MeetingItem):
             res.append(('item_in_committee.png', 'icon_help_item_in_committee'))
         elif itemState == 'proposed_to_servicehead':
             res.append(('proposeToServiceHead.png', 'icon_help_proposed_to_servicehead'))
-        elif itemState == 'proposed_to_budgetimpact_reviewer':
-            res.append(('proposeToBudgetImpactReviewer.png', 'icon_help_proposed_to_budgetimpact_reviewer'))
-        elif itemState == 'itemcreated_waiting_advices':
-            res.append(('ask_advices_by_itemcreator.png', 'icon_help_itemcreated_waiting_advices'))
+        elif itemState == 'removed':
+            res.append(('removed.png', 'icon_help_removed'))
         return res
 
 
@@ -1252,11 +1256,6 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def doProposeToServiceHead(self, stateChange):
         pass
 
-    security.declarePrivate('doWaitAdvices')
-
-    def doWaitAdvices(self, stateChange):
-        pass
-
     security.declarePrivate('doPropose')
 
     def doPropose(self, stateChange):
@@ -1270,21 +1269,6 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     security.declarePrivate('doProposeToDivisionHead')
 
     def doProposeToDivisionHead(self, stateChange):
-        pass
-
-    security.declarePrivate('doValidateByBudgetImpactReviewer')
-
-    def doValidateByBudgetImpactReviewer(self, stateChange):
-        pass
-
-    security.declarePrivate('doProposeToBudgetImpactReviewer')
-
-    def doProposeToBudgetImpactReviewer(self, stateChange):
-        pass
-
-    security.declarePrivate('doAsk_advices_by_itemcreator')
-
-    def doAsk_advices_by_itemcreator(self, stateChange):
         pass
 
 
@@ -1318,16 +1302,6 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
            meeting and (meeting.queryState() in ['decided', 'closed', 'decisions_published', ]):
             res = True
         return res
-
-    security.declarePublic('mayRefuse')
-
-    def mayRefuse(self):
-        '''Only 'Manager' may refuse an item, it is for history reasons because now this is not
-           used anymore but some old items were 'refused'...'''
-        tool = getToolByName(self.context, 'portal_plonemeeting')
-        if tool.isManager(realManagers=True):
-            return True
-        return False
 
     security.declarePublic('mayDelay')
 
@@ -1394,17 +1368,6 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
                     res = True
         return res
 
-    security.declarePublic('mayWaitAdvices')
-
-    def mayWaitAdvices(self):
-        """
-          Check that the user has the 'Review portal content'
-        """
-        res = False
-        if checkPermission(ReviewPortalContent, self.context):
-                res = True
-        return res
-
     security.declarePublic('mayProposeToServiceHead')
 
     def mayProposeToServiceHead(self):
@@ -1461,28 +1424,6 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
         if checkPermission(ReviewPortalContent, self.context) and \
            meeting and (meeting.queryState() in ['decided', 'closed']):
             res = True
-        return res
-
-    security.declarePublic('mayValidateByBudgetImpactReviewer')
-
-    def mayValidateByBudgetImpactReviewer(self):
-        """
-          Check that the user has the 'Review portal content'
-        """
-        res = False
-        if checkPermission(ReviewPortalContent, self.context):
-                res = True
-        return res
-
-    security.declarePublic('mayProposeToBudgetImpactReviewer')
-
-    def mayProposeToBudgetImpactReviewer(self):
-        """
-          Check that the user has the 'Review portal content'
-        """
-        res = False
-        if checkPermission(ReviewPortalContent, self.context):
-                res = True
         return res
 
 
