@@ -46,6 +46,7 @@ from Products.MeetingSeraing.interfaces import \
     IMeetingCouncilSeraingWorkflowConditions, IMeetingCouncilSeraingWorkflowActions
 from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
     COUNCIL_COMMISSION_IDS_2013, COUNCIL_MEETING_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
+from Products.PloneMeeting import PloneMeetingError
 
 # disable most of wfAdaptations
 customWfAdaptations = ('archiving', 'local_meeting_managers', 'return_to_proposing_group', )
@@ -114,9 +115,9 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     'Delete objects':
     ['Manager', 'MeetingManager', ],
     'PloneMeeting: Write item observations':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingManager', ],
     'MeetingSeraing: Write commission transcript':
-    ['Manager', 'MeetingMember', 'MeetingOfficeManager', 'MeetingManager', ],
+    ['Manager', 'MeetingManager', ],
 }
 
 adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
@@ -1270,6 +1271,33 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
 
     def doProposeToDivisionHead(self, stateChange):
         pass
+
+    security.declarePrivate('doDelay')
+
+    def doDelay(self, stateChange):
+        '''When an item is delayed, we will duplicate it: the copy is back to
+           the validate state and will be linked to this one.
+           After, we replace decision for initial items'''
+        creator = self.context.Creator()
+        # We create a copy in the initial item state, in the folder of creator.
+        clonedItem = self.context.clone(copyAnnexes=True, newOwnerId=creator,
+                                        cloneEventAction='create_from_predecessor')
+        clonedItem.setPredecessor(self.context)
+        # Send, if configured, a mail to the person who created the item
+        clonedItem.sendMailIfRelevant('itemDelayed', 'Owner', isRole=True)
+        meetingConfig = self.context.portal_plonemeeting.getMeetingConfig(self.context)
+        itemDecisionReportText = meetingConfig.getItemDecisionReportText()
+        if itemDecisionReportText.strip():
+            from Products.CMFCore.Expression import Expression, createExprContext
+            portal = self.context.portal_url.getPortalObject()
+            ctx = createExprContext(self.context.getParentNode(), portal, self.context)
+            try:
+                res = Expression(itemDecisionReportText)(ctx)
+            except Exception, e:
+                self.context.portal_plonemeeting.plone_utils.addPortalMessage(PloneMeetingError('%s' % str(e)))
+                return
+            self.context.setDecision(res)
+        self.context.portal_workflow.doActionFor(clonedItem, 'validate')
 
 
 class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions):

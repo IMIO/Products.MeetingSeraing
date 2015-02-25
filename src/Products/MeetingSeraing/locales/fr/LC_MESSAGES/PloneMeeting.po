@@ -390,3 +390,11 @@ msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas 
 #. Default: "Removed"
 msgid "icon_help_removed"
 msgstr "Retiré de la séance"
+
+#. Default: "Décision used when the item is reported"
+msgid "PloneMeeting_label_itemDecisionReportText"
+msgstr "Décision du point lors d'un report"
+
+#. Default: "When an item is delay, the decision will be replace by the text defined here, as a TAL (Tag Attribute Language) expression whose context includes the name 'here' that represents the impacted item. If you don't know TAL, you may learn it <a href=\"http://zope.org/Documentation/Books/ZopeBook/2_6Edition/ZPT.stx\">here</a>."
+msgid "item_decision_report_text_descr"
+msgstr "Lorsque le point est reporté, la décision sera remplacée par le texte défini ici, sous la forme d'une expression TAL (Tag Attribute Language) dans laquelle le nom 'here', représentant le point courant, peut être utilisé. Voici un exemple : python:'%sLe collège décide de reporter le point'%here.getDecision()"

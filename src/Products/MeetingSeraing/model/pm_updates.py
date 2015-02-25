@@ -90,10 +90,22 @@ def update_config_schema(baseSchema):
                 i18n_domain='PloneMeeting',
             ),
         ),
-
+        TextField(
+            name='itemDecisionReportText',
+            widget=TextAreaWidget(
+                description="ItemDecisionReportText",
+                description_msgid="item_decision_report_text_descr",
+                label='ItemDecisionReportText',
+                label_msgid='PloneMeeting_label_itemDecisionReportText',
+                i18n_domain='PloneMeeting',
+            ),
+            allowable_content_types=('text/plain', 'text/html', ),
+            default_output_type="text/plain",
+        ),
     ),)
 
     completeConfigSchema = baseSchema + specificSchema.copy()
+    completeConfigSchema.moveField('itemDecisionReportText', after='defaultMeetingItemMotivation')
     return completeConfigSchema
 MeetingConfig.schema = update_config_schema(MeetingConfig.schema)
 
