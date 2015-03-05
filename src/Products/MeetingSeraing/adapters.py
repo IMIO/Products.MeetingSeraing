@@ -324,7 +324,7 @@ class CustomMeeting(Meeting):
                                     ignore_review_states=[], by_proposing_group=False, group_prefixes={},
                                     privacy='*', oralQuestion='both', toDiscuss='both', categories=[],
                                     excludedCategories=[], firstNumber=1, renumber=False,
-                                    includeEmptyCategories=False, includeEmptyGroups=False):
+                                    includeEmptyCategories=False, includeEmptyGroups=False, isToPrintInMeeting='both'):
         '''Returns a list of (late-)items (depending on p_late) ordered by
            category. Items being in a state whose name is in
            p_ignore_review_state will not be included in the result.
@@ -333,7 +333,7 @@ class CustomMeeting(Meeting):
            allow to consider all groups whose acronym starts with a prefix from
            this param prefix as a unique group. p_group_prefixes is a dict whose
            keys are prefixes and whose values are names of the logical big
-           groups. A privacy,A toDiscuss and oralQuestion can also be given, the item is a
+           groups. A privacy,A toDiscuss, isToPrintInMeeting and oralQuestion can also be given, the item is a
            toDiscuss (oralQuestion) or not (or both) item.
            If p_includeEmptyCategories is True, categories for which no
            item is defined are included nevertheless. If p_includeEmptyGroups
@@ -385,6 +385,8 @@ class CustomMeeting(Meeting):
                 elif categories and not item.getCategory() in categories:
                     continue
                 elif excludedCategories and item.getCategory() in excludedCategories:
+                    continue
+                elif not (isToPrintInMeeting == 'both' or item.getIsToPrintInMeeting() == isToPrintInMeeting):
                     continue
                 currentCat = item.getCategory(theObject=True)
                 currentCatId = currentCat.getId()

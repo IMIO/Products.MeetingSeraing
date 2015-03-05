@@ -126,8 +126,8 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         # MeetingManagers can still edit it also
         self.changeUser('pmManager')
         self.failUnless(self.hasPermission('Modify portal content', item))
-        # the creator can send the item back to the meeting managers, as the meeting managers
-        for userId in ('pmCreator1', 'pmManager'):
+        # the reviewer (director) can send the item back to the meeting managers, as the meeting managers
+        for userId in ('pmReviewer1', 'pmManager'):
             self.changeUser(userId)
             self.failUnless('backTo_presented_from_returned_to_proposing_group' in
                             [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])

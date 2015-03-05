@@ -190,6 +190,13 @@
           <span tal:condition="python: not meeting">-</span>
         </div>
 
+        <tal:comment replace="nothing">XXX added printing item in meeting</tal:comment>
+        <div class="discreet">
+          <i><span i18n:translate="PloneMeeting_label_item_print_in_meeting"></span></i> :&nbsp;&nbsp;
+             <span metal:use-macro="python: here.widget('isToPrintInMeeting', mode='view')" />
+
+        </div>
+
         <tal:comment replace="nothing">Other MeetingConfigs Clonable To</tal:comment>
         <div class="discreet"
              tal:condition="python: otherMCs or context.isClonableToOtherMeetingConfigs()"

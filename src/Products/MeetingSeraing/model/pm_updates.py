@@ -4,6 +4,7 @@ from Products.Archetypes.atapi import StringField
 from Products.Archetypes.atapi import TextField
 from Products.Archetypes.atapi import TextAreaWidget
 from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import BooleanField
 from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.MeetingGroup import MeetingGroup
@@ -417,6 +418,18 @@ def update_item_schema(baseSchema):
             write_permission="MeetingSeraing: Write commission transcript",
             read_permission="MeetingSeraing: Read commission transcript",
         ),
+        #specific field for mark if this item must be printing in meeting
+        BooleanField(
+            name='isToPrintInMeeting',
+            default=False,
+            widget=BooleanField._properties['widget'](
+                description="IsToPrintInMeeting",
+                description_msgid="item_print_in_meeting_descr",
+                label='IsToPrintInMeeting',
+                label_msgid='PloneMeeting_label_item_print_in_meeting',
+                i18n_domain='PloneMeeting',
+            ),
+        )
     ),)
 
     baseSchema['description'].widget.label_method = "getLabelDescription"

@@ -229,6 +229,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.do(item1, 'return_to_proposing_group')
         self.changeUser('pmCreator1')
         self.failUnless(self.hasPermission('Modify portal content', item1))
+        self.changeUser('pmReviewer1')
         self.do(item1, 'backTo_item_in_council_from_returned_to_proposing_group')
         self.failIf(self.hasPermission('Modify portal content', item1))
         # item state follow meeting state
@@ -349,7 +350,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.do(item2, 'accept')
         self.do(item3, 'accept')
         self.do(item4, 'accept_but_modify')
-        # only Managers may 'delay' and 'refuse' an item...
+        # only Managers may 'delay' an item...
         self.changeUser('admin')
         self.do(item5, 'delay')
         self.do(item6, 'accept')

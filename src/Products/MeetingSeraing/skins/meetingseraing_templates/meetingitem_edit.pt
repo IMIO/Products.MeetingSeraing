@@ -94,6 +94,10 @@
             <td><metal:field use-macro="python:here.widget('privacy', mode='edit')"/></td>
           </tr>
         </table>
+        
+        <tal:comment replace="nothing">XXX added printing item in meeting</tal:comment>
+            <metal:field use-macro="python:here.widget('isToPrintInMeeting', mode='edit')"/>
+            
         <tal:comment replace="nothing">Budget-related information</tal:comment>
         <tal:budget define="cbChecked  python: (request.get('budgetRelated',None)==True) or context.getBudgetRelated()"
                     condition="python: 'budgetInfos' in usedAttrs">
