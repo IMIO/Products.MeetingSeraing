@@ -209,11 +209,6 @@ msgstr "Envoyer au Conseil communal"
 msgid "Sent to council"
 msgstr "Envoyé au Conseil communal"
 
-# Suffix
-#. Default: "budget impact reviewers"
-msgid "budgetimpactreviewers"
-msgstr "correspondants financier"
-
 #. Default: "Please as this item comes from the college, you need to define the 'commission' for it before being able to propose it."
 msgid "check_category"
 msgstr "Attention, comme ce point provient du Collège communal, vous devez définir la commission à laquelle il doit passer en passant par l'onglet 'Modifier' avant de pouvoir le proposer au chef de bureau."
@@ -250,14 +245,6 @@ msgstr "En commission"
 #. Default: "Item in council"
 msgid "icon_help_item_in_council"
 msgstr "En Conseil communal"
-
-#. Default: "Waiting advices"
-msgid "icon_help_itemcreated_waiting_advices"
-msgstr "En attente des avis"
-
-#. Default: "Proposed to budget impact reviewer"
-msgid "icon_help_proposed_to_budgetimpact_reviewer"
-msgstr "Proposé au correspondant financier"
 
 #. Default: "Proposed to director"
 msgid "icon_help_proposed_to_director"
@@ -399,3 +386,27 @@ msgstr "chefs de service"
 #. Default: "Please enter 12 lines for signatures delegations"
 msgid "signatures_length_error"
 msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas être surchargée (si la signature définie dans la configuration de séance dans le champ 'Signatures certifiées' doit être utilisée), renseignez un tiret (-)."
+
+#. Default: "Removed"
+msgid "icon_help_removed"
+msgstr "Retiré de la séance"
+
+#. Default: "Décision used when the item is reported"
+msgid "PloneMeeting_label_itemDecisionReportText"
+msgstr "Décision du point lors d'un report"
+
+#. Default: "When an item is delay, the decision will be replace by the text defined here, as a TAL (Tag Attribute Language) expression whose context includes the name 'here' that represents the impacted item. If you don't know TAL, you may learn it <a href=\"http://zope.org/Documentation/Books/ZopeBook/2_6Edition/ZPT.stx\">here</a>."
+msgid "item_decision_report_text_descr"
+msgstr "Lorsque le point est reporté, la décision sera remplacée par le texte défini ici, sous la forme d'une expression TAL (Tag Attribute Language) dans laquelle le nom 'here', représentant le point courant, peut être utilisé. Voici un exemple : python:'%sLe collège décide de reporter le point'%here.getDecision()"
+
+#. Default: "This item must be print in meeting"
+msgid "PloneMeeting_label_item_print_in_meeting"
+msgstr "Ce point est à imprimer en séance."
+
+#. Default: "To print in meeting"
+msgid "item_print_in_meeting_descr"
+msgstr "Point à imprimer en séance."
+
+#. Default: "Power editors"
+msgid "powereditors"
+msgstr "Super éditeurs"

@@ -28,7 +28,7 @@ annexeAvisLegal = MeetingFileTypeDescriptor('annexeAvisLegal', 'Extrait article 
 collegeDelibTemplate = PodTemplateDescriptor('college-deliberation', 'Délibération')
 collegeDelibTemplate.podTemplate = 'college_deliberation.odt'
 collegeDelibTemplate.podCondition = 'python:(here.meta_type=="MeetingItem") and ' \
-                                    'here.queryState() in ["accepted", "refused", "delayed", "accepted_but_modified",]'
+                                    'here.queryState() in ["accepted", "delayed", "accepted_but_modified",]'
 collegeRapportTemplate = PodTemplateDescriptor('college-rapport', 'Rapport')
 collegeRapportTemplate.podTemplate = 'college_rapport.odt'
 collegeRapportTemplate.podCondition = ' python: here.meta_type == "MeetingItem" and ' \
@@ -48,7 +48,7 @@ collegePVTemplate.podCondition = 'python:(here.meta_type=="Meeting") and ' \
 councilDelibTemplate = PodTemplateDescriptor('conseil-deliberation', 'Délibération')
 councilDelibTemplate.podTemplate = 'conseil_deliberation.odt'
 councilDelibTemplate.podCondition = 'python:(here.meta_type=="MeetingItem") and ' \
-                                    'here.queryState() in ["accepted", "refused", "delayed", "accepted_but_modified",]'
+                                    'here.queryState() in ["accepted", "delayed", "accepted_but_modified",]'
 councilProjetDelibTemplate = PodTemplateDescriptor('conseil-projet-deliberation', 'Projet délibération')
 councilProjetDelibTemplate.podTemplate = 'conseil_projet_deliberation.odt'
 councilProjetDelibTemplate.podCondition = 'python:(here.meta_type=="MeetingItem")'
@@ -281,12 +281,12 @@ collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeeti
 collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
 collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposedToServiceHead', 'proposedToOfficeManager',
-                                  'proposedToDivisionHead', 'proposed', 
-                                  'validated', 'presented', 'itemfrozen', 'accepted', 'refused', 'delayed',
+                                  'proposedToDivisionHead', 'proposed',
+                                  'validated', 'presented', 'itemfrozen', 'accepted', 'delayed',
                                   'pre_accepted', 'removed', 'accepted_but_modified', )
 collegeMeeting.meetingTopicStates = ('created', 'frozen')
 collegeMeeting.decisionTopicStates = ('decided', 'closed')
-collegeMeeting.itemBudgetInfosStates = ('proposed_to_budgetimpact_reviewer', )
+collegeMeeting.itemBudgetInfosStates = ()
 collegeMeeting.itemAdviceStates = ('validated',)
 collegeMeeting.itemAdviceEditStates = ('validated',)
 collegeMeeting.recordItemHistoryStates = ['']
@@ -425,7 +425,6 @@ councilMeeting.itemTopicStates = ('itemcreated',
                                   'returned_to_service',
                                   'accepted',
                                   'accepted_but_modified',
-                                  'refused',
                                   'delayed')
 councilMeeting.meetingTopicStates = ('created',
                                      'frozen',

@@ -60,3 +60,20 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         expectedNewItemMotivation = self.meetingConfig2.getDefaultMeetingItemMotivation() + \
             '<p>&nbsp;</p><p>&nbsp;</p>' + item.getMotivation()
         self.assertTrue(newItem.getMotivation() == expectedNewItemMotivation)
+
+    def test_powerEditor(self):
+        """
+           The power editor can modified frozen items
+        """
+        # create an item and a meeting and check locals roles
+        self.changeUser('pmManager')
+        item = self.create('MeetingItem')
+        meeting = self.create('Meeting', date=DateTime('2013/05/05'))
+        self.presentItem(item)
+        self.changeUser('powerEditor1')
+        self.failIf(self.hasPermission('Modify portal content', item))
+        self.changeUser('pmManager')
+        self.do(meeting, 'freeze')
+        self.changeUser('powerEditor1')
+        self.failUnless(self.hasPermission('Modify portal content', item))
+        self.closeMeeting(meeting)

@@ -17,20 +17,9 @@
 /* Items */
 .state-itemcreated, .label-state-itemcreated,
 .state-created, .label-state-created,
-.state-itemcreated_waiting_advices, .label-state-itemcreated_waiting_advices,
-.state-proposed_to_budgetimpact_reviewer, .label-state-proposed_to_budgetimpact_reviewer {
-    color: red !important;
-}
+
 #plone-contentmenu-workflow .state-itemcreated,
 #plone-contentmenu-workflow .state-created,
-#plone-contentmenu-workflow .state-itemcreated_waiting_advices,
-#plone-contentmenu-workflow .state-proposed_to_budgetimpact_reviewer {
-    border-radius: 0.5em 0.5em 0.5em 0.5em;
-    background-color: red;
-    padding: 0 0.5em;
-    color: white !important;
-    border: 2px solid red;
-}
 
 .state-proposed_to_servicehead, .label-state-proposed_to_servicehead,
 .state-proposed_to_officemanager, .label-state-proposed_to_officemanager,

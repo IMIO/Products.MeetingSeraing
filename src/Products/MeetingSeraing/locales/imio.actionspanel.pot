@@ -15,18 +15,6 @@ msgstr ""
 msgid "backToCreated_done_descr"
 msgstr ""
 
-#. Default: "ask_advices_by_itemcreator_done_descr"
-msgid "ask_advices_by_itemcreator_done_descr"
-msgstr ""
-
-#. Default: "proposeToBudgetImpactReviewer_done_descr"
-msgid "proposeToBudgetImpactReviewer_done_descr"
-msgstr ""
-
-#. Default: "validateByBudgetImpactReviewer_done_descr"
-msgid "validateByBudgetImpactReviewer_done_descr"
-msgstr ""
-
 #. Default: "proposeToOfficeManager_done_descr"
 msgid "proposeToOfficeManager_done_descr"
 msgstr ""
@@ -98,10 +86,6 @@ msgstr ""
 
 #. Default: "itemfreeze_done_descr"
 msgid "itemfreeze_done_descr"
-msgstr ""
-
-#. Default: "refuse_done_descr"
-msgid "refuse_done_descr"
 msgstr ""
 
 #. Default: "accept_done_descr"

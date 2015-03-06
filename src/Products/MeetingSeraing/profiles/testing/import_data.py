@@ -74,12 +74,18 @@ pmAdviser1 = UserDescriptor('pmAdviser1', [])
 voter1 = UserDescriptor('voter1', [], fullname='M. Voter One')
 voter2 = UserDescriptor('voter2', [], fullname='M. Voter Two')
 powerobserver1 = UserDescriptor('powerobserver1', [], fullname='M. Power Observer1')
+powerEditor1 = UserDescriptor('powerEditor1', [], fullname='M. Power Editor1')
+
 # powerobserver1 is MeetingPowerObserverLocal because in the meetingPma '_powerobservers' group
 plonemeeting_assembly_powerobservers = PloneGroupDescriptor('meeting-config-council_powerobservers',
                                                             'meeting-config-council_powerobservers',
                                                             [])
+plonemeeting_assembly_powereditors = PloneGroupDescriptor('meeting-config-college_powereditors',
+                                                          'meeting-config-council_powereditors',
+                                                            [])
 powerobserver1.ploneGroups = [plonemeeting_assembly_powerobservers, ]
 powerobserver2 = UserDescriptor('powerobserver2', [], fullname='M. Power Observer2')
+powerEditor1.ploneGroups = [plonemeeting_assembly_powereditors, ]
 
 # Add a vintage group
 endUsers = GroupDescriptor('endUsers', 'End users', 'EndUsers', active=False)
@@ -163,7 +169,7 @@ collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.
 collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
                                   'proposed_to_divisionhead', 'proposed', 'validated',
-                                  'presented', 'itemfrozen', 'accepted', 'refused',
+                                  'presented', 'itemfrozen', 'accepted',
                                   'delayed', 'pre_accepted', 'removed',)
 collegeMeeting.meetingTopicStates = ('created', 'frozen')
 collegeMeeting.decisionTopicStates = ('decided', 'closed')
@@ -182,8 +188,8 @@ collegeMeeting.enforceAdviceMandatoriness = False
 collegeMeeting.enableAdviceInvalidation = False
 collegeMeeting.useCopies = True
 collegeMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
-collegeMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
-collegeMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
+collegeMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed')
+collegeMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
 collegeMeeting.sortingMethodOnAddItem = 'on_proposing_groups'
 collegeMeeting.useGroupsAsCategories = True
 collegeMeeting.defaultMeetingItemMotivation = """<p>Vu l'arrêté du Gouvernement Wallon du 22 avril 2004 portant
@@ -290,7 +296,7 @@ councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMe
 #show every items states
 councilMeeting.itemTopicStates = ('itemcreated', 'proposed', 'validated', 'presented', 'itemfrozen',
                                   'item_in_committee', 'item_in_council', 'returned_to_service', 'accepted',
-                                  'accepted_but_modified', 'refused', 'delayed')
+                                  'accepted_but_modified', 'delayed')
 councilMeeting.meetingTopicStates = ('created', 'frozen', 'in_committee')
 councilMeeting.decisionTopicStates = ('in_council', 'closed')
 councilMeeting.itemAdviceStates = ['proposed', ]
@@ -309,7 +315,7 @@ councilMeeting.enableAdviceInvalidation = False
 councilMeeting.useCopies = True
 councilMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
 councilMeeting.itemPowerObserversStates = collegeMeeting.itemPowerObserversStates
-councilMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified']
+councilMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified']
 councilMeeting.podTemplates = []
 councilMeeting.transitionsToConfirm = ['MeetingItem.return_to_service', ]
 councilMeeting.sortingMethodOnAddItem = 'on_categories'
@@ -322,5 +328,5 @@ data = PloneMeetingConfiguration(
     meetingConfigs=(collegeMeeting, councilMeeting),
     groups=(developers, vendors, endUsers))
 data.unoEnabledPython = '/usr/bin/python'
-data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2]
+data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2, powerEditor1]
 # ------------------------------------------------------------------------------

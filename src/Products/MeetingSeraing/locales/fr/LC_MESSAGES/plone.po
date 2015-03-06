@@ -123,11 +123,6 @@ msgstr "En commission"
 msgid "item_in_council"
 msgstr "En Conseil communal"
 
-# Workflow states
-#. Default: "Waiting advices"
-msgid "itemcreated_waiting_advices"
-msgstr "En attente des avis"
-
 #. Default: "frozen"
 msgid "itemfrozen"
 msgstr "Gelé"
@@ -135,9 +130,6 @@ msgstr "Gelé"
 #. Default: "Description"
 msgid "meeting_item_description"
 msgstr "Description dans l'ordre du jour"
-
-msgid "proposeToBudgetImpactReviewer"
-msgstr "Proposer au correspondant financier"
 
 msgid "propose"
 msgstr "Proposer au directeur"
@@ -150,10 +142,6 @@ msgstr "Proposer au chef de bureau"
 
 msgid "proposeToServiceHead"
 msgstr "Proposer au chef de service"
-
-#. Default: "Proposed to budget impact reviewer"
-msgid "proposed_to_budgetimpact_reviewer"
-msgstr "Proposé au correspondant financier"
 
 #. Default: "Proposed to director"
 msgid "proposed"
@@ -225,9 +213,6 @@ msgstr "Certains points sont toujours dans des services pour corrections"
 #. Default: "Validate"
 msgid "validate"
 msgstr "Valider"
-
-msgid "validateByBudgetImpactReviewer"
-msgstr "Valider les infos budgétaires"
 
 #. Default: "Validated"
 msgid "validated"

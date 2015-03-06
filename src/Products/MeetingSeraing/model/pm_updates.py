@@ -1,13 +1,15 @@
-from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import DateTimeField
-from Products.Archetypes.atapi import StringField
-from Products.Archetypes.atapi import TextField
-from Products.Archetypes.atapi import TextAreaWidget
 from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import TextAreaWidget
+from Products.Archetypes.atapi import TextField
+
 from Products.PloneMeeting.Meeting import Meeting
-from Products.PloneMeeting.MeetingItem import MeetingItem
-from Products.PloneMeeting.MeetingGroup import MeetingGroup
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
+from Products.PloneMeeting.MeetingGroup import MeetingGroup
+from Products.PloneMeeting.MeetingItem import MeetingItem
 
 
 def update_config_schema(baseSchema):
@@ -90,10 +92,22 @@ def update_config_schema(baseSchema):
                 i18n_domain='PloneMeeting',
             ),
         ),
-
+        TextField(
+            name='itemDecisionReportText',
+            widget=TextAreaWidget(
+                description="ItemDecisionReportText",
+                description_msgid="item_decision_report_text_descr",
+                label='ItemDecisionReportText',
+                label_msgid='PloneMeeting_label_itemDecisionReportText',
+                i18n_domain='PloneMeeting',
+            ),
+            allowable_content_types=('text/plain', 'text/html', ),
+            default_output_type="text/plain",
+        ),
     ),)
 
     completeConfigSchema = baseSchema + specificSchema.copy()
+    completeConfigSchema.moveField('itemDecisionReportText', after='defaultMeetingItemMotivation')
     return completeConfigSchema
 MeetingConfig.schema = update_config_schema(MeetingConfig.schema)
 
@@ -405,6 +419,18 @@ def update_item_schema(baseSchema):
             write_permission="MeetingSeraing: Write commission transcript",
             read_permission="MeetingSeraing: Read commission transcript",
         ),
+        #specific field for mark if this item must be printing in meeting
+        BooleanField(
+            name='isToPrintInMeeting',
+            default=False,
+            widget=BooleanField._properties['widget'](
+                description="IsToPrintInMeeting",
+                description_msgid="item_print_in_meeting_descr",
+                label='IsToPrintInMeeting',
+                label_msgid='PloneMeeting_label_item_print_in_meeting',
+                i18n_domain='PloneMeeting',
+            ),
+        )
     ),)
 
     baseSchema['description'].widget.label_method = "getLabelDescription"
