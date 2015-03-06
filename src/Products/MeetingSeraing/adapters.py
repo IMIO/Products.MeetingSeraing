@@ -969,6 +969,8 @@ class CustomMeetingItem(MeetingItem):
             res.append(('proposeToServiceHead.png', 'icon_help_proposed_to_servicehead'))
         elif itemState == 'removed':
             res.append(('removed.png', 'icon_help_removed'))
+        if item.getIsToPrintInMeeting():
+            res.append(('toPrint.png', 'icon_help_to_print'))
         return res
 
     security.declarePublic('updatePowerEditorsLocalRoles')
