@@ -53,6 +53,12 @@ SERAINGROLES['divisionheads'] = 'MeetingDivisionHead'
 PMconfig.MEETINGROLES.update(SERAINGROLES)
 PMconfig.MEETING_GROUP_SUFFIXES = PMconfig.MEETINGROLES.keys()
 
+POWEREDITORS_GROUP_SUFFIX = 'powereditors'
+
+EDITOR_USECASES = {
+    'power_editors': 'Editor',
+}
+
 # see doc in Products.PloneMeeting.config.py
 RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_item_in_committee_from_returned_to_proposing_group': ['in_committee', ],
                                       'backTo_item_in_council_from_returned_to_proposing_group': ['in_council', ],

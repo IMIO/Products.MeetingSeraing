@@ -404,3 +404,6 @@ msgstr ""
 msgid "item_print_in_meeting_descr"
 msgstr ""
 
+#. Default: "Power editors"
+msgid "powereditors"
+msgstr ""

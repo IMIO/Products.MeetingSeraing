@@ -24,7 +24,7 @@
 #
 # ------------------------------------------------------------------------------
 from appy.gen import No
-from AccessControl import getSecurityManager, ClassSecurityInfo
+from AccessControl import getSecurityManager, ClassSecurityInfo, Unauthorized
 from Globals import InitializeClass
 from zope.interface import implements
 from Products.CMFCore.permissions import ReviewPortalContent, ModifyPortalContent
@@ -38,15 +38,18 @@ from Products.PloneMeeting.Meeting import MeetingWorkflowActions, \
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingGroup import MeetingGroup
 from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItemCustom, \
-    IMeetingConfigCustom, IMeetingGroupCustom
+    IMeetingConfigCustom, IMeetingGroupCustom, IToolPloneMeetingCustom
 from Products.MeetingSeraing.interfaces import \
     IMeetingItemCollegeSeraingWorkflowConditions, IMeetingItemCollegeSeraingWorkflowActions,\
     IMeetingCollegeSeraingWorkflowConditions, IMeetingCollegeSeraingWorkflowActions, \
     IMeetingItemCouncilSeraingWorkflowConditions, IMeetingItemCouncilSeraingWorkflowActions,\
     IMeetingCouncilSeraingWorkflowConditions, IMeetingCouncilSeraingWorkflowActions
 from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
-    COUNCIL_COMMISSION_IDS_2013, COUNCIL_MEETING_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
+    COUNCIL_COMMISSION_IDS_2013, COUNCIL_MEETING_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX, \
+    EDITOR_USECASES, POWEREDITORS_GROUP_SUFFIX
 from Products.PloneMeeting import PloneMeetingError
+from zope.i18n import translate
+from Products.PloneMeeting.ToolPloneMeeting import ToolPloneMeeting
 
 # disable most of wfAdaptations
 customWfAdaptations = ('archiving', 'local_meeting_managers', 'return_to_proposing_group', )
@@ -848,6 +851,7 @@ class CustomMeetingItem(MeetingItem):
         # group 'commission-travaux_COMMISSION_EDITORS_SUFFIX'
         # first, remove previously set local roles for the Plone group commission
         # this is only done for MeetingItemCouncil
+        # update power editor for this item
         if not self.context.portal_type == 'MeetingItemCouncil':
             return
         #existing commission Plone groups
@@ -966,6 +970,24 @@ class CustomMeetingItem(MeetingItem):
         elif itemState == 'removed':
             res.append(('removed.png', 'icon_help_removed'))
         return res
+
+    security.declarePublic('updatePowerEditorsLocalRoles')
+
+    def updatePowerEditorsLocalRoles(self):
+        '''Give the 'power editors' local role to the corresponding
+           MeetingConfig 'powereditors' group on self.'''
+        item = self.getSelf()
+        # First, remove 'power editor' local roles granted to powereditors.
+        item.portal_plonemeeting.removeGivenLocalRolesFor(item,
+                                                          role_to_remove=EDITOR_USECASES['power_editors'],
+                                                          suffixes=[POWEREDITORS_GROUP_SUFFIX, ])
+        # Then, add local roles for powereditors if itemState is itemfrozen.
+        itemState = item.queryState()
+        if itemState != 'itemfrozen':
+            return
+        cfg = item.portal_plonemeeting.getMeetingConfig(item)
+        powerEditorsGroupId = "%s_%s" % (cfg.getId(), POWEREDITORS_GROUP_SUFFIX)
+        item.manage_addLocalRoles(powerEditorsGroupId, (EDITOR_USECASES['power_editors'],))
 
 
 class CustomMeetingConfig(MeetingConfig):
@@ -1109,6 +1131,37 @@ class CustomMeetingConfig(MeetingConfig):
         catalog = getToolByName(self, 'portal_catalog')
         return catalog(**params)
     MeetingConfig.searchItemsOfMyCommissionsToEdit = searchItemsOfMyCommissionsToEdit
+
+    security.declarePrivate('createPowerObserversGroup')
+
+    def createPowerEditorsGroup(self):
+        '''Creates a Plone group that will be used to apply the 'Editor'
+           local role on every items in itemFrozen state.'''
+        meetingConfig = self.getSelf()
+        groupId = "%s_%s" % (meetingConfig.getId(), POWEREDITORS_GROUP_SUFFIX)
+        if not groupId in meetingConfig.portal_groups.listGroupIds():
+            enc = meetingConfig.portal_properties.site_properties.getProperty(
+                'default_charset')
+            groupTitle = '%s (%s)' % (
+                meetingConfig.Title().decode(enc),
+                translate(POWEREDITORS_GROUP_SUFFIX, domain='PloneMeeting', context=meetingConfig.REQUEST))
+            # a default Plone group title is NOT unicode.  If a Plone group title is
+            # edited TTW, his title is no more unicode if it was previously...
+            # make sure we behave like Plone...
+            groupTitle = groupTitle.encode(enc)
+            meetingConfig.portal_groups.addGroup(groupId, title=groupTitle)
+        # now define local_roles on the tool so it is accessible by this group
+        tool = getToolByName(meetingConfig, 'portal_plonemeeting')
+        tool.manage_addLocalRoles(groupId, (EDITOR_USECASES['power_editors'],))
+        # but we do not want this group to access every MeetingConfigs so
+        # remove inheritance on self and define these local_roles for self too
+        meetingConfig.__ac_local_roles_block__ = True
+        meetingConfig.manage_addLocalRoles(groupId, (EDITOR_USECASES['power_editors'],))
+
+    security.declareProtected('Modify portal content', 'onEdit')
+
+    def onEdit(self, isCreated):
+        self.context.createPowerEditorsGroup()
 
 
 class CustomMeetingGroup(MeetingGroup):
@@ -1746,6 +1799,27 @@ class MeetingItemCouncilSeraingWorkflowConditions(MeetingItemWorkflowConditions)
         return res
 
 
+class CustomToolPloneMeeting(ToolPloneMeeting):
+    '''Adapter that adapts a tool implementing ToolPloneMeeting to the
+       interface IToolPloneMeetingCustom'''
+
+    implements(IToolPloneMeetingCustom)
+    security = ClassSecurityInfo()
+
+    security.declarePublic('updatePowerEditors')
+
+    def updatePowerEditors(self):
+        '''Update local_roles regarging the PowerEditors for every items.'''
+        if not self.context.isManager(realManagers=True):
+            raise Unauthorized
+        for b in self.context.portal_catalog(meta_type=('MeetingItem')):
+            obj = b.getObject()
+            obj.updatePowerEditorsLocalRoles()
+            # Update security
+            obj.reindexObject(idxs=['allowedRolesAndUsers', ])
+        self.context.plone_utils.addPortalMessage('Done.')
+        self.context.gotoReferer()
+
 # ------------------------------------------------------------------------------
 InitializeClass(CustomMeetingItem)
 InitializeClass(CustomMeeting)
@@ -1759,4 +1833,5 @@ InitializeClass(MeetingCouncilSeraingWorkflowActions)
 InitializeClass(MeetingCouncilSeraingWorkflowConditions)
 InitializeClass(MeetingItemCouncilSeraingWorkflowActions)
 InitializeClass(MeetingItemCouncilSeraingWorkflowConditions)
+InitializeClass(CustomToolPloneMeeting)
 # ------------------------------------------------------------------------------

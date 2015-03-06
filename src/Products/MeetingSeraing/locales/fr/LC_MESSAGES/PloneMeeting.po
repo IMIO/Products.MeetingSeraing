@@ -406,3 +406,7 @@ msgstr "Ce point est à imprimer en séance."
 #. Default: "To print in meeting"
 msgid "item_print_in_meeting_descr"
 msgstr "Point à imprimer en séance."
+
+#. Default: "Power editors"
+msgid "powereditors"
+msgstr "Super éditeurs"
