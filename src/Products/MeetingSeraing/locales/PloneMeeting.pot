@@ -407,3 +407,7 @@ msgstr ""
 #. Default: "Power editors"
 msgid "powereditors"
 msgstr ""
+
+#. Default: "To print in meeting"
+msgid "icon_help_to_print"
+msgstr ""
