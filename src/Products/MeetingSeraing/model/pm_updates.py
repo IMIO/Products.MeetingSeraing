@@ -5,11 +5,14 @@ from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import StringField
 from Products.Archetypes.atapi import TextAreaWidget
 from Products.Archetypes.atapi import TextField
+from Products.Archetypes.atapi import LinesField
+from Products.Archetypes.atapi import MultiSelectionWidget
 
 from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingGroup import MeetingGroup
 from Products.PloneMeeting.MeetingItem import MeetingItem
+from Products.PloneMeeting.config import WriteRiskyConfig
 
 
 def update_config_schema(baseSchema):
@@ -23,9 +26,10 @@ def update_config_schema(baseSchema):
                 label='Premeetingassembly',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_default',
                 i18n_domain='PloneMeeting',
-                label_method='getLabelPreMeetingAssembly_default'
-            ),
+                label_method='getLabelPreMeetingAssembly_default', ),
+            write_permission=WriteRiskyConfig,
         ),
+
         TextField(
             name='preMeetingAssembly_2_default',
             widget=TextAreaWidget(
@@ -34,9 +38,10 @@ def update_config_schema(baseSchema):
                 description_msgid="premeeting_assembly_2_descr",
                 label='Premeetingassembly_2',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_2_default',
-                i18n_domain='PloneMeeting',
-            ),
+                i18n_domain='PloneMeeting', ),
+            write_permission=WriteRiskyConfig,
         ),
+
         TextField(
             name='preMeetingAssembly_3_default',
             widget=TextAreaWidget(
@@ -45,9 +50,10 @@ def update_config_schema(baseSchema):
                 description_msgid="premeeting_assembly_3_descr",
                 label='Premeetingassembly_3',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_3_default',
-                i18n_domain='PloneMeeting',
-            ),
+                i18n_domain='PloneMeeting', ),
+            write_permission=WriteRiskyConfig,
         ),
+
         TextField(
             name='preMeetingAssembly_4_default',
             widget=TextAreaWidget(
@@ -56,9 +62,10 @@ def update_config_schema(baseSchema):
                 description_msgid="premeeting_assembly_4_descr",
                 label='Premeetingassembly_4',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_4_default',
-                i18n_domain='PloneMeeting',
-            ),
+                i18n_domain='PloneMeeting', ),
+            write_permission=WriteRiskyConfig,
         ),
+
         TextField(
             name='preMeetingAssembly_5_default',
             widget=TextAreaWidget(
@@ -67,9 +74,10 @@ def update_config_schema(baseSchema):
                 description_msgid="premeeting_assembly_5_descr",
                 label='Premeetingassembly_5',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_5_default',
-                i18n_domain='PloneMeeting',
-            ),
+                i18n_domain='PloneMeeting', ),
+            write_permission=WriteRiskyConfig,
         ),
+
         TextField(
             name='preMeetingAssembly_6_default',
             widget=TextAreaWidget(
@@ -78,9 +86,10 @@ def update_config_schema(baseSchema):
                 description_msgid="premeeting_assembly_6_descr",
                 label='Premeetingassembly_6',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_6_default',
-                i18n_domain='PloneMeeting',
-            ),
+                i18n_domain='PloneMeeting', ),
+            write_permission=WriteRiskyConfig,
         ),
+
         TextField(
             name='preMeetingAssembly_7_default',
             widget=TextAreaWidget(
@@ -89,20 +98,37 @@ def update_config_schema(baseSchema):
                 description_msgid="premeeting_assembly_7_descr",
                 label='Premeetingassembly_7',
                 label_msgid='MeetingSeraing_label_preMeetingAssembly_7_default',
-                i18n_domain='PloneMeeting',
-            ),
+                i18n_domain='PloneMeeting', ),
+            write_permission=WriteRiskyConfig,
         ),
-        TextField(
-            name='itemDecisionReportText',
-            widget=TextAreaWidget(
-                description="ItemDecisionReportText",
-                description_msgid="item_decision_report_text_descr",
-                label='ItemDecisionReportText',
-                label_msgid='PloneMeeting_label_itemDecisionReportText',
+
+        BooleanField(
+            name='initItemDecisionIfEmptyOnDecide',
+            default=True,
+            widget=BooleanField._properties['widget'](
+                description="InitItemDecisionIfEmptyOnDecide",
+                description_msgid="init_item_decision_if_empty_on_decide",
+                label='Inititemdecisionifemptyondecide',
+                label_msgid='MeetingCommunes_label_initItemDecisionIfEmptyOnDecide',
+                i18n_domain='PloneMeeting'),
+            write_permission=WriteRiskyConfig,
+        ),
+
+        # field used to define list of services for synthesis document for DF (legality advice)
+        LinesField(
+            name='cdldProposingGroup',
+            widget=MultiSelectionWidget(
+                size=10,
+                label='CdldProposingGroup',
+                label_msgid='MeetingCommunes_label_cdldProposingGroup',
+                description='Choose proposing group for cdld advice',
+                description_msgid='MeetingCommunes_descr_cdldProposingGroup',
                 i18n_domain='PloneMeeting',
             ),
-            allowable_content_types=('text/plain', 'text/html', ),
-            default_output_type="text/plain",
+            enforceVocabulary=True,
+            multiValued=1,
+            vocabulary='listCdldProposingGroup',
+            write_permission=WriteRiskyConfig,
         ),
     ),)
 
@@ -115,22 +141,25 @@ MeetingConfig.schema = update_config_schema(MeetingConfig.schema)
 def update_group_schema(baseSchema):
     specificSchema = Schema((
 
-        # field used to define specific signatures for a MeetingGroup
-        TextField(
-            name='signatures',
-            widget=TextAreaWidget(
-                label='Signatures',
-                label_msgid='MeetingSeraing_label_signatures',
-                description='Leave empty to use the signatures defined on the meeting',
-                description_msgid='MeetingSeraing_descr_signatures',
+        # field used to define list of services for echevin for a MeetingGroup
+        LinesField(
+            name='echevinServices',
+            widget=MultiSelectionWidget(
+                size=10,
+                label='EchevinServices',
+                label_msgid='MeetingCommunes_label_echevinServices',
+                description='Leave empty if he is not an echevin',
+                description_msgid='MeetingCommunes_descr_echevinServices',
                 i18n_domain='PloneMeeting',
             ),
+            enforceVocabulary=True,
+            multiValued=1,
+            vocabulary='listEchevinServices',
         ),
     ),)
 
-    completeGroupSchema = baseSchema + specificSchema.copy()
-
-    return completeGroupSchema
+    completeSchema = baseSchema + specificSchema.copy()
+    return completeSchema
 MeetingGroup.schema = update_group_schema(MeetingGroup.schema)
 
 

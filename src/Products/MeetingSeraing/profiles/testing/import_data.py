@@ -147,6 +147,7 @@ muser_voter2 = MeetingUserDescriptor('voter2', duty='Voter2',
 collegeMeeting = MeetingConfigDescriptor(
     'meeting-config-college', 'Collège Communal',
     'Collège communal', isDefault=True)
+collegeMeeting.meetingManagers = ['dgen', ]
 collegeMeeting.assembly = 'Pierre Dupont - Bourgmestre,\n' \
                           'Charles Exemple - 1er Echevin,\n' \
                           'Echevin Un, Echevin Deux, Echevin Trois - Echevins,\n' \
@@ -173,7 +174,6 @@ collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'pro
                                   'delayed', 'pre_accepted', 'removed',)
 collegeMeeting.meetingTopicStates = ('created', 'frozen')
 collegeMeeting.decisionTopicStates = ('decided', 'closed')
-collegeMeeting.itemAdviceStates = ['proposed', ]
 collegeMeeting.itemAdviceEditStates = ['proposed', 'validated']
 collegeMeeting.itemAdviceViewStates = ['presented', ]
 collegeMeeting.recordItemHistoryStates = ['', ]
@@ -299,7 +299,6 @@ councilMeeting.itemTopicStates = ('itemcreated', 'proposed', 'validated', 'prese
                                   'accepted_but_modified', 'delayed')
 councilMeeting.meetingTopicStates = ('created', 'frozen', 'in_committee')
 councilMeeting.decisionTopicStates = ('in_council', 'closed')
-councilMeeting.itemAdviceStates = ['proposed', ]
 councilMeeting.itemAdviceEditStates = ['proposed', 'validated']
 councilMeeting.itemAdviceViewStates = ['presented', ]
 councilMeeting.transitionReinitializingDelays = 'backToItemCreated'

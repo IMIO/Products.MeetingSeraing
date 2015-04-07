@@ -125,11 +125,6 @@ msgstr "Assemblée par défaut de la commission 7"
 msgid "MeetingSeraing_label_preMeetingAssembly_default"
 msgstr "Assemblée par défaut de la commission 1"
 
-# MeetingItem
-#. Default: "Signatures delegation"
-msgid "MeetingSeraing_label_signatures"
-msgstr "Délégation de signatures"
-
 # import what was done in MeetingCommunes
 # MeetingItem
 #. Default: "Decision"
@@ -217,10 +212,6 @@ msgstr "Attention, comme ce point provient du Collège communal, vous devez déf
 msgid "check_intitiator_and_category"
 msgstr "Attention, en général si vous sélectionnez une personne 'A l'initative de ce point', la catégorie 'Points conseillers' doit être également sélectionnée.  Vérifiez vos données, si elles sont justes, ignorez cet avertissement, il disparaîtra une fois le point 'validé'."
 
-#. Default: "Item created from a college item"
-msgid "create_to_meeting-config-council_from_meeting-config-college_comments"
-msgstr "Point créé depuis un point Collège"
-
 #. Default: "Default value for the item decision field"
 msgid "default_meetingitem_decision"
 msgstr "Définissez ici le texte prédéfini qui sera présent dans le champ 'Délibération/Extrait du Procès-verbal' chaque fois qu'un utilisateur crée un nouveau point."
@@ -261,19 +252,6 @@ msgstr "Proposé au chef de bureau"
 #. Default: "Proposed to service head"
 msgid "icon_help_proposed_to_servicehead"
 msgstr "Proposé au chef de service"
-
-#. Default: "Public meeting"
-msgid "ip_public"
-msgstr "Séance publique"
-
-#. Default: "Closed session"
-msgid "ip_secret"
-msgstr "Huis clos"
-
-# Other
-#. Default: "Late items"
-msgid "late_presented_items"
-msgstr "Points ajoutés à la séance après gel de celle-ci"
 
 #. Default: "Assembly"
 msgid "listingheader_premeeting_assembly"
@@ -349,14 +327,6 @@ msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exe
 msgid "reviewers"
 msgstr "directeurs"
 
-#. Default: "Every decisions"
-msgid "searchalldecisions"
-msgstr "tous les PVs"
-
-#. Default: "decided items"
-msgid "searchdecideditems"
-msgstr "points décidés"
-
 #. Default: "items of my commissions"
 msgid "searchitemsofmycommissions"
 msgstr "points de mes commissions"
@@ -391,14 +361,6 @@ msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas 
 msgid "icon_help_removed"
 msgstr "Retiré de la séance"
 
-#. Default: "Décision used when the item is reported"
-msgid "PloneMeeting_label_itemDecisionReportText"
-msgstr "Décision du point lors d'un report"
-
-#. Default: "When an item is delay, the decision will be replace by the text defined here, as a TAL (Tag Attribute Language) expression whose context includes the name 'here' that represents the impacted item. If you don't know TAL, you may learn it <a href=\"http://zope.org/Documentation/Books/ZopeBook/2_6Edition/ZPT.stx\">here</a>."
-msgid "item_decision_report_text_descr"
-msgstr "Lorsque le point est reporté, la décision sera remplacée par le texte défini ici, sous la forme d'une expression TAL (Tag Attribute Language) dans laquelle le nom 'here', représentant le point courant, peut être utilisé. Voici un exemple : python:'%sLe collège décide de reporter le point'%here.getDecision()"
-
 #. Default: "This item must be print in meeting"
 msgid "PloneMeeting_label_item_print_in_meeting"
 msgstr "Ce point est à imprimer en séance."
@@ -414,3 +376,27 @@ msgstr "Super éditeurs"
 #. Default: "To print in meeting"
 msgid "icon_help_to_print"
 msgstr "A imprimer en séance."
+
+#. Default: "Alderman of the following services (departments)" 
+msgid "MeetingCommunes_label_echevinServices" 
+msgstr "Echevins des services suivants"
+
+#. Default: "Choose proposing group for cdld advice"
+msgid "MeetingCommunes_descr_cdldProposingGroup"
+msgstr "Choisir les groupes donneurs d'avis qui seront repris dans la synthèse CDLD (avis DF)"
+
+#. Default: "If the group is responsible of other groups, select them here above, either do not select any elements of the list."
+msgid "MeetingCommunes_descr_echevinServices"
+msgstr "Si ce groupe est responsable d'autres groupes, selectionnez les ci-dessous."
+ 
+#. Default: "Proposing group to keep for CDLD synthesis"
+msgid "MeetingCommunes_label_cdldProposingGroup"
+msgstr "Groupes proposants à garder pour la synthèse des avis pour le CDLD (avis DF)"
+
+#. Default: "Initialize the item decision when deciding meeting"
+msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide"
+msgstr "Initialiser le champ décision des points lorsque la séance passe 'En rédaction du PV'?"
+
+#. Default: "cdld synthesis"
+msgid "searchcdlditems"
+msgstr "Synthèse Avis DF"

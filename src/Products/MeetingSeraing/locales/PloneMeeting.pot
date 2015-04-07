@@ -15,11 +15,6 @@ msgstr ""
 msgid "hs_welcome_title"
 msgstr ""
 
-# MeetingGroup
-#. Default: "Signatures delegation"
-msgid "MeetingSeraing_label_signatures"
-msgstr ""
-
 #. Default: "Assembly which are specific to this meeting item"
 msgid "MeetingSeraing_label_itemAssembly"
 msgstr ""
@@ -58,19 +53,6 @@ msgstr ""
 # MeetingItem
 #. Default: "Decision"
 msgid "PloneMeeting_label_decision"
-msgstr ""
-
-# Other
-#. Default: "Late items"
-msgid "late_presented_items"
-msgstr ""
-
-#. Default: "Every decisions"
-msgid "searchalldecisions"
-msgstr ""
-
-#. Default: "decided items"
-msgid "searchdecideditems"
 msgstr ""
 
 # searches
@@ -134,10 +116,6 @@ msgstr ""
 
 #. Default: "Sent to council"
 msgid "Sent to council"
-msgstr ""
-
-#. Default: "Item created from a college item"
-msgid "create_to_meeting-config-council_from_meeting-config-college_comments"
 msgstr ""
 
 #. Default: "Explanatory note"
@@ -336,14 +314,6 @@ msgstr ""
 msgid "listingheader_premeeting_assembly"
 msgstr ""
 
-#. Default: "Public meeting"
-msgid "ip_public"
-msgstr ""
-
-#. Default: "Closed session"
-msgid "ip_secret"
-msgstr ""
-
 #. Default: "Please as you defined an item initiator, check if the linked category should not be 'Points conseillers'. If not, just ignore this message, it will not be displayed anymore when the item will be validated."
 msgid "check_intitiator_and_category"
 msgstr ""
@@ -388,14 +358,6 @@ msgstr ""
 msgid "icon_help_removed"
 msgstr ""
 
-#. Default: "Décision used when the item is reported"
-msgid "PloneMeeting_label_itemDecisionReportText"
-msgstr ""
-
-#. Default: "When an item is delay, the decision will be replace by the text defined here, as a TAL (Tag Attribute Language) expression whose context includes the name 'here' that represents the impacted item. If you don't know TAL, you may learn it <a href=\"http://zope.org/Documentation/Books/ZopeBook/2_6Edition/ZPT.stx\">here</a>."
-msgid "item_decision_report_text_descr"
-msgstr ""
-
 #. Default: "This item must be print in meeting"
 msgid "PloneMeeting_label_item_print_in_meeting"
 msgstr ""
@@ -410,4 +372,30 @@ msgstr ""
 
 #. Default: "To print in meeting"
 msgid "icon_help_to_print"
+msgstr ""
+
+#. Default: "Alderman of the following services (departments)" 
+msgid "MeetingCommunes_label_echevinServices" 
+msgstr ""
+
+
+#. Default: "Initialize the item decision when deciding meeting" 
+msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide" 
+msgstr "" 
+
+#. Default: "If you check this box, when a meeting will be decided, if an item does not have a decision defined, this decision will be automatically filled with title and description of the item" 
+msgid "init_item_decision_if_empty_on_decide" 
+msgstr "" 
+
+#searches 
+#. Default: "cdld synthesis" 
+msgid "searchcdlditems" 
+msgstr "" 
+
+#. Default: "Proposing group to keep for CDLD synthesis" 
+msgid "MeetingCommunes_label_cdldProposingGroup" 
+msgstr "" 
+
+#. Default: "Choose proposing group for cdld advice" 
+msgid "MeetingCommunes_descr_cdldProposingGroup" 
 msgstr ""

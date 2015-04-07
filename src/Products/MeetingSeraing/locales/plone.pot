@@ -233,3 +233,7 @@ msgstr ""
 #. Default: "Some items are still under corrections in services"
 msgid "some_item_still_in_service"
 msgstr ""
+
+#. Default: "Create an item council from an item college" 
+msgid "create_to_meeting-config-council_from_meeting-config-college" 
+msgstr "" 

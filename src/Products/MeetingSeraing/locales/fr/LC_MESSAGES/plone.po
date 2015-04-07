@@ -218,3 +218,6 @@ msgstr "Valider"
 msgid "validated"
 msgstr "Validé"
 
+#. Default: "Create an item council from an item college"
+msgid "create_to_meeting-config-council_from_meeting-config-college"
+msgstr "Envoyer vers Conseil Communal"

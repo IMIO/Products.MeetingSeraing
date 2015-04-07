@@ -24,7 +24,6 @@ __docformat__ = 'plaintext'
 
 from Products.CMFCore.permissions import setDefaultRoles
 ##code-section config-head #fill in your manual code here
-import os
 ##/code-section config-head
 
 
@@ -59,15 +58,6 @@ EDITOR_USECASES = {
     'power_editors': 'Editor',
 }
 
-# see doc in Products.PloneMeeting.config.py
-RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_item_in_committee_from_returned_to_proposing_group': ['in_committee', ],
-                                      'backTo_item_in_council_from_returned_to_proposing_group': ['in_council', ],
-                                      }
-PMconfig.RETURN_TO_PROPOSING_GROUP_MAPPINGS.update(RETURN_TO_PROPOSING_GROUP_MAPPINGS)
-
-
-# url of the DEF application
-DEFURL = os.environ.get('DEFURL', 'http://192.168.1.106/def')
 
 # ids of commissions used as categories for MeetingItemCouncil
 # before 2013, commission ids were :
