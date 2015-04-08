@@ -31,12 +31,12 @@
    for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
    <genericsetup:upgradeStep
-    title="Go to MeetingSeraings 3.3"
+    title="Go to MeetingSeraing 3.3"
     description=""
     source="3.2.0.1"
     destination="3.3"
-    handler="Products.MeetingCommunes.migrations.migrate_to_3_3.migrate"
-    profile="Products.MeetingCommunes:default" />
+    handler="Products.MeetingSeraing.migrations.migrate_to_3_3.migrate"
+    profile="Products.MeetingSeraing:default" />
 
   <!-- ##/code-section profiles.zcml-bottom -->
 

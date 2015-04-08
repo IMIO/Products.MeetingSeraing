@@ -133,7 +133,6 @@ def update_config_schema(baseSchema):
     ),)
 
     completeConfigSchema = baseSchema + specificSchema.copy()
-    completeConfigSchema.moveField('itemDecisionReportText', after='defaultMeetingItemMotivation')
     return completeConfigSchema
 MeetingConfig.schema = update_config_schema(MeetingConfig.schema)
 
@@ -416,7 +415,7 @@ def update_item_schema(baseSchema):
             name='interventions',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.portal_type == 'MeetingItemCouncil' and here.portal_plonemeeting.isManager()",
+                condition="python: here.portal_type == 'MeetingItemCouncil' and here.portal_plonemeeting.isManager(here)",
                 label='Interventions',
                 label_msgid='MeetingSeraing_label_interventions',
                 description='Transcription of interventions',
@@ -464,9 +463,6 @@ def update_item_schema(baseSchema):
 
     baseSchema['description'].widget.label_method = "getLabelDescription"
     baseSchema['category'].widget.label_method = "getLabelCategory"
-    baseSchema['privacy'].widget.condition = "python: here.attributeIsUsed('privacy') and " \
-                                             "portal.portal_plonemeeting.isManager()"
-    baseSchema['decision'].default = '<p>DECIDE :</p>'
 
     completeItemSchema = baseSchema + specificSchema.copy()
     return completeItemSchema

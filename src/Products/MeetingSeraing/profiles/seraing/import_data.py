@@ -295,6 +295,22 @@ collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMe
 collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
 collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
 collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
+collegeMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
+                                                 'proposeToOfficeManager',
+                                                 'proposeToDivisionHead',
+                                                 'propose',
+                                                 'validate',
+                                                 'present', )
+collegeMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
+                                                              'item_transition': 'itemfreeze'},
+
+                                                             {'meeting_transition': 'decide',
+                                                              'item_transition': 'itemfreeze'},
+
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'itemfreeze'},
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'accept'},)
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposedToServiceHead', 'proposedToOfficeManager',
                                   'proposedToDivisionHead', 'proposed',
                                   'validated', 'presented', 'itemfrozen', 'accepted', 'delayed',
@@ -449,6 +465,19 @@ councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMe
 councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
 councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
 councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions'
+councilMeeting.transitionsForPresentingAnItem = ('propose',
+                                                 'validate',
+                                                 'present', )
+councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
+                                                              'item_transition': 'itemfreeze'},
+
+                                                             {'meeting_transition': 'decide',
+                                                              'item_transition': 'itemfreeze'},
+
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'itemfreeze'},
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'accept'},)
 #show every items states
 councilMeeting.itemTopicStates = ('itemcreated',
                                   'proposed_to_officemanager',

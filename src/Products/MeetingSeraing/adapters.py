@@ -769,10 +769,15 @@ class CustomMeetingItem(MeetingItem):
     implements(IMeetingItemCustom)
     security = ClassSecurityInfo()
 
-    customItemPositiveDecidedStates = ('accepted', 'accepted_but_modified', )
-    MeetingItem.itemPositiveDecidedStates = customItemPositiveDecidedStates
+    security.declarePublic('itemPositiveDecidedStates')
+
+    def itemPositiveDecidedStates(self):
+        '''See doc in interfaces.py.'''
+        return ('accepted', 'accepted_but_modified', )
+
     customItemDecidedStates = ('accepted', 'delayed', 'accepted_but_modified', 'removed', )
     MeetingItem.itemDecidedStates = customItemDecidedStates
+
     customBeforePublicationStates = ('itemcreated',
                                      'proposed_to_servicehead',
                                      'proposed_to_officemanager',
@@ -1363,16 +1368,6 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
             res = True
         return res
 
-    security.declarePublic('mayDelay')
-
-    def mayDelay(self):
-        '''Only 'Manager' may delay an item, it is for history reasons because now this is not
-           used anymore but some old items were 'delayed'...'''
-        tool = getToolByName(self.context, 'portal_plonemeeting')
-        if tool.isManager(realManagers=True):
-            return True
-        return False
-
     security.declarePublic('mayValidate')
 
     def mayValidate(self):
@@ -1387,7 +1382,7 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
             res = True
             #if the current item state is 'itemcreated', only the MeetingManager can validate
             tool = getToolByName(self.context, 'portal_plonemeeting')
-            if self.context.queryState() in ('itemcreated',) and not tool.isManager():
+            if self.context.queryState() in ('itemcreated',) and not tool.isManager(self.context):
                 res = False
         return res
 
