@@ -1263,6 +1263,14 @@ class MeetingCollegeSeraingWorkflowConditions(MeetingWorkflowConditions):
                 res = No(translate('item_required_to_publish', domain='PloneMeeting', context=self.context.REQUEST))
         return res
 
+    security.declarePublic('mayDecide')
+
+    def mayDecide(self):
+        res = False
+        if checkPermission(ReviewPortalContent, self.context):
+            res = True
+        return res
+
     security.declarePublic('mayClose')
 
     def mayClose(self):

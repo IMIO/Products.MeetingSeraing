@@ -45,6 +45,7 @@ PRODUCT_DEPENDENCIES = []
 
 ##code-section config-bottom #fill in your manual code here
 from Products.PloneMeeting import config as PMconfig
+from Products.PloneMeeting.model import adaptations
 SERAINGROLES = {}
 SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
 SERAINGROLES['officemanagers'] = 'MeetingOfficeManager'
@@ -57,6 +58,12 @@ POWEREDITORS_GROUP_SUFFIX = 'powereditors'
 EDITOR_USECASES = {
     'power_editors': 'Editor',
 }
+
+# see doc in Products.PloneMeeting.config.py
+RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_item_in_committee_from_returned_to_proposing_group': ['in_committee', ],
+                                      'backTo_item_in_council_from_returned_to_proposing_group': ['in_council', ],
+                                      }
+adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS.update(RETURN_TO_PROPOSING_GROUP_MAPPINGS)
 
 
 # ids of commissions used as categories for MeetingItemCouncil

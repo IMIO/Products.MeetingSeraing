@@ -21,7 +21,7 @@
 #
 
 from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
-from Products.MeetingSeraing.testing import MLL_TESTING_PROFILE_FUNCTIONAL
+from Products.MeetingSeraing.testing import MS_TESTING_PROFILE_FUNCTIONAL
 from Products.MeetingSeraing.tests.helpers import MeetingSeraingTestingHelpers
 
 # monkey patch the MeetingConfig.wfAdaptations again because it is done in
@@ -34,4 +34,4 @@ MeetingConfig.wfAdaptations = customWfAdaptations
 class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpers):
     """Base class for defining MeetingSeraing test cases."""
 
-    layer = MLL_TESTING_PROFILE_FUNCTIONAL
+    layer = MS_TESTING_PROFILE_FUNCTIONAL

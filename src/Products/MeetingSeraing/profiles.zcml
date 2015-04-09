@@ -24,12 +24,6 @@
    provides="Products.GenericSetup.interfaces.EXTENSION"
    for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
-  <genericsetup:registerProfile
-   name="testing"
-   title="PloneMeeting / Unit testing profile for Seraing"
-   description="MeetingSeraing unit testing profile"
-   for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
-
    <genericsetup:upgradeStep
     title="Go to MeetingSeraing 3.3"
     description=""
