@@ -399,3 +399,23 @@ msgstr ""
 #. Default: "Choose proposing group for cdld advice" 
 msgid "MeetingCommunes_descr_cdldProposingGroup" 
 msgstr ""
+
+#. Default: "Observations"
+msgid "PloneMeeting_itemObservations"
+msgstr ""
+
+#. Default: "PV Note" 
+msgid "MeetingSeraing_label_pvNote" 
+msgstr ""
+
+#. Default: "Note in pv" 
+msgid "MeetingSeraing_descr_pvNote" 
+msgstr ""
+
+#. Default: "DG Note" 
+msgid "MeetingSeraing_label_dgnote" 
+msgstr ""
+
+#. Default: "Personal Note for DG" 
+msgid "MeetingSeraing_descr_dgnote" 
+msgstr ""

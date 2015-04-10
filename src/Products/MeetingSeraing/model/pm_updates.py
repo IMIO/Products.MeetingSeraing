@@ -458,7 +458,44 @@ def update_item_schema(baseSchema):
                 label_msgid='PloneMeeting_label_item_print_in_meeting',
                 i18n_domain='PloneMeeting',
             ),
-        )
+        ),
+        #specific field for council added for MeetingManagers to transcribe interventions
+        TextField(
+            name='pvNote',
+            widget=RichWidget(
+                rows=15,
+                label='PvNote',
+                label_msgid='MeetingSeraing_label_pvNote',
+                description='PV Note',
+                description_msgid='MeetingSeraing_descr_pvNote',
+                i18n_domain='PloneMeeting',
+            ),
+            default_content_type="text/html",
+            default="",
+            searchable=True,
+            allowable_content_types=('text/html',),
+            default_output_type="text/html",
+            write_permission="PloneMeeting: Write item observations",
+            read_permission="PloneMeeting: Read item observations",
+        ),
+        #specific field for council added for MeetingManagers to transcribe interventions
+        TextField(
+            name='dgNote',
+            widget=RichWidget(
+                rows=15,
+                condition="python: here.portal_plonemeeting.isManager(here)",
+                label='dgnote',
+                label_msgid='MeetingSeraing_label_dgnote',
+                description='DG Note',
+                description_msgid='MeetingSeraing_descr_dgnote',
+                i18n_domain='PloneMeeting',
+            ),
+            default_content_type="text/html",
+            default="",
+            searchable=True,
+            allowable_content_types=('text/html',),
+            default_output_type="text/html",
+        ),
     ),)
 
     baseSchema['description'].widget.label_method = "getLabelDescription"

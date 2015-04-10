@@ -402,8 +402,18 @@
         </tr>
     </table>
 
-    <tal:comment replace="nothing">Observations</tal:comment>
+    <tal:comment replace="nothing">Observations (Public Instruction)</tal:comment>
     <tal:field define="fieldName python: 'observations'; ajaxEdit python:True">
+       <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+    </tal:field>
+
+    <tal:comment replace="nothing">Note PV</tal:comment>
+    <tal:field define="fieldName python: 'pvNote'; ajaxEdit python:True">
+       <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+    </tal:field>
+
+    <tal:comment replace="nothing">Note DG</tal:comment>
+    <tal:field define="fieldName python: 'dgNote'; ajaxEdit python:True">
        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
     </tal:field>
 
