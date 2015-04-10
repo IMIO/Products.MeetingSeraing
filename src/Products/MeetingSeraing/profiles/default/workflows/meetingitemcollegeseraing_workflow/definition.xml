@@ -435,6 +435,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>MeetingMember</permission-role>
    <permission-role>Reader</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
   </permission-map>
   <permission-map name="Delete objects"
                   acquired="False">
@@ -522,6 +523,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>MeetingMember</permission-role>
    <permission-role>Reader</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
   </permission-map>
  </state>
  <state state_id="itemfrozen"

@@ -31,7 +31,7 @@ class testAdvices(MeetingSeraingTestCase, mcta):
 
     def test_subproduct_call_MayTriggerGiveAdviceWhenItemIsBackToANotViewableState(self):
         '''Run the test_pm_MayTriggerGiveAdviceWhenItemIsBackToANotViewableState from PloneMeeting.'''
-        self.test_pm_MayTriggerGiveAdviceWhenItemIsBackToANotViewableState(self)
+        self.test_pm_MayTriggerGiveAdviceWhenItemIsBackToANotViewableState()
 
 
 def test_suite():

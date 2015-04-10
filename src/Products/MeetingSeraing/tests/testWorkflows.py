@@ -202,19 +202,16 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.changeUser('pmManager')
         self.do(item2, 'present')
         self.addAnnex(item2)
-        # An item is freely addable to a meeting if the meeting is 'open'
-        # so in states 'created', 'in_committee' and 'in_council'
-        # the 'late items' functionnality is not used
-        self.failIf(len(meeting.getItems()) != 2)
-        self.failIf(len(meeting.getLateItems()) != 0)
+        self.failIf(len(meeting.getItems()) != 1)
+        self.failIf(len(meeting.getLateItems()) != 1)
         # remove the item, set the meeting in council and add it again
         self.do(item2, 'backToValidated')
         self.failIf(len(meeting.getItems()) != 1)
         self.do(meeting, 'setInCouncil')
         self.do(item2, 'present')
         # setting the meeting in council (setInCouncil) add 1 recurring item...
-        self.failIf(len(meeting.getItems()) != 3)
-        self.failIf(len(meeting.getLateItems()) != 0)
+        self.failIf(len(meeting.getItems()) != 1)
+        self.failIf(len(meeting.getLateItems()) != 2)
         # an item can be send back to the service so MeetingMembers
         # can edit it and send it back to the meeting
         self.changeUser('pmCreator1')

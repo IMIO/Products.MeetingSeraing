@@ -24,6 +24,7 @@ __docformat__ = 'plaintext'
 
 from Products.CMFCore.permissions import setDefaultRoles
 ##code-section config-head #fill in your manual code here
+from collections import OrderedDict
 ##/code-section config-head
 
 
@@ -64,6 +65,12 @@ RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_item_in_committee_from_returned_to
                                       'backTo_item_in_council_from_returned_to_proposing_group': ['in_council', ],
                                       }
 adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS.update(RETURN_TO_PROPOSING_GROUP_MAPPINGS)
+
+SERAINGMEETINGREVIEWERS = OrderedDict([('reviewers', 'proposed'),
+                                     ('divisionheads', 'proposed_to_divisionhead'),
+                                     ('officemanagers', 'proposed_to_officemanager'),
+                                     ('serviceheads', 'proposed_to_servicehead'), ])
+PMconfig.MEETINGREVIEWERS = SERAINGMEETINGREVIEWERS
 
 
 # ids of commissions used as categories for MeetingItemCouncil

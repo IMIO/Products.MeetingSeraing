@@ -41,7 +41,9 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         """
         # by default, college items are sendable to council
         destMeetingConfigId = self.meetingConfig2.getId()
-        self.assertTrue(destMeetingConfigId in self.meetingConfig.getMeetingConfigsToCloneTo())
+        self.assertTrue(self.meetingConfig.getMeetingConfigsToCloneTo() == (
+            {'meeting_config': '%s' % destMeetingConfigId,
+             'trigger_workflow_transitions_until': '__nothing__'},))
         # create an item in college, set a motivation, send it to council and check
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
@@ -52,13 +54,12 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         self.presentItem(item)
         # now close the meeting so the item is automatically accepted and sent to meetingConfig2
         self.closeMeeting(meeting)
-        self.assertTrue(item.queryState() in MeetingItem.itemPositiveDecidedStates)
+        self.assertTrue(item.queryState() in MeetingItem.itemPositiveDecidedStates(item))
         self.assertTrue(item._checkAlreadyClonedToOtherMC(destMeetingConfigId))
         # get the item that was sent to meetingConfig2 and check his motivation field
         annotation_key = item._getSentToOtherMCAnnotationKey(destMeetingConfigId)
         newItem = self.portal.uid_catalog(UID=IAnnotations(item)[annotation_key])[0].getObject()
-        expectedNewItemMotivation = self.meetingConfig2.getDefaultMeetingItemMotivation() + \
-            '<p>&nbsp;</p><p>&nbsp;</p>' + item.getMotivation()
+        expectedNewItemMotivation = self.meetingConfig2.getDefaultMeetingItemMotivation() + item.getMotivation()
         self.assertTrue(newItem.getMotivation() == expectedNewItemMotivation)
 
     def test_powerEditor(self):

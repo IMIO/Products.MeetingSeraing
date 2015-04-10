@@ -215,8 +215,8 @@ muser_voter2 = MeetingUserDescriptor('voter2', duty='Voter2',
 # Meeting configurations -------------------------------------------------------
 # college
 collegeMeeting = MeetingConfigDescriptor(
-    'meeting-config-college', 'Collège Communal',
-    'Collège communal', isDefault=True)
+    'meeting-config-college', 'College Communal',
+    'College communal', isDefault=True)
 collegeMeeting.meetingManagers = ['pmManager', ]
 collegeMeeting.assembly = 'Pierre Dupont - Bourgmestre,\n' \
                           'Charles Exemple - 1er Echevin,\n' \
@@ -395,6 +395,6 @@ data = PloneMeetingConfiguration(
     meetingConfigs=(collegeMeeting, councilMeeting),
     groups=(developers, vendors, endUsers))
 data.unoEnabledPython = '/usr/bin/python'
-data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2,
+data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2, powerEditor1,
                            restrictedpowerobserver1, restrictedpowerobserver2]
 # ------------------------------------------------------------------------------

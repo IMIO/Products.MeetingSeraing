@@ -29,6 +29,9 @@ from Products.MeetingCommunes.tests.testMeeting import testMeeting as mctm
 class testMeeting(MeetingSeraingTestCase, mctm):
     """Tests the Meeting class methods."""
 
+    def test_subproduct_call_MeetingActionsPanelCaching(self):
+        pass
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

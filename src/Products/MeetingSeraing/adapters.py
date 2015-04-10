@@ -902,6 +902,15 @@ class CustomMeetingItem(MeetingItem):
         powerEditorsGroupId = "%s_%s" % (cfg.getId(), POWEREDITORS_GROUP_SUFFIX)
         item.manage_addLocalRoles(powerEditorsGroupId, (EDITOR_USECASES['power_editors'],))
 
+    def getExtraFieldsToCopyWhenCloning(self, cloned_to_same_mc):
+        '''
+          Keep some new fields when item is cloned (to another mc or from itemtemplate).
+        '''
+        res = ['commissionTranscript', 'interventions', 'isToPrintInMeeting', '']
+        if cloned_to_same_mc:
+            res = res + []
+        return res
+
 
 class CustomMeetingConfig(MeetingConfig):
     '''Adapter that adapts a meetingConfig implementing IMeetingConfig to the
@@ -1438,6 +1447,10 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
           Check that the user has the 'Review portal content'
         """
         res = False
+        if not self.context.getCategory():
+            return No(translate('required_category_ko',
+                                domain="PloneMeeting",
+                                context=self.context.REQUEST))
         if checkPermission(ReviewPortalContent, self.context):
                 res = True
         return res
@@ -1699,14 +1712,6 @@ class MeetingItemCouncilSeraingWorkflowConditions(MeetingItemWorkflowConditions)
         if checkPermission(ReviewPortalContent, self.context) and \
            (not self.context.isDefinedInTool()):
             return True
-        return False
-
-    security.declarePublic('isLateFor')
-
-    def isLateFor(self, meeting):
-        """
-          No late functionnality for Council
-        """
         return False
 
     security.declarePublic('maySetItemInCommittee')
