@@ -32,10 +32,6 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         Tests the MeetingItem class methods.
     """
 
-    def test_subproduct_call_CopiedFieldsWhenDuplicated(self):
-        '''remove temporary'''
-        pass
-
     def test_subproduct_call_PowerObserversLocalRoles(self):
         '''Check that powerobservers local roles are set correctly...
            Test alternatively item or meeting that is accessible to and not...'''

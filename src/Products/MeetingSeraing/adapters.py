@@ -906,7 +906,7 @@ class CustomMeetingItem(MeetingItem):
         '''
           Keep some new fields when item is cloned (to another mc or from itemtemplate).
         '''
-        res = ['commissionTranscript', 'interventions', 'isToPrintInMeeting', '']
+        res = ['commissionTranscript', 'interventions', 'isToPrintInMeeting', 'pvNote', 'dgNote']
         if cloned_to_same_mc:
             res = res + []
         return res
@@ -1224,28 +1224,6 @@ class MeetingCollegeSeraingWorkflowActions(MeetingWorkflowActions):
 
     implements(IMeetingCollegeSeraingWorkflowActions)
     security = ClassSecurityInfo()
-
-    security.declarePrivate('doDecide')
-
-    def doDecide(self, stateChange):
-        '''We pass every item that is 'presented' in the 'itemfrozen'
-           state.  It is the case for late items.'''
-        wfTool = getToolByName(self.context, 'portal_workflow')
-        for item in self.context.getAllItems(ordered=False):
-            if item.queryState() == 'presented':
-                wfTool.doActionFor(item, 'itemfreeze')
-
-    security.declarePrivate('doFreeze')
-
-    def doFreeze(self, stateChange):
-        '''When freezing the meeting, every items must be automatically set to
-           "itemfrozen".'''
-        wfTool = getToolByName(self.context, 'portal_workflow')
-        for item in self.context.getAllItems(ordered=True):
-            if item.queryState() == 'presented':
-                wfTool.doActionFor(item, 'itemfreeze')
-        #manage meeting number
-        self.initSequenceNumber()
 
     security.declarePrivate('doBackToCreated')
 
