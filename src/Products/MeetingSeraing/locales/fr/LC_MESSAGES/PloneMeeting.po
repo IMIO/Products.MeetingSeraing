@@ -1,0 +1,422 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-03-01 09:00-100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: PloneMeeting\n"
+"X-is-fallback-for: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
+
+# portal_tabs
+#. Default: "College"
+msgid "Meeting config Seraing College"
+msgstr "Collège communal"
+
+#. Default: "Council"
+msgid "Meeting config Seraing Council"
+msgstr "Conseil communal"
+
+#. Default: "If you don't fill this field, meeting assembly will be used for this item."
+msgid "MeetingSeraing_descr_assembly"
+msgstr "Laissez ce champ vide pour utiliser l'assemblée qui sera définie sur la séance"
+
+#. Default: "Transcript of commission"
+msgid "MeetingSeraing_descr_commissionTranscript"
+msgstr " "
+
+#. Default: "Transcription of interventions"
+msgid "MeetingSeraing_descr_interventions"
+msgstr "Retranscription des interventions"
+
+# MeetingGroup
+#. Default: "Leave empty to use the signatures defined on the meeting"
+msgid "MeetingSeraing_descr_signatures"
+msgstr "Si vous ne remplissez pas le champ, les signatures certifiées définies sur la configuration de séance seront utilisées.  Si vous utilisez ce champ, il est obligatoire de définir 12 lignes (les 6 premières pour le collège et les 6 dernières pour le conseil).  Si une signature ne doit pas être surchagée, utilisez des tirets '-'."
+
+#. Default: "Transcript of commission"
+msgid "MeetingSeraing_label_commissionTranscript"
+msgstr "Procès-verbal de la commission"
+
+#. Default: "Commission"
+msgid "MeetingSeraing_label_councilcategory"
+msgstr "Commission"
+
+#. Default: "Deliberation"
+msgid "MeetingSeraing_label_councildecision"
+msgstr "Délibération"
+
+#. Default: "Explanatory note"
+msgid "MeetingSeraing_label_councildescription"
+msgstr "Note explicative"
+
+#. Default: "Interventions"
+msgid "MeetingSeraing_label_interventions"
+msgstr "Interventions"
+
+#. Default: "Assembly which are specific to this meeting item"
+msgid "MeetingSeraing_label_itemAssembly"
+msgstr "Assemblée spécifique liée à ce point"
+
+#. Default: "Premeeting observations"
+msgid "MeetingSeraing_label_meetingcouncilobservations"
+msgstr "Avant-séance"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_2"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Premeeting 2 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_2_default"
+msgstr "Assemblée par défaut de la commission 2"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_3"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Premeeting 3 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_3_default"
+msgstr "Assemblée par défaut de la commission 3"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_4"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Premeeting 4 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_4_default"
+msgstr "Assemblée par défaut de la commission 4"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_5"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Premeeting 5 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_5_default"
+msgstr "Assemblée par défaut de la commission 5"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_6"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Premeeting 6 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_6_default"
+msgstr "Assemblée par défaut de la commission 6"
+
+#. Default: "Assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_7"
+msgstr "Assemblée de la Commission"
+
+#. Default: "Premeeting 7 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_7_default"
+msgstr "Assemblée par défaut de la commission 7"
+
+#. Default: "Premeeting 1 default assembly"
+msgid "MeetingSeraing_label_preMeetingAssembly_default"
+msgstr "Assemblée par défaut de la commission 1"
+
+# import what was done in MeetingCommunes
+# MeetingItem
+#. Default: "Decision"
+msgid "PloneMeeting_label_decision"
+msgstr "Décision"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate"
+msgstr "Date de la Commission"
+
+#. Default: "Default date for the pre-meeting"
+msgid "PloneMeeting_label_preMeetingDateDefault"
+msgstr "Date par défaut des Commissions"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate_2"
+msgstr "Date de la Commission"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate_3"
+msgstr "Date de la Commission"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate_4"
+msgstr "Date de la Commission"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate_5"
+msgstr "Date de la Commission"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate_6"
+msgstr "Date de la Commission"
+
+#. Default: "Date"
+msgid "PloneMeeting_label_preMeetingDate_7"
+msgstr "Date de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace"
+msgstr "Lieu de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace_2"
+msgstr "Lieu de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace_3"
+msgstr "Lieu de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace_4"
+msgstr "Lieu de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace_5"
+msgstr "Lieu de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace_6"
+msgstr "Lieu de la Commission"
+
+#. Default: "Place"
+msgid "PloneMeeting_label_preMeetingPlace_7"
+msgstr "Lieu de la Commission"
+
+#. Default: "Observations for the preparatory meeting"
+msgid "PloneMeeting_label_preObservations"
+msgstr "Observations pour les commissions"
+
+# object_buttons
+#. Default: "Send to council"
+msgid "Send to council"
+msgstr "Envoyer au Conseil communal"
+
+#. Default: "Sent to council"
+msgid "Sent to council"
+msgstr "Envoyé au Conseil communal"
+
+#. Default: "Please as this item comes from the college, you need to define the 'commission' for it before being able to propose it."
+msgid "check_category"
+msgstr "Attention, comme ce point provient du Collège communal, vous devez définir la commission à laquelle il doit passer en passant par l'onglet 'Modifier' avant de pouvoir le proposer au chef de bureau."
+
+#. Default: "Please as you defined an item initiator, check if the linked category should not be 'Points conseillers'. If not, just ignore this message, it will not be displayed anymore when the item will be validated."
+msgid "check_intitiator_and_category"
+msgstr "Attention, en général si vous sélectionnez une personne 'A l'initative de ce point', la catégorie 'Points conseillers' doit être également sélectionnée.  Vérifiez vos données, si elles sont justes, ignorez cet avertissement, il disparaîtra une fois le point 'validé'."
+
+#. Default: "Default value for the item decision field"
+msgid "default_meetingitem_decision"
+msgstr "Définissez ici le texte prédéfini qui sera présent dans le champ 'Délibération/Extrait du Procès-verbal' chaque fois qu'un utilisateur crée un nouveau point."
+
+# Suffix
+#. Default: "division heads"
+msgid "divisionheads"
+msgstr "chefs de division"
+
+#. Default: "Welcome to HubSessions!"
+msgid "hs_welcome_title"
+msgstr "Bienvenue sur PloneMeeting!"
+
+#. Default: "Accepted but modified"
+msgid "icon_help_accepted_but_modified"
+msgstr "Accepté provisoirement"
+
+#. Default: "Item in committee"
+msgid "icon_help_item_in_committee"
+msgstr "En commission"
+
+#. Default: "Item in council"
+msgid "icon_help_item_in_council"
+msgstr "En Conseil communal"
+
+#. Default: "Proposed to director"
+msgid "icon_help_proposed_to_director"
+msgstr "Proposé au directeur"
+
+#. Default: "Proposed to division head"
+msgid "icon_help_proposed_to_divisionhead"
+msgstr "Proposé au chef de division"
+
+#. Default: "Proposed to office manager"
+msgid "icon_help_proposed_to_officemanager"
+msgstr "Proposé au chef de bureau"
+
+#. Default: "Proposed to service head"
+msgid "icon_help_proposed_to_servicehead"
+msgstr "Proposé au chef de service"
+
+#. Default: "Assembly"
+msgid "listingheader_premeeting_assembly"
+msgstr "Assemblée"
+
+#. Default: "Date"
+msgid "listingheader_premeeting_date"
+msgstr "Date"
+
+#. Default: "Premeeting"
+msgid "listingheader_premeeting_name"
+msgstr "Commission"
+
+#. Default: "Place"
+msgid "listingheader_premeeting_place"
+msgstr "Lieu"
+
+# Suffix
+#. Default: "office managers"
+msgid "officemanagers"
+msgstr "chefs de bureau"
+
+#. Default: "The preparatory meeting must occur before the meeting."
+msgid "pre_date_after_meeting_date"
+msgstr "La date de la commission doit être avant la date de la séance."
+
+#. Default: "Preparatory meeting"
+msgid "pre_meeting"
+msgstr "Commissions"
+
+#. Default: "Specify here the date of the pre-meeting, relative to its meeting, in the same format as fields above.  Leave empty not to use this functionnality."
+msgid "pre_meeting_date_default_descr"
+msgstr "Spécifiez ici les dates par défaut pour les commissions (même format que les champs ci-dessus).  Laissez le champ vide si vous ne souhaitez pas utiliser cette fonctionnalité."
+
+#. Default: "MeetingItemCollege"
+msgid "predecessor_MeetingItemCollege"
+msgstr "Collège"
+
+#. Default: "MeetingItemCouncil"
+msgid "predecessor_MeetingItemCouncil"
+msgstr "Conseil"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_2_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_3_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_4_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_5_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_6_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_7_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
+msgid "premeeting_assembly_descr"
+msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
+
+# Suffix
+#. Default: "reviewers"
+msgid "reviewers"
+msgstr "directeurs"
+
+#. Default: "items of my commissions"
+msgid "searchitemsofmycommissions"
+msgstr "points de mes commissions"
+
+#. Default: "items of my commissions to edit"
+msgid "searchitemsofmycommissionstoedit"
+msgstr "points de mes commissions éditables"
+
+#. Default: "items to validate"
+msgid "searchitemstovalidate"
+msgstr "points à valider"
+
+# searches
+#. Default: "proposed items"
+msgid "searchproposeditems"
+msgstr "points proposés"
+
+#. Default: "validated items"
+msgid "searchvalidateditems"
+msgstr "points validés"
+
+# Suffix
+#. Default: "service heads"
+msgid "serviceheads"
+msgstr "chefs de service"
+
+#. Default: "Please enter 12 lines for signatures delegations"
+msgid "signatures_length_error"
+msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas être surchargée (si la signature définie dans la configuration de séance dans le champ 'Signatures certifiées' doit être utilisée), renseignez un tiret (-)."
+
+#. Default: "Removed"
+msgid "icon_help_removed"
+msgstr "Retiré de la séance"
+
+#. Default: "This item must be print in meeting"
+msgid "PloneMeeting_label_item_print_in_meeting"
+msgstr "Ce point sera à signer sur séance."
+
+#. Default: "To print in meeting"
+msgid "item_print_in_meeting_descr"
+msgstr "Point à signer sur séance."
+
+#. Default: "Power editors"
+msgid "powereditors"
+msgstr "Super éditeurs"
+
+#. Default: "To print in meeting"
+msgid "icon_help_to_print"
+msgstr "A imprimer en séance."
+
+#. Default: "Alderman of the following services (departments)" 
+msgid "MeetingCommunes_label_echevinServices" 
+msgstr "Echevins des services suivants"
+
+#. Default: "Choose proposing group for cdld advice"
+msgid "MeetingCommunes_descr_cdldProposingGroup"
+msgstr "Choisir les groupes donneurs d'avis qui seront repris dans la synthèse CDLD (avis DF)"
+
+#. Default: "If the group is responsible of other groups, select them here above, either do not select any elements of the list."
+msgid "MeetingCommunes_descr_echevinServices"
+msgstr "Si ce groupe est responsable d'autres groupes, selectionnez les ci-dessous."
+ 
+#. Default: "Proposing group to keep for CDLD synthesis"
+msgid "MeetingCommunes_label_cdldProposingGroup"
+msgstr "Groupes proposants à garder pour la synthèse des avis pour le CDLD (avis DF)"
+
+#. Default: "Initialize the item decision when deciding meeting"
+msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide"
+msgstr "Initialiser le champ décision des points lorsque la séance passe 'En rédaction du PV'?"
+
+#. Default: "cdld synthesis"
+msgid "searchcdlditems"
+msgstr "Synthèse Avis DF"
+
+#. Default: "Observations"
+msgid "PloneMeeting_itemObservations"
+msgstr "Instruction publique"
+
+#. Default: "PV Note" 
+msgid "MeetingSeraing_label_pvNote" 
+msgstr "Note de pv"
+
+#. Default: "Note in pv" 
+msgid "MeetingSeraing_descr_pvNote" 
+msgstr "Cette zone sera reprise dans le pv."
+
+#. Default: "DG Note" 
+msgid "MeetingSeraing_label_dgnote" 
+msgstr "Note personelle du DG"
+
+#. Default: "Personal Note for DG" 
+msgid "MeetingSeraing_descr_dgnote" 
+msgstr "Cette zone n'est visible que par les gestionnaires de séances et les administrateurs du système."
