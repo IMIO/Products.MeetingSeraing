@@ -151,7 +151,7 @@
         <metal:f use-macro="context/@@pm-macros/macros/editContentField"/>
     </tal:field>
 
-    <tal:field define="fieldName python: 'observations (public instruction)'"
+    <tal:field define="fieldName python: 'observations'"
                condition="python: 'observations' in usedAttrs" >
       <metal:f use-macro="context/@@pm-macros/editContentField"/>
     </tal:field>
