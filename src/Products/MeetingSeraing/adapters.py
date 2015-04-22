@@ -475,6 +475,16 @@ class CustomMeeting(Meeting):
             res = final_res
         return res
 
+    security.declarePublic('getAllItemsToPrinting')
+
+    def getAllItemsToPrinting(self, uids=[], ordered=False):
+        res = []
+        items = self.context.getAllItems(uids, ordered)
+        for item in items:
+            if item.getIsToPrintInMeeting():
+                res.append(item)
+        return res
+
     #helper methods used in templates
     security.declarePublic('getNormalCategories')
 
