@@ -420,3 +420,7 @@ msgstr "Note personelle du DG"
 #. Default: "Personal Note for DG" 
 msgid "MeetingSeraing_descr_dgnote" 
 msgstr "Cette zone n'est visible que par les gestionnaires de séances et les administrateurs du système."
+
+#. Default: "Motivation help field" 
+msgid "MeetingSeraing_descr_motivation" 
+msgstr "N'oubliez-pas d'adapter les TEXTES LEGAUX / REGLEMENTAIRES SI NECESSAIRE"

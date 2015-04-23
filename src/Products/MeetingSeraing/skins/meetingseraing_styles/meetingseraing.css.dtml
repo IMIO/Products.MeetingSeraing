@@ -143,6 +143,10 @@
     font-size: 120%;
 }
 
+#motivation_help {
+color: red;
+}
+
 
 /* </dtml-with> */
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */

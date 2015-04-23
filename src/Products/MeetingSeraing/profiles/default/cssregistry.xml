@@ -16,6 +16,6 @@
  <!-- ##code-section cssregistry.xml -->
  <stylesheet title="MeetingSeraing CSS styles" cacheable="True" compression="safe"
              cookable="True" enabled="1" media="all" rel="stylesheet"
-             rendering="import" expression="" id="meetingSeraing.css"/>
+             rendering="import" expression="" id="meetingseraing.css"/>
  <!-- ##/code-section cssregistry.xml -->
 </object>

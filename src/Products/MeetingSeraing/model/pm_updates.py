@@ -500,6 +500,7 @@ def update_item_schema(baseSchema):
 
     baseSchema['description'].widget.label_method = "getLabelDescription"
     baseSchema['category'].widget.label_method = "getLabelCategory"
+    baseSchema['motivation'].widget.description_msgid = "MeetingSeraing_descr_motivation"
 
     completeItemSchema = baseSchema + specificSchema.copy()
     return completeItemSchema
