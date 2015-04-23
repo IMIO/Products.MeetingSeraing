@@ -1092,6 +1092,7 @@
         i18n:attributes="title">
   <exit-transition transition_id="backToProposedToServiceHead"/>
   <exit-transition transition_id="proposeToDivisionHead"/>
+  <exit-transition transition_id="validate"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
@@ -1463,6 +1464,7 @@
   <exit-transition transition_id="present"/>
   <exit-transition transition_id="backToItemCreated"/>
   <exit-transition transition_id="backToProposed"/>
+  <exit-transition transition_id="backToProposedToOfficeManager"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
