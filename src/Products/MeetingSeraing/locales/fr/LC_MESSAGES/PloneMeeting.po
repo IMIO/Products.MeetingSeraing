@@ -403,7 +403,7 @@ msgstr "Synthèse Avis DF"
 
 #. Default: "Observations"
 msgid "PloneMeeting_itemObservations"
-msgstr "Instruction publique"
+msgstr "Instructions"
 
 #. Default: "PV Note" 
 msgid "MeetingSeraing_label_pvNote" 
@@ -415,7 +415,7 @@ msgstr "Cette zone sera reprise dans le pv."
 
 #. Default: "DG Note" 
 msgid "MeetingSeraing_label_dgnote" 
-msgstr "Note personelle du DG"
+msgstr "Note personnelle du DG"
 
 #. Default: "Personal Note for DG" 
 msgid "MeetingSeraing_descr_dgnote" 
