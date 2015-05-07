@@ -1366,17 +1366,15 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
 
     def mayValidate(self):
         """
-          Either the Director or the MeetingManager can validate
-          The MeetingManager can bypass the validation process and validate an item
-          that is in the state 'itemcreated'
+          We must be reviewer
         """
         res = False
-        #first of all, the use must have the 'Review portal content permission'
+        #The user must have the 'Review portal content permission and be reviewer or manager'
         if checkPermission(ReviewPortalContent, self.context):
             res = True
-            #if the current item state is 'itemcreated', only the MeetingManager can validate
+            memnber = self.context.portal_membership.getAuthenticatedMember()
             tool = getToolByName(self.context, 'portal_plonemeeting')
-            if self.context.queryState() in ('itemcreated',) and not tool.isManager(self.context):
+            if not memnber.has_role('MeetingReviewer', self.context) and not tool.isManager(self.context):
                 res = False
         return res
 
