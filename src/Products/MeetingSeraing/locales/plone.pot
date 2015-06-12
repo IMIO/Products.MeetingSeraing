@@ -236,4 +236,28 @@ msgstr ""
 
 #. Default: "Create an item council from an item college" 
 msgid "create_to_meeting-config-council_from_meeting-config-college" 
-msgstr "" 
+msgstr ""
+
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "accepted_but_modified_closed"
+msgstr ""
+
+#. Default: "Accepted On Closed Meeting"
+msgid "accepted_closed"
+msgstr ""
+
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "accept_but_modify_close"
+msgstr ""
+
+#. Default: "Accepted On Closed Meeting"
+msgid "accept_close"
+msgstr ""
+
+#. Default: "Back to Accepted"
+msgid "backToItemAccepted"
+msgstr ""
+
+#. Default: "Back to Accepted But Modified"
+msgid "backToItemAcceptedButModified"
+msgstr ""

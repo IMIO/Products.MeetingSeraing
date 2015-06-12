@@ -877,6 +877,8 @@ class CustomMeetingItem(MeetingItem):
             res.append(('proposeToServiceHead.png', 'icon_help_proposed_to_servicehead'))
         elif itemState == 'removed':
             res.append(('removed.png', 'icon_help_removed'))
+        elif itemState == 'accepted_but_modified_closed':
+            res.append(('accepted_but_modified.png', 'icon_help_accepted_but_modified_closed'))
         if item.getIsToPrintInMeeting():
             res.append(('toPrint.png', 'icon_help_to_print'))
         return res
@@ -1330,6 +1332,34 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def doProposeToDivisionHead(self, stateChange):
         pass
 
+    security.declarePrivate('doDelay')
+
+    def doDelay(self, stateChange):
+        '''After cloned item, we validate this item'''
+        MeetingItemWorkflowActions(self.context).doDelay(stateChange)
+        clonedItem = self.context.getBRefs('ItemPredecessor')[0]
+        self.context.portal_workflow.doActionFor(clonedItem, 'validate')
+
+    security.declarePrivate('doAccept_close')
+
+    def doAccept_close(self, stateChange):
+        pass
+
+    security.declarePrivate('doAccept_but_modify_close')
+
+    def doAccept_but_modify_close(self, stateChange):
+        pass
+
+    security.declarePrivate('doBackToItemAcceptedButModified')
+
+    def doBackToItemAcceptedButModified(self, stateChange):
+        pass
+
+    security.declarePrivate('doBackToItemAccepted')
+
+    def doBackToItemAccepted(self, stateChange):
+        pass
+
 
 class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
@@ -1448,6 +1478,19 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
         if checkPermission(ReviewPortalContent, self.context) and \
            meeting and (meeting.queryState() in ['decided', 'closed']):
             res = True
+        return res
+
+    security.declarePublic('mayClose')
+
+    def mayClose(self):
+        """
+          Check that the user has the 'Review portal content' and meeting is closed (for automatic transitions)
+        """
+        res = False
+        meeting = self.context.getMeeting()
+        if checkPermission(ReviewPortalContent, self.context) and \
+           meeting and (meeting.queryState() in ['closed']):
+                res = True
         return res
 
 
