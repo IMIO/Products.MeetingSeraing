@@ -45,6 +45,15 @@ class IMeetingItemCollegeSeraingWorkflowActions(IMeetingItemWorkflowActions):
         """
           Triggered while doing the 'pre_accept' transition
         """
+    def doAcceptButModifyClose():
+        """
+          Triggered while doing the 'accept_but_modify_close' transition
+        """
+
+    def doAcceptClose():
+        """
+          Triggered while doing the 'accept_close' transition
+        """
 
 
 class IMeetingItemCollegeSeraingWorkflowConditions(IMeetingItemWorkflowConditions):

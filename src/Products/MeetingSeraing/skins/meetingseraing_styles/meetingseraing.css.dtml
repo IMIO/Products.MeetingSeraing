@@ -147,6 +147,34 @@
 color: red;
 }
 
+/* Colors on states */
+.state-accepted_closed, .label-state-accepted_closed {
+    color: #64c168 !important;
+}
+
+.transition-accept_close { color: #64c168 !important; }
+
+#plone-contentmenu-workflow .state-accepted_closed {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: #64c168;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid green;
+}
+
+.state-accepted_but_modified_closed, .label-state-accepted_but_modified_closed {
+    color: green !important;
+}
+
+.transition-accept_but_modify_close { color: green !important; }
+
+#plone-contentmenu-workflow .state-accepted_but_modified_closed {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: green;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid green;
+}
 
 /* </dtml-with> */
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */

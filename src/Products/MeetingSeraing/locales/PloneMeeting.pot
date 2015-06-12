@@ -423,3 +423,11 @@ msgstr ""
 #. Default: "Motivation help field" 
 msgid "MeetingSeraing_descr_motivation" 
 msgstr ""
+
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "icon_help_accepted_but_modified_closed"
+msgstr ""
+
+#. Default: "Accepted On Closed Meeting"
+msgid "icon_help_accepted_closed"
+msgstr ""

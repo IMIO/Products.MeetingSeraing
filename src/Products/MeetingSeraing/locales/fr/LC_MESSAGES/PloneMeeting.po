@@ -424,3 +424,11 @@ msgstr "Cette zone n'est visible que par les gestionnaires de séances et les ad
 #. Default: "Motivation help field" 
 msgid "MeetingSeraing_descr_motivation" 
 msgstr "N'oubliez-pas d'adapter les TEXTES LEGAUX / REGLEMENTAIRES SI NECESSAIRE"
+
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "icon_help_accepted_but_modified_closed"
+msgstr "Accepté avec modifications"
+
+#. Default: "Accepted On Closed Meeting"
+msgid "icon_help_accepted_closed"
+msgstr "Accepté"

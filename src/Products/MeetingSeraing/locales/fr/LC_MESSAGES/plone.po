@@ -221,3 +221,27 @@ msgstr "Validé"
 #. Default: "Create an item council from an item college"
 msgid "create_to_meeting-config-council_from_meeting-config-college"
 msgstr "Envoyer vers Conseil Communal"
+
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "accepted_but_modified_closed"
+msgstr "Accepté avec modifications"
+
+#. Default: "Accepted On Closed Meeting"
+msgid "accepted_closed"
+msgstr "Accepté"
+
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "accept_but_modify_close"
+msgstr "Accepter avec modifications"
+
+#. Default: "Accepted On Closed Meeting"
+msgid "accept_close"
+msgstr "Accepter"
+
+#. Default: "Back to Accepted"
+msgid "backToItemAccepted"
+msgstr "Remettre en accepté"
+
+#. Default: "Back to Accepted But Modified"
+msgid "backToItemAcceptedButModified"
+msgstr "Remettre en Accepté avec modifications"
