@@ -738,13 +738,13 @@ class CustomMeeting(Meeting):
             res = final_res
         return res
 
-    security.declarePublic('getAllItemsToPrinting')
+    security.declarePublic('getAllItemsToPrintingOrNot')
 
-    def getAllItemsToPrinting(self, uids=[], ordered=False):
+    def getAllItemsToPrintingOrNot(self, uids=[], ordered=False, toPrint = 'True'):
         res = []
         items = self.context.getAllItems(uids, ordered)
         for item in items:
-            if item.getIsToPrintInMeeting():
+            if (toPrint and item.getIsToPrintInMeeting()) or not(toPrint or item.getIsToPrintInMeeting()):
                 res.append(item)
         return res
 
