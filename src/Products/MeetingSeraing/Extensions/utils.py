@@ -221,3 +221,30 @@ def import_meetingsCategories_from_csv(self, meeting_config='', isClassifier=Fal
     file.close()
 
     return '\n'.join(out)
+
+
+def clean_item_templates(self, meeting_config='meeting-config-college'):
+    """
+      use Hughes script to clean all existing models
+    """
+    from Products.MeetingSeraing.ecolsanit import template
+
+    pm = self.portal_plonemeeting
+    meetingConfig = getattr(pm, meeting_config)
+    templates = meetingConfig.getItems(recurring=False)
+    for tpt in templates:
+        item = tpt.getObject()
+        if item.id != 'convention-ville-durable':
+            continue
+        motivation = item.getMotivation()
+        decision = item.getDecision()
+        t = template(motivation)
+        t.sanitize()
+        newMotivation = t.sanitext
+        t = template(decision)
+        t.sanitize()
+        newDecision = t.sanitext
+        item.setMotivation(newMotivation)
+        item.setDecision(newDecision)
+        item.reindexObject()
+    return 'The end'
