@@ -261,3 +261,15 @@ msgstr ""
 #. Default: "Back to Accepted But Modified"
 msgid "backToItemAcceptedButModified"
 msgstr ""
+
+#. Default: "Returned to advise"
+msgid "returned_to_advise"
+msgstr ""
+
+#. Default: "Return to advise"
+msgid "return_to_advise"
+msgstr ""
+
+#. Default: "Return to proposing group from returned to advise"
+msgid "backTo_returned_to_proposing_group_from_returned_to_advise"
+msgstr ""

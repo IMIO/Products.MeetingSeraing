@@ -36,7 +36,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
     def test_subproduct_call_WFA_availableWFAdaptations(self):
         '''Most of wfAdaptations makes no sense, just make sure most are disabled.'''
         self.assertEquals(set(self.meetingConfig.listWorkflowAdaptations()),
-                          set(('archiving', 'local_meeting_managers', 'return_to_proposing_group', )))
+                          set(('return_to_proposing_group', )))
 
     def test_subproduct_call_WFA_no_publication(self):
         '''No sense...'''

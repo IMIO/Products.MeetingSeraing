@@ -432,3 +432,7 @@ msgstr "Accepté avec modifications"
 #. Default: "Accepted On Closed Meeting"
 msgid "icon_help_accepted_closed"
 msgstr "Accepté"
+
+#. Default: "Returned to advise"
+msgid "icon_help_returned_to_advise"
+msgstr "Retourné pour avis"
