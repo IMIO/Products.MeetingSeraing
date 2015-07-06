@@ -740,7 +740,7 @@ class CustomMeeting(Meeting):
 
     security.declarePublic('getAllItemsToPrintingOrNot')
 
-    def getAllItemsToPrintingOrNot(self, uids=[], ordered=False, toPrint = 'True'):
+    def getAllItemsToPrintingOrNot(self, uids=[], ordered=False, toPrint='True'):
         res = []
         items = self.context.getAllItems(uids, ordered)
         for item in items:

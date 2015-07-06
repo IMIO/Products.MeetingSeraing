@@ -475,8 +475,8 @@ def update_item_schema(baseSchema):
             searchable=True,
             allowable_content_types=('text/html',),
             default_output_type="text/html",
-            write_permission="PloneMeeting: Write item observations",
-            read_permission="PloneMeeting: Read item observations",
+            write_permission="PloneMeeting: Write decision",
+            read_permission="PloneMeeting: Read decision",
         ),
         #specific field for council added for MeetingManagers to transcribe interventions
         TextField(
