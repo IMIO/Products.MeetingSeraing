@@ -234,8 +234,6 @@ def clean_item_templates(self, meeting_config='meeting-config-college'):
     templates = meetingConfig.getItems(recurring=False)
     for tpt in templates:
         item = tpt.getObject()
-        if item.id != 'convention-ville-durable':
-            continue
         motivation = item.getMotivation()
         decision = item.getDecision()
         t = template(motivation)
