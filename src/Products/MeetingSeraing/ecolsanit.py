@@ -13,7 +13,45 @@ APPPATH = dirname(__file__)
 APPNAME = 'ecolsanit'
 
 class template(object):
-  REMPLACEMENTS = (('\xc2\xa0 \xc2\xa0 ', '&nbsp;'),
+  #REMPLACEMENTS = (('\xc2\xa0 \xc2\xa0 ', '&nbsp;'),
+  #                 ('\xc2\xa0\xc2\xa0','&nbsp;'),
+  #                 (' \xc2\xa0','&nbsp;'),
+  #                 ('\xc2\xa0 ','&nbsp;'),
+  #                 ('<p> \xc2\xa0','<p>'),
+  #                 ('<p>\xc2\xa0','<p>'),
+  #                 ('\xc2\xa0 </p>','</p>'),
+  #                 ('\xc2\xa0</p>','</p>'),
+  #                 ('  ','&nbsp;'),
+  #                 ('&nbsp; &nbsp;','&nbsp;'),
+  #                 ('&nbsp;&nbsp;','&nbsp;'),
+  #                 (' &nbsp;','&nbsp;'),
+  #                 ('&nbsp; ','&nbsp;'),
+  #                 ('<p> &nbsp;','<p>'),
+  #                 ('<p>&nbsp;','<p>'),
+  #                 ('&nbsp; </p>','</p>'),
+  #                 ('&nbsp;</p>','</p>'),
+  #                 )
+
+  REMPLACEMENTS = ((':','&nbsp;: ')
+                   (';','&nbsp;; '),
+                   ('!','&nbsp;! '),
+                   ('?','&nbsp;? '),
+                   ('€','&nbsp;€ '),
+                   ('%','&nbsp;% '),
+                   ('n°','n°&nbsp;'),
+                   ('N°','N°&nbsp;'),
+                   (',',', '),
+                   (' ,',','),
+                   ('( ','('),
+                   ('(',' ('),
+                   (' )',')'),
+                   (')',') '),
+                   ('Monsieur','M.&nbsp;'),
+                   ('Madame','Mme&nbsp;'),
+                   ('Mademoiselle','Mlle&nbsp;'),
+                   ('Messieurs','MM.&nbsp;'),
+                   ('Maître','Me&nbsp;'),
+                   ('\xc2\xa0 \xc2\xa0 ', '&nbsp;'),
                    ('\xc2\xa0\xc2\xa0','&nbsp;'),
                    (' \xc2\xa0','&nbsp;'),
                    ('\xc2\xa0 ','&nbsp;'),
@@ -31,7 +69,7 @@ class template(object):
                    ('&nbsp; </p>','</p>'),
                    ('&nbsp;</p>','</p>'),
                    )
-  
+
   VERBES=('ABROGE', 'ACCEPTE', 'ACCORDE', 'ADRESSE', 'AFFECTE', 'APPROUVE', 'ARRETE', 'AUTORISE', 'CERTIFIE', 'CHARGE', 'CONCLUT', 'CONSTATE', 'DECIDE', 'DELIVRE', 'DESIGNE', 'DRESSE', 'FIXE', 'IMPOSE', 'IMPUTE', 'INFORME', 'INVITE', 'LANCE', 'MARQUE SON ACCORD', 'MODIFIE', 'OCTROIE', 'PRECISE', 'PREND ACTE', 'PREND CONNAISSANCE', 'PROCEDE', 'PROLONGE', 'PRONONCE', 'RATIFIE', 'RECONDUIT', 'REFUSE', 'REGRETTE', 'RENVOIE', 'SOUMET', 'SUSPEND', 'VISE')
   YELLOWDEB = '<span style="background-color:Yellow">'
   YELLOWDEB2 = '<span style="background-color:yellow">'
