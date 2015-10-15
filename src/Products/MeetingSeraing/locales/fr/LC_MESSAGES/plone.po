@@ -224,19 +224,19 @@ msgstr "Envoyer vers Conseil Communal"
 
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "accepted_but_modified_closed"
-msgstr "Accepté avec modifications"
+msgstr "Accepté avec modifications (c)"
 
 #. Default: "Accepted On Closed Meeting"
 msgid "accepted_closed"
-msgstr "Accepté"
+msgstr "Accepté (c)"
 
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "accept_but_modify_close"
-msgstr "Accepter avec modifications"
+msgstr "Accepter avec modifications (c)"
 
 #. Default: "Accept On Closed Meeting"
 msgid "accept_close"
-msgstr "Accepter"
+msgstr "Accepter (c)"
 
 #. Default: "Back to Accepted"
 msgid "backToItemAccepted"
