@@ -436,3 +436,7 @@ msgstr "Accepté"
 #. Default: "Returned to advise"
 msgid "icon_help_returned_to_advise"
 msgstr "Retourné pour avis"
+
+#. Default: "Detailed description"
+msgid "PloneMeeting_label_detailedDescription"
+msgstr "Note de synthèse"
