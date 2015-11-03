@@ -592,10 +592,11 @@ class CustomMeeting(Meeting):
     def getPrintableItemsByCategory(self, itemUids=[], late=False,
                                     ignore_review_states=[], by_proposing_group=False, group_prefixes={},
                                     privacy='*', oralQuestion='both', toDiscuss='both', categories=[],
-                                    excludedCategories=[], firstNumber=1, renumber=False,
-                                    includeEmptyCategories=False, includeEmptyGroups=False, isToPrintInMeeting='both'):
-        '''Returns a list of (late-)items (depending on p_late) ordered by
-           category. Items being in a state whose name is in
+                                    excludedCategories=[], groupIds=[], firstNumber=1, renumber=False,
+                                    includeEmptyCategories=False, includeEmptyGroups=False, isToPrintInMeeting='both',
+                                    forceCategOrderFromConfig=False):
+        '''Returns a list of (late or normal or both) items (depending on p_late)
+           ordered by category. Items being in a state whose name is in
            p_ignore_review_state will not be included in the result.
            If p_by_proposing_group is True, items are grouped by proposing group
            within every category. In this case, specifying p_group_prefixes will
@@ -604,6 +605,9 @@ class CustomMeeting(Meeting):
            keys are prefixes and whose values are names of the logical big
            groups. A privacy,A toDiscuss, isToPrintInMeeting and oralQuestion can also be given, the item is a
            toDiscuss (oralQuestion) or not (or both) item.
+           If p_forceCategOrderFromConfig is True, the categories order will be
+           the one in the config and not the one from the meeting.
+           If p_groupIds are given, we will only consider these proposingGroups.
            If p_includeEmptyCategories is True, categories for which no
            item is defined are included nevertheless. If p_includeEmptyGroups
            is True, proposing groups for which no item is defined are included
@@ -615,6 +619,7 @@ class CustomMeeting(Meeting):
         # - at position 0: the category object (MeetingCategory or MeetingGroup)
         # - at position 1 to n: the items in this category
         # If by_proposing_group is True, the structure is more complex.
+        # late can be 'both' or False or True
         # oralQuestion can be 'both' or False or True
         # toDiscuss can be 'both' or 'False' or 'True'
         # privacy can be '*' or 'public' or 'secret'
@@ -623,9 +628,15 @@ class CustomMeeting(Meeting):
         # - at positions 1 to n: inner lists that contain:
         #   * at position 0: the proposing group object
         #   * at positions 1 to n: the items belonging to this group.
+        def _comp(v1, v2):
+            if v1[0].getOrder(onlySelectable=False) < v2[0].getOrder(onlySelectable=False):
+                return -1
+            elif v1[0].getOrder(onlySelectable=False) > v2[0].getOrder(onlySelectable=False):
+                return 1
+            else:
+                return 0
         res = []
         items = []
-        previousCatId = None
         tool = getToolByName(self.context, 'portal_plonemeeting')
         # Retrieve the list of items
         for elt in itemUids:
@@ -651,6 +662,8 @@ class CustomMeeting(Meeting):
                     continue
                 elif not (toDiscuss == 'both' or item.getToDiscuss() == toDiscuss):
                     continue
+                elif groupIds and not item.getProposingGroup() in groupIds:
+                    continue
                 elif categories and not item.getCategory() in categories:
                     continue
                 elif excludedCategories and item.getCategory() in excludedCategories:
@@ -658,27 +671,22 @@ class CustomMeeting(Meeting):
                 elif not (isToPrintInMeeting == 'both' or item.getIsToPrintInMeeting() == isToPrintInMeeting):
                     continue
                 currentCat = item.getCategory(theObject=True)
-                currentCatId = currentCat.getId()
-                if currentCatId != previousCatId:
-                    # Add the item to a new category, excepted if the
-                    # category already exists.
-                    catExists = False
-                    for catList in res:
-                        if catList[0] == currentCat:
-                            catExists = True
-                            break
-                    if catExists:
-                        self._insertItemInCategory(catList, item,
-                                                   by_proposing_group, group_prefixes, groups)
-                    else:
-                        res.append([currentCat])
-                        self._insertItemInCategory(res[-1], item,
-                                                   by_proposing_group, group_prefixes, groups)
-                    previousCatId = currentCatId
+                # Add the item to a new category, excepted if the
+                # category already exists.
+                catExists = False
+                for catList in res:
+                    if catList[0] == currentCat:
+                        catExists = True
+                        break
+                if catExists:
+                    self._insertItemInCategory(catList, item,
+                                               by_proposing_group, group_prefixes, groups)
                 else:
-                    # Append the item to the same category
+                    res.append([currentCat])
                     self._insertItemInCategory(res[-1], item,
                                                by_proposing_group, group_prefixes, groups)
+        if forceCategOrderFromConfig or late == 'both':
+            res.sort(cmp=_comp)
         if includeEmptyCategories:
             meetingConfig = tool.getMeetingConfig(
                 self.context)
