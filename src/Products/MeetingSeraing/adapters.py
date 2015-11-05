@@ -57,7 +57,7 @@ from Products.CMFCore.permissions import DeleteObjects
 
 
 # disable most of wfAdaptations
-customWfAdaptations = ('return_to_proposing_group', )
+customWfAdaptations = ('return_to_proposing_group', 'returned_to_advise')
 MeetingConfig.wfAdaptations = customWfAdaptations
 originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
@@ -88,118 +88,117 @@ adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = RETURN_TO_PROPOSING_GRO
 RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     # view permissions
     'Access contents information':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'View':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read budget infos':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read decision':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read optional advisers':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read decision annex':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read item observations':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', ),
     'MeetingSeraing: Read commission transcript':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     # edit permissions
     'Modify portal content':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'PloneMeeting: Write budget infos':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'MeetingBudgetImpactEditor'],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'MeetingBudgetImpactEditor', 'Editor', ),
     'PloneMeeting: Write decision':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'Review portal content':
-    ['Manager', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingReviewer', 'MeetingManager', ),
     'Add portal content':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'PloneMeeting: Add annex':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'PloneMeeting: Add MeetingFile':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'PloneMeeting: Write decision annex':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'PloneMeeting: Write optional advisers':
-    ['Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     # MeetingManagers edit permissions
     'Delete objects':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'PloneMeeting: Write item observations':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'MeetingSeraing: Write commission transcript':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
 }
 adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 
 RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
     # view permissions
     'Access contents information':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'View':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read budget infos':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read decision':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read optional advisers':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read decision annex':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read item observations':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'MeetingSeraing: Read commission transcript':
-    ['Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', ],
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     # edit permissions
     'Modify portal content':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'PloneMeeting: Write budget infos':
-    ['Manager', 'MeetingManager', 'MeetingBudgetImpactEditor'],
+    ('Manager', 'MeetingManager', 'MeetingBudgetImpactEditor'),
     'PloneMeeting: Write decision':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'Review portal content':
-    ['Manager', 'MeetingReviewer', 'MeetingManager', ],
+    ('Manager', 'MeetingReviewer', 'MeetingManager', ),
     'Add portal content':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'PloneMeeting: Add annex':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'PloneMeeting: Add MeetingFile':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'PloneMeeting: Write decision annex':
-    ['Manager',  'MeetingManager', ],
+    ('Manager',  'MeetingManager', ),
     'PloneMeeting: Write optional advisers':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     # MeetingManagers edit permissions
     'Delete objects':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'PloneMeeting: Write item observations':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
     'MeetingSeraing: Write commission transcript':
-    ['Manager', 'MeetingManager', ],
+    ('Manager', 'MeetingManager', ),
 }
 
 from Products.PloneMeeting.MeetingItem import MeetingItem, \
@@ -228,89 +227,16 @@ def customPerformWorkflowAdaptations(site, meetingConfig, logger, specificAdapta
         raise Exception(error)
 
     for wfAdaptation in wfAdaptations:
-        if not wfAdaptation in ['return_to_proposing_group', ]:
+
+        if not wfAdaptation in ['returned_to_advise', ]:
             # call original perform of PloneMeeting
             originalPerformWorkflowAdaptations(site, meetingConfig, logger, specificAdaptation=wfAdaptation)
         # when an item is linked to a meeting, most of times, creators lose modify rights on it
         # with this, the item can be 'returned_to_proposing_group' when in a meeting then the creators
         # can modify it if necessary and send it back to the MeetingManagers when done
-        elif wfAdaptation == 'return_to_proposing_group':
-            if 'returned_to_proposing_group' not in itemWorkflow.states:
-                # add the 'returned_to_proposing_group' state and clone the
-                # permissions from RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
-                # and apply permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
-                itemWorkflow.states.addState('returned_to_proposing_group')
-                newState = getattr(itemWorkflow.states, 'returned_to_proposing_group')
-                # clone the permissions of the given RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE if it exists
-                cloned_permissions_with_meetingmanager = {}
-                if hasattr(itemWorkflow.states, RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE):
-                    stateToClone = getattr(itemWorkflow.states, RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE)
-                    # we must make sure the MeetingManagers still may access this item
-                    # so add MeetingManager role to every cloned permissions
-                    cloned_permissions = dict(stateToClone.permission_roles)
-                    # we need to use an intermediate dict because roles are stored as a tuple and we need a list...
-                    for permission in cloned_permissions:
-                        # the acquisition is defined like this : if permissions is a tuple, it is not acquired
-                        # if it is a list, it is acquired...  WTF???  So make sure we store the correct type...
-                        acquired = isinstance(cloned_permissions[permission], list) and True or False
-                        cloned_permissions_with_meetingmanager[permission] = list(cloned_permissions[permission])
-                        if not 'MeetingManager' in cloned_permissions[permission]:
-                            cloned_permissions_with_meetingmanager[permission].append('MeetingManager')
-                        if not acquired:
-                            cloned_permissions_with_meetingmanager[permission] = \
-                                tuple(cloned_permissions_with_meetingmanager[permission])
-                # now apply custom permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
-                cloned_permissions_with_meetingmanager.update(RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS)
-
-                # if we are cloning an existing state permissions, make sure DeleteObjects
-                # is only be availble to ['Manager', 'MeetingManager']
-                # if custom permissions are defined, keep what is defined in it
-                if not DeleteObjects in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS:
-                    del_obj_perm = stateToClone.getPermissionInfo(DeleteObjects)
-                    if del_obj_perm['acquired']:
-                        cloned_permissions_with_meetingmanager[DeleteObjects] = ['Manager', ]
-                    else:
-                        cloned_permissions_with_meetingmanager[DeleteObjects] = ('Manager', )
-
-                # finally, apply computed permissions, aka cloned + custom
-                newState.permission_roles = cloned_permissions_with_meetingmanager
-
-                # now create the necessary transitions : one to go to 'returned_to_proposing_group' state
-                # and x to go back to relevant state depending on current meeting state
-                # first, the transition 'return_to_proposing_group'
-                itemWorkflow.transitions.addTransition('return_to_proposing_group')
-                transition = itemWorkflow.transitions['return_to_proposing_group']
-                transition.setProperties(
-                    title='return_to_proposing_group',
-                    new_state_id='returned_to_proposing_group', trigger_type=1, script_name='',
-                    actbox_name='return_to_proposing_group', actbox_url='', actbox_category='workflow',
-                    props={'guard_expr': 'python:here.wfConditions().mayReturnToProposingGroup()'})
-                # Update connections between states and transitions and create new transitions
-                newTransitionNames = []
-                for stateName in RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES:
-                    if stateName not in itemWorkflow.states:
-                        continue
-                    # first specify that we can go to 'return_to_proposing_group' from this state
-                    currentTransitions = list(itemWorkflow.states[stateName].transitions)
-                    currentTransitions.append('return_to_proposing_group')
-                    itemWorkflow.states[stateName].transitions = tuple(currentTransitions)
-                    # then build a back transition name with given stateName
-                    transitionName = 'backTo_%s_from_returned_to_proposing_group' % stateName
-                    newTransitionNames.append(transitionName)
-                    itemWorkflow.transitions.addTransition(transitionName)
-                    transition = itemWorkflow.transitions[transitionName]
-                    # use a specific guard_expr 'mayBackToMeeting'
-                    transition.setProperties(
-                        title='return_to_meeting',
-                        new_state_id=stateName, trigger_type=1, script_name='',
-                        actbox_name=transitionName, actbox_url='', actbox_category='workflow',
-                        props={'guard_expr': 'python:here.wfConditions().mayBackToMeeting("%s")' % transitionName})
-                # now that we created back transitions, we can assign them to newState 'returned_to_proposing_group'
-                            # set properties for new 'returned_to_proposing_group' state
-                newState.setProperties(
-                    title='returned_to_proposing_group', description='',
-                    transitions=newTransitionNames)
-            if 'returned_to_advise' not in itemWorkflow.states:
+        elif wfAdaptation == 'returned_to_advise':
+            itemStates = itemWorkflow.states
+            if 'returned_to_advise' not in itemStates and 'returned_to_proposing_group' in itemStates:
                 # add the 'returned_to_advise' state and clone the
                 # permissions from RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
                 # and apply permissions defined in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS

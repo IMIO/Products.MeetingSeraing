@@ -440,3 +440,7 @@ msgstr "Retourné pour avis"
 #. Default: "Detailed description"
 msgid "PloneMeeting_label_detailedDescription"
 msgstr "Note de synthèse"
+
+#. Default: "Return to advise"
+msgid "wa_returned_to_advise"
+msgstr "Renoyer pour avis"
