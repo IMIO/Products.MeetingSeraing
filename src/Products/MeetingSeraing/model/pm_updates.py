@@ -415,7 +415,8 @@ def update_item_schema(baseSchema):
             name='interventions',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.portal_type == 'MeetingItemCouncil' and here.portal_plonemeeting.isManager(here)",
+                condition="python: here.portal_type == 'MeetingItemCouncil' \
+                and here.portal_plonemeeting.isManager(here)",
                 label='Interventions',
                 label_msgid='MeetingSeraing_label_interventions',
                 description='Transcription of interventions',
@@ -459,7 +460,7 @@ def update_item_schema(baseSchema):
                 i18n_domain='PloneMeeting',
             ),
         ),
-        #specific field for council added for MeetingManagers to transcribe interventions
+        #specific field for mark pv note
         TextField(
             name='pvNote',
             widget=RichWidget(
@@ -475,10 +476,10 @@ def update_item_schema(baseSchema):
             searchable=True,
             allowable_content_types=('text/html',),
             default_output_type="text/html",
-            write_permission="PloneMeeting: Write decision",
-            read_permission="PloneMeeting: Read decision",
+            write_permission="PloneMeeting: Write item observations",
+            read_permission="PloneMeeting: Read item observations",
         ),
-        #specific field for council added for MeetingManagers to transcribe interventions
+        #specific field for mark dg note
         TextField(
             name='dgNote',
             widget=RichWidget(
