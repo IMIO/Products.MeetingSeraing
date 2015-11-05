@@ -41,7 +41,7 @@ from Products.PloneMeeting.Meeting import MeetingWorkflowActions, \
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingGroup import MeetingGroup
 from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItemCustom, \
-    IMeetingConfigCustom, IMeetingGroupCustom, IToolPloneMeetingCustom
+    IMeetingConfigCustom, IMeetingGroupCustom, IToolPloneMeetingCustom, IMeetingItem
 from Products.MeetingSeraing.interfaces import \
     IMeetingItemCollegeSeraingWorkflowConditions, IMeetingItemCollegeSeraingWorkflowActions,\
     IMeetingCollegeSeraingWorkflowConditions, IMeetingCollegeSeraingWorkflowActions, \
@@ -755,6 +755,37 @@ class CustomMeeting(Meeting):
         for item in items:
             if (toPrint and item.getIsToPrintInMeeting()) or not(toPrint or item.getIsToPrintInMeeting()):
                 res.append(item)
+        return res
+
+    security.declarePublic('getOJByCategory')
+
+    def getOJByCategory(self, itemUids=[], late=False,
+                        ignore_review_states=[], by_proposing_group=False, group_prefixes={},
+                        privacy='*', oralQuestion='both', toDiscuss='both', categories=[],
+                        excludedCategories=[], groupIds=[], firstNumber=1, renumber=False,
+                        includeEmptyCategories=False, includeEmptyGroups=False, isToPrintInMeeting='both',
+                        forceCategOrderFromConfig=False):
+        lists = self.context.getPrintableItemsByCategory(itemUids, late, ignore_review_states, by_proposing_group,
+                                                         group_prefixes, privacy, oralQuestion, toDiscuss, categories,
+                                                         excludedCategories, groupIds, firstNumber, renumber,
+                                                         includeEmptyCategories, includeEmptyGroups,
+                                                         isToPrintInMeeting, forceCategOrderFromConfig)
+        res = []
+        for sub_list in lists:
+            #we use by categories, first element of each obj is a category
+            final_res = [sub_list[0]]
+            find_late = False
+            for obj in sub_list[1:]:
+                final_items = []
+                #obj contain list like this [(num1, item1), (num2, item2), (num3, item3), (num4, item4)]
+                for sub_obj in obj:
+                    #separate normal items and late items
+                    if not find_late and IMeetingItem.providedBy(sub_obj) and sub_obj.isLate():
+                        final_items.append('late')
+                        find_late = True
+                    final_items.append(sub_obj)
+                final_res.append(final_items)
+            res.append(final_res)
         return res
 
     #helper methods used in templates
