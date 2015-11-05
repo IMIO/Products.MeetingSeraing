@@ -443,3 +443,27 @@ msgstr ""
 #. Default: "Return to advise"
 msgid "wa_returned_to_advise"
 msgstr ""
+
+#. Default: "Late"
+msgid "icon_help_late"
+msgstr ""
+
+#. Default: "Late"
+msgid "list_type_late"
+msgstr ""
+
+#. Default: "Follow list type"
+msgid "on_list_type"
+msgstr ""
+
+#. Default: "Deadline for validating late items"
+msgid "PloneMeeting_label_deadlineFreeze"
+msgstr ""
+
+#. Default: "Default deadline for validating late items for a given meeting"
+msgid "PloneMeeting_label_freezeDeadlineDefault"
+msgstr ""
+
+#. Default: "Items presented tardily"
+msgid "late_presented_items"
+msgstr ""

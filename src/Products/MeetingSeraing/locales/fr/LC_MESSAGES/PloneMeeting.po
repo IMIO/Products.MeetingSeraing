@@ -444,3 +444,27 @@ msgstr "Note de synthèse"
 #. Default: "Return to advise"
 msgid "wa_returned_to_advise"
 msgstr "Renoyer pour avis"
+
+#. Default: "Late"
+msgid "icon_help_late"
+msgstr "Supplémentaire"
+
+#. Default: "Late"
+msgid "list_type_late"
+msgstr "Supplémentaires"
+
+#. Default: "Follow list type"
+msgid "on_list_type"
+msgstr "Par type de point (normal, supplémentaire)"
+
+#. Default: "Deadline for validating late items"
+msgid "PloneMeeting_label_deadlineFreeze"
+msgstr "Echéance pour valider les points supplémentaires"
+
+#. Default: "Default deadline for validating late items for a given meeting"
+msgid "PloneMeeting_label_freezeDeadlineDefault"
+msgstr "Echéance par défaut pour valider les points supplémentaires pour une séance donnée"
+
+#. Default: "Items presented tardily"
+msgid "late_presented_items"
+msgstr "Points supplémentaires présentés"
