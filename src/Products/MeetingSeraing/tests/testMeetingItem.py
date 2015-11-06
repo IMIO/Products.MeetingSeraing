@@ -24,6 +24,7 @@
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
+from Products.PloneMeeting.interfaces import IAnnexable
 from Products.CMFCore.permissions import View
 
 
@@ -95,6 +96,48 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.changeUser('powerobserver1')
         self.assertTrue(self.hasPermission(View, item))
         self.assertTrue(self.hasPermission(View, meeting))
+
+    def test_subproduct_call_SendItemToOtherMCWithAnnexes(self):
+        '''Test that sending an item to another MeetingConfig behaves normaly with annexes.
+           This is a complementary test to testToolPloneMeeting.testCloneItemWithContent.
+           Here we test the fact that the item is sent to another MeetingConfig.'''
+        data = self._setupSendItemToOtherMC(with_annexes=True)
+        newItem = data['newItem']
+        annex1 = data['annex1']
+        annex2 = data['annex2']
+        decisionAnnex1 = data['decisionAnnex1']
+        decisionAnnex2 = data['decisionAnnex2']
+        # Check that annexes are actually correctly sent too
+        # we had 2 normal annexes and 2 decision annexes
+        self.failUnless(len(IAnnexable(newItem).getAnnexes()) == 2)
+        self.failUnless(len(IAnnexable(newItem).getAnnexes(relatedTo='item')) == 2)
+        self.failUnless(len(IAnnexable(newItem).getAnnexes(relatedTo='item_decision')) == 0)
+        # As annexes are references from the item, check that these are not
+        self.assertEquals(set([newItem]), set(newItem.getParentNode().objectValues()))
+        # Especially test that references are ok about the MeetingFileTypes
+        existingMeetingFileTypeIds = [ft['id'] for ft in self.meetingConfig.getFileTypes(relatedTo='item')]
+        existingMeetingFileTypeDecisionIds = [ft['id'] for ft in
+                                              self.meetingConfig.getFileTypes(relatedTo='item_decision')]
+        self.failUnless(annex1.getMeetingFileType() in existingMeetingFileTypeIds)
+        self.failUnless(annex2.getMeetingFileType() in existingMeetingFileTypeIds)
+        self.failUnless(decisionAnnex1.getMeetingFileType() in existingMeetingFileTypeDecisionIds)
+        # the MeetingFileType of decisionAnnex1 is deactivated
+        self.failIf(decisionAnnex2.getMeetingFileType() in existingMeetingFileTypeDecisionIds)
+        # query existing MFT even disabled ones
+        existingMeetingFileTypeIncludingNotSelectableIds = [ft['id'] for ft in
+                                                            self.meetingConfig.getFileTypes(relatedTo='item_decision',
+                                                                                            onlySelectable=False)]
+        self.failUnless(decisionAnnex2.getMeetingFileType() in existingMeetingFileTypeIncludingNotSelectableIds)
+        # Now check the MeetingFileType of new annexes
+        # annex1 has no correspondence on the new MeetingConfig so the
+        # frist MFT of same relatedTo is used
+        defaultMC2ItemMFT = self.meetingConfig2.getFileTypes(annex1.findRelatedTo())[0]
+        self.assertEquals(newItem.objectValues('MeetingFile')[0].getMeetingFileType(),
+                          defaultMC2ItemMFT['id'])
+        # annex2 was of annexType "overhead-analysis" that does NOT have correspondence
+        # frist MFT of same relatedTo is used
+        self.assertEquals(newItem.objectValues('MeetingFile')[1].getMeetingFileType(),
+                          defaultMC2ItemMFT['id'])
 
 
 def test_suite():
