@@ -1001,6 +1001,8 @@ class CustomMeeting(Meeting):
         return ''
     Meeting.getDefaultPreMeetingAssembly_7 = getDefaultPreMeetingAssembly_7
 
+old_setTakenOverBy = MeetingItem.setTakenOverBy
+
 
 class CustomMeetingItem(MeetingItem):
     '''Adapter that adapts a meeting item implementing IMeetingItem to the
@@ -1157,6 +1159,26 @@ class CustomMeetingItem(MeetingItem):
         '''Condition for editing 'takenOverBy' field.
            A member may take an item over if he is able to modify item.'''
         return checkPermission(ModifyPortalContent, self.context)
+
+    security.declarePublic('setTakenOverBy')
+
+    def setTakenOverBy(self, value, **kwargs):
+        #call original method
+        old_setTakenOverBy(self, value, **kwargs)
+        item = self.getSelf()
+        if not item._at_creation_flag:
+            wf_states_to_keep = ['presented', 'itemfrozen', 'accepted_but_modified', 'accepted']
+            if item.queryState() in wf_states_to_keep:
+                tool = getToolByName(item, 'portal_plonemeeting')
+                cfg = tool.getMeetingConfig(item)
+                for wf_state_to_keep in wf_states_to_keep:
+                    wf_state = "%s__wfstate__%s" % (cfg.getItemWorkflow(), wf_state_to_keep)
+                    if value:
+                        item.takenOverByInfos[wf_state] = value
+                    elif not value and wf_state in item.takenOverByInfos:
+                        del item.takenOverByInfos[wf_state]
+        item.getField('takenOverBy').set(item, value, **kwargs)
+    MeetingItem.setTakenOverBy = setTakenOverBy
 
 
 class CustomMeetingConfig(MeetingConfig):
