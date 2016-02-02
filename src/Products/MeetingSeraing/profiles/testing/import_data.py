@@ -329,62 +329,73 @@ councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeeti
 councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
 councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 councilMeeting.transitionsToConfirm = []
-councilMeeting.transitionsForPresentingAnItem = ['propose', 'validate', 'present', ]
+councilMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
+                                                 'proposeToOfficeManager',
+                                                 'proposeToDivisionHead',
+                                                 'propose',
+                                                 'validate',
+                                                 'present', )
 councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
                                                               'item_transition': 'itemfreeze'},
 
-                                                             {'meeting_transition': 'publish',
-                                                              'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish',
-                                                              'item_transition': 'itempublish'},
-
                                                              {'meeting_transition': 'decide',
                                                               'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'decide',
-                                                              'item_transition': 'itempublish'},
 
                                                              {'meeting_transition': 'publish_decisions',
                                                               'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'itempublish'},
                                                              {'meeting_transition': 'publish_decisions',
                                                               'item_transition': 'accept'},
 
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'close',
-                                                              'item_transition': 'itempublish'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'accept'},
 
                                                              {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
-
-councilMeeting.meetingTopicStates = ('created', 'frozen', 'published')
+councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
+                                  'proposed_to_divisionhead', 'proposed', 'validated',
+                                  'presented', 'itemfrozen', 'accepted',
+                                  'delayed', 'pre_accepted', 'removed',)
+councilMeeting.meetingTopicStates = ('created', 'frozen')
 councilMeeting.decisionTopicStates = ('decided', 'closed')
-councilMeeting.itemAdviceStates = ('validated',)
 councilMeeting.recordItemHistoryStates = []
 councilMeeting.maxShownMeetings = 5
 councilMeeting.maxDaysDecisions = 60
 councilMeeting.meetingAppDefaultView = 'topic_searchmyitems'
-councilMeeting.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
-councilMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_categories',
-                                             'reverse': '0'}, )
-councilMeeting.useGroupsAsCategories = False
-councilMeeting.useAdvices = False
+councilMeeting.itemDocFormats = ('odt', 'pdf')
+councilMeeting.meetingDocFormats = ('odt', 'pdf')
+councilMeeting.useAdvices = True
 councilMeeting.itemAdviceStates = ['proposed', ]
 councilMeeting.itemAdviceEditStates = ['proposed', 'validated']
 councilMeeting.itemAdviceViewStates = ['presented', ]
 councilMeeting.transitionReinitializingDelays = 'backToItemCreated'
 councilMeeting.enforceAdviceMandatoriness = False
-councilMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
-councilMeeting.itemPowerObserversStates = collegeMeeting.itemPowerObserversStates
-councilMeeting.meetingPowerObserversStates = collegeMeeting.meetingPowerObserversStates
+councilMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
+councilMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
+councilMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_proposing_groups',
+                                             'reverse': '0'}, )
+councilMeeting.useGroupsAsCategories = True
+councilMeeting.meetingPowerObserversStates = ('frozen', 'published', 'decided', 'closed')
 councilMeeting.useCopies = True
 councilMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
-councilMeeting.useVotes = True
-councilMeeting.meetingUsers = [muser_voter1, muser_voter2, ]
-councilMeeting.recurringItems = []
+councilMeeting.podTemplates = [agendaTemplate, decisionsTemplate, itemTemplate]
+
+councilMeeting.recurringItems = [
+    RecurringItemDescriptor(
+        id='recItem1',
+        description='<p>This is the first recurring item.</p>',
+        title='Recurring item #1',
+        proposingGroup='developers',
+        decision='First recurring item approved'),
+
+    RecurringItemDescriptor(
+        id='recItem2',
+        title='Recurring item #2',
+        description='<p>This is the second recurring item.</p>',
+        proposingGroup='developers',
+        decision='Second recurring item approved'),
+]
 councilMeeting.itemTemplates = (template1, template2)
 
 #no recurring items for this meetingConfig, only for tests !!!

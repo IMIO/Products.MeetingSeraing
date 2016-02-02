@@ -46,7 +46,6 @@ PRODUCT_DEPENDENCIES = []
 
 ##code-section config-bottom #fill in your manual code here
 from Products.PloneMeeting import config as PMconfig
-from Products.PloneMeeting.model import adaptations
 SERAINGROLES = {}
 SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
 SERAINGROLES['officemanagers'] = 'MeetingOfficeManager'
@@ -61,45 +60,12 @@ EDITOR_USECASES = {
 }
 
 # see doc in Products.PloneMeeting.config.py
-RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_item_in_committee_from_returned_to_proposing_group': ['in_committee', ],
-                                      'backTo_item_in_council_from_returned_to_proposing_group': ['in_council', ],
-                                      }
-adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS.update(RETURN_TO_PROPOSING_GROUP_MAPPINGS)
 
 SERAINGMEETINGREVIEWERS = OrderedDict([('reviewers', 'proposed'),
                                      ('divisionheads', 'proposed_to_divisionhead'),
                                      ('officemanagers', 'proposed_to_officemanager'),
                                      ('serviceheads', 'proposed_to_servicehead'), ])
 PMconfig.MEETINGREVIEWERS = SERAINGMEETINGREVIEWERS
-
-
-# ids of commissions used as categories for MeetingItemCouncil
-# before 2013, commission ids were :
-COUNCIL_COMMISSION_IDS = ('commission-travaux', 'commission-enseignement',
-                          'commission-cadre-de-vie-et-logement', 'commission-ag',
-                          'commission-finances-et-patrimoine', 'commission-police',
-                          'commission-speciale',)
-# until 2013, commission ids are :
-# changes are about 'commission-enseignement', 'commission-cadre-de-vie-et-logement' and
-# 'commission-finances-et-patrimoine' that are splitted in smaller commissions
-COUNCIL_COMMISSION_IDS_2013 = ('commission-ag', 'commission-finances', 'commission-enseignement',
-                               'commission-culture', 'commission-sport', 'commission-sante',
-                               'commission-police', 'commission-cadre-de-vie', 'commission-patrimoine',
-                               'commission-travaux', 'commission-speciale',)
-# commissions taken into account on the Meeting
-# since 2013, some commissions are made of several categories...
-COUNCIL_MEETING_COMMISSION_IDS_2013 = ('commission-travaux',
-                                       ('commission-ag', 'commission-finances', 'commission-enseignement',
-                                        'commission-culture', 'commission-sport', 'commission-sante',),
-                                       ('commission-cadre-de-vie', 'commission-patrimoine',),
-                                       'commission-police',
-                                       'commission-speciale',)
-
-
-# suffix of specific groups containing commission transcript editors
-COMMISSION_EDITORS_SUFFIX = '_commissioneditors'
-##/code-section config-bottom
-
 
 # Load custom configuration not managed by archgenxml
 try:

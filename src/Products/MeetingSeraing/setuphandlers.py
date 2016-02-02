@@ -16,28 +16,25 @@ __docformat__ = 'plaintext'
 import logging
 logger = logging.getLogger('MeetingSeraing: setuphandlers')
 from Products.MeetingSeraing.config import PROJECTNAME
-from Products.MeetingSeraing.config import DEPENDENCIES
 import os
 from Products.CMFCore.utils import getToolByName
-import transaction
 ##code-section HEAD
 from Products.PloneMeeting.exportimport.content import ToolInitializer
-from Products.PloneMeeting.config import TOPIC_TYPE, TOPIC_SEARCH_SCRIPT, TOPIC_TAL_EXPRESSION
-from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
-    COUNCIL_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
 ##/code-section HEAD
+
 
 def isNotMeetingSeraingProfile(context):
     return context.readDataFile("MeetingSeraing_marker.txt") is None
 
 
-
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
-    if isNotMeetingSeraingProfile(context): return
+    if isNotMeetingSeraingProfile(context):
+        return
     wft = getToolByName(context.getSite(), 'portal_workflow')
     wft.updateRoleMappings()
+
 
 def postInstall(context):
     """Called as at the end of the setup process. """
@@ -47,15 +44,12 @@ def postInstall(context):
     site = context.getSite()
     # Reinstall PloneMeeting
     reinstallPloneMeeting(context, site)
-    # Add groups for council commissions that will contain MeetingCommissionEditors
-    addCommissionEditorGroups(context, site)
     # Make sure the 'home' tab is shown
     showHomeTab(context, site)
     # Reinstall the skin
     reinstallPloneMeetingSkin(context, site)
     # reorder skins so we are sure that the meetingSeraing_xxx skins are just under custom
     reorderSkinsLayers(context, site)
-
 
 
 ##code-section FOOT
@@ -95,6 +89,7 @@ def _installPloneMeeting(context):
     profileId = u'profile-Products.PloneMeeting:default'
     site.portal_setup.runAllImportStepsFromProfile(profileId)
 
+
 def initializeTool(context):
     '''Initialises the PloneMeeting tool based on information from the current
        profile.'''
@@ -104,23 +99,6 @@ def initializeTool(context):
     logStep("initializeTool", context)
     _installPloneMeeting(context)
     return ToolInitializer(context, PROJECTNAME).run()
-
-
-def addCommissionEditorGroups(context, portal):
-    '''
-       Add groups for council commissions that will contain MeetingCommissionEditors
-    '''
-    if isNotMeetingSeraingProfile(context):
-        return
-
-    logStep("addCommissionEditorGroups", context)
-    existingPloneGroupIds = portal.portal_groups.getGroupIds()
-    for commissionId in COUNCIL_COMMISSION_IDS+COUNCIL_COMMISSION_IDS_2013:
-        groupId = commissionId + COMMISSION_EDITORS_SUFFIX
-        if not groupId in existingPloneGroupIds:
-            #add the Plone group
-            groupTitle = groupId.replace('-', ' ').capitalize() + u' (RÃ©dacteurs PV)'.encode('utf-8')
-            portal.portal_groups.addGroup(groupId, title=groupTitle)
 
 
 def showHomeTab(context, site):
