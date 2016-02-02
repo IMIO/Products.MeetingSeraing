@@ -113,30 +113,30 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     # edit permissions
     'Modify portal content':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ),
     'PloneMeeting: Write budget infos':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'MeetingBudgetImpactEditor', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'MeetingBudgetImpactEditor', ),
     'PloneMeeting: Write decision':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ),
     'Review portal content':
     ('Manager', 'MeetingReviewer', 'MeetingManager', ),
     'Add portal content':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ),
     'PloneMeeting: Add annex':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ),
     'PloneMeeting: Add MeetingFile':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
      'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
     'PloneMeeting: Write decision annex':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ),
     'PloneMeeting: Write optional advisers':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', 'Editor', ),
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager', ),
     # MeetingManagers edit permissions
     'Delete objects':
     ('Manager', 'MeetingManager', ),
@@ -1409,7 +1409,7 @@ class CustomMeetingConfig(MeetingConfig):
             groupIds += [g + '_%s' % advice_index__suffix for g in groups]
         # Create query parameters
         fromDate = DateTime(2013, 01, 01)
-        toDate = DateTime(2014, 12, 31, 23, 59)
+        toDate = DateTime(2017, 12, 31, 23, 59)
         params = {'portal_type': self.getItemTypeName(),
                   # KeywordIndex 'indexAdvisers' use 'OR' by default
                   'indexAdvisers': groupIds,

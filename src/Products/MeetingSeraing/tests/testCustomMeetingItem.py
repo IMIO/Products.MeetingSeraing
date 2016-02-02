@@ -37,7 +37,8 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
           When a college item is duplicated to the council meetingConfig,
           the motivation field for the new item (council item) is populated like this :
           Default value for motivation field of the new item + value of motivation that was
-          defined on original item (college item)
+          defined on original item (college item).
+          Some fields must be cleaning (fields linked to the real meeting)
         """
         # by default, college items are sendable to council
         destMeetingConfigId = self.meetingConfig2.getId()
@@ -48,6 +49,11 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
         item.setDecision('<p>A decision</p>')
+        item.setDescription('<p>Lorem ipsum dolor sit amet <span class="highlight-purple">consectetur adipiscing '
+                            'elit</span>. Nulla fermentum diam vel justo tincidunt aliquam.</p>')
+        item.setPvNote('<p>A PV Note</p>')
+        item.setDgNote('<p>A DG Note</p>')
+        item.setObservations('<p>An intervention during meeting</p>')
         item.setOtherMeetingConfigsClonableTo((destMeetingConfigId,))
         self.assertTrue(item.getMotivation() == self.meetingConfig.getDefaultMeetingItemMotivation())
         meeting = self.create('Meeting', date=DateTime('2013/05/05'))
@@ -61,6 +67,11 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         newItem = self.portal.uid_catalog(UID=IAnnotations(item)[annotation_key])[0].getObject()
         expectedNewItemMotivation = self.meetingConfig2.getDefaultMeetingItemMotivation() + item.getMotivation()
         self.assertTrue(newItem.getMotivation() == expectedNewItemMotivation)
+        self.assertTrue(newItem.getPvNote() == '')
+        self.assertTrue(newItem.getDgNote() == '')
+        self.assertTrue(newItem.getObservations() == '')
+        self.assertTrue(newItem.Description() == '<p>Lorem ipsum dolor sit amet . Nulla fermentum diam vel '
+                        'justo tincidunt aliquam.</p>')
 
     def test_powerEditor(self):
         """
