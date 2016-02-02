@@ -30,23 +30,6 @@
            factory="Products.MeetingSeraing.adapters.MeetingCollegeSeraingWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions"/>
 
-  <!-- WF actions and conditions for Meeting and MeetingItem for Council -->
-  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
-           factory="Products.MeetingSeraing.adapters.MeetingItemCouncilSeraingWorkflowActions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions"/>
-
-  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
-           factory="Products.MeetingSeraing.adapters.MeetingItemCouncilSeraingWorkflowConditions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions"/>
-
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
-           factory="Products.MeetingSeraing.adapters.MeetingCouncilSeraingWorkflowActions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions"/>
-
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
-           factory="Products.MeetingSeraing.adapters.MeetingCouncilSeraingWorkflowConditions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions"/>
-
   <!-- Customizations for every Meetings -->
   <adapter for="Products.PloneMeeting.interfaces.IMeeting"
            factory="Products.MeetingSeraing.adapters.CustomMeeting"

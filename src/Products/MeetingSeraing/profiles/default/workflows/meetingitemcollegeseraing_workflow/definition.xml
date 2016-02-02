@@ -596,6 +596,7 @@
         title="delayed"
         i18n:attributes="title">
   <exit-transition transition_id="backToItemFrozen"/>
+  <exit-transition transition_id="delay_close"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
@@ -725,6 +726,142 @@
    <permission-role>MeetingReviewer</permission-role>
    <permission-role>MeetingObserverLocal</permission-role>
    <permission-role>Reader</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="delayed_but_closed"
+        title="delayed_but_closed"
+        i18n:attributes="title">
+  <exit-transition transition_id="backToItemDelayed"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
+  </permission-map>
+  <permission-map name="Delete objects"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Add MeetingFile"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Add annex"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Read budget infos"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Read decision"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Read decision annex"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Read item observations"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Read optional advisers"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Write budget infos"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Write decision"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Write decision annex"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Write item observations"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="PloneMeeting: Write optional advisers"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Review portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>MeetingManager</permission-role>
+   <permission-role>MeetingMember</permission-role>
+   <permission-role>MeetingServiceHead</permission-role>
+   <permission-role>MeetingOfficeManager</permission-role>
+   <permission-role>MeetingDivisionHead</permission-role>
+   <permission-role>MeetingReviewer</permission-role>
+   <permission-role>MeetingObserverLocal</permission-role>
+   <permission-role>Reader</permission-role>
+   <permission-role>Editor</permission-role>
   </permission-map>
  </state>
  <state state_id="itemcreated"
@@ -1819,6 +1956,18 @@
     <guard-expression>python:here.wfConditions().mayCorrect()</guard-expression>
   </guard>
  </transition>
+ <transition transition_id="backToItemDelayed"
+             title="backToItemDelayed"
+             new_state="delayed"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">backToItemDelayed</action>
+  <guard>
+    <guard-expression>python:here.wfConditions().mayCorrect()</guard-expression>
+  </guard>
+ </transition>
  <transition transition_id="backToItemFrozen"
              title="backToItemFrozen"
              new_state="itemfrozen"
@@ -1913,6 +2062,18 @@
   <action url="" category="workflow" i18n:translate="">delay</action>
   <guard>
     <guard-expression>python:here.wfConditions().mayDecide()</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="delay_close"
+             title="delay_close"
+             new_state="delayed_but_closed"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">delay_close</action>
+  <guard>
+    <guard-expression>python:here.wfConditions().mayClose()</guard-expression>
   </guard>
  </transition>
  <transition transition_id="itemfreeze"

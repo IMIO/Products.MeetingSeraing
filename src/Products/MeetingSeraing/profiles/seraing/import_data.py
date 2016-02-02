@@ -322,12 +322,12 @@ councilMeeting.meetingFileTypes = [annexe, annexeBudget, annexeCahier,
 councilMeeting.usedItemAttributes = ['oralQuestion', 'itemInitiator', 'observations',
                                      'privacy', 'itemAssembly', 'itemIsSigned',
                                      'motivation', ]
-councilMeeting.itemWorkflow = 'meetingitemcouncilseraing_workflow'
-councilMeeting.meetingWorkflow = 'meetingcouncilseraing_workflow'
-councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions'
-councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
-councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
-councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions'
+councilMeeting.itemWorkflow = 'meetingitemcollegeseraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingcollegeseraing_workflow'
+councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
+councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
+councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
+councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 councilMeeting.transitionsToConfirm = []
 councilMeeting.transitionsForPresentingAnItem = ['propose', 'validate', 'present', ]
 councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',

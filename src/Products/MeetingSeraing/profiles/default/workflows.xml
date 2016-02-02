@@ -6,23 +6,15 @@
  <object name="meetingitemcollegeseraing_workflow" meta_type="Workflow" remove="True"/>
  <object name="meetingitemcouncilseraing_workflow" meta_type="Workflow" remove="True"/>
  <object name="meetingcollegeseraing_workflow" meta_type="Workflow"/>
- <object name="meetingcouncilseraing_workflow" meta_type="Workflow"/>
  <object name="meetingitemcollegeseraing_workflow" meta_type="Workflow"/>
- <object name="meetingitemcouncilseraing_workflow" meta_type="Workflow"/>
 <!-- ##code-section workflowobjects -->
 <!-- ##/code-section workflowobjects -->
  <bindings>
   <type type_id="MeetingCollege">
      <bound-workflow workflow_id="meetingcollegeseraing_workflow" />
   </type>
-  <type type_id="MeetingCouncil">
-     <bound-workflow workflow_id="meetingcouncilseraing_workflow" />
-  </type>
   <type type_id="MeetingItemCollege">
      <bound-workflow workflow_id="meetingitemcollegeseraing_workflow" />
-  </type>
-  <type type_id="MeetingItemCouncil">
-     <bound-workflow workflow_id="meetingitemcouncilseraing_workflow" />
   </type>
 <!-- ##code-section workflowbindings -->
 <!-- ##/code-section workflowbindings -->

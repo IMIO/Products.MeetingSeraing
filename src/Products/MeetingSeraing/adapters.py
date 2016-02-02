@@ -44,9 +44,7 @@ from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItemCustom,
     IMeetingConfigCustom, IMeetingGroupCustom, IToolPloneMeetingCustom, IMeetingItem
 from Products.MeetingSeraing.interfaces import \
     IMeetingItemCollegeSeraingWorkflowConditions, IMeetingItemCollegeSeraingWorkflowActions,\
-    IMeetingCollegeSeraingWorkflowConditions, IMeetingCollegeSeraingWorkflowActions, \
-    IMeetingItemCouncilSeraingWorkflowConditions, IMeetingItemCouncilSeraingWorkflowActions,\
-    IMeetingCouncilSeraingWorkflowConditions, IMeetingCouncilSeraingWorkflowActions
+    IMeetingCollegeSeraingWorkflowConditions, IMeetingCollegeSeraingWorkflowActions
 from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
     COUNCIL_COMMISSION_IDS_2013, COUNCIL_MEETING_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX, \
     EDITOR_USECASES, POWEREDITORS_GROUP_SUFFIX
@@ -1106,10 +1104,10 @@ class CustomMeetingItem(MeetingItem):
             res.append(('item_in_committee.png', 'icon_help_item_in_committee'))
         elif itemState == 'proposed_to_servicehead':
             res.append(('proposeToServiceHead.png', 'icon_help_proposed_to_servicehead'))
-        elif itemState == 'removed':
-            res.append(('removed.png', 'icon_help_removed'))
         elif itemState == 'accepted_but_modified_closed':
             res.append(('accepted_but_modified.png', 'icon_help_accepted_but_modified_closed'))
+        elif itemState == 'delayed_closed':
+            res.append(('delayed.png', 'icon_help_delayed_closed'))
         elif itemState == 'returned_to_advise':
             res.append(('returned_to_advise.png', 'icon_help_returned_to_advise'))
         if item.getIsToPrintInMeeting():
@@ -1603,6 +1601,11 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def doAccept_but_modify_close(self, stateChange):
         pass
 
+    security.declarePrivate('doDelay_close')
+
+    def doDelay_close(self, stateChange):
+        pass
+
     security.declarePrivate('doBackToItemAcceptedButModified')
 
     def doBackToItemAcceptedButModified(self, stateChange):
@@ -1611,6 +1614,11 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     security.declarePrivate('doBackToItemAccepted')
 
     def doBackToItemAccepted(self, stateChange):
+        pass
+
+    security.declarePrivate('doBackToItemDelayed')
+
+    def doBackToItemDelayed(self, stateChange):
         pass
 
     security.declarePrivate('doReturn_to_advise')
@@ -1788,247 +1796,6 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
         return False
 
 
-class MeetingCouncilSeraingWorkflowActions(MeetingWorkflowActions):
-    '''Adapter that adapts a meeting item implementing IMeetingItem to the
-       interface IMeetingCouncilWorkflowActions'''
-
-    implements(IMeetingCouncilSeraingWorkflowActions)
-    security = ClassSecurityInfo()
-
-    security.declarePrivate('doSetInCommittee')
-
-    def doSetInCommittee(self, stateChange):
-        '''When setting the meeting in committee, every items must be automatically
-           set to "item_in_committee".'''
-        wfTool = getToolByName(self.context, 'portal_workflow')
-        for item in self.context.getAllItems(ordered=True):
-            if item.queryState() == 'presented':
-                wfTool.doActionFor(item, 'setItemInCommittee')
-        #manage meeting number
-        self.initSequenceNumber()
-
-    security.declarePrivate('doSetInCouncil')
-
-    def doSetInCouncil(self, stateChange):
-        '''When setting the meeting in council, every items must be automatically
-           set to "item_in_council".'''
-        wfTool = getToolByName(self.context, 'portal_workflow')
-        for item in self.context.getAllItems(ordered=True):
-            if item.queryState() == 'presented':
-                wfTool.doActionFor(item, 'setItemInCommittee')
-            if item.queryState() == 'item_in_committee':
-                wfTool.doActionFor(item, 'setItemInCouncil')
-
-    def _adaptEveryItemsOnMeetingClosure(self):
-        """Helper method for accepting every items."""
-        # Every item that is not decided will be automatically set to "accepted"
-        wfTool = getToolByName(self.context, 'portal_workflow')
-        for item in self.context.getAllItems():
-            if item.queryState() == 'presented':
-                wfTool.doActionFor(item, 'setItemInCommittee')
-            if item.queryState() == 'item_in_committee':
-                wfTool.doActionFor(item, 'setItemInCouncil')
-            if item.queryState() == 'item_in_council':
-                wfTool.doActionFor(item, 'accept')
-
-    security.declarePrivate('doBackToCreated')
-
-    def doBackToCreated(self, stateChange):
-        '''When a meeting go back to the "created" state, for example the
-           meeting manager wants to add an item, we do not do anything.'''
-        pass
-
-    security.declarePrivate('doBackToInCommittee')
-
-    def doBackToInCommittee(self, stateChange):
-        '''When a meeting go back to the "in_committee" we set every items 'in_council' back to 'in_committee'.'''
-        wfTool = getToolByName(self.context, 'portal_workflow')
-        for item in self.context.getAllItems():
-            if item.queryState() == 'item_in_council':
-                wfTool.doActionFor(item, 'backToItemInCommittee')
-
-    security.declarePrivate('doBackToInCouncil')
-
-    def doBackToInCouncil(self, stateChange):
-        '''When a meeting go back to the "in_council" we do not do anything.'''
-        pass
-
-
-class MeetingCouncilSeraingWorkflowConditions(MeetingWorkflowConditions):
-    '''Adapter that adapts a meeting item implementing IMeetingItem to the
-       interface IMeetingCouncilWorkflowConditions'''
-
-    implements(IMeetingCouncilSeraingWorkflowConditions)
-    security = ClassSecurityInfo()
-
-    def __init__(self, meeting):
-        self.context = meeting
-        customAcceptItemsStates = ('created', 'in_committee', 'in_council', )
-        self.acceptItemsStates = customAcceptItemsStates
-
-    security.declarePublic('maySetInCommittee')
-
-    def maySetInCommittee(self):
-        res = False
-        # The user just needs the "Review portal content" permission
-        if checkPermission(ReviewPortalContent, self.context):
-            res = True
-        return res
-
-    security.declarePublic('maySetInCouncil')
-
-    def maySetInCouncil(self):
-        # The user just needs the "Review portal content" permission
-        if not checkPermission(ReviewPortalContent, self.context):
-            return False
-        return True
-
-    security.declarePublic('mayClose')
-
-    def mayClose(self):
-        res = False
-        # The user just needs the "Review portal content" permission on the
-        # object to close it.
-        if checkPermission(ReviewPortalContent, self.context):
-            res = True
-        return res
-
-    security.declarePublic('mayChangeItemsOrder')
-
-    def mayChangeItemsOrder(self):
-        '''We can change the order if the meeting is not closed'''
-        res = False
-        if checkPermission(ModifyPortalContent, self.context) and \
-           self.context.queryState() not in ('closed', ):
-            res = True
-        return res
-
-
-class MeetingItemCouncilSeraingWorkflowActions(MeetingItemWorkflowActions):
-    '''Adapter that adapts a meeting item implementing IMeetingItem to the
-       interface IMeetingItemCouncilWorkflowActions'''
-
-    implements(IMeetingItemCouncilSeraingWorkflowActions)
-    security = ClassSecurityInfo()
-
-    security.declarePrivate('doPropose')
-
-    def doPropose(self, stateChange):
-        pass
-
-    security.declarePrivate('doSetItemInCommittee')
-
-    def doSetItemInCommittee(self, stateChange):
-        pass
-
-    security.declarePrivate('doSetItemInCouncil')
-
-    def doSetItemInCouncil(self, stateChange):
-        pass
-
-    security.declarePrivate('doReturn_to_proposing_group')
-
-    def doReturn_to_proposing_group(self, stateChange):
-        '''Send an email to the creator and to the officemanagers'''
-        self.context.sendMailIfRelevant('returnedToProposingGroup', 'MeetingMember', isRole=True)
-        self.context.sendMailIfRelevant('returnedToProposingGroup', 'MeetingOfficeManager', isRole=True)
-
-    security.declarePrivate('doBackToItemInCommittee')
-
-    def doBackToItemInCommittee(self, stateChange):
-        pass
-
-    security.declarePrivate('doBackToItemInCouncil')
-
-    def doBackToItemInCouncil(self, stateChange):
-        pass
-
-    security.declarePrivate('doAccept_but_modify')
-
-    def doAccept_but_modify(self, stateChange):
-        pass
-
-    security.declarePrivate('doDelay')
-
-    def doDelay(self, stateChange):
-        '''When an item is delayed, by default it is duplicated but we do not
-           duplicate it here'''
-        pass
-
-
-class MeetingItemCouncilSeraingWorkflowConditions(MeetingItemWorkflowConditions):
-    '''Adapter that adapts a meeting item implementing IMeetingItem to the
-       interface IMeetingItemCouncilWorkflowConditions'''
-
-    implements(IMeetingItemCouncilSeraingWorkflowConditions)
-    security = ClassSecurityInfo()
-
-    useHardcodedTransitionsForPresentingAnItem = True
-    transitionsForPresentingAnItem = ('propose', 'validate', 'present')
-
-    def __init__(self, item):
-        self.context = item  # Implements IMeetingItem
-        self.sm = getSecurityManager()
-
-    security.declarePublic('mayPropose')
-
-    def mayPropose(self):
-        """
-          Check that the user has the 'Review portal content'
-          If the item comes from the college, check that it has a defined
-          'category'
-        """
-        # In the case the item comes from the college
-        if not self.context.getCategory():
-            return False
-        if checkPermission(ReviewPortalContent, self.context) and \
-           (not self.context.isDefinedInTool()):
-            return True
-        return False
-
-    security.declarePublic('maySetItemInCommittee')
-
-    def maySetItemInCommittee(self):
-        """
-          Check that the user has the 'Review portal content'
-          And that the linked meeting is in the correct state
-        """
-        res = False
-        if checkPermission(ReviewPortalContent, self.context):
-            if self.context.hasMeeting() and \
-               (self.context.getMeeting().queryState() in
-               ('in_committee', 'in_council', 'closed')):
-                res = True
-        return res
-
-    security.declarePublic('maySetItemInCouncil')
-
-    def maySetItemInCouncil(self):
-        """
-          Check that the user has the 'Review portal content'
-          And that the linked meeting is in the correct state
-        """
-        res = False
-        if checkPermission(ReviewPortalContent, self.context):
-            if self.context.hasMeeting() and \
-               (self.context.getMeeting().queryState() in
-               ('in_council', 'closed')):
-                res = True
-        return res
-
-    security.declarePublic('mayDecide')
-
-    def mayDecide(self):
-        '''We may decide an item if the linked meeting is in the 'decided'
-           state.'''
-        res = False
-        meeting = self.context.getMeeting()
-        if checkPermission(ReviewPortalContent, self.context) and \
-           meeting and (meeting.queryState() in ['in_council', 'closed']):
-            res = True
-        return res
-
-
 class CustomToolPloneMeeting(ToolPloneMeeting):
     '''Adapter that adapts a tool implementing ToolPloneMeeting to the
        interface IToolPloneMeetingCustom'''
@@ -2059,9 +1826,5 @@ InitializeClass(MeetingCollegeSeraingWorkflowActions)
 InitializeClass(MeetingCollegeSeraingWorkflowConditions)
 InitializeClass(MeetingItemCollegeSeraingWorkflowActions)
 InitializeClass(MeetingItemCollegeSeraingWorkflowConditions)
-InitializeClass(MeetingCouncilSeraingWorkflowActions)
-InitializeClass(MeetingCouncilSeraingWorkflowConditions)
-InitializeClass(MeetingItemCouncilSeraingWorkflowActions)
-InitializeClass(MeetingItemCouncilSeraingWorkflowConditions)
 InitializeClass(CustomToolPloneMeeting)
 # ------------------------------------------------------------------------------
