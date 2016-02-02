@@ -24,7 +24,6 @@
 
 from DateTime import DateTime
 from zope.annotation import IAnnotations
-from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 
 
@@ -60,7 +59,8 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         self.presentItem(item)
         # now close the meeting so the item is automatically accepted and sent to meetingConfig2
         self.closeMeeting(meeting)
-        self.assertTrue(item.queryState() in MeetingItem.itemPositiveDecidedStates(item))
+        cfg = self.meetingConfig
+        self.assertTrue(item.queryState() in cfg.getItemAutoSentToOtherMCStates())
         self.assertTrue(item._checkAlreadyClonedToOtherMC(destMeetingConfigId))
         # get the item that was sent to meetingConfig2 and check his motivation field
         annotation_key = item._getSentToOtherMCAnnotationKey(destMeetingConfigId)

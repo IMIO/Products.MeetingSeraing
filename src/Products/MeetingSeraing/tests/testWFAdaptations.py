@@ -70,7 +70,11 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         '''No sense...'''
         pass
 
-    def test_subproduct_WFA_add_published_state(self):
+    def test_subproduct_call_WFA_add_published_state(self):
+        '''No sense...'''
+        pass
+
+    def test_subproduct_call_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing(self):
         '''No sense...'''
         pass
 
