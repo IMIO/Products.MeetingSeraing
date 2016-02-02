@@ -359,12 +359,6 @@
        <metal:f use-macro="context/@@pm-macros/macros/viewContentField"/>
     </tal:field>
 
-    <tal:comment replace="nothing">XXX Commission transcript</tal:comment>
-    <tal:field define="fieldName python: 'commissionTranscript'; ajaxEdit python:True"
-               condition="python: here.portal_type == 'MeetingItemCouncil'">
-       <metal:f use-macro="context/@@pm-macros/macros/viewContentField"/>
-    </tal:field>
-
     <tal:comment replace="nothing">Annexes and advices</tal:comment>
     <a name="adviceAndAnnexes"></a>
     <table width="100%" cellpadding="1" cellspacing="1"

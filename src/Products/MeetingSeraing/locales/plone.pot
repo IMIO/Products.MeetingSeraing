@@ -34,22 +34,6 @@ msgstr ""
 msgid "PloneMeeting_label_decision"
 msgstr ""
 
-#. Default: "In committee"
-msgid "in_committee"
-msgstr ""
-
-#. Default: "In council"
-msgid "in_council"
-msgstr ""
-
-#. Default: "In committee"
-msgid "item_in_committee"
-msgstr ""
-
-#. Default: "In council"
-msgid "item_in_council"
-msgstr ""
-
 #. Default: "accept but modify"
 msgid "accept_but_modify"
 msgstr ""
@@ -75,40 +59,10 @@ msgstr ""
 msgid "backToProposedToServiceHead"
 msgstr ""
 
-msgid "setInCommittee"
-msgstr ""
-
-msgid "setItemInCommittee"
-msgstr ""
-
-msgid "setInCouncil"
-msgstr ""
-
-msgid "setItemInCouncil"
-msgstr ""
-
 msgid "return_to_service"
 msgstr ""
 
 msgid "return_to_secretary"
-msgstr ""
-
-msgid "return_to_secretary_in_committee"
-msgstr ""
-
-msgid "return_to_secretary_in_council"
-msgstr ""
-
-msgid "backToInCommittee"
-msgstr ""
-
-msgid "backToInCouncil"
-msgstr ""
-
-msgid "backToItemInCommittee"
-msgstr ""
-
-msgid "backToItemInCouncil"
 msgstr ""
 
 #. Default: "Decisions"

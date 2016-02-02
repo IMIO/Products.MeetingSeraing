@@ -262,38 +262,7 @@
           </tbody>
         </table>
         </tal:users>
-        <tal:comment replace="nothing">Information for the pre-meeting</tal:comment>
-        <tal:comment replace="nothing">XXX begin changes by MeetingSeraing</tal:comment>
-          <tal:premeetings condition="python: 'preMeetingDate' in usedAttrs">
-           <tal:comment replace='nothing'>Manage fields to display, before 2013 there were 7 commissions and 5 after</tal:comment>
-           <fieldset tal:repeat="commissionNumber python: (not context.getDate() or context.getDate().year() >= 2013) and range(1,6) or range(1,8)" tal:condition="python: 'preMeetingDate' in usedAttrs">
-            <legend tal:content="python: context.adapted().getCommissionTitle(commissionNumber)"></legend>
-           <table tal:define="fieldSuffix python: commissionNumber>1 and '_%d' % commissionNumber or ''" cellpadding="0" cellspacing="0" class="no-style-table">
-            <tr>
-              <td><metal:field use-macro="python:here.widget('preMeetingDate%s' % fieldSuffix, mode='edit')"/></td>
-              <td><metal:field use-macro="python:here.widget('preMeetingPlace%s' % fieldSuffix, mode='edit')"/></td>
-            </tr>
-            <tr>
-              <td colspan='2'><metal:field use-macro="python:here.widget('preMeetingAssembly%s' % fieldSuffix, mode='edit')"/></td>
-            </tr>
-           </table>
-           </fieldset>
-          </tal:premeetings>
-        <tal:comment replace="nothing">
-        Comment the existing preMeetingXXX management
-        <fieldset tal:condition="python: 'preMeetingDate' in usedAttrs and not context.isTemporary()">
-          <legend i18n:translate="pre_meeting" i18n:domain="PloneMeeting"></legend>
-          <table cellpadding="0" cellspacing="0" class="no-style-table">
-            <tr>
-              <td><metal:field use-macro="python:here.widget('preMeetingDate', mode='edit')"/></td>
-              <td tal:condition="python: 'preMeetingPlace' in usedAttrs">
-                <metal:field use-macro="python:here.widget('preMeetingPlace', mode='edit')"/>
-              </td>
-            </tr>
-          </table>
-        </fieldset>
-        </tal:comment>
-        <tal:comment replace="nothing">XXX end changes by MeetingSeraing</tal:comment>
+
         <tal:field define="fieldName python: 'observations'"
                    condition="python: context.showObs('observations')">
           <metal:f use-macro="context/@@pm-macros/editContentField"/>
