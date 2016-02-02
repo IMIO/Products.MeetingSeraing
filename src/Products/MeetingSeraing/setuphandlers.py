@@ -141,7 +141,7 @@ def showHomeTab(context, site):
 
 def reinstallPloneMeetingSkin(context, site):
     """
-       Reinstall Products.plonemeetingskin as the reinstallation of MeetingCommunes
+       Reinstall Products.plonemeetingskin as the reinstallation of MeetingSeraing
        change the portal_skins layers order
     """
     if isNotMeetingSeraingProfile(context):
