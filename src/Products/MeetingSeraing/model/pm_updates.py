@@ -82,7 +82,8 @@ def update_item_schema(baseSchema):
             widget=RichWidget(
                 rows=15,
                 condition="python: here.portal_type == 'MeetingItemCouncil' \
-                and here.portal_plonemeeting.isManager(here)",
+                and (here.portal_plonemeeting.isManager(here) or here.portal_plonemeeting.userIsAmong('powerobservers')\
+                or here.portal_plonemeeting.userIsAmong('restrictedpowerobservers'))",
                 label='Interventions',
                 label_msgid='MeetingSeraing_label_interventions',
                 description='Transcription of interventions',
@@ -93,26 +94,6 @@ def update_item_schema(baseSchema):
             searchable=True,
             allowable_content_types=('text/html',),
             default_output_type="text/html",
-        ),
-        #specific field for council added for MeetingManagers to transcribe interventions
-        TextField(
-            name='commissionTranscript',
-            widget=RichWidget(
-                rows=15,
-                condition="python: here.portal_type == 'MeetingItemCouncil'",
-                label='CommissionTranscript',
-                label_msgid='MeetingSeraing_label_commissionTranscript',
-                description='Transcription of commission',
-                description_msgid='MeetingSeraing_descr_commissionTranscript',
-                i18n_domain='PloneMeeting',
-            ),
-            default_content_type="text/html",
-            default="<p>N&eacute;ant</p>",
-            searchable=True,
-            allowable_content_types=('text/html',),
-            default_output_type="text/html",
-            write_permission="MeetingSeraing: Write commission transcript",
-            read_permission="MeetingSeraing: Read commission transcript",
         ),
         #specific field for mark if this item must be printing in meeting
         BooleanField(
@@ -165,8 +146,6 @@ def update_item_schema(baseSchema):
         ),
     ),)
 
-    baseSchema['description'].widget.label_method = "getLabelDescription"
-    baseSchema['category'].widget.label_method = "getLabelCategory"
     baseSchema['motivation'].widget.description_msgid = "MeetingSeraing_descr_motivation"
 
     completeItemSchema = baseSchema + specificSchema.copy()

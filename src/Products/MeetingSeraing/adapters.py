@@ -810,7 +810,7 @@ class CustomMeetingItem(MeetingItem):
         '''
           Keep some new fields when item is cloned (to another mc or from itemtemplate).
         '''
-        res = ['commissionTranscript', 'interventions', 'isToPrintInMeeting', 'pvNote', 'dgNote']
+        res = ['interventions', 'isToPrintInMeeting', 'pvNote', 'dgNote']
         if cloned_to_same_mc:
             res = res + []
         return res

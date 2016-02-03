@@ -42,10 +42,6 @@ msgstr "Si vous ne remplissez pas le champ, les signatures certifiées définies
 msgid "MeetingSeraing_label_councildecision"
 msgstr "Délibération"
 
-#. Default: "Explanatory note"
-msgid "MeetingSeraing_label_councildescription"
-msgstr "Note explicative"
-
 #. Default: "Interventions"
 msgid "MeetingSeraing_label_interventions"
 msgstr "Interventions"
@@ -310,3 +306,6 @@ msgstr "Points supplémentaires présentés"
 msgid "icon_help_validated_by_dga"
 msgstr "Validé par le DGA"
 
+#. Default: "Description"
+msgid "PloneMeeting_label_itemDescription"
+msgstr "Note dactylo"

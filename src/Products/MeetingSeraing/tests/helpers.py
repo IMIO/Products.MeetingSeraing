@@ -42,17 +42,20 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
                                                                              'propose',
                                                                              'validate',
                                                                              'present', )
-    TRANSITIONS_FOR_ACCEPTING_ITEMS_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_2 = ('freeze', 'decide', )
+    TRANSITIONS_FOR_ACCEPTING_ITEMS_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_2 = ('validateByDGA', 'freeze', 'decide', )
 
-    TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('freeze', 'decide', )
-    TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('freeze', 'decide', 'close', )
+    TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('validateByDGA', 'freeze', 'decide', )
+    TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('validateByDGA', 'freeze', 'decide',
+                                                                             'close', )
     BACK_TO_WF_PATH_1 = BACK_TO_WF_PATH_2 = {
         # Meeting
-        'created': ('backToPublished',
+        'created': ('backToDecided',
                     'backToFrozen',
+                    'backToValidatedByDGA',
                     'backToCreated',),
         # MeetingItem
         'itemcreated': ('backToItemFrozen',
+                        'backToItemValidatedByDGA',
                         'backToPresented',
                         'backToValidated',
                         'backToProposed',
@@ -61,10 +64,12 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
                         'backToProposedToServiceHead',
                         'backToItemCreated'),
         'proposed': ('backToItemFrozen',
+                     'backToItemValidatedByDGA',
                      'backToPresented',
                      'backToValidated',
                      'backToProposed', ),
         'validated': ('backToItemFrozen',
+                      'backToItemValidatedByDGA',
                       'backToPresented',
                       'backToValidated', )}
 
