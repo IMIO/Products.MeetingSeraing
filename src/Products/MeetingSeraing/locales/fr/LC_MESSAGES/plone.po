@@ -231,3 +231,23 @@ msgstr "Retourner pour avis"
 #. Default: "Return to proposing group from returned to advise"
 msgid "backTo_returned_to_proposing_group_from_returned_to_advise"
 msgstr "Retourner au groupe proposant"
+
+#. Default: "Validate item by DGA"
+msgid "itemValidateByDGA"
+msgstr "Valider le point par le DGA"
+
+#. Default: "Validate item by DGA"
+msgid "validateByDGA"
+msgstr "Valider la séance par le DGA"
+
+#. Default: "Back to 'validated by DGA'"
+msgid "backToValidatedByDGA"
+msgstr "Remettre en 'validé par le DGA'"
+
+#. Default: "Back to 'validated by DGA'"
+msgid "backToItemValidatedByDGA"
+msgstr "Remettre en 'validé par le DGA'"
+
+#. Default: "Validated By DGA"
+msgid "validated_by_dga"
+msgstr "Validé par le DGA"

@@ -283,3 +283,7 @@ msgstr ""
 #. Default: "Items presented tardily"
 msgid "late_presented_items"
 msgstr ""
+
+#. Default: "Validated By DGA"
+msgid "icon_help_validated_by_dga"
+msgstr ""

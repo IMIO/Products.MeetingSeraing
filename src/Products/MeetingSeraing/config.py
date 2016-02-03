@@ -66,6 +66,10 @@ SERAINGMEETINGREVIEWERS = OrderedDict([('reviewers', 'proposed'),
                                      ('officemanagers', 'proposed_to_officemanager'),
                                      ('serviceheads', 'proposed_to_servicehead'), ])
 PMconfig.MEETINGREVIEWERS = SERAINGMEETINGREVIEWERS
+
+CUSTOMMEETING_STATES_ACCEPTING_ITEMS = ('created', 'validated_by_dga', 'frozen', 'decided')
+PMconfig.MEETING_STATES_ACCEPTING_ITEMS = CUSTOMMEETING_STATES_ACCEPTING_ITEMS
+
 ##/code-section config-bottom
 
 

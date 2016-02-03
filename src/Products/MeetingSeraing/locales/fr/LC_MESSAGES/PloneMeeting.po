@@ -305,3 +305,8 @@ msgstr "Echéance par défaut pour valider les points supplémentaires pour une 
 #. Default: "Items presented tardily"
 msgid "late_presented_items"
 msgstr "Points supplémentaires présentés"
+
+#. Default: "Validated By DGA"
+msgid "icon_help_validated_by_dga"
+msgstr "Validé par le DGA"
+
