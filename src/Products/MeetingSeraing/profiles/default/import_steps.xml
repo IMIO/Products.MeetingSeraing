@@ -8,7 +8,7 @@
     id="MeetingSeraing-Update-RoleMappings" 
     handler="Products.MeetingSeraing.setuphandlers.updateRoleMappings"
     title="Update Workflow role mappings for MeetingSeraing"
-    version="2016-02-02T15:50:54.614009">
+    version="2016-02-03T11:14:20.342058">
    <dependency step="MeetingSeraing-QI-dependencies"/>
    updates the workflow role mappings for MeetingSeraing
  </import-step>
@@ -17,7 +17,7 @@
     id="MeetingSeraing-postInstall" 
     handler="Products.MeetingSeraing.setuphandlers.postInstall"
     title="manual coded post-install for MeetingSeraing"
-    version="2016-02-02T15:50:54.614009">
+    version="2016-02-03T11:14:20.342058">
    <dependency step="MeetingSeraing-QI-dependencies"/>
    manual coded post-install for MeetingSeraing
  </import-step>

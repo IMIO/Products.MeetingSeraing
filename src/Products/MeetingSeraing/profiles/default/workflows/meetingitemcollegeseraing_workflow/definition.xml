@@ -728,8 +728,8 @@
    <permission-role>Reader</permission-role>
   </permission-map>
  </state>
- <state state_id="delayed_but_closed"
-        title="delayed_but_closed"
+ <state state_id="delayed_closed"
+        title="delayed_closed"
         i18n:attributes="title">
   <exit-transition transition_id="backToItemDelayed"/>
   <permission-map name="Access contents information"
@@ -2066,7 +2066,7 @@
  </transition>
  <transition transition_id="delay_close"
              title="delay_close"
-             new_state="delayed_but_closed"
+             new_state="delayed_closed"
              trigger="USER"
              before_script=""
              after_script=""

@@ -66,6 +66,8 @@ SERAINGMEETINGREVIEWERS = OrderedDict([('reviewers', 'proposed'),
                                      ('officemanagers', 'proposed_to_officemanager'),
                                      ('serviceheads', 'proposed_to_servicehead'), ])
 PMconfig.MEETINGREVIEWERS = SERAINGMEETINGREVIEWERS
+##/code-section config-bottom
+
 
 # Load custom configuration not managed by archgenxml
 try:
