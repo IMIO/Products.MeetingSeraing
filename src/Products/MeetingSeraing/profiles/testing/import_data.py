@@ -365,7 +365,7 @@ councilMeeting.maxDaysDecisions = 60
 councilMeeting.meetingAppDefaultView = 'topic_searchmyitems'
 councilMeeting.itemDocFormats = ('odt', 'pdf')
 councilMeeting.meetingDocFormats = ('odt', 'pdf')
-councilMeeting.useAdvices = True
+councilMeeting.useAdvices = False
 councilMeeting.itemAdviceStates = ['proposed', ]
 councilMeeting.itemAdviceEditStates = ['proposed', 'validated']
 councilMeeting.itemAdviceViewStates = ['presented', ]
@@ -373,29 +373,17 @@ councilMeeting.transitionReinitializingDelays = 'backToItemCreated'
 councilMeeting.enforceAdviceMandatoriness = False
 councilMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
 councilMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
-councilMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_proposing_groups',
+councilMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_categories',
                                              'reverse': '0'}, )
-councilMeeting.useGroupsAsCategories = True
+councilMeeting.useGroupsAsCategories = False
 councilMeeting.meetingPowerObserversStates = ('frozen', 'published', 'decided', 'closed')
 councilMeeting.useCopies = True
 councilMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
+councilMeeting.useVotes = True
+councilMeeting.meetingUsers = [muser_voter1, muser_voter2, ]
 councilMeeting.podTemplates = [agendaTemplate, decisionsTemplate, itemTemplate]
 
-councilMeeting.recurringItems = [
-    RecurringItemDescriptor(
-        id='recItem1',
-        description='<p>This is the first recurring item.</p>',
-        title='Recurring item #1',
-        proposingGroup='developers',
-        decision='First recurring item approved'),
-
-    RecurringItemDescriptor(
-        id='recItem2',
-        title='Recurring item #2',
-        description='<p>This is the second recurring item.</p>',
-        proposingGroup='developers',
-        decision='Second recurring item approved'),
-]
+councilMeeting.recurringItems = []
 councilMeeting.itemTemplates = (template1, template2)
 
 #no recurring items for this meetingConfig, only for tests !!!

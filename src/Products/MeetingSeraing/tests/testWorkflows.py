@@ -24,7 +24,6 @@
 
 from AccessControl import Unauthorized
 from DateTime import DateTime
-from plone.app.testing.helpers import setRoles
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
 
@@ -45,10 +44,9 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         """
             This test covers the whole decision workflow. It begins with the
             creation of some items, and ends by closing a meeting.
-            This call 2 sub tests for each process : college and council
+            This call sub tests for college process : council using the same wf
         """
         self._testWholeDecisionProcessCollege()
-        self._testWholeDecisionProcessCouncil()
 
     def _testWholeDecisionProcessCollege(self):
         '''This test covers the whole decision workflow. It begins with the
@@ -139,128 +137,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # every items without a decision are automatically accepted
         self.assertEquals(item2.queryState(), 'accepted')
 
-    def _testWholeDecisionProcessCouncil(self):
-        """
-            This test covers the whole decision workflow. It begins with the
-            creation of some items, and ends by closing a meeting.
-        """
-        # add a recurring item that is inserted when the meeting is 'setInCouncil'
-        #we do the test for the council config
-        self.meetingConfig = getattr(self.tool, 'meeting-config-council')
-        self.changeUser('admin')
-        self.create('RecurringMeetingItem', title='Rec item 1',
-                    proposingGroup='developers',
-                    category='deployment',
-                    meetingTransitionInsertingMe='setInCouncil')
-        # pmCreator1 creates an item with 1 annex and proposes it
-        self.changeUser('pmCreator1')
-        item1 = self.create('MeetingItem', title='The first item', autoAddCategory=False)
-        self.addAnnex(item1)
-        # The creator can add a decision annex on created item
-        self.addAnnex(item1, relatedTo='item_decision')
-        # the item is not proposable until it has a category
-        self.failIf(self.transitions(item1))  # He may trigger no more action
-        item1.setCategory('deployment')
-        self.do(item1, 'propose')
-        self.failIf(self.hasPermission('Modify portal content', item1))
-        # The creator cannot add a decision annex on proposed item
-        self.assertRaises(Unauthorized, self.addAnnex, item1, relatedTo='item_decision')
-        self.failIf(self.transitions(item1))  # He may trigger no more action
-        self.changeUser('pmReviewer1')
-        self.addAnnex(item1, relatedTo='item_decision')
-        self.do(item1, 'validate')
-        self.failIf(self.hasPermission('Modify portal content', item1))
-        # The reviewer cannot add a decision annex on validated item
-        self.assertRaises(Unauthorized, self.addAnnex, item1, relatedTo='item_decision')
-        # pmManager creates a meeting
-        self.changeUser('pmManager')
-        meeting = self.create('Meeting', date='2007/12/11 09:00:00')
-        # The meetingManager can add a decision annex
-        self.addAnnex(item1, relatedTo='item_decision')
-        # pmCreator2 creates and proposes an item
-        self.changeUser('pmCreator2')
-        item2 = self.create('MeetingItem', title='The second item',
-                            preferredMeeting=meeting.UID())
-        item2.setCategory('events')
-        self.do(item2, 'propose')
-        # pmManager inserts item1 into the meeting and freezes it
-        self.changeUser('pmManager')
-        managerAnnex = self.addAnnex(item1)
-        self.portal.restrictedTraverse('@@delete_givenuid')(managerAnnex.UID())
-        self.do(item1, 'present')
-        self.changeUser('pmCreator1')
-        # The creator cannot add any kind of annex on presented item
-        self.assertRaises(Unauthorized, self.addAnnex, item1, relatedTo='item_decision')
-        self.assertRaises(Unauthorized, self.addAnnex, item1)
-        self.changeUser('pmManager')
-        self.do(meeting, 'setInCommittee')
-        # pmReviewer2 validates item2
-        self.changeUser('pmReviewer2')
-        self.do(item2, 'validate')
-        # pmManager inserts item2 into the meeting, as late item, and adds an
-        # annex to it
-        self.changeUser('pmManager')
-        self.do(item2, 'present')
-        self.addAnnex(item2)
-        self.failIf(len(meeting.getItems()) != 1)
-        self.failIf(len(meeting.getLateItems()) != 1)
-        # remove the item, set the meeting in council and add it again
-        self.do(item2, 'backToValidated')
-        self.failIf(len(meeting.getItems()) != 1)
-        self.do(meeting, 'setInCouncil')
-        self.do(item2, 'present')
-        # setting the meeting in council (setInCouncil) add 1 recurring item...
-        self.failIf(len(meeting.getItems()) != 1)
-        self.failIf(len(meeting.getLateItems()) != 2)
-        # an item can be send back to the service so MeetingMembers
-        # can edit it and send it back to the meeting
-        self.changeUser('pmCreator1')
-        self.failIf(self.hasPermission('Modify portal content', item1))
-        self.changeUser('pmManager')
-        self.assertEquals(item1.queryState(), 'item_in_council')
-        self.assertEquals(item2.queryState(), 'presented')
-        self.do(meeting, 'backToInCommittee')
-        self.assertEquals(item1.queryState(), 'item_in_committee')
-        self.assertEquals(item1.queryState(), 'item_in_committee')
-        self.do(meeting, 'setInCouncil')
-        self.assertEquals(item1.queryState(), 'item_in_council')
-        self.assertEquals(item2.queryState(), 'item_in_council')
-        # while closing a meeting, every no decided items are accepted
-        self.do(item1, 'accept_but_modify')
-        self.do(meeting, 'close')
-        self.assertEquals(item1.queryState(), 'accepted_but_modified')
-        self.assertEquals(item2.queryState(), 'accepted')
-
     def test_subproduct_call_RecurringItems(self):
         """
             Tests the recurring items system.
         """
         # call MeetingCommunes test and add our own
         mctw.test_subproduct_call_RecurringItems(self)
-        # we do the test for the council config
-        self.meetingConfig = getattr(self.tool, 'meeting-config-council')
-        self._testRecurringItemsCouncil()
-
-    def _testRecurringItemsCouncil(self):
-        '''Tests the recurring items system.
-           Recurring items are added when the meeting is setInCouncil.'''
-        # First, define a recurring item in the meeting config
-        # that will be added when the meeting is set to 'in_council'
-        self.changeUser('admin')
-        self.create('RecurringMeetingItem', title='Rec item 1',
-                    proposingGroup='developers',
-                    category='deployment',
-                    meetingTransitionInsertingMe='setInCouncil')
-        setRoles(self.portal, 'pmManager', ['MeetingManager', 'Manager', ])
-        self.changeUser('pmManager')
-        meeting = self.create('Meeting', date='2007/12/11 09:00:00')
-        self.failUnless(len(meeting.getAllItems()) == 0)
-        self.do(meeting, 'setInCommittee')
-        self.failUnless(len(meeting.getAllItems()) == 0)
-        self.do(meeting, 'setInCouncil')
-        self.failUnless(len(meeting.getAllItems()) == 1)
-        self.do(meeting, 'close')
-        self.failUnless(len(meeting.getAllItems()) == 1)
 
     def test_subproduct_FreezeMeeting(self):
         """

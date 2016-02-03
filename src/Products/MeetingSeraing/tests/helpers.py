@@ -27,32 +27,26 @@ from Products.MeetingCommunes.tests.helpers import MeetingCommunesTestingHelpers
 class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
     '''Override some values of PloneMeetingTestingHelpers.'''
 
-    TRANSITIONS_FOR_PROPOSING_ITEM_1 = ('proposeToServiceHead',
-                                        'proposeToOfficeManager',
-                                        'proposeToDivisionHead',
-                                        'propose', )
-    TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('propose', )
-    TRANSITIONS_FOR_VALIDATING_ITEM_1 = ('proposeToServiceHead',
-                                         'proposeToOfficeManager',
-                                         'proposeToDivisionHead',
-                                         'propose',
-                                         'validate', )
-    TRANSITIONS_FOR_VALIDATING_ITEM_2 = ('propose', 'validate', )
-    TRANSITIONS_FOR_PRESENTING_ITEM_1 = ('proposeToServiceHead',
-                                         'proposeToOfficeManager',
-                                         'proposeToDivisionHead',
-                                         'propose',
-                                         'validate',
-                                         'present', )
-    TRANSITIONS_FOR_PRESENTING_ITEM_2 = ('propose', 'validate', 'present', )
-    TRANSITIONS_FOR_ACCEPTING_ITEMS_1 = ('freeze', 'decide', )
-    TRANSITIONS_FOR_ACCEPTING_ITEMS_2 = ('setInCommittee', 'setInCouncil', )
+    TRANSITIONS_FOR_PROPOSING_ITEM_1 = TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('proposeToServiceHead',
+                                                                           'proposeToOfficeManager',
+                                                                           'proposeToDivisionHead',
+                                                                           'propose', )
+    TRANSITIONS_FOR_VALIDATING_ITEM_1 = TRANSITIONS_FOR_VALIDATING_ITEM_2 = ('proposeToServiceHead',
+                                                                             'proposeToOfficeManager',
+                                                                             'proposeToDivisionHead',
+                                                                             'propose',
+                                                                             'validate', )
+    TRANSITIONS_FOR_PRESENTING_ITEM_1 = TRANSITIONS_FOR_PRESENTING_ITEM_2 = ('proposeToServiceHead',
+                                                                             'proposeToOfficeManager',
+                                                                             'proposeToDivisionHead',
+                                                                             'propose',
+                                                                             'validate',
+                                                                             'present', )
+    TRANSITIONS_FOR_ACCEPTING_ITEMS_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_2 = ('freeze', 'decide', )
 
-    TRANSITIONS_FOR_DECIDING_MEETING_1 = ('freeze', 'decide', )
-    TRANSITIONS_FOR_DECIDING_MEETING_2 = ('setInCommittee', 'setInCouncil', )
-    TRANSITIONS_FOR_CLOSING_MEETING_1 = ('freeze', 'decide', 'close', )
-    TRANSITIONS_FOR_CLOSING_MEETING_2 = ('setInCommittee', 'setInCouncil', 'close', )
-    BACK_TO_WF_PATH_1 = {
+    TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('freeze', 'decide', )
+    TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('freeze', 'decide', 'close', )
+    BACK_TO_WF_PATH_1 = BACK_TO_WF_PATH_2 = {
         # Meeting
         'created': ('backToPublished',
                     'backToFrozen',
@@ -65,19 +59,6 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
                         'backToProposedToDivisionHead',
                         'backToProposedToOfficeManager',
                         'backToProposedToServiceHead',
-                        'backToItemCreated'),
-        'proposed': ('backToItemFrozen',
-                     'backToPresented',
-                     'backToValidated',
-                     'backToProposed', ),
-        'validated': ('backToItemFrozen',
-                      'backToPresented',
-                      'backToValidated', )}
-    BACK_TO_WF_PATH_2 = {
-        'itemcreated': ('backToItemFrozen',
-                        'backToPresented',
-                        'backToValidated',
-                        'backToProposed',
                         'backToItemCreated'),
         'proposed': ('backToItemFrozen',
                      'backToPresented',
