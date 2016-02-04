@@ -118,6 +118,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.assertRaises(Unauthorized, self.addAnnex, item1)
         # freeze the meeting
         self.changeUser('pmManager')
+        self.do(meeting, 'validateByDGA')
         self.do(meeting, 'freeze')
         # validate item2 after meeting freeze
         self.changeUser('pmReviewer2')
@@ -164,12 +165,17 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         #every presented items are in the 'presented' state
         self.assertEquals('presented', wftool.getInfoFor(item1, 'review_state'))
         self.assertEquals('presented', wftool.getInfoFor(item2, 'review_state'))
+        #every items must be in the 'validated_by_dga' state if we freeze the meeting
+        self.do(meeting, 'validateByDGA')
+        self.assertEquals('validated_by_dga', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEquals('validated_by_dga', wftool.getInfoFor(item2, 'review_state'))
         #every items must be in the 'itemfrozen' state if we freeze the meeting
         self.do(meeting, 'freeze')
         self.assertEquals('itemfrozen', wftool.getInfoFor(item1, 'review_state'))
         self.assertEquals('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
         #when correcting the meeting back to created, the items must be corrected
         #back to "presented"
+        self.do(meeting, 'backToValidatedByDGA')
         self.do(meeting, 'backToCreated')
         #when a point is in 'itemfrozen' it's must rest in this state
         #because normally we backToCreated for add new point
@@ -204,14 +210,15 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         for item in (item1, item2, item3, item4, item5, item6, item7):
             self.presentItem(item)
         #we freeze the meeting
+        self.do(meeting, 'validateByDGA')
         self.do(meeting, 'freeze')
         #a MeetingManager can put the item back to presented
+        self.do(item7, 'backToItemValidatedByDGA')
         self.do(item7, 'backToPresented')
         #we decide the meeting
         #while deciding the meeting, every items that where presented are frozen
         self.do(meeting, 'decide')
         #change all items in all different state (except first who is in good state)
-        self.do(item7, 'backToPresented')
         self.do(item2, 'accept')
         self.do(item3, 'accept')
         self.do(item4, 'accept_but_modify')

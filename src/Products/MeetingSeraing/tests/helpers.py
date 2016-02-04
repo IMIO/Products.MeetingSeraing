@@ -42,8 +42,11 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
                                                                              'propose',
                                                                              'validate',
                                                                              'present', )
-    TRANSITIONS_FOR_ACCEPTING_ITEMS_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_2 = ('validateByDGA', 'freeze', 'decide', )
 
+    TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_2 = ('validateByDGA', 'freeze',
+                                                                                             'decide', )
+    TRANSITIONS_FOR_FREEZING_MEETING_1 = TRANSITIONS_FOR_FREEZING_MEETING_2 = ('validateByDGA', 'freeze', )
+    TRANSITIONS_FOR_PUBLISHING_MEETING_1 = TRANSITIONS_FOR_PUBLISHING_MEETING_2 = ('validateByDGA', 'freeze', )
     TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('validateByDGA', 'freeze', 'decide', )
     TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('validateByDGA', 'freeze', 'decide',
                                                                              'close', )

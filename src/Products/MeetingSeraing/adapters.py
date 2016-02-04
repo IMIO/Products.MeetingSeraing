@@ -721,9 +721,6 @@ class CustomMeetingItem(MeetingItem):
                                      'proposed',
                                      'validated', )
     MeetingItem.beforePublicationStates = customBeforePublicationStates
-    #this list is used by doPresent defined in PloneMeeting
-    customMeetingAlreadyFrozenStates = ('validated_by_dga', 'frozen', 'decided', )
-    MeetingItem.meetingAlreadyFrozenStates = customMeetingAlreadyFrozenStates
 
     customMeetingNotClosedStates = ('validated_by_dga', 'frozen', 'decided', )
     MeetingItem.meetingNotClosedStates = customMeetingNotClosedStates
@@ -1282,6 +1279,14 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
 
     def doReturn_to_advise(self, stateChange):
         pass
+
+    security.declarePrivate('_freezePresentedItem')
+
+    def _freezePresentedItem(self):
+        '''Presents an item into a frozen meeting. '''
+        wTool = getToolByName(self.context, 'portal_workflow')
+        wTool.doActionFor(self.context, 'itemValidateByDGA')
+        wTool.doActionFor(self.context, 'itemfreeze')
 
 
 class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions):

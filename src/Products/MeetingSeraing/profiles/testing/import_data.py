@@ -243,22 +243,26 @@ collegeMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
                                                  'propose',
                                                  'validate',
                                                  'present', )
-collegeMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
+collegeMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'validateByDGA',
+                                                              'item_transition': 'itemValidateByDGA'},
+
+                                                             {'meeting_transition': 'freeze',
+                                                              'item_transition': 'itemValidateByDGA'},
+                                                             {'meeting_transition': 'freeze',
                                                               'item_transition': 'itemfreeze'},
 
                                                              {'meeting_transition': 'decide',
                                                               'item_transition': 'itemfreeze'},
 
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'accept'},
-
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'itemValidateByDGA'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'itemfreeze'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'accept'},
 
+                                                             {'meeting_transition': 'backToCreated',
+                                                              'item_transition': 'backToItemValidatedByDGA'},
                                                              {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
@@ -335,22 +339,26 @@ councilMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
                                                  'propose',
                                                  'validate',
                                                  'present', )
-councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
+councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'validateByDGA',
+                                                              'item_transition': 'itemValidateByDGA'},
+
+                                                             {'meeting_transition': 'freeze',
+                                                              'item_transition': 'itemValidateByDGA'},
+                                                             {'meeting_transition': 'freeze',
                                                               'item_transition': 'itemfreeze'},
 
                                                              {'meeting_transition': 'decide',
                                                               'item_transition': 'itemfreeze'},
 
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'accept'},
-
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'itemValidateByDGA'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'itemfreeze'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'accept'},
 
+                                                             {'meeting_transition': 'backToCreated',
+                                                              'item_transition': 'backToItemValidatedByDGA'},
                                                              {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
 councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
