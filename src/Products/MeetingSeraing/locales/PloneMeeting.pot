@@ -68,14 +68,6 @@ msgstr ""
 msgid "searchitemstovalidate"
 msgstr ""
 
-#. Default: "items of my commissions"
-msgid "searchitemsofmycommissions"
-msgstr ""
-
-#. Default: "items of my commissions to edit"
-msgid "searchitemsofmycommissionstoedit"
-msgstr ""
-
 #portal_tabs
 #. Default: "College"
 msgid "Meeting config Seraing College"
@@ -88,14 +80,6 @@ msgstr ""
 #object_buttons
 #. Default: "Send to council"
 msgid "Send to council"
-msgstr ""
-
-#. Default: "Transcript of commission"
-msgid "MeetingSeraing_label_commissionTranscript"
-msgstr ""
-
-#. Default: "Transcript of commission"
-msgid "MeetingSeraing_descr_commissionTranscript"
 msgstr ""
 
 #. Default: "Interventions"
@@ -120,10 +104,6 @@ msgstr ""
 
 #. Default: "Explanatory note"
 msgid "MeetingSeraing_label_councildescription"
-msgstr ""
-
-#. Default: "Commission"
-msgid "MeetingSeraing_label_councilcategory"
 msgstr ""
 
 #. Default: "Deliberation"
@@ -158,168 +138,8 @@ msgstr ""
 msgid "PloneMeeting_label_preObservations"
 msgstr ""
 
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace"
-msgstr ""
-
-#. Default: "Premeeting 1 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_default"
-msgstr ""
-
-#. Default: "Premeeting 2 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_2_default"
-msgstr ""
-
-#. Default: "Premeeting 3 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_3_default"
-msgstr ""
-
-#. Default: "Premeeting 4 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_4_default"
-msgstr ""
-
-#. Default: "Premeeting 5 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_5_default"
-msgstr ""
-
-#. Default: "Premeeting 6 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_6_default"
-msgstr ""
-
-#. Default: "Premeeting 7 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_7_default"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_descr"
-msgstr ""
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_2"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_2"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_2"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_2_descr"
-msgstr ""
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_3"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_3"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_3"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_3_descr"
-msgstr ""
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_4"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_4"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_4"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_4_descr"
-msgstr ""
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_5"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_5"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_5"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_5_descr"
-msgstr ""
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_6"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_6"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_6"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_6_descr"
-msgstr ""
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_7"
-msgstr ""
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_7"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_7"
-msgstr ""
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_7_descr"
-msgstr ""
-
-#. Default: "Premeeting"
-msgid "listingheader_premeeting_name"
-msgstr ""
-
-#. Default: "Date"
-msgid "listingheader_premeeting_date"
-msgstr ""
-
-#. Default: "Place"
-msgid "listingheader_premeeting_place"
-msgstr ""
-
-#. Default: "Assembly"
-msgid "listingheader_premeeting_assembly"
-msgstr ""
-
 #. Default: "Please as you defined an item initiator, check if the linked category should not be 'Points conseillers'. If not, just ignore this message, it will not be displayed anymore when the item will be validated."
 msgid "check_intitiator_and_category"
-msgstr ""
-
-#. Default: "Please as this item comes from the college, you need to define the 'commission' for it before being able to propose it."
-msgid "check_category"
 msgstr ""
 
 #. Default: "Please enter 12 lines for signatures delegations"
@@ -344,10 +164,6 @@ msgstr ""
 
 #. Default: "Item in council"
 msgid "icon_help_item_in_council"
-msgstr ""
-
-#. Default: "Item in committee"
-msgid "icon_help_item_in_committee"
 msgstr ""
 
 #. Default: "Proposed to service head"
@@ -466,4 +282,8 @@ msgstr ""
 
 #. Default: "Items presented tardily"
 msgid "late_presented_items"
+msgstr ""
+
+#. Default: "Validated By DGA"
+msgid "icon_help_validated_by_dga"
 msgstr ""

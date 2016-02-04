@@ -14,6 +14,7 @@ __docformat__ = 'plaintext'
 
 from imio.actionspanel.utils import unrestrictedRemoveGivenObject
 from Products.PloneMeeting.interfaces import IAnnexable
+from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 
 
 def onItemAfterTransition(item, event):
@@ -30,3 +31,17 @@ def onItemDuplicated(original, event):
     # Delete the decision annexes that have been copied.
     for annex in IAnnexable(newItem).getAnnexes(relatedTo='item_decision'):
         unrestrictedRemoveGivenObject(annex)
+    # clear some fields linked to meeting
+    newDescri = _removeTypistNote(newItem.Description())
+    newItem.setDescription(newDescri)
+    newItem.setPvNote('')
+    newItem.setDgNote('')
+    newItem.setObservations('')
+    # Make sure we have 'text/html' for every Rich fields
+    forceHTMLContentTypeForEmptyRichFields(newItem)
+
+
+def _removeTypistNote(field):
+    ''' Remove typist's note find with highlight-purple class'''
+    import re
+    return re.sub('<span class="highlight-purple">.*?</span>', '', field)

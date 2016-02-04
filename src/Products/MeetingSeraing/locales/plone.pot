@@ -34,22 +34,6 @@ msgstr ""
 msgid "PloneMeeting_label_decision"
 msgstr ""
 
-#. Default: "In committee"
-msgid "in_committee"
-msgstr ""
-
-#. Default: "In council"
-msgid "in_council"
-msgstr ""
-
-#. Default: "In committee"
-msgid "item_in_committee"
-msgstr ""
-
-#. Default: "In council"
-msgid "item_in_council"
-msgstr ""
-
 #. Default: "accept but modify"
 msgid "accept_but_modify"
 msgstr ""
@@ -75,40 +59,10 @@ msgstr ""
 msgid "backToProposedToServiceHead"
 msgstr ""
 
-msgid "setInCommittee"
-msgstr ""
-
-msgid "setItemInCommittee"
-msgstr ""
-
-msgid "setInCouncil"
-msgstr ""
-
-msgid "setItemInCouncil"
-msgstr ""
-
 msgid "return_to_service"
 msgstr ""
 
 msgid "return_to_secretary"
-msgstr ""
-
-msgid "return_to_secretary_in_committee"
-msgstr ""
-
-msgid "return_to_secretary_in_council"
-msgstr ""
-
-msgid "backToInCommittee"
-msgstr ""
-
-msgid "backToInCouncil"
-msgstr ""
-
-msgid "backToItemInCommittee"
-msgstr ""
-
-msgid "backToItemInCouncil"
 msgstr ""
 
 #. Default: "Decisions"
@@ -246,6 +200,10 @@ msgstr ""
 msgid "accepted_closed"
 msgstr ""
 
+#. Default: "Delayed On Closed Meeting"
+msgid "delayed_closed"
+msgstr ""
+
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "accept_but_modify_close"
 msgstr ""
@@ -254,12 +212,21 @@ msgstr ""
 msgid "accept_close"
 msgstr ""
 
+#. Default: "Delay On Closed Meeting"
+msgid "delay_close"
+msgstr ""
+
+
 #. Default: "Back to Accepted"
 msgid "backToItemAccepted"
 msgstr ""
 
 #. Default: "Back to Accepted But Modified"
 msgid "backToItemAcceptedButModified"
+msgstr ""
+
+#. Default: "Back to Delayed"
+msgid "backToItemDelayed"
 msgstr ""
 
 #. Default: "Returned to advise"
@@ -272,4 +239,28 @@ msgstr ""
 
 #. Default: "Return to proposing group from returned to advise"
 msgid "backTo_returned_to_proposing_group_from_returned_to_advise"
+msgstr ""
+
+#. Default: "Validate item by DGA"
+msgid "itemValidateByDGA"
+msgstr ""
+
+#. Default: "Back to DGA the item"
+msgid "backToValidateByDGA"
+msgstr ""
+
+#. Default: "Validate item by DGA"
+msgid "validateByDGA"
+msgstr ""
+
+#. Default: "Back to DGA the item"
+msgid "backToValidateByDGA"
+msgstr ""
+
+#. Default: "Back to 'validated by DGA'"
+msgid "backToItemValidatedByDGA"
+msgstr ""
+
+#. Default: "Validated By DGA"
+msgid "validated_by_dga"
 msgstr ""

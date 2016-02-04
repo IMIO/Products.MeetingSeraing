@@ -28,9 +28,6 @@ msgstr "Conseil communal"
 msgid "MeetingSeraing_descr_assembly"
 msgstr "Laissez ce champ vide pour utiliser l'assemblée qui sera définie sur la séance"
 
-#. Default: "Transcript of commission"
-msgid "MeetingSeraing_descr_commissionTranscript"
-msgstr " "
 
 #. Default: "Transcription of interventions"
 msgid "MeetingSeraing_descr_interventions"
@@ -41,21 +38,9 @@ msgstr "Retranscription des interventions"
 msgid "MeetingSeraing_descr_signatures"
 msgstr "Si vous ne remplissez pas le champ, les signatures certifiées définies sur la configuration de séance seront utilisées.  Si vous utilisez ce champ, il est obligatoire de définir 12 lignes (les 6 premières pour le collège et les 6 dernières pour le conseil).  Si une signature ne doit pas être surchagée, utilisez des tirets '-'."
 
-#. Default: "Transcript of commission"
-msgid "MeetingSeraing_label_commissionTranscript"
-msgstr "Procès-verbal de la commission"
-
-#. Default: "Commission"
-msgid "MeetingSeraing_label_councilcategory"
-msgstr "Commission"
-
 #. Default: "Deliberation"
 msgid "MeetingSeraing_label_councildecision"
 msgstr "Délibération"
-
-#. Default: "Explanatory note"
-msgid "MeetingSeraing_label_councildescription"
-msgstr "Note explicative"
 
 #. Default: "Interventions"
 msgid "MeetingSeraing_label_interventions"
@@ -69,131 +54,11 @@ msgstr "Assemblée spécifique liée à ce point"
 msgid "MeetingSeraing_label_meetingcouncilobservations"
 msgstr "Avant-séance"
 
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_2"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Premeeting 2 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_2_default"
-msgstr "Assemblée par défaut de la commission 2"
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_3"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Premeeting 3 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_3_default"
-msgstr "Assemblée par défaut de la commission 3"
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_4"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Premeeting 4 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_4_default"
-msgstr "Assemblée par défaut de la commission 4"
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_5"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Premeeting 5 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_5_default"
-msgstr "Assemblée par défaut de la commission 5"
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_6"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Premeeting 6 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_6_default"
-msgstr "Assemblée par défaut de la commission 6"
-
-#. Default: "Assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_7"
-msgstr "Assemblée de la Commission"
-
-#. Default: "Premeeting 7 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_7_default"
-msgstr "Assemblée par défaut de la commission 7"
-
-#. Default: "Premeeting 1 default assembly"
-msgid "MeetingSeraing_label_preMeetingAssembly_default"
-msgstr "Assemblée par défaut de la commission 1"
-
 # import what was done in MeetingCommunes
 # MeetingItem
 #. Default: "Decision"
 msgid "PloneMeeting_label_decision"
 msgstr "Décision"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate"
-msgstr "Date de la Commission"
-
-#. Default: "Default date for the pre-meeting"
-msgid "PloneMeeting_label_preMeetingDateDefault"
-msgstr "Date par défaut des Commissions"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_2"
-msgstr "Date de la Commission"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_3"
-msgstr "Date de la Commission"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_4"
-msgstr "Date de la Commission"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_5"
-msgstr "Date de la Commission"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_6"
-msgstr "Date de la Commission"
-
-#. Default: "Date"
-msgid "PloneMeeting_label_preMeetingDate_7"
-msgstr "Date de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace"
-msgstr "Lieu de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_2"
-msgstr "Lieu de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_3"
-msgstr "Lieu de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_4"
-msgstr "Lieu de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_5"
-msgstr "Lieu de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_6"
-msgstr "Lieu de la Commission"
-
-#. Default: "Place"
-msgid "PloneMeeting_label_preMeetingPlace_7"
-msgstr "Lieu de la Commission"
-
-#. Default: "Observations for the preparatory meeting"
-msgid "PloneMeeting_label_preObservations"
-msgstr "Observations pour les commissions"
 
 # object_buttons
 #. Default: "Send to council"
@@ -203,10 +68,6 @@ msgstr "Envoyer au Conseil communal"
 #. Default: "Sent to council"
 msgid "Sent to council"
 msgstr "Envoyé au Conseil communal"
-
-#. Default: "Please as this item comes from the college, you need to define the 'commission' for it before being able to propose it."
-msgid "check_category"
-msgstr "Attention, comme ce point provient du Collège communal, vous devez définir la commission à laquelle il doit passer en passant par l'onglet 'Modifier' avant de pouvoir le proposer au chef de bureau."
 
 #. Default: "Please as you defined an item initiator, check if the linked category should not be 'Points conseillers'. If not, just ignore this message, it will not be displayed anymore when the item will be validated."
 msgid "check_intitiator_and_category"
@@ -228,10 +89,6 @@ msgstr "Bienvenue sur PloneMeeting!"
 #. Default: "Accepted but modified"
 msgid "icon_help_accepted_but_modified"
 msgstr "Accepté provisoirement"
-
-#. Default: "Item in committee"
-msgid "icon_help_item_in_committee"
-msgstr "En commission"
 
 #. Default: "Item in council"
 msgid "icon_help_item_in_council"
@@ -261,10 +118,6 @@ msgstr "Assemblée"
 msgid "listingheader_premeeting_date"
 msgstr "Date"
 
-#. Default: "Premeeting"
-msgid "listingheader_premeeting_name"
-msgstr "Commission"
-
 #. Default: "Place"
 msgid "listingheader_premeeting_place"
 msgstr "Lieu"
@@ -273,18 +126,6 @@ msgstr "Lieu"
 #. Default: "office managers"
 msgid "officemanagers"
 msgstr "chefs de bureau"
-
-#. Default: "The preparatory meeting must occur before the meeting."
-msgid "pre_date_after_meeting_date"
-msgstr "La date de la commission doit être avant la date de la séance."
-
-#. Default: "Preparatory meeting"
-msgid "pre_meeting"
-msgstr "Commissions"
-
-#. Default: "Specify here the date of the pre-meeting, relative to its meeting, in the same format as fields above.  Leave empty not to use this functionnality."
-msgid "pre_meeting_date_default_descr"
-msgstr "Spécifiez ici les dates par défaut pour les commissions (même format que les champs ci-dessus).  Laissez le champ vide si vous ne souhaitez pas utiliser cette fonctionnalité."
 
 #. Default: "MeetingItemCollege"
 msgid "predecessor_MeetingItemCollege"
@@ -326,14 +167,6 @@ msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exe
 #. Default: "reviewers"
 msgid "reviewers"
 msgstr "directeurs"
-
-#. Default: "items of my commissions"
-msgid "searchitemsofmycommissions"
-msgstr "points de mes commissions"
-
-#. Default: "items of my commissions to edit"
-msgid "searchitemsofmycommissionstoedit"
-msgstr "points de mes commissions éditables"
 
 #. Default: "items to validate"
 msgid "searchitemstovalidate"
@@ -468,3 +301,11 @@ msgstr "Echéance par défaut pour valider les points supplémentaires pour une 
 #. Default: "Items presented tardily"
 msgid "late_presented_items"
 msgstr "Points supplémentaires présentés"
+
+#. Default: "Validated By DGA"
+msgid "icon_help_validated_by_dga"
+msgstr "Validé par le DGA"
+
+#. Default: "Description"
+msgid "PloneMeeting_label_itemDescription"
+msgstr "Note dactylo"

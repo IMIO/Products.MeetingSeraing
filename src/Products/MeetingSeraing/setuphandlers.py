@@ -2,7 +2,7 @@
 #
 # File: setuphandlers.py
 #
-# Copyright (c) 2015 by Imio.be
+# Copyright (c) 2016 by Imio.be
 # Generator: ArchGenXML Version 2.7
 #            http://plone.org/products/archgenxml
 #
@@ -22,9 +22,6 @@ from Products.CMFCore.utils import getToolByName
 import transaction
 ##code-section HEAD
 from Products.PloneMeeting.exportimport.content import ToolInitializer
-from Products.PloneMeeting.config import TOPIC_TYPE, TOPIC_SEARCH_SCRIPT, TOPIC_TAL_EXPRESSION
-from Products.MeetingSeraing.config import COUNCIL_COMMISSION_IDS, \
-    COUNCIL_COMMISSION_IDS_2013, COMMISSION_EDITORS_SUFFIX
 ##/code-section HEAD
 
 def isNotMeetingSeraingProfile(context):
@@ -47,8 +44,6 @@ def postInstall(context):
     site = context.getSite()
     # Reinstall PloneMeeting
     reinstallPloneMeeting(context, site)
-    # Add groups for council commissions that will contain MeetingCommissionEditors
-    addCommissionEditorGroups(context, site)
     # Make sure the 'home' tab is shown
     showHomeTab(context, site)
     # Reinstall the skin
@@ -95,6 +90,7 @@ def _installPloneMeeting(context):
     profileId = u'profile-Products.PloneMeeting:default'
     site.portal_setup.runAllImportStepsFromProfile(profileId)
 
+
 def initializeTool(context):
     '''Initialises the PloneMeeting tool based on information from the current
        profile.'''
@@ -104,23 +100,6 @@ def initializeTool(context):
     logStep("initializeTool", context)
     _installPloneMeeting(context)
     return ToolInitializer(context, PROJECTNAME).run()
-
-
-def addCommissionEditorGroups(context, portal):
-    '''
-       Add groups for council commissions that will contain MeetingCommissionEditors
-    '''
-    if isNotMeetingSeraingProfile(context):
-        return
-
-    logStep("addCommissionEditorGroups", context)
-    existingPloneGroupIds = portal.portal_groups.getGroupIds()
-    for commissionId in COUNCIL_COMMISSION_IDS+COUNCIL_COMMISSION_IDS_2013:
-        groupId = commissionId + COMMISSION_EDITORS_SUFFIX
-        if not groupId in existingPloneGroupIds:
-            #add the Plone group
-            groupTitle = groupId.replace('-', ' ').capitalize() + u' (RÃ©dacteurs PV)'.encode('utf-8')
-            portal.portal_groups.addGroup(groupId, title=groupTitle)
 
 
 def showHomeTab(context, site):
@@ -141,7 +120,7 @@ def showHomeTab(context, site):
 
 def reinstallPloneMeetingSkin(context, site):
     """
-       Reinstall Products.plonemeetingskin as the reinstallation of MeetingCommunes
+       Reinstall Products.plonemeetingskin as the reinstallation of MeetingSeraing
        change the portal_skins layers order
     """
     if isNotMeetingSeraingProfile(context):

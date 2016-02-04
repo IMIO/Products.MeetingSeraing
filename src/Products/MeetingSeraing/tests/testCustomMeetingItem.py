@@ -24,7 +24,6 @@
 
 from DateTime import DateTime
 from zope.annotation import IAnnotations
-from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 
 
@@ -37,7 +36,8 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
           When a college item is duplicated to the council meetingConfig,
           the motivation field for the new item (council item) is populated like this :
           Default value for motivation field of the new item + value of motivation that was
-          defined on original item (college item)
+          defined on original item (college item).
+          Some fields must be cleaning (fields linked to the real meeting)
         """
         # by default, college items are sendable to council
         destMeetingConfigId = self.meetingConfig2.getId()
@@ -48,19 +48,30 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
         item.setDecision('<p>A decision</p>')
+        item.setDescription('<p>Lorem ipsum dolor sit amet <span class="highlight-purple">consectetur adipiscing '
+                            'elit</span>. Nulla fermentum diam vel justo tincidunt aliquam.</p>')
+        item.setPvNote('<p>A PV Note</p>')
+        item.setDgNote('<p>A DG Note</p>')
+        item.setObservations('<p>An intervention during meeting</p>')
         item.setOtherMeetingConfigsClonableTo((destMeetingConfigId,))
         self.assertTrue(item.getMotivation() == self.meetingConfig.getDefaultMeetingItemMotivation())
         meeting = self.create('Meeting', date=DateTime('2013/05/05'))
         self.presentItem(item)
         # now close the meeting so the item is automatically accepted and sent to meetingConfig2
         self.closeMeeting(meeting)
-        self.assertTrue(item.queryState() in MeetingItem.itemPositiveDecidedStates(item))
+        cfg = self.meetingConfig
+        self.assertTrue(item.queryState() in cfg.getItemAutoSentToOtherMCStates())
         self.assertTrue(item._checkAlreadyClonedToOtherMC(destMeetingConfigId))
         # get the item that was sent to meetingConfig2 and check his motivation field
         annotation_key = item._getSentToOtherMCAnnotationKey(destMeetingConfigId)
         newItem = self.portal.uid_catalog(UID=IAnnotations(item)[annotation_key])[0].getObject()
         expectedNewItemMotivation = self.meetingConfig2.getDefaultMeetingItemMotivation() + item.getMotivation()
         self.assertTrue(newItem.getMotivation() == expectedNewItemMotivation)
+        self.assertTrue(newItem.getPvNote() == '')
+        self.assertTrue(newItem.getDgNote() == '')
+        self.assertTrue(newItem.getObservations() == '')
+        self.assertTrue(newItem.Description() == '<p>Lorem ipsum dolor sit amet . Nulla fermentum diam vel '
+                        'justo tincidunt aliquam.</p>')
 
     def test_powerEditor(self):
         """
@@ -74,6 +85,10 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         self.changeUser('pmManager')
         meeting = self.create('Meeting', date=DateTime('2013/05/05'))
         self.presentItem(item)
+        self.failUnless(self.hasPermission('Modify portal content', item))
+        self.changeUser('pmManager')
+        self.do(meeting, 'validateByDGA')
+        self.changeUser('powerEditor1')
         self.failUnless(self.hasPermission('Modify portal content', item))
         self.changeUser('pmManager')
         self.do(meeting, 'freeze')

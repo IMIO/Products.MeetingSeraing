@@ -139,6 +139,18 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertEquals(newItem.objectValues('MeetingFile')[1].getMeetingFileType(),
                           defaultMC2ItemMFT['id'])
 
+    def test_subproduct_call_ItemStrikedAssembly(self):
+        self.test_pm_ItemStrikedAssembly()
+
+    def test_subproduct_call_Emergency(self):
+        self.test_pm_Emergency()
+
+    def test_subproduct_call_Completeness(self):
+        self.test_pm_Completeness()
+
+    def test_subproduct_call_SendItemToOtherMCManually(self):
+        self.test_pm_SendItemToOtherMCManually()
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

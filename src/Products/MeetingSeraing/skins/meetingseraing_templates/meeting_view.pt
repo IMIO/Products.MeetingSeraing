@@ -380,54 +380,6 @@
   </table>
   </tal:assemblyFields>
 
-  <tal:comment replace="nothing">XXX begin changes for MeetingSeraing</tal:comment>
-
-  <tal:comment replace="nothing">Pre-meeting info</tal:comment>
-
-  <tal:premeetings condition="python: 'preMeetingDate' in usedAttrs">
-      <dl id="premeetings" class="collapsible inline collapsedOnLoad">
-        <dt class="collapsibleHeader" i18n:translate="pre_meeting">Premeetings</dt>
-        <dd class="collapsibleContent" tal:define="categories python: context.getCommissionCategories();">
-            <br />
-            <table class="listing nosort">
-              <tr i18n:domain="PloneMeeting">
-                <th i18n:translate="listingheader_premeeting_name"/>
-                <th style="min-width: 115px;" i18n:translate="listingheader_premeeting_date"/>
-                <th i18n:translate="listingheader_premeeting_place"/>
-                <th i18n:translate="listingheader_premeeting_assembly"/>
-              </tr>
-              <tal:loop repeat="category categories">
-              <tr tal:define="oddrow repeat/category/odd" valign="top" tal:attributes="class python: oddrow and 'odd' or 'even'">
-               <tal:defines define="index repeat/category/number;">
-               <td tal:content="python: isinstance(category, tuple) and 'Commission ' + '/'.join([subcat.Title().replace('Commission ', '') for subcat in category]) or category.Title()">Category title</td>
-               <td>
-                  <tal:block define="date python: getattr(context, 'preMeetingDate_%d' %index, context.getPreMeetingDate());">
-                    <span tal:condition="date"
-                          tal:content="python: toLocalizedTime(date, long_format=1)">Premeeting date</span>
-                    <span tal:condition="not: date">-</span>
-                  </tal:block>
-               </td>
-               <td>
-                 <tal:block define="place python: getattr(context, 'preMeetingPlace_%d' %index, context.getPreMeetingPlace()).strip();">
-                   <span tal:condition="place" tal:content="place">Premeeting place</span>
-                   <span tal:condition="not: place">-</span>
-                 </tal:block>
-               </td>
-               <td>
-                 <tal:block define="assembly python: getattr(context, 'preMeetingAssembly_%d' %index, context.getPreMeetingAssembly)();">
-                   <span tal:condition="assembly" tal:replace="structure python: tool.toHTMLStrikedContent(assembly)">Premeeting assembly</span>
-                   <span tal:condition="not: assembly">-</span>
-                 </tal:block>
-               </td>
-               </tal:defines>
-              </tr>
-              </tal:loop>
-            </table>
-        </dd>
-      </dl>
-</tal:premeetings>
-  <tal:comment replace="nothing">XXX end changes for MeetingSeraing</tal:comment>
-
   <tal:comment replace="nothing">Show items that may be presented into the current meeting</tal:comment>
   <fieldset tal:define="whichItems string:availableItems" tal:condition="showAvailableItems">
     <legend> <span i18n:translate='available_items'>Available items</span>

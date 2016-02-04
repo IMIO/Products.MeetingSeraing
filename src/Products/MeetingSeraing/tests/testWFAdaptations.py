@@ -70,7 +70,11 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         '''No sense...'''
         pass
 
-    def test_subproduct_WFA_add_published_state(self):
+    def test_subproduct_call_WFA_add_published_state(self):
+        '''No sense...'''
+        pass
+
+    def test_subproduct_call_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing(self):
         '''No sense...'''
         pass
 
@@ -107,7 +111,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.validateItem(item)
         # create a Meeting and add the item to it
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date=DateTime())
+        self.create('Meeting', date=DateTime())
         self.presentItem(item)
         # now that it is presented, the pmCreator1/pmReviewer1 can not edit it anymore
         for userId in ('pmCreator1', 'pmReviewer1'):
@@ -135,13 +139,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
         self.assertEquals(item.queryState(), 'presented')
-        # XXX changed by MeetingSeraing
-        # send the item back to proposing group, set the meeting in_committee then send the item back to the meeting
-        # the item should be now in the item state corresponding to the meeting frozen state, so 'itemfrozen'
-        self.do(item, 'return_to_proposing_group')
-        self.do(meeting, 'setInCommittee')
-        self.do(item, 'backTo_item_in_committee_from_returned_to_proposing_group')
-        self.assertEquals(item.queryState(), 'item_in_committee')
 
     def test_subproduct_call_WFA_hide_decisions_when_under_writing(self):
         '''Only launch the test for meetingConfig not for meetingConfig2 as no

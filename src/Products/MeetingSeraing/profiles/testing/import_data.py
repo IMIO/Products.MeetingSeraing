@@ -243,22 +243,26 @@ collegeMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
                                                  'propose',
                                                  'validate',
                                                  'present', )
-collegeMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
+collegeMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'validateByDGA',
+                                                              'item_transition': 'itemValidateByDGA'},
+
+                                                             {'meeting_transition': 'freeze',
+                                                              'item_transition': 'itemValidateByDGA'},
+                                                             {'meeting_transition': 'freeze',
                                                               'item_transition': 'itemfreeze'},
 
                                                              {'meeting_transition': 'decide',
                                                               'item_transition': 'itemfreeze'},
 
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'accept'},
-
+                                                             {'meeting_transition': 'close',
+                                                              'item_transition': 'itemValidateByDGA'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'itemfreeze'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'accept'},
 
+                                                             {'meeting_transition': 'backToCreated',
+                                                              'item_transition': 'backToItemValidatedByDGA'},
                                                              {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
 collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
@@ -322,68 +326,71 @@ councilMeeting.meetingFileTypes = [annexe, annexeBudget, annexeCahier,
 councilMeeting.usedItemAttributes = ['oralQuestion', 'itemInitiator', 'observations',
                                      'privacy', 'itemAssembly', 'itemIsSigned',
                                      'motivation', ]
-councilMeeting.itemWorkflow = 'meetingitemcouncilseraing_workflow'
-councilMeeting.meetingWorkflow = 'meetingcouncilseraing_workflow'
-councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowConditions'
-councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCouncilSeraingWorkflowActions'
-councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowConditions'
-councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCouncilSeraingWorkflowActions'
+councilMeeting.itemWorkflow = 'meetingitemcollegeseraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingcollegeseraing_workflow'
+councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
+councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
+councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
+councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
 councilMeeting.transitionsToConfirm = []
-councilMeeting.transitionsForPresentingAnItem = ['propose', 'validate', 'present', ]
-councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
-                                                              'item_transition': 'itemfreeze'},
+councilMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
+                                                 'proposeToOfficeManager',
+                                                 'proposeToDivisionHead',
+                                                 'propose',
+                                                 'validate',
+                                                 'present', )
+councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'validateByDGA',
+                                                              'item_transition': 'itemValidateByDGA'},
 
-                                                             {'meeting_transition': 'publish',
+                                                             {'meeting_transition': 'freeze',
+                                                              'item_transition': 'itemValidateByDGA'},
+                                                             {'meeting_transition': 'freeze',
                                                               'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish',
-                                                              'item_transition': 'itempublish'},
 
                                                              {'meeting_transition': 'decide',
                                                               'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'decide',
-                                                              'item_transition': 'itempublish'},
-
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'itemfreeze'},
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'itempublish'},
-                                                             {'meeting_transition': 'publish_decisions',
-                                                              'item_transition': 'accept'},
 
                                                              {'meeting_transition': 'close',
-                                                              'item_transition': 'itemfreeze'},
+                                                              'item_transition': 'itemValidateByDGA'},
                                                              {'meeting_transition': 'close',
-                                                              'item_transition': 'itempublish'},
+                                                              'item_transition': 'itemfreeze'},
                                                              {'meeting_transition': 'close',
                                                               'item_transition': 'accept'},
 
                                                              {'meeting_transition': 'backToCreated',
+                                                              'item_transition': 'backToItemValidatedByDGA'},
+                                                             {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
-
-councilMeeting.meetingTopicStates = ('created', 'frozen', 'published')
+councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
+                                  'proposed_to_divisionhead', 'proposed', 'validated',
+                                  'presented', 'itemfrozen', 'accepted',
+                                  'delayed', 'pre_accepted', 'removed',)
+councilMeeting.meetingTopicStates = ('created', 'frozen')
 councilMeeting.decisionTopicStates = ('decided', 'closed')
-councilMeeting.itemAdviceStates = ('validated',)
 councilMeeting.recordItemHistoryStates = []
 councilMeeting.maxShownMeetings = 5
 councilMeeting.maxDaysDecisions = 60
 councilMeeting.meetingAppDefaultView = 'topic_searchmyitems'
-councilMeeting.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
-councilMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_categories',
-                                             'reverse': '0'}, )
-councilMeeting.useGroupsAsCategories = False
+councilMeeting.itemDocFormats = ('odt', 'pdf')
+councilMeeting.meetingDocFormats = ('odt', 'pdf')
 councilMeeting.useAdvices = False
 councilMeeting.itemAdviceStates = ['proposed', ]
 councilMeeting.itemAdviceEditStates = ['proposed', 'validated']
 councilMeeting.itemAdviceViewStates = ['presented', ]
 councilMeeting.transitionReinitializingDelays = 'backToItemCreated'
 councilMeeting.enforceAdviceMandatoriness = False
-councilMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
-councilMeeting.itemPowerObserversStates = collegeMeeting.itemPowerObserversStates
-councilMeeting.meetingPowerObserversStates = collegeMeeting.meetingPowerObserversStates
+councilMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
+councilMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
+councilMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_categories',
+                                             'reverse': '0'}, )
+councilMeeting.useGroupsAsCategories = False
+councilMeeting.meetingPowerObserversStates = ('frozen', 'published', 'decided', 'closed')
 councilMeeting.useCopies = True
 councilMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
 councilMeeting.useVotes = True
 councilMeeting.meetingUsers = [muser_voter1, muser_voter2, ]
+councilMeeting.podTemplates = [agendaTemplate, decisionsTemplate, itemTemplate]
+
 councilMeeting.recurringItems = []
 councilMeeting.itemTemplates = (template1, template2)
 

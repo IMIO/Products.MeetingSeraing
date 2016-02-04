@@ -51,12 +51,6 @@ msgstr "Accepté avec modifications"
 msgid "ask_advices_by_itemcreator"
 msgstr "Demander les avis"
 
-msgid "backToInCommittee"
-msgstr "Remettre en commission"
-
-msgid "backToInCouncil"
-msgstr "Remettre en Conseil communal"
-
 #. Default: "send back"
 msgid "backToItemCreated"
 msgstr "Renvoyer en création"
@@ -64,12 +58,6 @@ msgstr "Renvoyer en création"
 #. Default: "bo to item frozen"
 msgid "backToItemFrozen"
 msgstr "Remettre en gelé"
-
-msgid "backToItemInCommittee"
-msgstr "Remettre en commission"
-
-msgid "backToItemInCouncil"
-msgstr "Remettre en Conseil communal"
 
 #. Default: "send back"
 msgid "backToPresented"
@@ -107,21 +95,6 @@ msgstr "Geler"
 msgid "frozen"
 msgstr "Gelée"
 
-#. Default: "In committee"
-msgid "in_committee"
-msgstr "En commission"
-
-#. Default: "In council"
-msgid "in_council"
-msgstr "En Conseil communal"
-
-#. Default: "In committee"
-msgid "item_in_committee"
-msgstr "En commission"
-
-#. Default: "In council"
-msgid "item_in_council"
-msgstr "En Conseil communal"
 
 #. Default: "frozen"
 msgid "itemfrozen"
@@ -194,17 +167,6 @@ msgstr "Le créateur de ce point n'a pas d'accès dans la partie Conseil communa
 msgid "sendtocouncil_error_no_existing_meetingconfig"
 msgstr "Le type de séance vers laquelle vous souhaitez envoyer ce point n'existe pas!"
 
-msgid "setInCommittee"
-msgstr "Mettre en commission"
-
-msgid "setInCouncil"
-msgstr "Mettre en Conseil communal"
-
-msgid "setItemInCommittee"
-msgstr "Mettre en commission"
-
-msgid "setItemInCouncil"
-msgstr "Mettre en Conseil communal"
 
 #. Default: "Some items are still under corrections in services"
 msgid "some_item_still_in_service"
@@ -230,6 +192,10 @@ msgstr "Accepté avec modifications (c)"
 msgid "accepted_closed"
 msgstr "Accepté (c)"
 
+#. Default: "Delayed On Closed Meeting"
+msgid "delayed_closed"
+msgstr "Reporté (c)"
+
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "accept_but_modify_close"
 msgstr "Accepter avec modifications (c)"
@@ -238,6 +204,10 @@ msgstr "Accepter avec modifications (c)"
 msgid "accept_close"
 msgstr "Accepter (c)"
 
+#. Default: "Delay On Closed Meeting"
+msgid "delay_close"
+msgstr "Reporter (c)"
+
 #. Default: "Back to Accepted"
 msgid "backToItemAccepted"
 msgstr "Remettre en accepté"
@@ -245,6 +215,10 @@ msgstr "Remettre en accepté"
 #. Default: "Back to Accepted But Modified"
 msgid "backToItemAcceptedButModified"
 msgstr "Remettre en Accepté avec modifications"
+
+#. Default: "Back to Delayed"
+msgid "backToItemDelayed"
+msgstr "Remettre en reporté"
 
 #. Default: "Returned to advise"
 msgid "returned_to_advise"
@@ -257,3 +231,23 @@ msgstr "Retourner pour avis"
 #. Default: "Return to proposing group from returned to advise"
 msgid "backTo_returned_to_proposing_group_from_returned_to_advise"
 msgstr "Retourner au groupe proposant"
+
+#. Default: "Validate item by DGA"
+msgid "itemValidateByDGA"
+msgstr "Valider le point par le DGA"
+
+#. Default: "Validate item by DGA"
+msgid "validateByDGA"
+msgstr "Valider la séance par le DGA"
+
+#. Default: "Back to 'validated by DGA'"
+msgid "backToValidatedByDGA"
+msgstr "Remettre en 'validé par le DGA'"
+
+#. Default: "Back to 'validated by DGA'"
+msgid "backToItemValidatedByDGA"
+msgstr "Remettre en 'validé par le DGA'"
+
+#. Default: "Validated By DGA"
+msgid "validated_by_dga"
+msgstr "Validé par le DGA"
