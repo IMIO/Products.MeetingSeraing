@@ -23,8 +23,12 @@
 #
 
 from DateTime import DateTime
+import logging
 
-from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
+from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS, \
+    RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+from Products.MeetingSeraing.adapters import RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
+from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
@@ -145,6 +149,123 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
            'decided' state exists in meetingConfig2 for the 'Meeting'.'''
         self.meetingConfig2.setMeetingWorkflow(self.meetingConfig.getMeetingWorkflow())
         mctwfa.test_pm_WFA_hide_decisions_when_under_writing(self)
+
+    def test_subproduct_WFA_return_to_advise(self):
+        '''Test the workflowAdaptation 'return_to_advise'.'''
+        # ease override by subproducts
+        if not 'returned_to_advise' in self.meetingConfig.listWorkflowAdaptations():
+            return
+        # activate the wfAdaptations and check
+        self.meetingConfig.setWorkflowAdaptations(('return_to_proposing_group', 'returned_to_advise'))
+        logger = logging.getLogger('MeetingSeraing: testing')
+        performWorkflowAdaptations(self.portal, self.meetingConfig, logger)
+        self.logger = logger
+        # test what should happen to the wf (added states and transitions)
+        self._return_to_advise_active()
+        # test the functionnality of returning an item to the advise
+        self._return_to_advise_active_wf_functionality()
+
+    def _return_to_advise_active(self):
+        '''Tests while 'return_to_advise' wfAdaptation is active.'''
+        # we subdvise this test in 3, testing every constants, this way,
+        # a subplugin can call these test separately
+        # using RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+        self._return_to_advise_active_from_item_states()
+        # RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
+        self._return_to_advise_active_state_to_clone()
+        # RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
+        self._return_to_advise_active_custom_permissions()
+
+    def _return_to_advise_active_from_item_states(self):
+        '''Helper method to test 'returned_to_advise' wfAdaptation regarding the
+           RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES defined value.'''
+        # make sure the 'return_to_proposing_group' state does not exist in the item WF
+        itemWF = getattr(self.wfTool, self.meetingConfig.getItemWorkflow())
+        self.failUnless('returned_to_advise' in itemWF.states)
+        # check from witch state we can go to 'returned_to_item', it corresponds
+        # to model.adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+        from_states = set()
+        for state in itemWF.states.values():
+            if 'returned_to_advise' in state.transitions:
+                from_states.add(state.id)
+        # at least every states in from_states were defined in RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+        self.failIf(from_states.difference(set(RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES)))
+
+    def _return_to_advise_active_state_to_clone(self):
+        '''Helper method to test 'return_to_proposing_group' wfAdaptation regarding the
+           RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE defined value.
+           In our usecase, this is Nonsense as we use RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
+        return
+
+    def _return_to_advise_active_custom_permissions(self):
+        '''Helper method to test 'return_to_proposing_group' wfAdaptation regarding the
+           RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS defined value.
+           In our use case, just test that permissions of 'returned_to_proposing_group' state
+           are the one defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
+        itemWF = getattr(self.wfTool, self.meetingConfig.getItemWorkflow())
+        returned_to_advise_state_permissions = itemWF.states['returned_to_advise'].permission_roles
+        for permission in returned_to_advise_state_permissions:
+            self.assertEquals(returned_to_advise_state_permissions[permission],
+                              RETURN_TO_ADVISE_CUSTOM_PERMISSIONS[permission])
+
+    def _return_to_advise_active_wf_functionality(self):
+        '''Tests the workflow functionality of using the 'return_to_proposing_group' wfAdaptation.
+           Same as default test until the XXX here under.'''
+        # while it is active, the creators of the item can edit the item as well as the MeetingManagers
+        self.changeUser('pmCreator1')
+        item = self.create('MeetingItem')
+        self.proposeItem(item)
+        self.changeUser('pmReviewer1')
+        self.validateItem(item)
+        # create a Meeting and add the item to it
+        self.changeUser('pmManager')
+        meeting = self.create('Meeting', date=DateTime())
+        self.presentItem(item)
+        # now that it is presented, the pmCreator1/pmReviewer1 can not edit it anymore
+        for userId in ('pmCreator1', 'pmReviewer1'):
+            self.changeUser(userId)
+            self.failIf(self.hasPermission('Modify portal content', item))
+        # the item can be send back to the proposing group by the MeetingManagers only
+        for userId in ('pmCreator1', 'pmReviewer1'):
+            self.changeUser(userId)
+            self.failIf(self.wfTool.getTransitionsFor(item))
+        self.changeUser('pmManager')
+        self.failUnless('return_to_advise' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+        # send the item back to the proposing group so the proposing group as an edit access to it
+        self.do(item, 'return_to_proposing_group')
+        self.do(item, 'return_to_advise')
+        self.changeUser('pmCreator1')
+        self.failIf(self.hasPermission('Modify portal content', item))
+        # MeetingManagers can edit it also
+        self.changeUser('pmManager')
+        self.failUnless(self.hasPermission('Modify portal content', item))
+        # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
+        self.do(item, 'backTo_presented_from_returned_to_advise')
+        self.assertEquals(item.queryState(), 'presented')
+        self.do(meeting, 'validateByDGA')
+        # send the item back to the proposing group so the proposing group as an edit access to it
+        self.do(item, 'return_to_proposing_group')
+        self.do(item, 'return_to_advise')
+        self.changeUser('pmCreator1')
+        self.failIf(self.hasPermission('Modify portal content', item))
+        # MeetingManagers can edit it also
+        self.changeUser('pmManager')
+        self.failUnless(self.hasPermission('Modify portal content', item))
+        # on the meeting state.  Here, when meeting is 'validated_by_dga', the item is back to 'validated_by_dga'
+        self.do(item, 'backTo_validated_by_dga_from_returned_to_advise')
+        self.assertEquals(item.queryState(), 'validated_by_dga')
+        self.do(meeting, 'freeze')
+        # send the item back to the proposing group so the proposing group as an edit access to it
+        self.do(item, 'return_to_proposing_group')
+        self.do(item, 'return_to_advise')
+        self.changeUser('pmCreator1')
+        self.failIf(self.hasPermission('Modify portal content', item))
+        # MeetingManagers can edit it also
+        self.changeUser('pmManager')
+        self.failUnless(self.hasPermission('Modify portal content', item))
+        # on the meeting state.  Here, when meeting is 'frozen', the item is back to 'itemfrozen'
+        self.do(item, 'backTo_itemfrozen_from_returned_to_advise')
+        self.assertEquals(item.queryState(), 'itemfrozen')
 
 
 def test_suite():

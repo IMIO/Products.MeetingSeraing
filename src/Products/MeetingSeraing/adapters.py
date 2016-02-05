@@ -61,14 +61,14 @@ originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_proposing_group':
                                              ['created', ],
-                                             'backTo_itempublished_from_returned_to_proposing_group':
-                                             ['published', ],
+                                             'backTo_validated_by_dga_from_returned_to_proposing_group':
+                                             ['validated_by_dga', ],
                                              'backTo_itemfrozen_from_returned_to_proposing_group':
                                              ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_presented_from_returned_to_advise':
                                              ['created', ],
-                                             'backTo_itempublished_from_returned_to_advise':
-                                             ['published', ],
+                                             'backTo_validated_by_dga_from_returned_to_advise':
+                                             ['validated_by_dga', ],
                                              'backTo_itemfrozen_from_returned_to_advise':
                                              ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_returned_to_proposing_group_from_returned_to_advise':
@@ -77,8 +77,7 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_
                                              }
 adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
 
-RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ('presented', 'itemfrozen', 'itempublished',
-                                              'item_in_committee', 'item_in_council', )
+RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ('presented', 'validated_by_dga', 'itemfrozen', )
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     # view permissions
@@ -102,9 +101,6 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
      'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read item observations':
     ('Manager', 'MeetingManager', ),
-    'MeetingSeraing: Read commission transcript':
-    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     # edit permissions
     'Modify portal content':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
@@ -137,8 +133,6 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     ('Manager', 'MeetingManager', ),
     'PloneMeeting: Write item observations':
     ('Manager', 'MeetingManager', ),
-    'MeetingSeraing: Write commission transcript':
-    ('Manager', 'MeetingManager', ),
 }
 adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 
@@ -163,11 +157,7 @@ RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
     ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
      'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read item observations':
-    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
-    'MeetingSeraing: Read commission transcript':
-    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
-     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
+    ('Manager', 'MeetingManager', ),
     # edit permissions
     'Modify portal content':
     ('Manager', 'MeetingManager', ),
@@ -191,8 +181,6 @@ RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
     'Delete objects':
     ('Manager', 'MeetingManager', ),
     'PloneMeeting: Write item observations':
-    ('Manager', 'MeetingManager', ),
-    'MeetingSeraing: Write commission transcript':
     ('Manager', 'MeetingManager', ),
 }
 
@@ -222,7 +210,6 @@ def customPerformWorkflowAdaptations(site, meetingConfig, logger, specificAdapta
         raise Exception(error)
 
     for wfAdaptation in wfAdaptations:
-
         if not wfAdaptation in ['returned_to_advise', ]:
             # call original perform of PloneMeeting
             originalPerformWorkflowAdaptations(site, meetingConfig, logger, specificAdaptation=wfAdaptation)
