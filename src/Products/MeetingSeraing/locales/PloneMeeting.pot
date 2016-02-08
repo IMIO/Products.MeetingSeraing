@@ -284,6 +284,6 @@ msgstr ""
 msgid "late_presented_items"
 msgstr ""
 
-#. Default: "Validated By DGA"
-msgid "icon_help_validated_by_dga"
+#. Default: "Validated By DG"
+msgid "icon_help_validated_by_dg"
 msgstr ""

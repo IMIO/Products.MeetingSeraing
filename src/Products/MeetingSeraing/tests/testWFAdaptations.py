@@ -242,7 +242,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'backTo_presented_from_returned_to_advise')
         self.assertEquals(item.queryState(), 'presented')
-        self.do(meeting, 'validateByDGA')
+        self.do(meeting, 'validateByDG')
         # send the item back to the proposing group so the proposing group as an edit access to it
         self.do(item, 'return_to_proposing_group')
         self.do(item, 'return_to_advise')
@@ -251,9 +251,9 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         # MeetingManagers can edit it also
         self.changeUser('pmManager')
         self.failUnless(self.hasPermission('Modify portal content', item))
-        # on the meeting state.  Here, when meeting is 'validated_by_dga', the item is back to 'validated_by_dga'
-        self.do(item, 'backTo_validated_by_dga_from_returned_to_advise')
-        self.assertEquals(item.queryState(), 'validated_by_dga')
+        # on the meeting state.  Here, when meeting is 'validated_by_dg', the item is back to 'validated_by_dg'
+        self.do(item, 'backTo_validated_by_dg_from_returned_to_advise')
+        self.assertEquals(item.queryState(), 'validated_by_dg')
         self.do(meeting, 'freeze')
         # send the item back to the proposing group so the proposing group as an edit access to it
         self.do(item, 'return_to_proposing_group')
