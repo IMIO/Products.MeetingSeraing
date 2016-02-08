@@ -87,7 +87,7 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         self.presentItem(item)
         self.failUnless(self.hasPermission('Modify portal content', item))
         self.changeUser('pmManager')
-        self.do(meeting, 'validateByDGA')
+        self.do(meeting, 'validateByDG')
         self.changeUser('powerEditor1')
         self.failUnless(self.hasPermission('Modify portal content', item))
         self.changeUser('pmManager')

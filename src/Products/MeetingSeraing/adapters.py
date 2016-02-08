@@ -61,14 +61,14 @@ originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_proposing_group':
                                              ['created', ],
-                                             'backTo_validated_by_dga_from_returned_to_proposing_group':
-                                             ['validated_by_dga', ],
+                                             'backTo_validated_by_dg_from_returned_to_proposing_group':
+                                             ['validated_by_dg', ],
                                              'backTo_itemfrozen_from_returned_to_proposing_group':
                                              ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_presented_from_returned_to_advise':
                                              ['created', ],
-                                             'backTo_validated_by_dga_from_returned_to_advise':
-                                             ['validated_by_dga', ],
+                                             'backTo_validated_by_dg_from_returned_to_advise':
+                                             ['validated_by_dg', ],
                                              'backTo_itemfrozen_from_returned_to_advise':
                                              ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_returned_to_proposing_group_from_returned_to_advise':
@@ -77,7 +77,7 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_
                                              }
 adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
 
-RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ('presented', 'validated_by_dga', 'itemfrozen', )
+RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ('presented', 'validated_by_dg', 'itemfrozen', )
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     # view permissions
@@ -709,10 +709,10 @@ class CustomMeetingItem(MeetingItem):
                                      'validated', )
     MeetingItem.beforePublicationStates = customBeforePublicationStates
 
-    customMeetingNotClosedStates = ('validated_by_dga', 'frozen', 'decided', )
+    customMeetingNotClosedStates = ('validated_by_dg', 'frozen', 'decided', )
     MeetingItem.meetingNotClosedStates = customMeetingNotClosedStates
 
-    customMeetingTransitionsAcceptingRecurringItems = ('_init_', 'validated_by_dga', 'freeze', 'decide', )
+    customMeetingTransitionsAcceptingRecurringItems = ('_init_', 'validated_by_dg', 'freeze', 'decide', )
     MeetingItem.meetingTransitionsAcceptingRecurringItems = customMeetingTransitionsAcceptingRecurringItems
 
     def __init__(self, item):
@@ -748,8 +748,8 @@ class CustomMeetingItem(MeetingItem):
             res.append(('proposeToOfficeManager.png', 'icon_help_proposed_to_officemanager'))
         elif itemState == 'item_in_council':
             res.append(('item_in_council.png', 'icon_help_item_in_council'))
-        elif itemState == 'validated_by_dga':
-            res.append(('itemValidateByDGA.png', 'icon_help_validated_by_dga'))
+        elif itemState == 'validated_by_dg':
+            res.append(('itemValidateByDG.png', 'icon_help_validated_by_dg'))
         elif itemState == 'proposed_to_servicehead':
             res.append(('proposeToServiceHead.png', 'icon_help_proposed_to_servicehead'))
         elif itemState == 'accepted_but_modified_closed':
@@ -813,7 +813,7 @@ class CustomMeetingItem(MeetingItem):
         old_setTakenOverBy(self, value, **kwargs)
         item = self.getSelf()
         if not item._at_creation_flag:
-            wf_states_to_keep = ['presented', 'validated_by_dga', 'itemfrozen', 'accepted_but_modified', 'accepted']
+            wf_states_to_keep = ['presented', 'validated_by_dg', 'itemfrozen', 'accepted_but_modified', 'accepted']
             if item.queryState() in wf_states_to_keep:
                 tool = getToolByName(item, 'portal_plonemeeting')
                 cfg = tool.getMeetingConfig(item)
@@ -1042,7 +1042,7 @@ class CustomMeetingConfig(MeetingConfig):
 
     security.declarePublic('getMeetingsAcceptingItems')
 
-    def getMeetingsAcceptingItems(self, review_states=('created', 'validated_by_dga', 'frozen'), inTheFuture=False):
+    def getMeetingsAcceptingItems(self, review_states=('created', 'validated_by_dg', 'frozen'), inTheFuture=False):
         '''This returns meetings that are still accepting items.'''
         cfg = self.getSelf()
         tool = getToolByName(cfg, 'portal_plonemeeting')
@@ -1050,7 +1050,7 @@ class CustomMeetingConfig(MeetingConfig):
         # If the current user is a meetingManager (or a Manager),
         # he is able to add a meetingitem to a 'decided' meeting.
         # except if we specifically restricted given p_review_states.
-        if review_states == ('created', 'validated_by_dga', 'frozen') and tool.isManager(cfg):
+        if review_states == ('created', 'validated_by_dg', 'frozen') and tool.isManager(cfg):
             review_states += ('decided', )
 
         query = {'portal_type': cfg.getMeetingTypeName(),
@@ -1101,17 +1101,17 @@ class MeetingCollegeSeraingWorkflowActions(MeetingWorkflowActions):
            meeting manager wants to add an item, we do not do anything.'''
         pass
 
-    security.declarePrivate('doValidateByDGA')
+    security.declarePrivate('doValidateByDG')
 
-    def doValidateByDGA(self, stateChange):
-        '''When a meeting go to the "validatedByDGA" state, for example the
+    def doValidateByDG(self, stateChange):
+        '''When a meeting go to the "validatedByDG" state, for example the
            meeting manager wants to add an item, we do not do anything.'''
         pass
 
-    security.declarePrivate('doBackToValidatedByDGA')
+    security.declarePrivate('doBackToValidatedByDG')
 
-    def doBackToValidatedByDGA(self, stateChange):
-        '''When a meeting go back to the "validatedByDGA" state, for example the
+    def doBackToValidatedByDG(self, stateChange):
+        '''When a meeting go back to the "validatedByDG" state, for example the
            meeting manager wants to add an item, we do not do anything.'''
         pass
 
@@ -1125,12 +1125,12 @@ class MeetingCollegeSeraingWorkflowConditions(MeetingWorkflowConditions):
 
     def __init__(self, meeting):
         self.context = meeting
-        customAcceptItemsStates = ('created', 'validated_by_dga', 'frozen', 'decided')
+        customAcceptItemsStates = ('created', 'validated_by_dg', 'frozen', 'decided')
         self.acceptItemsStates = customAcceptItemsStates
 
-    security.declarePublic('mayValidateByDGA')
+    security.declarePublic('mayValidateByDG')
 
-    def mayValidateByDGA(self):
+    def mayValidateByDG(self):
         res = False
         if checkPermission(ReviewPortalContent, self.context):
             res = True  # At least at present
@@ -1237,9 +1237,9 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def doDelay_close(self, stateChange):
         pass
 
-    security.declarePrivate('doItemValidateByDGA')
+    security.declarePrivate('doItemValidateByDG')
 
-    def doItemValidateByDGA(self, stateChange):
+    def doItemValidateByDG(self, stateChange):
         pass
 
     security.declarePrivate('doBackToItemAcceptedButModified')
@@ -1257,9 +1257,9 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def doBackToItemDelayed(self, stateChange):
         pass
 
-    security.declarePrivate('doBackToItemValidatedByDGA')
+    security.declarePrivate('doBackToItemValidatedByDG')
 
-    def doBackToItemValidatedByDGA(self, stateChange):
+    def doBackToItemValidatedByDG(self, stateChange):
         pass
 
     security.declarePrivate('doReturn_to_advise')
@@ -1272,7 +1272,7 @@ class MeetingItemCollegeSeraingWorkflowActions(MeetingItemWorkflowActions):
     def _freezePresentedItem(self):
         '''Presents an item into a frozen meeting. '''
         wTool = getToolByName(self.context, 'portal_workflow')
-        wTool.doActionFor(self.context, 'itemValidateByDGA')
+        wTool.doActionFor(self.context, 'itemValidateByDG')
         wTool.doActionFor(self.context, 'itemfreeze')
 
 
@@ -1333,13 +1333,13 @@ class MeetingItemCollegeSeraingWorkflowConditions(MeetingItemWorkflowConditions)
                 res = True
         return res
 
-    security.declarePublic('mayValidateByDGA')
+    security.declarePublic('mayValidateByDG')
 
-    def mayValidateByDGA(self):
+    def mayValidateByDG(self):
         res = False
         if checkPermission(ReviewPortalContent, self.context):
             if self.context.hasMeeting() and \
-               (self.context.getMeeting().queryState() in ('created', 'validated_by_dga',
+               (self.context.getMeeting().queryState() in ('created', 'validated_by_dg',
                                                            'frozen', 'decided', 'closed')):
                 res = True
         return res

@@ -43,22 +43,22 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
                                                                              'validate',
                                                                              'present', )
 
-    TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_2 = ('validateByDGA', 'freeze',
+    TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_2 = ('validateByDG', 'freeze',
                                                                                              'decide', )
-    TRANSITIONS_FOR_FREEZING_MEETING_1 = TRANSITIONS_FOR_FREEZING_MEETING_2 = ('validateByDGA', 'freeze', )
-    TRANSITIONS_FOR_PUBLISHING_MEETING_1 = TRANSITIONS_FOR_PUBLISHING_MEETING_2 = ('validateByDGA', 'freeze', )
-    TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('validateByDGA', 'freeze', 'decide', )
-    TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('validateByDGA', 'freeze', 'decide',
+    TRANSITIONS_FOR_FREEZING_MEETING_1 = TRANSITIONS_FOR_FREEZING_MEETING_2 = ('validateByDG', 'freeze', )
+    TRANSITIONS_FOR_PUBLISHING_MEETING_1 = TRANSITIONS_FOR_PUBLISHING_MEETING_2 = ('validateByDG', 'freeze', )
+    TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('validateByDG', 'freeze', 'decide', )
+    TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('validateByDG', 'freeze', 'decide',
                                                                              'close', )
     BACK_TO_WF_PATH_1 = BACK_TO_WF_PATH_2 = {
         # Meeting
         'created': ('backToDecided',
                     'backToFrozen',
-                    'backToValidatedByDGA',
+                    'backToValidatedByDG',
                     'backToCreated',),
         # MeetingItem
         'itemcreated': ('backToItemFrozen',
-                        'backToItemValidatedByDGA',
+                        'backToItemValidatedByDG',
                         'backToPresented',
                         'backToValidated',
                         'backToProposed',
@@ -67,12 +67,12 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
                         'backToProposedToServiceHead',
                         'backToItemCreated'),
         'proposed': ('backToItemFrozen',
-                     'backToItemValidatedByDGA',
+                     'backToItemValidatedByDG',
                      'backToPresented',
                      'backToValidated',
                      'backToProposed', ),
         'validated': ('backToItemFrozen',
-                      'backToItemValidatedByDGA',
+                      'backToItemValidatedByDG',
                       'backToPresented',
                       'backToValidated', )}
 

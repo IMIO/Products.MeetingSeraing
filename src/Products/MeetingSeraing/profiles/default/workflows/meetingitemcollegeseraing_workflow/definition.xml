@@ -971,7 +971,7 @@
   <exit-transition transition_id="delay"/>
   <exit-transition transition_id="accept_but_modify"/>
   <exit-transition transition_id="backToValidated"/>
-  <exit-transition transition_id="backToItemValidatedByDGA"/>
+  <exit-transition transition_id="backToItemValidatedByDG"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
@@ -1118,7 +1118,7 @@
         title="presented"
         i18n:attributes="title">
   <exit-transition transition_id="backToValidated"/>
-  <exit-transition transition_id="itemValidateByDGA"/>
+  <exit-transition transition_id="itemValidateByDG"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Manager</permission-role>
@@ -1872,8 +1872,8 @@
    <permission-role>Reader</permission-role>
   </permission-map>
  </state>
- <state state_id="validated_by_dga"
-        title="validated_by_dga"
+ <state state_id="validated_by_dg"
+        title="validated_by_dg"
         i18n:attributes="title">
   <exit-transition transition_id="itemfreeze"/>
   <exit-transition transition_id="backToPresented"/>
@@ -2127,14 +2127,14 @@
     <guard-expression>python:here.wfConditions().mayCorrect()</guard-expression>
   </guard>
  </transition>
- <transition transition_id="backToItemValidatedByDGA"
-             title="backToItemValidatedByDGA"
-             new_state="validated_by_dga"
+ <transition transition_id="backToItemValidatedByDG"
+             title="backToItemValidatedByDG"
+             new_state="validated_by_dg"
              trigger="USER"
              before_script=""
              after_script=""
              i18n:attributes="title">
-  <action url="" category="workflow" i18n:translate="">backToItemValidatedByDGA</action>
+  <action url="" category="workflow" i18n:translate="">backToItemValidatedByDG</action>
   <guard>
     <guard-expression>python:here.wfConditions().mayCorrect()</guard-expression>
   </guard>
@@ -2235,16 +2235,16 @@
     <guard-expression>python:here.wfConditions().mayClose()</guard-expression>
   </guard>
  </transition>
- <transition transition_id="itemValidateByDGA"
-             title="itemValidateByDGA"
-             new_state="validated_by_dga"
+ <transition transition_id="itemValidateByDG"
+             title="itemValidateByDG"
+             new_state="validated_by_dg"
              trigger="USER"
              before_script=""
              after_script=""
              i18n:attributes="title">
-  <action url="" category="workflow" i18n:translate="">itemValidateByDGA</action>
+  <action url="" category="workflow" i18n:translate="">itemValidateByDG</action>
   <guard>
-    <guard-expression>python:here.wfConditions().mayValidateByDGA()</guard-expression>
+    <guard-expression>python:here.wfConditions().mayValidateByDG()</guard-expression>
   </guard>
  </transition>
  <transition transition_id="itemfreeze"
