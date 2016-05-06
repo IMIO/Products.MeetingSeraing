@@ -30,6 +30,7 @@
                   member context/@@plone_portal_state/member;
                   meetingConfig python:tool.getMeetingConfig(context);
                   meetingUid context/UID;
+                  mode python:'view';
                   bilingual python: 'secondLanguage' in tool.getModelAdaptations();
                   iStartNumber python: context.getBatchStartNumber(late=False);
                   lStartNumber python: context.getBatchStartNumber(late=True);
@@ -379,6 +380,14 @@
     </tr>
   </table>
   </tal:assemblyFields>
+
+  <tal:sectionFields>
+    <table>
+        <td width="33%" tal:define="field python:here.getField('sections')">
+          <span metal:use-macro="here/widgets/field/macros/view" />
+        </td>
+    </table>
+  </tal:sectionFields>
 
   <tal:comment replace="nothing">Show items that may be presented into the current meeting</tal:comment>
   <fieldset tal:define="whichItems string:availableItems" tal:condition="showAvailableItems">

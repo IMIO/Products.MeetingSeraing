@@ -1,13 +1,42 @@
+# -*- coding: utf-8 -*-
+# ------------------------------------------------------------------------------
+#
+# File: adapters.py
+#
+# Copyright (c) 2013 by Imio.be
+#
+# GNU General Public License (GPL)
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+# ------------------------------------------------------------------------------
 from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import RichWidget
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import TextField
 from Products.Archetypes.atapi import LinesField
 from Products.Archetypes.atapi import MultiSelectionWidget
+from Products.DataGridField import DataGridField
+from Products.DataGridField.Column import Column
+from Products.DataGridField.SelectColumn import SelectColumn
 
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingGroup import MeetingGroup
 from Products.PloneMeeting.MeetingItem import MeetingItem
+from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.config import WriteRiskyConfig
 
 
@@ -151,6 +180,36 @@ def update_item_schema(baseSchema):
     completeItemSchema = baseSchema + specificSchema.copy()
     return completeItemSchema
 MeetingItem.schema = update_item_schema(MeetingItem.schema)
+
+
+def update_meeting_schema(baseSchema):
+    specificSchema = Schema((
+
+        DataGridField(
+            name='sections',
+            widget=DataGridField._properties['widget'](
+                description="Sections",
+                description_msgid="sections_descr",
+                condition="python: here.portal_type == 'MeetingCouncil'",
+                columns={'name_section': SelectColumn("Sections name", vocabulary="listSections",
+                                                      col_description="Select the section name."),
+                         'date_section': Column("Section date",
+                                                col_description="Enter valid from date, "
+                                                                "use following format : DD/MM/YYYY."), },
+                label='Sections',
+                label_msgid='MeetingSeraing_label_sections',
+                i18n_domain='PloneMeeting',
+            ),
+            allow_oddeven=True,
+            write_permission="Modify portal content",
+            columns=('name_section', 'date_section'),
+            allow_empty_rows=False,
+        ),
+    ),)
+
+    completeSchema = baseSchema + specificSchema.copy()
+    return completeSchema
+Meeting.schema = update_meeting_schema(Meeting.schema)
 
 
 # Classes have already been registered, but we register them again here

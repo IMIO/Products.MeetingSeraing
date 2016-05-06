@@ -683,6 +683,20 @@ class CustomMeeting(Meeting):
         return len(filteredItemUids)
     Meeting.getNumberOfItems = getNumberOfItems
 
+    def listSections(self):
+        '''Vocabulary for column 'name_section' of Meeting.sections.'''
+        res = [('ag', "Section de l'administration générale"),
+               ('ens', "Section de l'enseignement"),
+               ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
+               ('cul', "Section de la culture et des sports"),
+               ('tec', "Section du développement territorial, économique et du commerce"),
+               ('fin', "Section des finances et des marchés publics"),
+               ('env', "Section de la propreté, de l'environnement, du développement durable et des travaux"),
+               ('ec', "Section de l'état civil"),
+               ('as', "Section des affaires sociales")]
+        return DisplayList(tuple(res))
+    Meeting.listSections = listSections
+
 old_setTakenOverBy = MeetingItem.setTakenOverBy
 
 
