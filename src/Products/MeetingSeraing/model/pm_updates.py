@@ -190,6 +190,7 @@ def update_meeting_schema(baseSchema):
             widget=DataGridField._properties['widget'](
                 description="Sections",
                 description_msgid="sections_descr",
+                condition="python: here.portal_type == 'MeetingCouncil'",
                 columns={'name_section': SelectColumn("Sections name", vocabulary="listSections",
                                                       col_description="Select the section name."),
                          'date_section': Column("Section date",
