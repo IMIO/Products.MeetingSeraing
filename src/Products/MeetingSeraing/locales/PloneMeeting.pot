@@ -287,3 +287,7 @@ msgstr ""
 #. Default: "Validated By DG"
 msgid "icon_help_validated_by_dg"
 msgstr ""
+
+#. Default: "Sections"
+msgid "MeetingSeraing_label_sections"
+msgstr ""

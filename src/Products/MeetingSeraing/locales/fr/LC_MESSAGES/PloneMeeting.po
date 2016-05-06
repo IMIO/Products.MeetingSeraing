@@ -24,14 +24,41 @@ msgstr "Collège communal"
 msgid "Meeting config Seraing Council"
 msgstr "Conseil communal"
 
+#. Default: "Choose proposing group for cdld advice"
+msgid "MeetingCommunes_descr_cdldProposingGroup"
+msgstr "Choisir les groupes donneurs d'avis qui seront repris dans la synthèse CDLD (avis DF)"
+
+#. Default: "Proposing group to keep for CDLD synthesis"
+msgid "MeetingCommunes_label_cdldProposingGroup"
+msgstr "Groupes proposants à garder pour la synthèse des avis pour le CDLD (avis DF)"
+
+#. Default: "Alderman of the following services (departments)"
+msgid "MeetingCommunes_label_echevinServices"
+msgstr "Echevins des services suivants"
+
+#. Default: "Initialize the item decision when deciding meeting"
+msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide"
+msgstr "Initialiser le champ décision des points lorsque la séance passe 'En rédaction du PV'?"
+
 #. Default: "If you don't fill this field, meeting assembly will be used for this item."
 msgid "MeetingSeraing_descr_assembly"
 msgstr "Laissez ce champ vide pour utiliser l'assemblée qui sera définie sur la séance"
 
+#. Default: "Personal Note for DG"
+msgid "MeetingSeraing_descr_dgnote"
+msgstr "Cette zone n'est visible que par les gestionnaires de séances et les administrateurs du système."
 
 #. Default: "Transcription of interventions"
 msgid "MeetingSeraing_descr_interventions"
 msgstr "Retranscription des interventions"
+
+#. Default: "Motivation help field"
+msgid "MeetingSeraing_descr_motivation"
+msgstr "N'oubliez-pas d'adapter les TEXTES LEGAUX / REGLEMENTAIRES SI NECESSAIRE"
+
+#. Default: "Note in pv"
+msgid "MeetingSeraing_descr_pvNote"
+msgstr "Cette zone sera reprise dans le pv."
 
 # MeetingGroup
 #. Default: "Leave empty to use the signatures defined on the meeting"
@@ -41,6 +68,14 @@ msgstr "Si vous ne remplissez pas le champ, les signatures certifiées définies
 #. Default: "Deliberation"
 msgid "MeetingSeraing_label_councildecision"
 msgstr "Délibération"
+
+#. Default: "Explanatory note"
+msgid "MeetingSeraing_label_councildescription"
+msgstr "Description"
+
+#. Default: "DG Note"
+msgid "MeetingSeraing_label_dgnote"
+msgstr "Note personnelle du DG"
 
 #. Default: "Interventions"
 msgid "MeetingSeraing_label_interventions"
@@ -54,11 +89,47 @@ msgstr "Assemblée spécifique liée à ce point"
 msgid "MeetingSeraing_label_meetingcouncilobservations"
 msgstr "Avant-séance"
 
+#. Default: "PV Note"
+msgid "MeetingSeraing_label_pvNote"
+msgstr "Note de pv"
+
+#. Default: "Sections"
+msgid "MeetingSeraing_label_sections"
+msgstr "Sections"
+
+#. Default: "Observations"
+msgid "PloneMeeting_itemObservations"
+msgstr "Instructions"
+
+#. Default: "Deadline for validating late items"
+msgid "PloneMeeting_label_deadlineFreeze"
+msgstr "Echéance pour valider les points supplémentaires"
+
 # import what was done in MeetingCommunes
 # MeetingItem
 #. Default: "Decision"
 msgid "PloneMeeting_label_decision"
 msgstr "Décision"
+
+#. Default: "Detailed description"
+msgid "PloneMeeting_label_detailedDescription"
+msgstr "Note de synthèse"
+
+#. Default: "Default deadline for validating late items for a given meeting"
+msgid "PloneMeeting_label_freezeDeadlineDefault"
+msgstr "Echéance par défaut pour valider les points supplémentaires pour une séance donnée"
+
+#. Default: "This item must be print in meeting"
+msgid "PloneMeeting_label_item_print_in_meeting"
+msgstr "Ce point sera à signer sur séance."
+
+#. Default: "Default date for the pre-meeting"
+msgid "PloneMeeting_label_preMeetingDateDefault"
+msgstr "Date de séance préparatoire"
+
+#. Default: "Observations for the preparatory meeting"
+msgid "PloneMeeting_label_preObservations"
+msgstr "Observations préparatoire"
 
 # object_buttons
 #. Default: "Send to council"
@@ -90,9 +161,21 @@ msgstr "Bienvenue sur PloneMeeting!"
 msgid "icon_help_accepted_but_modified"
 msgstr "Accepté provisoirement"
 
+#. Default: "Accepted but modified On Closed Meeting"
+msgid "icon_help_accepted_but_modified_closed"
+msgstr "Accepté avec modifications"
+
+#. Default: "Accepted On Closed Meeting"
+msgid "icon_help_accepted_closed"
+msgstr "Accepté"
+
 #. Default: "Item in council"
 msgid "icon_help_item_in_council"
 msgstr "En Conseil communal"
+
+#. Default: "Late"
+msgid "icon_help_late"
+msgstr "Supplémentaire"
 
 #. Default: "Proposed to director"
 msgid "icon_help_proposed_to_director"
@@ -110,22 +193,62 @@ msgstr "Proposé au chef de bureau"
 msgid "icon_help_proposed_to_servicehead"
 msgstr "Proposé au chef de service"
 
-#. Default: "Assembly"
-msgid "listingheader_premeeting_assembly"
-msgstr "Assemblée"
+#. Default: "Removed"
+msgid "icon_help_removed"
+msgstr "Retiré de la séance"
 
-#. Default: "Date"
-msgid "listingheader_premeeting_date"
-msgstr "Date"
+#. Default: "Returned to advise"
+msgid "icon_help_returned_to_advise"
+msgstr "Retourné pour avis"
 
-#. Default: "Place"
-msgid "listingheader_premeeting_place"
-msgstr "Lieu"
+#. Default: "To print in meeting"
+msgid "icon_help_to_print"
+msgstr "A imprimer en séance."
+
+#. Default: "Validated By DG"
+msgid "icon_help_validated_by_dg"
+msgstr "Validé par le DG"
+
+#. Default: "If you check this box, when a meeting will be decided, if an item does not have a decision defined, this decision will be automatically filled with title and description of the item"
+msgid "init_item_decision_if_empty_on_decide"
+msgstr "Copier la description dans la décision si le champ est vide."
+
+#. Default: "To print in meeting"
+msgid "item_print_in_meeting_descr"
+msgstr "Point à signer sur séance."
+
+#. Default: "Items presented tardily"
+msgid "late_presented_items"
+msgstr "Points supplémentaires présentés"
+
+#. Default: "Late"
+msgid "list_type_late"
+msgstr "Supplémentaires"
 
 # Suffix
 #. Default: "office managers"
 msgid "officemanagers"
 msgstr "chefs de bureau"
+
+#. Default: "Follow list type"
+msgid "on_list_type"
+msgstr "Par type de point (normal, supplémentaire)"
+
+#. Default: "Power editors"
+msgid "powereditors"
+msgstr "Super éditeurs"
+
+#. Default: "The preparatory meeting must occur before the meeting."
+msgid "pre_date_after_meeting_date"
+msgstr "Date après la séance"
+
+#. Default: "Preparatory meeting"
+msgid "pre_meeting"
+msgstr "Pré-séance"
+
+#. Default: "Specify here the date of the pre-meeting, relative to its meeting, in the same format as fields above.  Leave empty not to use this functionnality."
+msgid "pre_meeting_date_default_descr"
+msgstr "Date de la séance préparatoire"
 
 #. Default: "MeetingItemCollege"
 msgid "predecessor_MeetingItemCollege"
@@ -135,38 +258,14 @@ msgstr "Collège"
 msgid "predecessor_MeetingItemCouncil"
 msgstr "Conseil"
 
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_2_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_3_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_4_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_5_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_6_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_7_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
-#. Default: "Add [[ ]] around absent people (like [[Mister Sample Peter]])"
-msgid "premeeting_assembly_descr"
-msgstr "Ajoutez des double crochets [[ ]] autour des personnes absentes, par exemple : [[Mr. Untel Didier]]"
-
 # Suffix
 #. Default: "reviewers"
 msgid "reviewers"
 msgstr "directeurs"
+
+#. Default: "cdld synthesis"
+msgid "searchcdlditems"
+msgstr "Synthèse Avis DF"
 
 #. Default: "items to validate"
 msgid "searchitemstovalidate"
@@ -190,122 +289,6 @@ msgstr "chefs de service"
 msgid "signatures_length_error"
 msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas être surchargée (si la signature définie dans la configuration de séance dans le champ 'Signatures certifiées' doit être utilisée), renseignez un tiret (-)."
 
-#. Default: "Removed"
-msgid "icon_help_removed"
-msgstr "Retiré de la séance"
-
-#. Default: "This item must be print in meeting"
-msgid "PloneMeeting_label_item_print_in_meeting"
-msgstr "Ce point sera à signer sur séance."
-
-#. Default: "To print in meeting"
-msgid "item_print_in_meeting_descr"
-msgstr "Point à signer sur séance."
-
-#. Default: "Power editors"
-msgid "powereditors"
-msgstr "Super éditeurs"
-
-#. Default: "To print in meeting"
-msgid "icon_help_to_print"
-msgstr "A imprimer en séance."
-
-#. Default: "Alderman of the following services (departments)" 
-msgid "MeetingCommunes_label_echevinServices" 
-msgstr "Echevins des services suivants"
-
-#. Default: "Choose proposing group for cdld advice"
-msgid "MeetingCommunes_descr_cdldProposingGroup"
-msgstr "Choisir les groupes donneurs d'avis qui seront repris dans la synthèse CDLD (avis DF)"
-
-#. Default: "If the group is responsible of other groups, select them here above, either do not select any elements of the list."
-msgid "MeetingCommunes_descr_echevinServices"
-msgstr "Si ce groupe est responsable d'autres groupes, selectionnez les ci-dessous."
- 
-#. Default: "Proposing group to keep for CDLD synthesis"
-msgid "MeetingCommunes_label_cdldProposingGroup"
-msgstr "Groupes proposants à garder pour la synthèse des avis pour le CDLD (avis DF)"
-
-#. Default: "Initialize the item decision when deciding meeting"
-msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide"
-msgstr "Initialiser le champ décision des points lorsque la séance passe 'En rédaction du PV'?"
-
-#. Default: "cdld synthesis"
-msgid "searchcdlditems"
-msgstr "Synthèse Avis DF"
-
-#. Default: "Observations"
-msgid "PloneMeeting_itemObservations"
-msgstr "Instructions"
-
-#. Default: "PV Note" 
-msgid "MeetingSeraing_label_pvNote" 
-msgstr "Note de pv"
-
-#. Default: "Note in pv" 
-msgid "MeetingSeraing_descr_pvNote" 
-msgstr "Cette zone sera reprise dans le pv."
-
-#. Default: "DG Note" 
-msgid "MeetingSeraing_label_dgnote" 
-msgstr "Note personnelle du DG"
-
-#. Default: "Personal Note for DG" 
-msgid "MeetingSeraing_descr_dgnote" 
-msgstr "Cette zone n'est visible que par les gestionnaires de séances et les administrateurs du système."
-
-#. Default: "Motivation help field" 
-msgid "MeetingSeraing_descr_motivation" 
-msgstr "N'oubliez-pas d'adapter les TEXTES LEGAUX / REGLEMENTAIRES SI NECESSAIRE"
-
-#. Default: "Accepted but modified On Closed Meeting"
-msgid "icon_help_accepted_but_modified_closed"
-msgstr "Accepté avec modifications"
-
-#. Default: "Accepted On Closed Meeting"
-msgid "icon_help_accepted_closed"
-msgstr "Accepté"
-
-#. Default: "Returned to advise"
-msgid "icon_help_returned_to_advise"
-msgstr "Retourné pour avis"
-
-#. Default: "Detailed description"
-msgid "PloneMeeting_label_detailedDescription"
-msgstr "Note de synthèse"
-
 #. Default: "Return to advise"
 msgid "wa_returned_to_advise"
 msgstr "Renoyer pour avis"
-
-#. Default: "Late"
-msgid "icon_help_late"
-msgstr "Supplémentaire"
-
-#. Default: "Late"
-msgid "list_type_late"
-msgstr "Supplémentaires"
-
-#. Default: "Follow list type"
-msgid "on_list_type"
-msgstr "Par type de point (normal, supplémentaire)"
-
-#. Default: "Deadline for validating late items"
-msgid "PloneMeeting_label_deadlineFreeze"
-msgstr "Echéance pour valider les points supplémentaires"
-
-#. Default: "Default deadline for validating late items for a given meeting"
-msgid "PloneMeeting_label_freezeDeadlineDefault"
-msgstr "Echéance par défaut pour valider les points supplémentaires pour une séance donnée"
-
-#. Default: "Items presented tardily"
-msgid "late_presented_items"
-msgstr "Points supplémentaires présentés"
-
-#. Default: "Validated By DG"
-msgid "icon_help_validated_by_dg"
-msgstr "Validé par le DG"
-
-#. Default: "Description"
-msgid "PloneMeeting_label_itemDescription"
-msgstr "Note dactylo"
