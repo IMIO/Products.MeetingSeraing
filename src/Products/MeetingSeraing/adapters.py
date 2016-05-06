@@ -683,6 +683,8 @@ class CustomMeeting(Meeting):
         return len(filteredItemUids)
     Meeting.getNumberOfItems = getNumberOfItems
 
+    security.declarePublic('listSections')
+
     def listSections(self):
         '''Vocabulary for column 'name_section' of Meeting.sections.'''
         res = [('ag', "Section de l'administration générale"),
@@ -696,6 +698,24 @@ class CustomMeeting(Meeting):
                ('as', "Section des affaires sociales")]
         return DisplayList(tuple(res))
     Meeting.listSections = listSections
+
+    security.declarePublic('getSectionDate')
+
+    def getSectionDate(self, section_name):
+        '''Used in template.'''
+        dt = None
+        for section in self.getSelf().getSections():
+            if section['name_section'].upper() == section_name:
+                dt = DateTime(section['date_section'])
+                break
+        if not dt:
+            return ''
+        day = '%s %s' % (self.getSelf().i18n('weekday_%s' % dt.strftime('%a').lower(), domain='plonelocales').lower(),
+                         dt.strftime('%d'))
+        month = self.getSelf().i18n('month_%s' % dt.strftime('%b').lower(), domain='plonelocales').lower()
+        year = dt.strftime('%Y')
+        res = '%s %s %s' % (day, month, year)
+        return res
 
 old_setTakenOverBy = MeetingItem.setTakenOverBy
 
