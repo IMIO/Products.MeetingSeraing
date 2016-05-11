@@ -687,15 +687,16 @@ class CustomMeeting(Meeting):
 
     def listSections(self):
         '''Vocabulary for column 'name_section' of Meeting.sections.'''
-        res = [('ag', "Section de l'administration générale"),
-               ('ens', "Section de l'enseignement"),
-               ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
-               ('cul', "Section de la culture et des sports"),
+        res = [('oj', "Collège d'arrêt de l'OJ"),
                ('tec', "Section du développement territorial, économique et du commerce"),
                ('fin', "Section des finances et des marchés publics"),
                ('env', "Section de la propreté, de l'environnement, du développement durable et des travaux"),
-               ('ec', "Section de l'état civil"),
-               ('as', "Section des affaires sociales")]
+               ('ag', "Section de l'administration générale"),
+               ('ens', "Section de l'enseignement"),
+               ('as', "Section des affaires sociales"),
+               ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
+               ('cul', "Section de la culture et des sports"),
+               ('ec', "Section de l'état civil")]
         return DisplayList(tuple(res))
     Meeting.listSections = listSections
 
