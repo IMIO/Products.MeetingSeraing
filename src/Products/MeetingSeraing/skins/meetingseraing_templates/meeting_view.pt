@@ -381,13 +381,13 @@
   </table>
   </tal:assemblyFields>
 
-  <tal:sectionFields>
+  <!--tal:sectionFields : Don't show Secions field in this view>
     <table>
         <td width="33%" tal:define="field python:here.getField('sections')">
           <span metal:use-macro="here/widgets/field/macros/view" />
         </td>
     </table>
-  </tal:sectionFields>
+  </tal:sectionFields-->
 
   <tal:comment replace="nothing">Show items that may be presented into the current meeting</tal:comment>
   <fieldset tal:define="whichItems string:availableItems" tal:condition="showAvailableItems">
