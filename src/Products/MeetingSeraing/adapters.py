@@ -707,7 +707,7 @@ class CustomMeeting(Meeting):
         dt = None
         for section in self.getSelf().getSections():
             if section['name_section'].upper() == section_name:
-                dt = DateTime(section['date_section'])
+                dt = DateTime(section['date_section'], datefmt='international')
                 break
         if not dt:
             return ''
