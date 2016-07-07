@@ -27,8 +27,6 @@ from Products.PloneMeeting.exportimport.content import ToolInitializer
 def isNotMeetingSeraingProfile(context):
     return context.readDataFile("MeetingSeraing_marker.txt") is None
 
-
-
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
