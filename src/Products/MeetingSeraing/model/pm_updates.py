@@ -110,7 +110,7 @@ def update_item_schema(baseSchema):
             name='interventions',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.portal_type == 'MeetingItemCouncil' \
+                condition="python: here.portal_type in ('MeetingItemCouncil', 'MeetingItemZCouncil') \
                 and (here.portal_plonemeeting.isManager(here) or here.portal_plonemeeting.userIsAmong('powerobservers')\
                 or here.portal_plonemeeting.userIsAmong('restrictedpowerobservers'))",
                 label='Interventions',
