@@ -354,8 +354,7 @@
     </tal:field>
 
     <tal:comment replace="nothing">XXX Interventions</tal:comment>
-    <tal:field define="fieldName python: 'interventions'; ajaxEdit python:True"
-               condition="python: here.portal_type == 'MeetingItemCouncil'">
+    <tal:field define="fieldName python: 'interventions'; ajaxEdit python:True">
        <metal:f use-macro="context/@@pm-macros/macros/viewContentField"/>
     </tal:field>
 

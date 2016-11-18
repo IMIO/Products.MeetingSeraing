@@ -151,6 +151,10 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
     def test_subproduct_call_SendItemToOtherMCManually(self):
         self.test_pm_SendItemToOtherMCManually()
 
+    def test_subproduct_call_GetDeliberation(self):
+        #this methode is removed in v4 ... not necessary to make it now
+        pass
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite
