@@ -260,3 +260,31 @@ msgstr ""
 #. Default: "Validated By DG"
 msgid "validated_by_dg"
 msgstr ""
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-zcollege_from_meeting-config-college"
+msgstr ""
+
+#. Default: "Create a plonmeeting item from a zcollege item"
+msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
+msgstr ""
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_codir_from_meeting-config-college"
+msgstr ""
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-college_from_meeting-config-council"
+msgstr ""
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-college_from_codir"
+msgstr ""
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-council_from_codir"
+msgstr ""
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
+msgstr ""

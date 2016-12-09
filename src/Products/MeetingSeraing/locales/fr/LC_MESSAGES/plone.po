@@ -119,9 +119,33 @@ msgstr "Remettre en 'Validé DG'"
 msgid "backTo_returned_to_proposing_group_from_returned_to_advise"
 msgstr "Retourner au groupe proposant"
 
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_codir_from_meeting-config-college"
+msgstr "Envoyer vers CODIR"
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-college_from_codir"
+msgstr "Envoyer vers Collège Communal"
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-college_from_meeting-config-council"
+msgstr "Envoyer vers Collège Communal"
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-council_from_codir"
+msgstr "Envoyer vers Conseil Communal"
+
 #. Default: "Create an item council from an item college"
 msgid "create_to_meeting-config-council_from_meeting-config-college"
 msgstr "Envoyer vers Conseil Communal"
+
+#. Default: "Create a plonmeeting item from a college item"
+msgid "create_to_meeting-config-zcollege_from_meeting-config-college"
+msgstr "Envoyer vers Collège de Police"
+
+#. Default: "Create a plonmeeting item from a zcollege item"
+msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
+msgstr "Envoyer vers Conseil de Police"
 
 #. Default: "Decisions"
 msgid "decisions"
