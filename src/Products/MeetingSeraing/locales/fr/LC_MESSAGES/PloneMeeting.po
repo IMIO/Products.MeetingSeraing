@@ -119,6 +119,10 @@ msgstr "Note de synthèse"
 msgid "PloneMeeting_label_freezeDeadlineDefault"
 msgstr "Echéance par défaut pour valider les points supplémentaires pour une séance donnée"
 
+#. Default: "Description"
+msgid "PloneMeeting_label_itemDescription"
+msgstr "Note Dactylo"
+
 #. Default: "This item must be print in meeting"
 msgid "PloneMeeting_label_item_print_in_meeting"
 msgstr "Ce point sera à signer sur séance."

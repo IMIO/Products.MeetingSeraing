@@ -291,3 +291,7 @@ msgstr ""
 #. Default: "Sections"
 msgid "MeetingSeraing_label_sections"
 msgstr ""
+
+#. Default: "Description" 
+msgid "PloneMeeting_label_itemDescription" 
+msgstr "" 
