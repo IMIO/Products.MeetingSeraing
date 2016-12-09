@@ -245,16 +245,12 @@ msgstr ""
 msgid "itemValidateByDG"
 msgstr ""
 
-#. Default: "Back to DG the item"
-msgid "backToValidateByDG"
-msgstr ""
-
 #. Default: "Validate item by DG"
 msgid "validateByDG"
 msgstr ""
 
 #. Default: "Back to DG the item"
-msgid "backToValidateByDG"
+msgid "backToValidatedByDG"
 msgstr ""
 
 #. Default: "Back to 'validated by DG'"
