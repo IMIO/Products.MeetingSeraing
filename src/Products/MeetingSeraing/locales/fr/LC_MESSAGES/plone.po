@@ -47,7 +47,6 @@ msgid "accept_but_modify_close"
 msgstr "Accepter avec modifications (c)"
 
 #. Default: "Accepted On Closed Meeting"
-#, fuzzy
 msgid "accept_close"
 msgstr "Accepter (c)"
 
@@ -113,8 +112,8 @@ msgid "backToProposedToServiceHead"
 msgstr "Renvoyer au chef de service"
 
 #. Default: "Back to DG the item"
-msgid "backToValidateByDG"
-msgstr ""
+msgid "backToValidatedByDG"
+msgstr "Remettre en 'Validé DG'"
 
 #. Default: "Return to proposing group from returned to advise"
 msgid "backTo_returned_to_proposing_group_from_returned_to_advise"

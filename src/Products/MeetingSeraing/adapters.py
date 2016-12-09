@@ -72,7 +72,8 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_
                                              'backTo_itemfrozen_from_returned_to_advise':
                                              ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_returned_to_proposing_group_from_returned_to_advise':
-                                             ['frozen', 'decided', 'decisions_published', ],
+                                             ['created', 'validated_by_dg', 'frozen', 'decided',
+                                              'decisions_published', ],
                                              'NO_MORE_RETURNABLE_STATES': ['closed', 'archived', ]
                                              }
 adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
@@ -100,7 +101,8 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
      'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read item observations':
-    ('Manager', 'MeetingManager', ),
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     # edit permissions
     'Modify portal content':
     ('Manager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
@@ -157,7 +159,8 @@ RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
     ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
      'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     'PloneMeeting: Read item observations':
-    ('Manager', 'MeetingManager', ),
+    ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead', 'MeetingOfficeManager',
+     'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal', 'Reader', 'Editor', ),
     # edit permissions
     'Modify portal content':
     ('Manager', 'MeetingManager', ),
@@ -285,8 +288,12 @@ def customPerformWorkflowAdaptations(site, meetingConfig, logger, specificAdapta
                     itemWorkflow.transitions.addTransition(transitionName)
                     transition = itemWorkflow.transitions[transitionName]
                     # use a specific guard_expr 'mayBackToMeeting'
+                    if stateName in ('returned_to_proposing_group'):
+                        transition_title = 'return_to_proposing_group'
+                    else:
+                        transition_title = 'return_to_meeting'
                     transition.setProperties(
-                        title='return_to_meeting',
+                        title=transition_title,
                         new_state_id=stateName, trigger_type=1, script_name='',
                         actbox_name=transitionName, actbox_url='', actbox_category='workflow',
                         props={'guard_expr': 'python:here.wfConditions().mayBackToMeeting("%s")' % transitionName})
@@ -687,16 +694,19 @@ class CustomMeeting(Meeting):
 
     def listSections(self):
         '''Vocabulary for column 'name_section' of Meeting.sections.'''
-        res = [('oj', "Collège d'arrêt de l'OJ"),
-               ('tec', "Section du développement territorial, économique et du commerce"),
-               ('fin', "Section des finances et des marchés publics"),
-               ('env', "Section de la propreté, de l'environnement, du développement durable et des travaux"),
-               ('ag', "Section de l'administration générale"),
-               ('ens', "Section de l'enseignement"),
-               ('as', "Section des affaires sociales"),
-               ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
-               ('cul', "Section de la culture et des sports"),
-               ('ec', "Section de l'état civil")]
+        if self.portal_type == 'MeetingCouncil':
+            res = [('oj', "Collège d'arrêt de l'OJ"),
+                   ('tec', "Section du développement territorial, économique et du commerce"),
+                   ('fin', "Section des finances et des marchés publics"),
+                   ('env', "Section de la propreté, de l'environnement, du développement durable et des travaux"),
+                   ('ag', "Section de l'administration générale"),
+                   ('ens', "Section de l'enseignement"),
+                   ('as', "Section des affaires sociales"),
+                   ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
+                   ('cul', "Section de la culture et des sports"),
+                   ('ec', "Section de l'état civil")]
+        else:
+            res = [('oj', "Collège d'arrêt de l'OJ"), ]
         return DisplayList(tuple(res))
     Meeting.listSections = listSections
 
