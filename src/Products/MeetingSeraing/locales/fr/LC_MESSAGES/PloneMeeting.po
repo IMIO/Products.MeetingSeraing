@@ -24,13 +24,13 @@ msgstr "Collège communal"
 msgid "Meeting config Seraing Council"
 msgstr "Conseil communal"
 
+#. Default: "Finances advice"
+msgid "MeetingAdviceFinances"
+msgstr ""
+
 #. Default: "Choose proposing group for cdld advice"
 msgid "MeetingCommunes_descr_cdldProposingGroup"
 msgstr "Choisir les groupes donneurs d'avis qui seront repris dans la synthèse CDLD (avis DF)"
-
-#. Default: "Proposing group to keep for CDLD synthesis"
-msgid "MeetingCommunes_label_cdldProposingGroup"
-msgstr "Groupes proposants à garder pour la synthèse des avis pour le CDLD (avis DF)"
 
 #. Default: "Alderman of the following services (departments)"
 msgid "MeetingCommunes_label_echevinServices"
@@ -144,6 +144,15 @@ msgstr "Envoyer au Conseil communal"
 msgid "Sent to council"
 msgstr "Envoyé au Conseil communal"
 
+# searches
+#. Default: "Add a finances advice"
+msgid "add_new_meetingadvicefinances"
+msgstr ""
+
+#. Default: "Cautious opinion"
+msgid "cautious_finance"
+msgstr ""
+
 #. Default: "Please as you defined an item initiator, check if the linked category should not be 'Points conseillers'. If not, just ignore this message, it will not be displayed anymore when the item will be validated."
 msgid "check_intitiator_and_category"
 msgstr "Attention, en général si vous sélectionnez une personne 'A l'initative de ce point', la catégorie 'Points conseillers' doit être également sélectionnée.  Vérifiez vos données, si elles sont justes, ignorez cet avertissement, il disparaîtra une fois le point 'validé'."
@@ -161,10 +170,6 @@ msgstr "chefs de division"
 msgid "hs_welcome_title"
 msgstr "Bienvenue sur PloneMeeting!"
 
-#. Default: "Accepted but modified"
-msgid "icon_help_accepted_but_modified"
-msgstr "Accepté provisoirement"
-
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "icon_help_accepted_but_modified_closed"
 msgstr "Accepté avec modifications"
@@ -172,10 +177,6 @@ msgstr "Accepté avec modifications"
 #. Default: "Accepted On Closed Meeting"
 msgid "icon_help_accepted_closed"
 msgstr "Accepté"
-
-#. Default: "Item in council"
-msgid "icon_help_item_in_council"
-msgstr "En Conseil communal"
 
 #. Default: "Late"
 msgid "icon_help_late"
@@ -229,6 +230,18 @@ msgstr "Points supplémentaires présentés"
 msgid "list_type_late"
 msgstr "Supplémentaires"
 
+#. Default: "Unfavorable opinion"
+msgid "negative_finance"
+msgstr ""
+
+#. Default: "Not given opinion"
+msgid "not_given_finance"
+msgstr ""
+
+#. Default: "Not required opinion"
+msgid "not_required_finance"
+msgstr ""
+
 # Suffix
 #. Default: "office managers"
 msgid "officemanagers"
@@ -237,6 +250,14 @@ msgstr "chefs de bureau"
 #. Default: "Follow list type"
 msgid "on_list_type"
 msgstr "Par type de point (normal, supplémentaire)"
+
+#. Default: "Favorable opinion"
+msgid "positive_finance"
+msgstr ""
+
+#. Default: "Favorable opinion with remarks"
+msgid "positive_with_remarks_finance"
+msgstr ""
 
 #. Default: "Power editors"
 msgid "powereditors"
@@ -267,13 +288,13 @@ msgstr "Conseil"
 msgid "reviewers"
 msgstr "directeurs"
 
-#. Default: "cdld synthesis"
-msgid "searchcdlditems"
-msgstr "Synthèse Avis DF"
-
 #. Default: "items to validate"
 msgid "searchitemstovalidate"
 msgstr "points à valider"
+
+#. Default: "Synthesis finance advices"
+msgid "searchitemswithfinanceadvice"
+msgstr ""
 
 # searches
 #. Default: "proposed items"

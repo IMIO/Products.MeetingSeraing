@@ -15,6 +15,10 @@ msgstr ""
 "Domain: plone\n"
 "X-is-fallback-for: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
+#. Default: "MeetingCoDir"
+msgid "MeetingCoDir"
+msgstr ""
+
 # types
 #. Default: "MeetingCollege"
 msgid "MeetingCollege"
@@ -24,6 +28,10 @@ msgstr "Séance du Collège communal"
 msgid "MeetingCouncil"
 msgstr "Séance du Conseil communal"
 
+#. Default: "MeetingItemCoDir"
+msgid "MeetingItemCoDir"
+msgstr ""
+
 #. Default: "MeetingItemCollege"
 msgid "MeetingItemCollege"
 msgstr "Point Collège communal"
@@ -32,15 +40,35 @@ msgstr "Point Collège communal"
 msgid "MeetingItemCouncil"
 msgstr "Point Conseil communal"
 
+#. Default: "MeetingItemRecurringCoDir"
+msgid "MeetingItemRecurringCoDir"
+msgstr ""
+
+#. Default: "MeetingItemRecurringCollege"
+msgid "MeetingItemRecurringCollege"
+msgstr ""
+
+#. Default: "MeetingItemRecurringCouncil"
+msgid "MeetingItemRecurringCouncil"
+msgstr ""
+
+#. Default: "MeetingItemTemplateCoDir"
+msgid "MeetingItemTemplateCoDir"
+msgstr ""
+
+#. Default: "MeetingItemTemplateCollege"
+msgid "MeetingItemTemplateCollege"
+msgstr ""
+
+#. Default: "MeetingItemTemplateCouncil"
+msgid "MeetingItemTemplateCouncil"
+msgstr ""
+
 # various
 # MeetingItem
 #. Default: "Decision"
 msgid "PloneMeeting_label_decision"
 msgstr "Décision"
-
-#. Default: "accept but modify"
-msgid "accept_but_modify"
-msgstr "Accepter avec modifications"
 
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "accept_but_modify_close"
@@ -49,10 +77,6 @@ msgstr "Accepter avec modifications (c)"
 #. Default: "Accepted On Closed Meeting"
 msgid "accept_close"
 msgstr "Accepter (c)"
-
-#. Default: "Accepted but modified"
-msgid "accepted_but_modified"
-msgstr "Accepté avec modifications"
 
 #. Default: "Accepted but modified On Closed Meeting"
 msgid "accepted_but_modified_closed"
@@ -127,7 +151,8 @@ msgstr "Envoyer vers CODIR"
 msgid "create_to_meeting-config-college_from_codir"
 msgstr "Envoyer vers Collège Communal"
 
-#. Default: "Create a plonmeeting item from a college item"
+#. Default: "Create an item college from an item council"
+#, fuzzy
 msgid "create_to_meeting-config-college_from_meeting-config-council"
 msgstr "Envoyer vers Collège Communal"
 
@@ -143,7 +168,8 @@ msgstr "Envoyer vers Conseil Communal"
 msgid "create_to_meeting-config-zcollege_from_meeting-config-college"
 msgstr "Envoyer vers Collège de Police"
 
-#. Default: "Create a plonmeeting item from a zcollege item"
+#. Default: "Create a plonmeeting item from a college item"
+#, fuzzy
 msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
 msgstr "Envoyer vers Conseil de Police"
 

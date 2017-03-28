@@ -34,14 +34,6 @@ msgstr ""
 msgid "PloneMeeting_label_decision"
 msgstr ""
 
-#. Default: "accept but modify"
-msgid "accept_but_modify"
-msgstr ""
-
-#. Default: "Accepted but modified"
-msgid "accepted_but_modified"
-msgstr ""
-
 # Workflow transitions
 #. Default: "Ask advices"
 msgid "ask_advices_by_itemcreator"
@@ -287,4 +279,44 @@ msgstr ""
 
 #. Default: "Create a plonmeeting item from a college item"
 msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
+msgstr ""
+
+#. Default: "MeetingItemTemplateCollege"
+msgid "MeetingItemTemplateCollege"
+msgstr ""
+
+#. Default: "MeetingItemRecurringCollege"
+msgid "MeetingItemRecurringCollege"
+msgstr ""
+
+#. Default: "MeetingItemTemplateCouncil"
+msgid "MeetingItemTemplateCouncil"
+msgstr ""
+
+#. Default: "MeetingItemRecurringCouncil"
+msgid "MeetingItemRecurringCouncil"
+msgstr ""
+
+#. Default: "MeetingCoDir"
+msgid "MeetingCoDir"
+msgstr ""
+
+#. Default: "MeetingItemCoDir"
+msgid "MeetingItemCoDir"
+msgstr ""
+
+#. Default: "MeetingItemTemplateCoDir"
+msgid "MeetingItemTemplateCoDir"
+msgstr ""
+
+#. Default: "MeetingItemRecurringCoDir"
+msgid "MeetingItemRecurringCoDir"
+msgstr ""
+
+#. Default: "Create an item college from an item council"
+msgid "create_to_meeting-config-college_from_meeting-config-council"
+msgstr ""
+
+#. Default: "Create an item college from an item CoDir"
+msgid "create_to_meeting-config-college_from_codir"
 msgstr ""

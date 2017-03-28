@@ -146,9 +146,6 @@ msgstr ""
 msgid "signatures_length_error"
 msgstr ""
 
-#. Default: "Accepted but modified"
-msgid "icon_help_accepted_but_modified"
-msgstr ""
 
 #. Default: "Proposed to director"
 msgid "icon_help_proposed_to_director"
@@ -160,10 +157,6 @@ msgstr ""
 
 #. Default: "Proposed to office manager"
 msgid "icon_help_proposed_to_officemanager"
-msgstr ""
-
-#. Default: "Item in council"
-msgid "icon_help_item_in_council"
 msgstr ""
 
 #. Default: "Proposed to service head"
@@ -204,12 +197,12 @@ msgid "init_item_decision_if_empty_on_decide"
 msgstr "" 
 
 #searches 
-#. Default: "cdld synthesis" 
-msgid "searchcdlditems" 
+#. Default: "Add a finances advice"
+msgid "add_new_meetingadvicefinances"
 msgstr "" 
 
-#. Default: "Proposing group to keep for CDLD synthesis" 
-msgid "MeetingCommunes_label_cdldProposingGroup" 
+#. Default: "Finances advice"
+msgid "MeetingAdviceFinances"
 msgstr "" 
 
 #. Default: "Choose proposing group for cdld advice" 
@@ -295,3 +288,31 @@ msgstr ""
 #. Default: "Description" 
 msgid "PloneMeeting_label_itemDescription" 
 msgstr "" 
+
+#. Default: "Synthesis finance advices"
+msgid "searchitemswithfinanceadvice"
+msgstr ""
+
+#. Default: "Unfavorable opinion"
+msgid "negative_finance"
+msgstr ""
+
+#. Default: "Not given opinion"
+msgid "not_given_finance"
+msgstr ""
+
+#. Default: "Favorable opinion"
+msgid "positive_finance"
+msgstr ""
+
+#. Default: "Favorable opinion with remarks"
+msgid "positive_with_remarks_finance"
+msgstr ""
+
+#. Default: "Cautious opinion"
+msgid "cautious_finance"
+msgstr ""
+
+#. Default: "Not required opinion"
+msgid "not_required_finance"
+msgstr ""

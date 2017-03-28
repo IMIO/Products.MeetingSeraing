@@ -15,20 +15,36 @@
 
   <!-- WF actions and conditions for Meeting and MeetingItem for College -->
   <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
-           factory="Products.MeetingSeraing.adapters.MeetingItemCollegeSeraingWorkflowActions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions"/>
+           factory="Products.MeetingSeraing.adapters.MeetingItemSeraingCollegeWorkflowActions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingItemSeraingCollegeWorkflowActions"/>
 
   <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
-           factory="Products.MeetingSeraing.adapters.MeetingItemCollegeSeraingWorkflowConditions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions"/>
+           factory="Products.MeetingSeraing.adapters.MeetingItemSeraingCollegeWorkflowConditions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingItemSeraingCollegeWorkflowConditions"/>
 
   <adapter for="Products.PloneMeeting.interfaces.IMeeting"
-           factory="Products.MeetingSeraing.adapters.MeetingCollegeSeraingWorkflowActions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions"/>
+           factory="Products.MeetingSeraing.adapters.MeetingSeraingCollegeWorkflowActions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCollegeWorkflowActions"/>
 
   <adapter for="Products.PloneMeeting.interfaces.IMeeting"
-           factory="Products.MeetingSeraing.adapters.MeetingCollegeSeraingWorkflowConditions"
-           provides="Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions"/>
+           factory="Products.MeetingSeraing.adapters.MeetingSeraingCollegeWorkflowConditions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCollegeWorkflowConditions"/>
+
+  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
+           factory="Products.MeetingSeraing.adapters.MeetingItemSeraingCouncilWorkflowActions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingItemSeraingCouncilWorkflowActions"/>
+
+  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
+           factory="Products.MeetingSeraing.adapters.MeetingItemSeraingCouncilWorkflowConditions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingItemSeraingCouncilWorkflowConditions"/>
+
+  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+           factory="Products.MeetingSeraing.adapters.MeetingSeraingCouncilWorkflowActions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCouncilWorkflowActions"/>
+
+  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+           factory="Products.MeetingSeraing.adapters.MeetingSeraingCouncilWorkflowConditions"
+           provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCouncilWorkflowConditions"/>
 
   <!-- Customizations for every Meetings -->
   <adapter for="Products.PloneMeeting.interfaces.IMeeting"

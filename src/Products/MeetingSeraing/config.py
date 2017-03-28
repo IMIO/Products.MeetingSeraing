@@ -23,9 +23,7 @@ __docformat__ = 'plaintext'
 # will be included (by importing) in this file if found.
 
 from Products.CMFCore.permissions import setDefaultRoles
-##code-section config-head #fill in your manual code here
 from collections import OrderedDict
-##/code-section config-head
 
 
 PROJECTNAME = "MeetingSeraing"
@@ -44,7 +42,9 @@ DEPENDENCIES = []
 # override in custom configuration
 PRODUCT_DEPENDENCIES = []
 
-##code-section config-bottom #fill in your manual code here
+# the id of the collection querying finance advices
+FINANCE_ADVICES_COLLECTION_ID = 'searchitemswithfinanceadvice'
+
 from Products.PloneMeeting import config as PMconfig
 SERAINGROLES = {}
 SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
@@ -54,10 +54,7 @@ PMconfig.MEETINGROLES.update(SERAINGROLES)
 PMconfig.MEETING_GROUP_SUFFIXES = PMconfig.MEETINGROLES.keys()
 
 POWEREDITORS_GROUP_SUFFIX = 'powereditors'
-
-EDITOR_USECASES = {
-    'power_editors': 'Editor',
-}
+EDITOR_USECASES = {'power_editors': 'Editor', }
 
 # see doc in Products.PloneMeeting.config.py
 
@@ -69,12 +66,3 @@ PMconfig.MEETINGREVIEWERS = SERAINGMEETINGREVIEWERS
 
 CUSTOMMEETING_STATES_ACCEPTING_ITEMS = ('created', 'validated_by_dg', 'frozen', 'decided')
 PMconfig.MEETING_STATES_ACCEPTING_ITEMS = CUSTOMMEETING_STATES_ACCEPTING_ITEMS
-
-##/code-section config-bottom
-
-
-# Load custom configuration not managed by archgenxml
-try:
-    from Products.MeetingSeraing.AppConfig import *
-except ImportError:
-    pass

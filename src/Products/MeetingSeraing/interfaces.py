@@ -30,7 +30,7 @@ from Products.PloneMeeting.interfaces import \
 
 
 # ------------------------------------------------------------------------------
-class IMeetingItemCollegeSeraingWorkflowActions(IMeetingItemWorkflowActions):
+class IMeetingItemSeraingWorkflowActions(IMeetingItemWorkflowActions):
     '''This interface represents a meeting item as viewed by the specific
        item workflow that is defined in this MeetingCommunes product.'''
     def doPresent():
@@ -56,7 +56,15 @@ class IMeetingItemCollegeSeraingWorkflowActions(IMeetingItemWorkflowActions):
         """
 
 
-class IMeetingItemCollegeSeraingWorkflowConditions(IMeetingItemWorkflowConditions):
+class IMeetingItemSeraingCollegeWorkflowActions(IMeetingItemSeraingWorkflowActions):
+    '''inherit class'''
+
+
+class IMeetingItemSeraingCouncilWorkflowActions(IMeetingItemSeraingWorkflowActions):
+    '''inherit class'''
+
+
+class IMeetingItemSeraingWorkflowConditions(IMeetingItemWorkflowConditions):
     '''This interface represents a meeting item as viewed by the specific
        item workflow that is defined in this MeetingCommunes product.'''
     def mayDecide():
@@ -71,13 +79,17 @@ class IMeetingItemCollegeSeraingWorkflowConditions(IMeetingItemWorkflowCondition
         """
           Guard for the 'freeze' transition
         """
-    def mayCorrect():
-        """
-          Guard for the 'backToXXX' transitions
-        """
 
 
-class IMeetingCollegeSeraingWorkflowActions(IMeetingWorkflowActions):
+class IMeetingItemSeraingCollegeWorkflowConditions(IMeetingItemSeraingWorkflowConditions):
+    '''inherit class'''
+
+
+class IMeetingItemSeraingCouncilWorkflowConditions(IMeetingItemSeraingWorkflowConditions):
+    '''inherit class'''
+
+
+class IMeetingSeraingWorkflowActions(IMeetingWorkflowActions):
     '''This interface represents a meeting as viewed by the specific meeting
        workflow that is defined in this MeetingCommunes product.'''
     def doClose():
@@ -98,7 +110,15 @@ class IMeetingCollegeSeraingWorkflowActions(IMeetingWorkflowActions):
         """
 
 
-class IMeetingCollegeSeraingWorkflowConditions(IMeetingWorkflowConditions):
+class IMeetingSeraingCollegeWorkflowActions(IMeetingSeraingWorkflowActions):
+    '''inherit class'''
+
+
+class IMeetingSeraingCouncilWorkflowActions(IMeetingSeraingWorkflowActions):
+    '''inherit class'''
+
+
+class IMeetingSeraingWorkflowConditions(IMeetingWorkflowConditions):
     '''This interface represents a meeting as viewed by the specific meeting
        workflow that is defined in this MeetingCommunes product.'''
     def mayFreeze():
@@ -122,4 +142,11 @@ class IMeetingCollegeSeraingWorkflowConditions(IMeetingWorkflowConditions):
           Guard for the 'backToXXX' transitions
         """
 
+
+class IMeetingSeraingCollegeWorkflowConditions(IMeetingSeraingWorkflowConditions):
+    '''inherit class'''
+
+
+class IMeetingSeraingCouncilWorkflowConditions(IMeetingSeraingWorkflowConditions):
+    '''inherit class'''
 # ------------------------------------------------------------------------------

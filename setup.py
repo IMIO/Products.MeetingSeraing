@@ -1,16 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '3.3-dev'
+version = '4.0.dev0'
 
 setup(name='Products.MeetingSeraing',
       version=version,
       description="PloneMeeting profile for city of Seraing",
-      long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
-      classifiers=[
-        "Programming Language :: Python",
-        ],
+      long_description=open("README.txt").read() + "\n" + open(os.path.join("docs", "HISTORY.txt")).read(),
+      classifiers=["Programming Language :: Python", ],
       keywords='',
       author='',
       author_email='',
@@ -29,10 +26,8 @@ setup(name='Products.MeetingSeraing',
                   'plone.app.robotframework',
                   'Products.CMFPlacefulWorkflow',
                   'zope.testing',
-                  'Products.MeetingCommunes',
                   'Products.PloneTestCase'],
-            templates=['Genshi',
-                  ]),
+            templates=['Genshi', ]),
       install_requires=[
           'setuptools',
           'Products.CMFPlone',
