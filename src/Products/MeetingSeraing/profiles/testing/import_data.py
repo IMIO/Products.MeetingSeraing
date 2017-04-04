@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from Products.PloneMeeting.config import MEETINGREVIEWERS
+from Products.PloneMeeting.profiles import AnnexTypeDescriptor
 from Products.PloneMeeting.profiles import CategoryDescriptor
 from Products.PloneMeeting.profiles import GroupDescriptor
+from Products.PloneMeeting.profiles import ItemAnnexSubTypeDescriptor
+from Products.PloneMeeting.profiles import ItemAnnexTypeDescriptor
 from Products.PloneMeeting.profiles import ItemTemplateDescriptor
 from Products.PloneMeeting.profiles import MeetingConfigDescriptor
-from Products.PloneMeeting.profiles import MeetingFileTypeDescriptor
 from Products.PloneMeeting.profiles import MeetingUserDescriptor
 from Products.PloneMeeting.profiles import PloneGroupDescriptor
 from Products.PloneMeeting.profiles import PloneMeetingConfiguration
@@ -12,40 +14,89 @@ from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import RecurringItemDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
 
-# File types -------------------------------------------------------------------
+# Annex types
+overheadAnalysisSubtype = ItemAnnexSubTypeDescriptor(
+    'overhead-analysis-sub-annex',
+    'Overhead analysis sub annex',
+    other_mc_correspondences=(
+        'meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis', ))
 
-annexe = MeetingFileTypeDescriptor('annexe', 'Annexe', 'attach.png', '')
-annexeBudget = MeetingFileTypeDescriptor('annexeBudget', 'Article Budgetaire', 'budget.png', '')
-annexeCahier = MeetingFileTypeDescriptor('annexeCahier', 'Cahier des Charges', 'cahier.gif', '')
-itemAnnex = MeetingFileTypeDescriptor('item-annex', 'Other annex(es)', 'attach.png', '')
-annexeDecision = MeetingFileTypeDescriptor('annexeDecision', 'Annexe a la decision', 'attach.png', '', 'item_decision')
-# Some type of annexes taken from the default PloneMeeting test profile
-marketingAnalysis = MeetingFileTypeDescriptor(
-    'marketing-annex', 'Marketing annex(es)', 'attach.png', '', 'item_decision',
-    active=False)
-overheadAnalysis = MeetingFileTypeDescriptor(
+overheadAnalysis = ItemAnnexTypeDescriptor(
     'overhead-analysis', 'Administrative overhead analysis',
-    'attach.png', '')
-# Advice annexes types
-adviceAnnex = MeetingFileTypeDescriptor(
-    'advice-annex', 'Advice annex(es)', 'attach.png', '', 'advice')
-adviceLegalAnalysis = MeetingFileTypeDescriptor(
-    'advice-legal-analysis', 'Advice legal analysis', 'attach.png', '', 'advice')
+    u'overheadAnalysis.png',
+    subTypes=[overheadAnalysisSubtype],
+    other_mc_correspondences=(
+        'meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis_-_budget-analysis-sub-annex', ))
+
+financialAnalysisSubAnnex = ItemAnnexSubTypeDescriptor(
+    'financial-analysis-sub-annex',
+    'Financial analysis sub annex')
+
+financialAnalysis = ItemAnnexTypeDescriptor(
+    'financial-analysis', 'Financial analysis', u'financialAnalysis.png',
+    u'Predefined title for financial analysis', subTypes=[financialAnalysisSubAnnex])
+
+legalAnalysis = ItemAnnexTypeDescriptor(
+    'legal-analysis', 'Legal analysis', u'legalAnalysis.png')
+
+budgetAnalysisCfg2Subtype = ItemAnnexSubTypeDescriptor(
+    'budget-analysis-sub-annex',
+    'Budget analysis sub annex')
+
+budgetAnalysisCfg2 = ItemAnnexTypeDescriptor(
+    'budget-analysis', 'Budget analysis', u'budgetAnalysis.png',
+    subTypes=[budgetAnalysisCfg2Subtype])
+
+budgetAnalysisCfg1Subtype = ItemAnnexSubTypeDescriptor(
+    'budget-analysis-sub-annex',
+    'Budget analysis sub annex',
+    other_mc_correspondences=(
+        'meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis_-_budget-analysis-sub-annex', ))
+
+budgetAnalysisCfg1 = ItemAnnexTypeDescriptor(
+    'budget-analysis', 'Budget analysis', u'budgetAnalysis.png',
+    subTypes=[budgetAnalysisCfg1Subtype],
+    other_mc_correspondences=('meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis', ))
+
+itemAnnex = ItemAnnexTypeDescriptor(
+    'item-annex', 'Other annex(es)', u'itemAnnex.png')
+# Could be used once we
+# will digitally sign decisions ? Indeed, once signed, we will need to
+# store them (together with the signature) as separate files.
+decision = ItemAnnexTypeDescriptor(
+    'decision', 'Decision', u'decision.png', relatedTo='item_decision')
+decisionAnnex = ItemAnnexTypeDescriptor(
+    'decision-annex', 'Decision annex(es)', u'decisionAnnex.png', relatedTo='item_decision')
+# A vintage annex type
+marketingAnalysis = ItemAnnexTypeDescriptor(
+    'marketing-annex', 'Marketing annex(es)', u'legalAnalysis.png', relatedTo='item_decision',
+    enabled=False)
+# Advice annex types
+adviceAnnex = AnnexTypeDescriptor(
+    'advice-annex', 'Advice annex(es)', u'itemAnnex.png', relatedTo='advice')
+adviceLegalAnalysis = AnnexTypeDescriptor(
+    'advice-legal-analysis', 'Advice legal analysis', u'legalAnalysis.png', relatedTo='advice')
+# Meeting annex types
+meetingAnnex = AnnexTypeDescriptor(
+    'meeting-annex', 'Meeting annex(es)', u'itemAnnex.png', relatedTo='meeting')
 
 # Pod templates ----------------------------------------------------------------
-agendaTemplate = PodTemplateDescriptor('agendaTemplate', 'Meeting agenda')
-agendaTemplate.podTemplate = 'Agenda.odt'
-agendaTemplate.podCondition = 'python:here.meta_type=="Meeting"'
+agendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
+agendaTemplate.odt_file = 'Agenda.odt'
+agendaTemplate.pod_portal_types = ['MeetingCollege']
+agendaTemplate.tal_condition = 'python:(here.meta_type=="Meeting") and here.portal_plonemeeting.isManager()'
 
-decisionsTemplate = PodTemplateDescriptor('decisionsTemplate',
-                                          'Meeting decisions')
-decisionsTemplate.podTemplate = 'Decisions.odt'
-decisionsTemplate.podCondition = 'python:here.meta_type=="Meeting" and ' \
-                                 'here.adapted().isDecided()'
+
+decisionsTemplate = PodTemplateDescriptor('decisionsTemplate', 'Meeting decisions')
+decisionsTemplate.odt_file = 'Decisions.odt'
+decisionsTemplate.pod_portal_types = ['MeetingCollege']
+decisionsTemplate.tal_condition = 'python:here.adapted().isDecided()'
 
 itemTemplate = PodTemplateDescriptor('itemTemplate', 'Meeting item')
-itemTemplate.podTemplate = 'Item.odt'
-itemTemplate.podCondition = 'python:here.meta_type=="MeetingItem"'
+itemTemplate.odt_file = 'Item.odt'
+itemTemplate.pod_portal_types = ['MeetingItemCollege']
+itemTemplate.tal_condition = ''
+
 # item templates
 template1 = ItemTemplateDescriptor(id='template1',
                                    title='Tutelle CPAS',
@@ -85,24 +136,28 @@ template2 = ItemTemplateDescriptor(id='template2',
 <p><strong>Article 3</strong> : De charger le service du personnel du suivi de ce dossier.</p>""")
 
 # Categories -------------------------------------------------------------------
-categories = [
-    CategoryDescriptor('deployment', 'Deployment topics'),
-    CategoryDescriptor('maintenance', 'Maintenance topics'),
-    CategoryDescriptor('development', 'Development topics'),
-    CategoryDescriptor('events', 'Events'),
-    CategoryDescriptor('research', 'Research topics'),
-    CategoryDescriptor('projects', 'Projects'),
-    # A vintage category
-    CategoryDescriptor('marketing', 'Marketing', active=False),
-    # usingGroups category
-    CategoryDescriptor('subproducts', 'Subproducts wishes', usingGroups=('vendors',)),
-]
+deployment = CategoryDescriptor('deployment', 'Deployment topics')
+maintenance = CategoryDescriptor('maintenance', 'Maintenance topics')
+development = CategoryDescriptor('development', 'Development topics')
+events = CategoryDescriptor('events', 'Events')
+research = CategoryDescriptor('research', 'Research topics')
+projects = CategoryDescriptor('projects', 'Projects')
+# A vintage category
+marketing = CategoryDescriptor('marketing', 'Marketing', active=False)
+# usingGroups category
+subproducts = CategoryDescriptor('subproducts', 'Subproducts wishes', usingGroups=('vendors',))
+
+# Classifiers
+classifier1 = CategoryDescriptor('classifier1', 'Classifier 1')
+classifier2 = CategoryDescriptor('classifier2', 'Classifier 2')
+classifier3 = CategoryDescriptor('classifier3', 'Classifier 3')
 
 # Users and groups -------------------------------------------------------------
 admin = UserDescriptor('admin', ['Manager', 'MeetingManager'])
 pmManager = UserDescriptor('pmManager', [])
 pmCreator1 = UserDescriptor('pmCreator1', [])
 pmCreator1b = UserDescriptor('pmCreator1b', [])
+pmObserver1 = UserDescriptor('pmObserver1', [], email="pmobserver1@plonemeeting.org", fullname='M. PMObserver One')
 pmReviewer1 = UserDescriptor('pmReviewer1', [])
 pmServiceHead1 = UserDescriptor('pmServiceHead1', [])
 pmOfficeManager1 = UserDescriptor('pmOfficeManager1', [])
@@ -180,7 +235,7 @@ getattr(developers, MEETINGREVIEWERS.keys()[-1]).append(pmReviewerLevel1)
 # put pmReviewerLevel2 in second level of reviewers from what is in MEETINGREVIEWERS
 getattr(developers, MEETINGREVIEWERS.keys()[0]).append(pmReviewerLevel2)
 
-#give an advice on recurring items
+# give an advice on recurring items
 vendors = GroupDescriptor('vendors', 'Vendors', 'Devil')
 vendors.creators.append(pmCreator2)
 vendors.reviewers.append(pmReviewer2)
@@ -211,6 +266,16 @@ muser_voter1 = MeetingUserDescriptor('voter1', duty='Voter1',
 muser_voter2 = MeetingUserDescriptor('voter2', duty='Voter2',
                                      usages=['assemblyMember', 'voter', ])
 
+# budget impact editors
+budgetimpacteditor = UserDescriptor('budgetimpacteditor',
+                                    [],
+                                    email="budgetimpacteditor@plonemeeting.org",
+                                    fullname='M. Budget Impact Editor')
+college_budgetimpacteditors = PloneGroupDescriptor('meeting-config-college_budgetimpacteditors',
+                                                   'meeting-config-college_budgetimpacteditors',
+                                                   [])
+budgetimpacteditor.ploneGroups = [college_budgetimpacteditors,
+                                  college_powerobservers]
 
 # Meeting configurations -------------------------------------------------------
 # college
@@ -224,18 +289,19 @@ collegeMeeting.assembly = 'Pierre Dupont - Bourgmestre,\n' \
                           'Jacqueline Exemple, Responsable du CPAS'
 collegeMeeting.signatures = 'Pierre Dupont, Bourgmestre - Charles Exemple, 1er Echevin'
 collegeMeeting.certifiedSignatures = []
-collegeMeeting.categories = categories
+collegeMeeting.categories = [development, research]
+collegeMeeting.classifiers = [classifier1, classifier2, classifier3]
 collegeMeeting.shortName = 'College'
-collegeMeeting.meetingFileTypes = [annexe, annexeBudget, annexeCahier, itemAnnex,
-                                   annexeDecision, overheadAnalysis, marketingAnalysis,
-                                   adviceAnnex, adviceLegalAnalysis]
+collegeMeeting.annexTypes = [financialAnalysis, budgetAnalysisCfg1, overheadAnalysis,
+                             itemAnnex, decisionAnnex, marketingAnalysis,
+                             adviceAnnex, adviceLegalAnalysis, meetingAnnex]
 collegeMeeting.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
-collegeMeeting.itemWorkflow = 'meetingitemcollegeseraing_workflow'
-collegeMeeting.meetingWorkflow = 'meetingcollegeseraing_workflow'
-collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
-collegeMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
-collegeMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
-collegeMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
+collegeMeeting.itemWorkflow = 'meetingitemseraing_workflow'
+collegeMeeting.meetingWorkflow = 'meetingseraing_workflow'
+collegeMeeting.itemConditionsInterface = 'Products.Meetingseraing.interfaces.IMeetingItemseraingCollegeWorkflowConditions'
+collegeMeeting.itemActionsInterface = 'Products.Meetingseraing.interfaces.IMeetingItemseraingCollegeWorkflowActions'
+collegeMeeting.meetingConditionsInterface = 'Products.Meetingseraing.interfaces.IMeetingseraingCollegeWorkflowConditions'
+collegeMeeting.meetingActionsInterface = 'Products.Meetingseraing.interfaces.IMeetingseraingCollegeWorkflowActions'
 collegeMeeting.transitionsToConfirm = []
 collegeMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
                                                  'proposeToOfficeManager',
@@ -274,26 +340,29 @@ collegeMeeting.decisionTopicStates = ('decided', 'closed')
 collegeMeeting.recordItemHistoryStates = []
 collegeMeeting.maxShownMeetings = 5
 collegeMeeting.maxDaysDecisions = 60
-collegeMeeting.meetingAppDefaultView = 'topic_searchmyitems'
+collegeMeeting.meetingAppDefaultView = 'searchallitems'
 collegeMeeting.itemDocFormats = ('odt', 'pdf')
 collegeMeeting.meetingDocFormats = ('odt', 'pdf')
 collegeMeeting.useAdvices = True
+collegeMeeting.selectableAdvisers = ['developers', 'vendors']
 collegeMeeting.itemAdviceStates = ['proposed', ]
 collegeMeeting.itemAdviceEditStates = ['proposed', 'validated']
 collegeMeeting.itemAdviceViewStates = ['presented', ]
-collegeMeeting.transitionReinitializingDelays = 'backToItemCreated'
+collegeMeeting.transitionsReinitializingDelays = ('backToItemCreated', )
 collegeMeeting.enforceAdviceMandatoriness = False
 collegeMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
 collegeMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
+collegeMeeting.workflowAdaptations = []
 collegeMeeting.insertingMethodsOnAddItem = ({'insertingMethod': 'on_proposing_groups',
                                              'reverse': '0'}, )
 collegeMeeting.useGroupsAsCategories = True
-collegeMeeting.meetingPowerObserversStates = ('frozen', 'published', 'decided', 'closed')
+collegeMeeting.meetingPowerObserversStates = ('frozen', 'decided', 'closed')
 collegeMeeting.useCopies = True
 collegeMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), vendors.getIdSuffixed('reviewers'), ]
 collegeMeeting.podTemplates = [agendaTemplate, decisionsTemplate, itemTemplate]
 collegeMeeting.meetingConfigsToCloneTo = [{'meeting_config': 'meeting-config-council',
                                            'trigger_workflow_transitions_until': '__nothing__'}, ]
+collegeMeeting.itemAutoSentToOtherMCStates = ('accepted', 'accepted_but_modified',)
 collegeMeeting.recurringItems = [
     RecurringItemDescriptor(
         id='recItem1',
@@ -319,19 +388,22 @@ councilMeeting.meetingManagers = ['pmManager', ]
 councilMeeting.assembly = 'Default assembly'
 councilMeeting.signatures = 'Default signatures'
 councilMeeting.certifiedSignatures = []
-councilMeeting.categories = categories
+councilMeeting.categories = [deployment, maintenance, development, events,
+                             research, projects, marketing, subproducts]
+councilMeeting.classifiers = [classifier1, classifier2, classifier3]
 councilMeeting.shortName = 'Council'
-councilMeeting.meetingFileTypes = [annexe, annexeBudget, annexeCahier,
-                                   itemAnnex, annexeDecision, adviceAnnex, adviceLegalAnalysis]
+councilMeeting.annexTypes = [financialAnalysis, legalAnalysis,
+                             budgetAnalysisCfg2, itemAnnex, decisionAnnex,
+                             adviceAnnex, adviceLegalAnalysis, meetingAnnex]
 councilMeeting.usedItemAttributes = ['oralQuestion', 'itemInitiator', 'observations',
                                      'privacy', 'itemAssembly', 'itemIsSigned',
                                      'motivation', ]
-councilMeeting.itemWorkflow = 'meetingitemcollegeseraing_workflow'
-councilMeeting.meetingWorkflow = 'meetingcollegeseraing_workflow'
-councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowConditions'
-councilMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemCollegeSeraingWorkflowActions'
-councilMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowConditions'
-councilMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingCollegeSeraingWorkflowActions'
+councilMeeting.itemWorkflow = 'meetingitemseraing_workflow'
+councilMeeting.meetingWorkflow = 'meetingseraing_workflow'
+councilMeeting.itemConditionsInterface = 'Products.Meetingseraing.interfaces.IMeetingItemseraingCouncilWorkflowConditions'
+councilMeeting.itemActionsInterface = 'Products.Meetingseraing.interfaces.IMeetingItemseraingCouncilWorkflowActions'
+councilMeeting.meetingConditionsInterface = 'Products.Meetingseraing.interfaces.IMeetingseraingCouncilWorkflowConditions'
+councilMeeting.meetingActionsInterface = 'Products.Meetingseraing.interfaces.IMeetingseraingCouncilWorkflowActions'
 councilMeeting.transitionsToConfirm = []
 councilMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
                                                  'proposeToOfficeManager',
@@ -370,14 +442,15 @@ councilMeeting.decisionTopicStates = ('decided', 'closed')
 councilMeeting.recordItemHistoryStates = []
 councilMeeting.maxShownMeetings = 5
 councilMeeting.maxDaysDecisions = 60
-councilMeeting.meetingAppDefaultView = 'topic_searchmyitems'
+councilMeeting.meetingAppDefaultView = 'searchallitems'
 councilMeeting.itemDocFormats = ('odt', 'pdf')
 councilMeeting.meetingDocFormats = ('odt', 'pdf')
 councilMeeting.useAdvices = False
+councilMeeting.selectableAdvisers = []
 councilMeeting.itemAdviceStates = ['proposed', ]
 councilMeeting.itemAdviceEditStates = ['proposed', 'validated']
 councilMeeting.itemAdviceViewStates = ['presented', ]
-councilMeeting.transitionReinitializingDelays = 'backToItemCreated'
+councilMeeting.transitionsReinitializingDelays = 'backToItemCreated'
 councilMeeting.enforceAdviceMandatoriness = False
 councilMeeting.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
 councilMeeting.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
@@ -394,14 +467,15 @@ councilMeeting.podTemplates = [agendaTemplate, decisionsTemplate, itemTemplate]
 councilMeeting.recurringItems = []
 councilMeeting.itemTemplates = (template1, template2)
 
-#no recurring items for this meetingConfig, only for tests !!!
-#so we can test a meetingConfig with recurring items (college) and without (council)
+# no recurring items for this meetingConfig, only for tests !!!
+# so we can test a meetingConfig with recurring items (college) and without (council)
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes seances',
     meetingConfigs=(collegeMeeting, councilMeeting),
     groups=(developers, vendors, endUsers))
-data.unoEnabledPython = '/usr/bin/python'
-data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2, powerEditor1,
-                           restrictedpowerobserver1, restrictedpowerobserver2]
+# necessary for testSetup.test_pm_ToolAttributesAreOnlySetOnFirstImportData
+data.restrictUsers = False
+data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2,
+                           restrictedpowerobserver1, restrictedpowerobserver2, budgetimpacteditor]
 # ------------------------------------------------------------------------------

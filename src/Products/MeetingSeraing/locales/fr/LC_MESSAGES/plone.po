@@ -17,7 +17,7 @@ msgstr ""
 
 #. Default: "MeetingCoDir"
 msgid "MeetingCoDir"
-msgstr ""
+msgstr "Séance du Comité de Direction"
 
 # types
 #. Default: "MeetingCollege"
@@ -30,7 +30,7 @@ msgstr "Séance du Conseil communal"
 
 #. Default: "MeetingItemCoDir"
 msgid "MeetingItemCoDir"
-msgstr ""
+msgstr "Point Comité de Direction"
 
 #. Default: "MeetingItemCollege"
 msgid "MeetingItemCollege"
@@ -42,27 +42,27 @@ msgstr "Point Conseil communal"
 
 #. Default: "MeetingItemRecurringCoDir"
 msgid "MeetingItemRecurringCoDir"
-msgstr ""
+msgstr "Point récurrent Comité de Direction"
 
 #. Default: "MeetingItemRecurringCollege"
 msgid "MeetingItemRecurringCollege"
-msgstr ""
+msgstr "Point récurrent Collège Communal"
 
 #. Default: "MeetingItemRecurringCouncil"
 msgid "MeetingItemRecurringCouncil"
-msgstr ""
+msgstr "Point récurrent Collège Conseil"
 
 #. Default: "MeetingItemTemplateCoDir"
 msgid "MeetingItemTemplateCoDir"
-msgstr ""
+msgstr "Modèle de point Comité de Direction"
 
 #. Default: "MeetingItemTemplateCollege"
 msgid "MeetingItemTemplateCollege"
-msgstr ""
+msgstr "Modèle de point Collège Communal"
 
 #. Default: "MeetingItemTemplateCouncil"
 msgid "MeetingItemTemplateCouncil"
-msgstr ""
+msgstr "Modèle de point Conseil Communal"
 
 # various
 # MeetingItem
@@ -152,7 +152,6 @@ msgid "create_to_meeting-config-college_from_codir"
 msgstr "Envoyer vers Collège Communal"
 
 #. Default: "Create an item college from an item council"
-#, fuzzy
 msgid "create_to_meeting-config-college_from_meeting-config-council"
 msgstr "Envoyer vers Collège Communal"
 
@@ -169,7 +168,6 @@ msgid "create_to_meeting-config-zcollege_from_meeting-config-college"
 msgstr "Envoyer vers Collège de Police"
 
 #. Default: "Create a plonmeeting item from a college item"
-#, fuzzy
 msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
 msgstr "Envoyer vers Conseil de Police"
 

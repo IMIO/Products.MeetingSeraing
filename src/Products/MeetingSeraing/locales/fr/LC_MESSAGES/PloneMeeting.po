@@ -26,7 +26,7 @@ msgstr "Conseil communal"
 
 #. Default: "Finances advice"
 msgid "MeetingAdviceFinances"
-msgstr ""
+msgstr "Avis finances"
 
 #. Default: "Choose proposing group for cdld advice"
 msgid "MeetingCommunes_descr_cdldProposingGroup"
@@ -147,11 +147,11 @@ msgstr "Envoyé au Conseil communal"
 # searches
 #. Default: "Add a finances advice"
 msgid "add_new_meetingadvicefinances"
-msgstr ""
+msgstr "Ajouter un avis finances"
 
 #. Default: "Cautious opinion"
 msgid "cautious_finance"
-msgstr ""
+msgstr "Avis finances réservé"
 
 #. Default: "Please as you defined an item initiator, check if the linked category should not be 'Points conseillers'. If not, just ignore this message, it will not be displayed anymore when the item will be validated."
 msgid "check_intitiator_and_category"
@@ -232,15 +232,15 @@ msgstr "Supplémentaires"
 
 #. Default: "Unfavorable opinion"
 msgid "negative_finance"
-msgstr ""
+msgstr "Avis finances défavorable"
 
 #. Default: "Not given opinion"
 msgid "not_given_finance"
-msgstr ""
+msgstr "Avis finances non remis"
 
 #. Default: "Not required opinion"
 msgid "not_required_finance"
-msgstr ""
+msgstr "Avis finances non requis"
 
 # Suffix
 #. Default: "office managers"
@@ -253,11 +253,11 @@ msgstr "Par type de point (normal, supplémentaire)"
 
 #. Default: "Favorable opinion"
 msgid "positive_finance"
-msgstr ""
+msgstr "Avis finances favorable"
 
 #. Default: "Favorable opinion with remarks"
 msgid "positive_with_remarks_finance"
-msgstr ""
+msgstr "Avis finances favorable avec remarques"
 
 #. Default: "Power editors"
 msgid "powereditors"
@@ -294,7 +294,7 @@ msgstr "points à valider"
 
 #. Default: "Synthesis finance advices"
 msgid "searchitemswithfinanceadvice"
-msgstr ""
+msgstr "Synthèse Avis DF"
 
 # searches
 #. Default: "proposed items"

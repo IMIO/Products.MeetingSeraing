@@ -39,11 +39,11 @@
    for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
    
    <genericsetup:upgradeStep
-    title="Go to MeetingSeraing 3.3"
+    title="Go to MeetingSeraing 4.0"
     description=""
-    source="3.2.0.1"
-    destination="3.3"
-    handler="Products.MeetingSeraing.migrations.migrate_to_3_3.migrate"
+    source="3.3"
+    destination="4.0"
+    handler="Products.MeetingSeraing.migrations.migrate_to_4_0.migrate"
     profile="Products.MeetingSeraing:default" />
 
   <!-- ##/code-section profiles.zcml-bottom -->

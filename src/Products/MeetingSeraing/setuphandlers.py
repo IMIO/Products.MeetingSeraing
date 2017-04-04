@@ -13,26 +13,33 @@ __author__ = """Andre NUYENS <andre.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
 
-import logging
-logger = logging.getLogger('MeetingSeraing: setuphandlers')
-from Products.MeetingSeraing.config import PROJECTNAME
-from Products.MeetingSeraing.config import DEPENDENCIES
 import os
-from Products.CMFCore.utils import getToolByName
-import transaction
-##code-section HEAD
+import logging
+logger = logging.getLogger('MeetingCommunes: setuphandlers')
+from DateTime import DateTime
+from plone import api
+from plone import namedfile
+from plone.app.textfield.value import RichTextValue
+from plone.dexterity.utils import createContentInContainer
+from collective.iconifiedcategory.utils import calculate_category_id
+from collective.iconifiedcategory.utils import get_config_root
+from Products.CMFPlone.utils import _createObjectByType
 from Products.PloneMeeting.exportimport.content import ToolInitializer
-##/code-section HEAD
+from Products.MeetingCommunes.config import PROJECTNAME
+
 
 def isNotMeetingSeraingProfile(context):
     return context.readDataFile("MeetingSeraing_marker.txt") is None
 
+
 def updateRoleMappings(context):
     """after workflow changed update the roles mapping. this is like pressing
     the button 'Update Security Setting' and portal_workflow"""
-    if isNotMeetingSeraingProfile(context): return
-    wft = getToolByName(context.getSite(), 'portal_workflow')
+    if isNotMeetingSeraingProfile(context):
+        return
+    wft = api.portal.get_tool('portal_workflow')
     wft.updateRoleMappings()
+
 
 def postInstall(context):
     """Called as at the end of the setup process. """
@@ -40,18 +47,12 @@ def postInstall(context):
     if isNotMeetingSeraingProfile(context):
         return
     site = context.getSite()
-    # Reinstall PloneMeeting
+    # need to reinstall PloneMeeting after reinstalling MC workflows to re-apply wfAdaptations
     reinstallPloneMeeting(context, site)
-    # Make sure the 'home' tab is shown
     showHomeTab(context, site)
-    # Reinstall the skin
-    reinstallPloneMeetingSkin(context, site)
-    # reorder skins so we are sure that the meetingSeraing_xxx skins are just under custom
     reorderSkinsLayers(context, site)
 
 
-
-##code-section FOOT
 def logStep(method, context):
     logger.info("Applying '%s' in profile '%s'" % (method, '/'.join(context._profile_path.split(os.sep)[-3:])))
 
@@ -71,8 +72,8 @@ def installMeetingSeraing(context):
 
 
 def reinstallPloneMeeting(context, site):
-    '''Reinstall PloneMeeting so after install methods are called and applied,
-       like performWorkflowAdaptations for example.'''
+    """Reinstall PloneMeeting so after install methods are called and applied,
+       like performWorkflowAdaptations for example."""
 
     if isNotMeetingSeraingProfile(context):
         return
@@ -90,8 +91,8 @@ def _installPloneMeeting(context):
 
 
 def initializeTool(context):
-    '''Initialises the PloneMeeting tool based on information from the current
-       profile.'''
+    """Initialises the PloneMeeting tool based on information from the current
+       profile."""
     if isNotMeetingSeraingSeraingProfile(context):
         return
 
@@ -173,15 +174,13 @@ def reorderCss(context):
 
     logStep("reorderCss", context)
     portal_css = site.portal_css
-    css = ['plonemeeting.css',
-           'meeting.css',
-           'meetingitem.css',
-           'meetingSeraing.css',
+    css = ['imio.dashboard.css',
+           'plonemeeting.css',
+           'meetingseraing.css',
            'imioapps.css',
            'plonemeetingskin.css',
            'imioapps_IEFixes.css',
            'ploneCustom.css']
+
     for resource in css:
         portal_css.moveResourceToBottom(resource)
-
-##/code-section FOOT
