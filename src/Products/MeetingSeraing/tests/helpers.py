@@ -21,10 +21,10 @@
 #
 
 from DateTime import DateTime
-from Products.MeetingCommunes.tests.helpers import MeetingCommunesTestingHelpers
+from Products.PloneMeeting.tests.helpers import PloneMeetingTestingHelpers
 
 
-class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
+class MeetingSeraingTestingHelpers(PloneMeetingTestingHelpers):
     '''Override some values of PloneMeetingTestingHelpers.'''
 
     TRANSITIONS_FOR_PROPOSING_ITEM_1 = TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('proposeToServiceHead',
@@ -74,7 +74,10 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         'validated': ('backToItemFrozen',
                       'backToItemValidatedByDG',
                       'backToPresented',
-                      'backToValidated', )}
+                      'backToValidated', ),
+        'presented': ('backToItemFrozen',
+                      'backToItemValidatedByDG',
+                      'backToPresented', )}
 
     WF_STATE_NAME_MAPPINGS = {'itemcreated': 'itemcreated',
                               'proposed': 'proposed',
@@ -89,7 +92,7 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         currentMember = self.portal.portal_membership.getAuthenticatedMember()
         currentMemberRoles = currentMember.getRoles()
         setRoles(self.portal, currentMember.getId(), currentMemberRoles + ['Manager', ])
-        meeting = MeetingCommunesTestingHelpers._createMeetingWithItems(self,
+        meeting = PloneMeetingTestingHelpers._createMeetingWithItems(self,
                                                                         withItems=withItems,
                                                                         meetingDate=meetingDate)
         setRoles(self.portal, currentMember.getId(), currentMemberRoles)

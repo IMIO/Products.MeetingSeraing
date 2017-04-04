@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone.testing import z2, zca
 from plone.app.testing import FunctionalTesting
-from Products.PloneMeeting.testing import PloneMeetingLayer
+from Products.PloneMeeting.testing import PloneWithPackageLayer
 import Products.MeetingSeraing
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 
@@ -13,11 +13,11 @@ MS_ZCML = zca.ZCMLSandbox(filename="testing.zcml",
 MS_Z2 = z2.IntegrationTesting(bases=(z2.STARTUP, MS_ZCML),
                               name='MS_Z2')
 
-MS_TESTING_PROFILE = PloneMeetingLayer(
+MS_TESTING_PROFILE = PloneWithPackageLayer(
     zcml_filename="testing.zcml",
     zcml_package=Products.MeetingSeraing,
-    additional_z2_products=('Products.MeetingSeraing',
-                            'Products.MeetingCommunes',
+    additional_z2_products=('imio.dashboard',
+                            'Products.MeetingSeraing',
                             'Products.PloneMeeting',
                             'Products.CMFPlacefulWorkflow',
                             'Products.PasswordStrength'),

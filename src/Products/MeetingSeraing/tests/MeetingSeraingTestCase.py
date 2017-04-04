@@ -20,18 +20,26 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
+from Products.PloneMeeting.tests.PloneMeetingTestCase import PloneMeetingTestCase
 from Products.MeetingSeraing.testing import MS_TESTING_PROFILE_FUNCTIONAL
 from Products.MeetingSeraing.tests.helpers import MeetingSeraingTestingHelpers
 
 # monkey patch the MeetingConfig.wfAdaptations again because it is done in
 # adapters.py but overrided by Products.MeetingCommunes here in the tests...
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
+from Products.PloneMeeting.model import adaptations
 from Products.MeetingSeraing.adapters import customWfAdaptations
+from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
+
 MeetingConfig.wfAdaptations = customWfAdaptations
+adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
 
-
-class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpers):
+class MeetingSeraingTestCase(PloneMeetingTestCase, MeetingSeraingTestingHelpers):
     """Base class for defining MeetingSeraing test cases."""
 
     layer = MS_TESTING_PROFILE_FUNCTIONAL
+
+    def setUp(self):
+        PloneMeetingTestCase.setUp(self)
+        self.meetingConfig = getattr(self.tool, 'meeting-config-college')
+        self.meetingConfig2 = getattr(self.tool, 'meeting-config-council')

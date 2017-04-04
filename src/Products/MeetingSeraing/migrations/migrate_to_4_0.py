@@ -50,32 +50,28 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
         PMMigrate_To_4_0._after_reinstall(self)
         for cfg in self.tool.objectValues('MeetingConfig'):
             # MeetingItem workflow
-            if cfg.getItemWorkflow() == 'meetingitemcollege_workflow':
-                cfg.setItemWorkflow('meetingitemcommunes_workflow')
-                cfg._v_oldItemWorkflow = 'meetingitemcollege_workflow'
+            if cfg.getItemWorkflow() == 'meetingitemseraingcollege_workflow':
+                cfg.setItemWorkflow('meetingitemseraing_workflow')
+                cfg._v_oldItemWorkflow = 'meetingitemseraingcollege_workflow'
                 wfAdaptations = list(cfg.getWorkflowAdaptations())
-                if 'no_publication' not in wfAdaptations:
-                    wfAdaptations.append('no_publication')
-                if 'no_global_observation' not in wfAdaptations:
-                    wfAdaptations.append('no_global_observation')
                 cfg.setWorkflowAdaptations(wfAdaptations)
-            if cfg.getItemWorkflow() == 'meetingitemcouncil_workflow':
-                cfg.setItemWorkflow('meetingitemcommunes_workflow')
-                cfg._v_oldItemWorkflow = 'meetingitemcouncil_workflow'
+            if cfg.getItemWorkflow() == 'meetingitemseraingcouncil_workflow':
+                cfg.setItemWorkflow('meetingitemseraing_workflow')
+                cfg._v_oldItemWorkflow = 'meetingitemseraingcouncil_workflow'
             # Meeting workflow
-            if cfg.getMeetingWorkflow() == 'meetingcollege_workflow':
-                cfg.setMeetingWorkflow('meetingcommunes_workflow')
-                cfg._v_oldMeetingWorkflow = 'meetingcollege_workflow'
-            if cfg.getMeetingWorkflow() == 'meetingcouncil_workflow':
-                cfg.setMeetingWorkflow('meetingcommunes_workflow')
-                cfg._v_oldMeetingWorkflow = 'meetingcouncil_workflow'
+            if cfg.getMeetingWorkflow() == 'meetingseraingcollege_workflow':
+                cfg.setMeetingWorkflow('meetingseraing_workflow')
+                cfg._v_oldMeetingWorkflow = 'meetingseraingcollege_workflow'
+            if cfg.getMeetingWorkflow() == 'meetingseraingcouncil_workflow':
+                cfg.setMeetingWorkflow('meetingseraing_workflow')
+                cfg._v_oldMeetingWorkflow = 'meetingseraingcouncil_workflow'
         # delete old unused workflows, aka every workflows containing 'college' or 'council'
         wfTool = api.portal.get_tool('portal_workflow')
         self.wfs_to_delete = [wfId for wfId in wfTool.listWorkflows()
-                              if wfId.endswith(('meetingitemcollege_workflow',
-                                                'meetingitemcouncil_workflow',
-                                                'meetingcollege_workflow',
-                                                'meetingcouncil_workflow'))]
+                              if wfId.endswith(('meetingitemseraingcollege_workflow',
+                                                'meetingitemseraingcouncil_workflow',
+                                                'meetingseraingcollege_workflow',
+                                                'meetingseraingcouncil_workflow'))]
         logger.info('Done.')
 
     def _addSampleAnnexTypeForMeetings(self):

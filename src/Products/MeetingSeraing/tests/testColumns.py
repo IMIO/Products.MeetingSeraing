@@ -22,11 +22,11 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testColumns import testColumns as pmtc
 
 
-class testColumns(MeetingCommunesTestCase, pmtc):
+class testColumns(MeetingSeraingTestCase, pmtc):
     ''' '''
 
 
