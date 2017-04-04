@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import logging
-logger = logging.getLogger('MeetingCommunes')
+logger = logging.getLogger('MeetingSeraing')
 
 from plone import api
 
-from Products.MeetingCommunes.profiles.examples_fr.import_data import annexeSeance
 from Products.PloneMeeting.migrations.migrate_to_4_0 import Migrate_To_4_0 as PMMigrate_To_4_0
 
 
@@ -74,17 +73,6 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
                                                 'meetingseraingcouncil_workflow'))]
         logger.info('Done.')
 
-    def _addSampleAnnexTypeForMeetings(self):
-        """Add a sample annexType for Meetings now that
-           annexes may be added to meetings."""
-        logger.info('Adding sample annexType in meeting_annexes...')
-        for cfg in self.tool.objectValues('MeetingConfig'):
-            if not cfg.annexes_types.meeting_annexes.objectIds():
-                source = self.ps.getProfileInfo(
-                    self.profile_name)['path'].replace('/default', '/examples_fr')
-                cfg.addAnnexType(annexeSeance, source)
-        logger.info('Done.')
-
     def _deleteUselessWorkflows(self):
         """Finally, remove useless workflows."""
         logger.info('Removing useless workflows...')
@@ -95,11 +83,11 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
 
     def run(self):
         # change self.profile_name that is reinstalled at the beginning of the PM migration
-        self.profile_name = u'profile-Products.MeetingCommunes:default'
+        self.profile_name = u'profile-Products.MeetingSeraing:default'
         # call steps from Products.PloneMeeting
         PMMigrate_To_4_0.run(self)
         # now MeetingLiege specific steps
-        logger.info('Migrating to MeetingCommunes 4.0...')
+        logger.info('Migrating to MeetingSeraing 4.0...')
         self._cleanCDLD()
         self._migrateItemPositiveDecidedStates()
         self._addSampleAnnexTypeForMeetings()
@@ -110,7 +98,7 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
 def migrate(context):
     '''This migration function:
 
-       1) Reinstall Products.MeetingCommunes and execute the Products.PloneMeeting migration;
+       1) Reinstall Products.MeetingSeraing and execute the Products.PloneMeeting migration;
        2) Clean CDLD attributes;
        3) Add an annex type for Meetings;
        4) Remove useless workflows;

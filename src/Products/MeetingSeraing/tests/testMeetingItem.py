@@ -23,28 +23,27 @@
 #
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
+from Products.PloneMeeting.tests.testMeetingItem import testMeetingItem as pmtmi
 from Products.PloneMeeting.interfaces import IAnnexable
 from Products.CMFCore.permissions import View
 
 
-class testMeetingItem(MeetingSeraingTestCase, mctmi):
+class testMeetingItem(MeetingSeraingTestCase, pmtmi):
     """
         Tests the MeetingItem class methods.
     """
 
-    def test_subproduct_call_PowerObserversLocalRoles(self):
+    def test_pm_PowerObserversLocalRoles(self):
         '''Check that powerobservers local roles are set correctly...
            Test alternatively item or meeting that is accessible to and not...'''
         # we will check that (restricted) power observers local roles are set correctly.
         # - powerobservers may access itemcreated, validated and presented items (and created meetings),
         #   not restricted power observers;
         # - frozen items/meetings are accessible by both;
-        # - only restricted power observers may access 'refused' items.
         self.meetingConfig.setItemPowerObserversStates(('itemcreated', 'validated', 'presented',
                                                        'itemfrozen', 'accepted', 'delayed'))
         self.meetingConfig.setMeetingPowerObserversStates(('created', 'frozen', 'decided', 'closed'))
-        self.meetingConfig.setItemRestrictedPowerObserversStates(('itemfrozen', 'accepted', 'refused'))
+        self.meetingConfig.setItemRestrictedPowerObserversStates(('itemfrozen', 'accepted'))
         self.meetingConfig.setMeetingRestrictedPowerObserversStates(('frozen', 'decided', 'closed'))
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
@@ -85,8 +84,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.changeUser('powerobserver1')
         self.assertTrue(self.hasPermission(View, item))
         self.assertTrue(self.hasPermission(View, meeting))
-        # decide the meeting and refuse the item, meeting accessible to both
-        # but refused item only accessible to restricted powerob
+        # decide the meeting the item, meeting accessible to both
         self.decideMeeting(meeting)
         self.changeUser('pmManager')
         self.do(item, 'accept')
@@ -97,7 +95,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertTrue(self.hasPermission(View, item))
         self.assertTrue(self.hasPermission(View, meeting))
 
-    def test_subproduct_call_SendItemToOtherMCWithAnnexes(self):
+    def test_pm_SendItemToOtherMCWithAnnexes(self):
         '''Test that sending an item to another MeetingConfig behaves normaly with annexes.
            This is a complementary test to testToolPloneMeeting.testCloneItemWithContent.
            Here we test the fact that the item is sent to another MeetingConfig.'''
@@ -139,26 +137,10 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertEquals(newItem.objectValues('MeetingFile')[1].getMeetingFileType(),
                           defaultMC2ItemMFT['id'])
 
-    def test_subproduct_call_ItemStrikedAssembly(self):
-        self.test_pm_ItemStrikedAssembly()
-
-    def test_subproduct_call_Emergency(self):
-        self.test_pm_Emergency()
-
-    def test_subproduct_call_Completeness(self):
-        self.test_pm_Completeness()
-
-    def test_subproduct_call_SendItemToOtherMCManually(self):
-        self.test_pm_SendItemToOtherMCManually()
-
-    def test_subproduct_call_GetDeliberation(self):
-        #this methode is removed in v4 ... not necessary to make it now
-        pass
-
 
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
     # launch only tests prefixed by 'test_mc_' to avoid launching the tests coming from pmtmi
-    suite.addTest(makeSuite(testMeetingItem, prefix='test_subproduct_'))
+    suite.addTest(makeSuite(testMeetingItem, prefix='test_pm_'))
     return suite

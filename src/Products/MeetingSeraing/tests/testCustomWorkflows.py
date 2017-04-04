@@ -23,11 +23,11 @@
 #
 
 from DateTime import DateTime
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 
 
-class testCustomWorkflows(MeetingCommunesTestCase):
-    """Tests the default workflows implemented in MeetingCommunes."""
+class testCustomWorkflows(MeetingSeraingTestCase):
+    """Tests the default workflows implemented in MeetingSeraing."""
 
     def test_FreezeMeeting(self):
         """
@@ -97,10 +97,8 @@ class testCustomWorkflows(MeetingCommunesTestCase):
         # change all items in all different state (except first who is in good state)
         self.backToState(item7, 'presented')
         self.do(item2, 'delay')
-        self.do(item3, 'pre_accept')
+        self.do(item3, 'accept')
         self.do(item4, 'accept_but_modify')
-        self.do(item5, 'refuse')
-        self.do(item6, 'accept')
         # we close the meeting
         self.do(meeting, 'close')
         # every items must be in the 'decided' state if we close the meeting
@@ -113,8 +111,6 @@ class testCustomWorkflows(MeetingCommunesTestCase):
         self.assertEquals('accepted', wftool.getInfoFor(item3, 'review_state'))
         # accepted_but_modified rest accepted_but_modified (it's already a 'decide' state)
         self.assertEquals('accepted_but_modified', wftool.getInfoFor(item4, 'review_state'))
-        # refused rest refused (it's already a 'decide' state)
-        self.assertEquals('refused', wftool.getInfoFor(item5, 'review_state'))
         # accepted rest accepted (it's already a 'decide' state)
         self.assertEquals('accepted', wftool.getInfoFor(item6, 'review_state'))
         # presented change into accepted

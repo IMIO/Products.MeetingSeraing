@@ -23,22 +23,22 @@
 #
 import logging
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testMeetingConfig import testMeetingConfig as mctmc
+from Products.PloneMeeting.tests.testMeetingConfig import testMeetingConfig as pmtmc
 from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 
 
-class testMeetingConfig(MeetingSeraingTestCase, mctmc):
+class testMeetingConfig(MeetingSeraingTestCase, pmtmc):
     '''Call testMeetingConfig tests.'''
 
-    def test_subproduct_call_searchItemsToPrevalidate(self):
+    def test_pm_searchItemsToPrevalidate(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_searchReviewableItems(self):
+    def test_pm_searchReviewableItems(self):
         '''Test the searchReviewableItems search.'''
         pass
 
-    def test_subproduct_call_SearchItemsToValidateOfEveryReviewerLevelsAndLowerLevels(self):
+    def test_pm_SearchItemsToValidateOfEveryReviewerLevelsAndLowerLevels(self):
         '''Test the searchItemsToValidateOfEveryReviewerLevelsAndLowerLevels method.
            This will return items to validate of his highest hierarchic level and every levels
            under, even if user is not in the corresponding Plone reviewer groups.'''
@@ -80,5 +80,5 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(testMeetingConfig, prefix='test_subproduct_'))
+    suite.addTest(makeSuite(testMeetingConfig, prefix='test_pm_'))
     return suite

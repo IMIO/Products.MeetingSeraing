@@ -15,7 +15,7 @@ __docformat__ = 'plaintext'
 
 import os
 import logging
-logger = logging.getLogger('MeetingCommunes: setuphandlers')
+logger = logging.getLogger('MeetingSeraing: setuphandlers')
 from DateTime import DateTime
 from plone import api
 from plone import namedfile
@@ -25,7 +25,7 @@ from collective.iconifiedcategory.utils import calculate_category_id
 from collective.iconifiedcategory.utils import get_config_root
 from Products.CMFPlone.utils import _createObjectByType
 from Products.PloneMeeting.exportimport.content import ToolInitializer
-from Products.MeetingCommunes.config import PROJECTNAME
+from Products.MeetingSeraing.config import PROJECTNAME
 
 
 def isNotMeetingSeraingProfile(context):

@@ -1,10 +1,7 @@
 <?xml version="1.0"?>
 <import-steps>
 
- 
-
-
- <import-step 
+  <import-step
     id="MeetingSeraing-Update-RoleMappings" 
     handler="Products.MeetingSeraing.setuphandlers.updateRoleMappings"
     title="Update Workflow role mappings for MeetingSeraing"
@@ -28,7 +25,7 @@
     handler="Products.MeetingSeraing.setuphandlers.reorderCss"
     title="Make sure CSS order is correct."
     version="2013-11-14T14:00:00.000000">
-   <dependency step="MeetingCommunes-postInstall"/>
+   <dependency step="MeetingSeraing-postInstall"/>
    Make sure CSS order is correct.
  </import-step>
 <!-- ##/code-section ADDITIONALSTEPS -->

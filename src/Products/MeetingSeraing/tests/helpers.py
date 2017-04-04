@@ -84,16 +84,3 @@ class MeetingSeraingTestingHelpers(PloneMeetingTestingHelpers):
                               'validated': 'validated',
                               'presented': 'presented'}
 
-    def _createMeetingWithItems(self, withItems=True, meetingDate=DateTime()):
-        '''Create a meeting with a bunch of items.
-           Overrided to do it as 'Manager' to be able
-           to add recurring items.'''
-        from plone.app.testing.helpers import setRoles
-        currentMember = self.portal.portal_membership.getAuthenticatedMember()
-        currentMemberRoles = currentMember.getRoles()
-        setRoles(self.portal, currentMember.getId(), currentMemberRoles + ['Manager', ])
-        meeting = PloneMeetingTestingHelpers._createMeetingWithItems(self,
-                                                                        withItems=withItems,
-                                                                        meetingDate=meetingDate)
-        setRoles(self.portal, currentMember.getId(), currentMemberRoles)
-        return meeting

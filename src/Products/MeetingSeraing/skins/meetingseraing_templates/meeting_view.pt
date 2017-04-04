@@ -470,8 +470,7 @@
   function askInitialItemsLists() {}
   -->
   </script>
-  <img tal:attributes="src string: $portal_url/refuse.png"
-       align="left"><p>&nbsp;<span i18n:translate="">hide_meeting_view_page</span></p>
+
   </tal:mustHidePage>
 
 </body>

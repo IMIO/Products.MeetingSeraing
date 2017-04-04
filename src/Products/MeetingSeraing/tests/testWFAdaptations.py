@@ -31,54 +31,54 @@ from Products.MeetingSeraing.adapters import RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
 from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
+from Products.PloneMeeting.tests.testWFAdaptations import testWFAdaptations as pmtwfa
 
 
-class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
+class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
     '''Tests various aspects of votes management.'''
 
-    def test_subproduct_call_WFA_availableWFAdaptations(self):
+    def test_pm_WFA_availableWFAdaptations(self):
         '''Most of wfAdaptations makes no sense, just make sure most are disabled.'''
         self.assertEquals(set(self.meetingConfig.listWorkflowAdaptations()),
                           set(('return_to_proposing_group', 'returned_to_advise')))
 
-    def test_subproduct_call_WFA_no_publication(self):
+    def test_pm_WFA_no_publication(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_no_proposal(self):
+    def test_pm_WFA_no_proposal(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_pre_validation(self):
+    def test_pm_WFA_pre_validation(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_items_come_validated(self):
+    def test_pm_WFA_items_come_validated(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_only_creator_may_delete(self):
+    def test_pm_WFA_only_creator_may_delete(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_no_global_observation(self):
+    def test_pm_WFA_no_global_observation(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_everyone_reads_all(self):
+    def test_pm_WFA_everyone_reads_all(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_creator_edits_unless_closed(self):
+    def test_pm_WFA_creator_edits_unless_closed(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_add_published_state(self):
+    def test_pm_WFA_add_published_state(self):
         '''No sense...'''
         pass
 
-    def test_subproduct_call_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing(self):
+    def test_pm_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing(self):
         '''No sense...'''
         pass
 
@@ -144,13 +144,13 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
         self.assertEquals(item.queryState(), 'presented')
 
-    def test_subproduct_call_WFA_hide_decisions_when_under_writing(self):
+    def test_pm_WFA_hide_decisions_when_under_writing(self):
         '''Only launch the test for meetingConfig not for meetingConfig2 as no
            'decided' state exists in meetingConfig2 for the 'Meeting'.'''
         self.meetingConfig2.setMeetingWorkflow(self.meetingConfig.getMeetingWorkflow())
         mctwfa.test_pm_WFA_hide_decisions_when_under_writing(self)
 
-    def test_subproduct_WFA_return_to_advise(self):
+    def test_pm_WFA_return_to_advise(self):
         '''Test the workflowAdaptation 'return_to_advise'.'''
         # ease override by subproducts
         if not 'returned_to_advise' in self.meetingConfig.listWorkflowAdaptations():
@@ -271,5 +271,5 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(testWFAdaptations, prefix='test_subproduct_'))
+    suite.addTest(makeSuite(testWFAdaptations, prefix='test_pm_'))
     return suite

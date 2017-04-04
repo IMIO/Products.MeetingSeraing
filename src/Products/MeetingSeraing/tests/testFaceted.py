@@ -22,11 +22,11 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testFaceted import testFaceted as pmtf
 
 
-class testFaceted(MeetingCommunesTestCase, pmtf):
+class testFaceted(MeetingSeraingTestCase, pmtf):
     '''Tests the faceted navigation.'''
 
 

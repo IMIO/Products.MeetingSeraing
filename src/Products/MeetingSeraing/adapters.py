@@ -28,6 +28,7 @@ from collections import OrderedDict
 from DateTime import DateTime
 from Globals import InitializeClass
 from zope.interface import implements
+from zope.i18n import translate
 
 from Products.CMFCore.permissions import DeleteObjects
 from Products.CMFCore.permissions import ModifyPortalContent
@@ -1041,6 +1042,7 @@ class CustomMeetingConfig(MeetingConfig):
                 ('searchproposeditems',
                  {
                      'subFolderId': 'searches_items',
+                     'active': True,
                      'query':
                          [
                              {'i': 'portal_type',
@@ -1061,6 +1063,7 @@ class CustomMeetingConfig(MeetingConfig):
                 ('searchvalidateditems',
                  {
                      'subFolderId': 'searches_items',
+                     'active': True,
                      'query':
                          [
                              {'i': 'portal_type',

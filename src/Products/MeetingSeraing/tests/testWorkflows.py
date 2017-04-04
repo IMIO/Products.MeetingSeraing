@@ -25,10 +25,10 @@
 from AccessControl import Unauthorized
 from DateTime import DateTime
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
+from Products.PloneMeeting.tests.testWorkflows import testWorkflows as pmtw
 
 
-class testWorkflows(MeetingSeraingTestCase, mctw):
+class testWorkflows(MeetingSeraingTestCase, pmtw):
     """Tests the default workflows implemented in MeetingSeraing.
 
        WARNING:
@@ -40,7 +40,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
        (self.assertRaise). Instead, we check that the user has the permission
        to do so (getSecurityManager().checkPermission)."""
 
-    def test_subproduct_call_WholeDecisionProcess(self):
+    def test_pm_WholeDecisionProcess(self):
         """
             This test covers the whole decision workflow. It begins with the
             creation of some items, and ends by closing a meeting.
@@ -138,14 +138,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # every items without a decision are automatically accepted
         self.assertEquals(item2.queryState(), 'accepted')
 
-    def test_subproduct_call_RecurringItems(self):
-        """
-            Tests the recurring items system.
-        """
-        # call MeetingCommunes test and add our own
-        mctw.test_subproduct_call_RecurringItems(self)
-
-    def test_subproduct_FreezeMeeting(self):
+    def test_pm_FreezeMeeting(self):
         """
            When we freeze a meeting, every presented items will be frozen
            too and their state will be set to 'itemfrozen'.  When the meeting
@@ -182,7 +175,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.assertEquals('presented', wftool.getInfoFor(item1, 'review_state'))
         self.assertEquals('presented', wftool.getInfoFor(item2, 'review_state'))
 
-    def test_subproduct_CloseMeeting(self):
+    def test_pm_CloseMeeting(self):
         """
            When we close a meeting, every items are set to accepted if they are still
            not decided...
@@ -246,5 +239,5 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(testWorkflows, prefix='test_subproduct_'))
+    suite.addTest(makeSuite(testWorkflows, prefix='test_pm_'))
     return suite

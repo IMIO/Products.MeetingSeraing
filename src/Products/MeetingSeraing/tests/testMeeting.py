@@ -23,15 +23,15 @@
 #
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testMeeting import testMeeting as mctm
+from Products.PloneMeeting.tests.testMeeting import testMeeting as pmtm
 
 
-class testMeeting(MeetingSeraingTestCase, mctm):
+class testMeeting(MeetingSeraingTestCase, pmtm):
     """Tests the Meeting class methods."""
 
 
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(testMeeting, prefix='test_subproduct_'))
+    suite.addTest(makeSuite(testMeeting, prefix='test_pm_'))
     return suite
