@@ -5,8 +5,8 @@
            i18n_domain="PloneMeeting">
 
   <subscriber for="Products.PloneMeeting.interfaces.IMeetingItem
-                   Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-              handler=".events.onItemAfterTransition"/>
+                   Products.PloneMeeting.interfaces.IItemLocalRolesUpdatedEvent"
+              handler=".events.onItemLocalRolesUpdated"/>
 
   <subscriber for="Products.PloneMeeting.interfaces.IMeetingItem
                    Products.PloneMeeting.interfaces.IItemDuplicatedEvent"

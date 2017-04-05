@@ -82,6 +82,22 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
         '''No sense...'''
         pass
 
+    def test_pm_WFA_return_to_proposing_group_with_all_validations(self):
+        '''Not used yet...'''
+        pass
+
+    def test_pm_WFA_return_to_proposing_group_with_last_validation(self):
+        '''Not used yet...'''
+        pass
+
+    def test_pm_WFA_return_to_proposing_group(self):
+        '''See doc in PloneMeeting/tests/testWFAdaptations.py'''
+        pmtwfa.test_pm_WFA_return_to_proposing_group(self)
+
+    def test_pm_WFA_hide_decisions_when_under_writing(self):
+        '''No sense...'''
+        pass
+
     def _return_to_proposing_group_inactive(self):
         '''Tests while 'return_to_proposing_group' wfAdaptation is inactive.'''
         # this is active by default in MeetingSeraing council wf
@@ -98,11 +114,11 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
            RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS defined value.
            In our use case, just test that permissions of 'returned_to_proposing_group' state
            are the one defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
-        itemWF = getattr(self.wfTool, self.meetingConfig.getItemWorkflow())
+        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
         returned_to_proposing_group_state_permissions = itemWF.states['returned_to_proposing_group'].permission_roles
         for permission in returned_to_proposing_group_state_permissions:
             self.assertEquals(returned_to_proposing_group_state_permissions[permission],
-                              RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS[permission])
+                              RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS[self.meetingConfig.getItemWorkflow()][permission])
 
     def _return_to_proposing_group_active_wf_functionality(self):
         '''Tests the workflow functionality of using the 'return_to_proposing_group' wfAdaptation.
@@ -144,21 +160,16 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
         self.assertEquals(item.queryState(), 'presented')
 
-    def test_pm_WFA_hide_decisions_when_under_writing(self):
-        '''Only launch the test for meetingConfig not for meetingConfig2 as no
-           'decided' state exists in meetingConfig2 for the 'Meeting'.'''
-        self.meetingConfig2.setMeetingWorkflow(self.meetingConfig.getMeetingWorkflow())
-        mctwfa.test_pm_WFA_hide_decisions_when_under_writing(self)
-
     def test_pm_WFA_return_to_advise(self):
         '''Test the workflowAdaptation 'return_to_advise'.'''
         # ease override by subproducts
         if not 'returned_to_advise' in self.meetingConfig.listWorkflowAdaptations():
             return
+        cfg = self.meetingConfig
         # activate the wfAdaptations and check
-        self.meetingConfig.setWorkflowAdaptations(('return_to_proposing_group', 'returned_to_advise'))
+        cfg.setWorkflowAdaptations(('return_to_proposing_group', 'returned_to_advise'))
         logger = logging.getLogger('MeetingSeraing: testing')
-        performWorkflowAdaptations(self.portal, self.meetingConfig, logger)
+        performWorkflowAdaptations(cfg, logger)
         self.logger = logger
         # test what should happen to the wf (added states and transitions)
         self._return_to_advise_active()
@@ -180,7 +191,7 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
         '''Helper method to test 'returned_to_advise' wfAdaptation regarding the
            RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES defined value.'''
         # make sure the 'return_to_proposing_group' state does not exist in the item WF
-        itemWF = getattr(self.wfTool, self.meetingConfig.getItemWorkflow())
+        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
         self.failUnless('returned_to_advise' in itemWF.states)
         # check from witch state we can go to 'returned_to_item', it corresponds
         # to model.adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
@@ -202,11 +213,11 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
            RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS defined value.
            In our use case, just test that permissions of 'returned_to_proposing_group' state
            are the one defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
-        itemWF = getattr(self.wfTool, self.meetingConfig.getItemWorkflow())
+        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
         returned_to_advise_state_permissions = itemWF.states['returned_to_advise'].permission_roles
         for permission in returned_to_advise_state_permissions:
             self.assertEquals(returned_to_advise_state_permissions[permission],
-                              RETURN_TO_ADVISE_CUSTOM_PERMISSIONS[permission])
+                              RETURN_TO_ADVISE_CUSTOM_PERMISSIONS[self.meetingConfig.getItemWorkflow()][permission])
 
     def _return_to_advise_active_wf_functionality(self):
         '''Tests the workflow functionality of using the 'return_to_proposing_group' wfAdaptation.

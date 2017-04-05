@@ -17,16 +17,14 @@ from Products.PloneMeeting.interfaces import IAnnexable
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 
 
-def onItemAfterTransition(item, event):
-    '''Called whenever a transition has been fired on an item.'''
-    if not event.transition or (item != event.object):
-        return
+def onItemLocalRolesUpdated(item, event):
+    """Called after localRoles have been updated on the item."""
     item.adapted().updatePowerEditorsLocalRoles()
 
 
 def onItemDuplicated(original, event):
-    '''After item's cloning, we removed decision annexe.
-    '''
+    """After item's cloning, we removed decision annexe.
+    """
     newItem = event.newItem
     # Delete the decision annexes that have been copied.
     for annex in IAnnexable(newItem).getAnnexes(relatedTo='item_decision'):
@@ -42,6 +40,6 @@ def onItemDuplicated(original, event):
 
 
 def _removeTypistNote(field):
-    ''' Remove typist's note find with highlight-purple class'''
+    """ Remove typist's note find with highlight-purple class"""
     import re
     return re.sub('<span class="highlight-purple">.*?</span>', '', field)

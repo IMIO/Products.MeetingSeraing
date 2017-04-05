@@ -126,17 +126,17 @@ class testWorkflows(MeetingSeraingTestCase, pmtw):
         self.changeUser('pmManager')
         self.do(item2, 'present')
         self.addAnnex(item2)
-        # So now we should have 3 normal item (2 recurring items) and one late item in the meeting
-        self.failUnless(len(meeting.getItems()) == 3)
-        self.failUnless(len(meeting.getLateItems()) == 1)
+        # So now we should have 3 normal item (2 recurring + 1) and one late item in the meeting
+        self.failUnless(len(meeting.getItems()) == 4)
+        self.failUnless(len(meeting.getItems(listTypes='late')) == 1)
         self.do(meeting, 'decide')
         self.do(item1, 'accept')
         self.assertEquals(item1.queryState(), 'accepted')
         self.assertEquals(item2.queryState(), 'itemfrozen')
         self.do(meeting, 'close')
-        self.assertEquals(item1.queryState(), 'accepted')
-        # every items without a decision are automatically accepted
-        self.assertEquals(item2.queryState(), 'accepted')
+        self.assertEquals(item1.queryState(), 'accepted_closed')
+        # every items without a decision are automatically accepted_closed
+        self.assertEquals(item2.queryState(), 'accepted_closed')
 
     def test_pm_FreezeMeeting(self):
         """
@@ -224,16 +224,25 @@ class testWorkflows(MeetingSeraingTestCase, pmtw):
         self.do(meeting, 'close')
         #every items must be in the 'decided' state if we close the meeting
         wftool = self.portal.portal_workflow
-        #itemfrozen change into accepted
-        self.assertEquals('accepted', wftool.getInfoFor(item1, 'review_state'))
-        self.assertEquals('accepted', wftool.getInfoFor(item2, 'review_state'))
-        self.assertEquals('accepted', wftool.getInfoFor(item3, 'review_state'))
-        #accepted_but_modified rest accepted_but_modified (it's already a 'decide' state)
-        self.assertEquals('accepted_but_modified', wftool.getInfoFor(item4, 'review_state'))
-        self.assertEquals('delayed', wftool.getInfoFor(item5, 'review_state'))
-        self.assertEquals('accepted', wftool.getInfoFor(item6, 'review_state'))
-        #presented change into accepted
-        self.assertEquals('accepted', wftool.getInfoFor(item7, 'review_state'))
+        #itemfrozen change into accepted_closed
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item2, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item3, 'review_state'))
+        #accepted_but_modified change into accepted_but_modified_closed
+        self.assertEquals('accepted_but_modified_closed', wftool.getInfoFor(item4, 'review_state'))
+        self.assertEquals('delayed_closed', wftool.getInfoFor(item5, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item6, 'review_state'))
+        #presented change into accepted_closed
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item7, 'review_state'))
+
+    def test_pm_WorkflowPermissions(self):
+        """Bypass this test..."""
+        pass
+
+
+    def test_pm_RecurringItems(self):
+        """Bypass this test..."""
+        pass
 
 
 def test_suite():

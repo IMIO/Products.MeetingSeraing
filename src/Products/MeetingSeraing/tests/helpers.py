@@ -84,3 +84,5 @@ class MeetingSeraingTestingHelpers(PloneMeetingTestingHelpers):
                               'validated': 'validated',
                               'presented': 'presented'}
 
+    # in which state an item must be after a particular meeting transition?
+    ITEM_WF_STATE_AFTER_MEETING_TRANSITION = {'close': 'accepted_closed', }

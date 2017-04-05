@@ -671,6 +671,7 @@
   </permission-map>
   <permission-map name="PloneMeeting: Write marginal notes"
                   acquired="False">
+   <permission-role>Manager</permission-role>
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="False">

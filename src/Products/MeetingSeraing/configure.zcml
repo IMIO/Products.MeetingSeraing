@@ -66,6 +66,11 @@
            factory="Products.MeetingSeraing.adapters.CustomMeetingGroup"
            provides="Products.PloneMeeting.interfaces.IMeetingGroupCustom"/>
 
+  <!-- Customizations for every ToolPloneMeeting -->
+  <adapter for="Products.PloneMeeting.interfaces.IToolPloneMeeting"
+           factory="Products.MeetingSeraing.adapters.CustomToolPloneMeeting"
+           provides="Products.PloneMeeting.interfaces.IToolPloneMeetingCustom"/>
+
   <!-- ##/code-section configure.zcml.header -->
 
   <i18n:registerTranslations directory="locales" />

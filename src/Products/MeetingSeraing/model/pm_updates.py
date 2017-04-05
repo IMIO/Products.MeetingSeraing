@@ -88,7 +88,7 @@ MeetingGroup.schema = update_group_schema(MeetingGroup.schema)
 def update_item_schema(baseSchema):
 
     specificSchema = Schema((
-        #specific field for council added for MeetingManagers to transcribe interventions
+        # specific field for council added for MeetingManagers to transcribe interventions
         TextField(
             name='interventions',
             widget=RichWidget(
@@ -106,8 +106,9 @@ def update_item_schema(baseSchema):
             searchable=True,
             allowable_content_types=('text/html',),
             default_output_type="text/html",
+            optional=True,
         ),
-        #specific field for mark if this item must be printing in meeting
+        # specific field for mark if this item must be printing in meeting
         BooleanField(
             name='isToPrintInMeeting',
             default=False,
@@ -119,7 +120,7 @@ def update_item_schema(baseSchema):
                 i18n_domain='PloneMeeting',
             ),
         ),
-        #specific field for mark pv note
+        # specific field for mark pv note
         TextField(
             name='pvNote',
             widget=RichWidget(
@@ -135,10 +136,11 @@ def update_item_schema(baseSchema):
             searchable=True,
             allowable_content_types=('text/html',),
             default_output_type="text/html",
-            write_permission="PloneMeeting: Write item observations",
+            write_permission="PloneMeeting: Write item MeetingManager reserved fields",
             read_permission="PloneMeeting: Read item observations",
+            optional=True,
         ),
-        #specific field for mark dg note
+        # specific field for mark dg note
         TextField(
             name='dgNote',
             widget=RichWidget(
@@ -155,6 +157,7 @@ def update_item_schema(baseSchema):
             searchable=True,
             allowable_content_types=('text/html',),
             default_output_type="text/html",
+            optional=True,
         ),
     ),)
 

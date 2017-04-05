@@ -27,8 +27,21 @@ from Products.PloneMeeting.tests.testVotes import testVotes as pmtv
 
 
 class testVotes(MeetingSeraingTestCase, pmtv):
-    '''Tests various aspects of votes management.'''
+    """Tests various aspects of votes management."""
 
+    def test_pm_MayConsultVotes(self):
+        ''' Currently, Votes are not used'''
+
+
+    def test_pm_MayEditVotes(self):
+        ''' Currently, Votes are not used'''
+
+
+    def test_pm_OnSaveItemPeopleInfos(self):
+        ''' Currently, Votes are not used'''
+
+    def test_pm_SecretVotes(self):
+        ''' Currently, Votes are not used'''
 
 def test_suite():
     from unittest import TestSuite, makeSuite
