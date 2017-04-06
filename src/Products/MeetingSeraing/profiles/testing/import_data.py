@@ -204,14 +204,13 @@ restrictedpowerobserver2.ploneGroups = [council_restrictedpowerobservers, ]
 
 plonemeeting_assembly_powereditors = PloneGroupDescriptor('meeting-config-college_powereditors',
                                                           'meeting-config-council_powereditors', [])
-powerEditor1 = UserDescriptor('powerEditor1', [], fullname='M. Power Editor1')
+powerEditor1 = UserDescriptor('powerEditor1', [])
 powerEditor1.ploneGroups = [plonemeeting_assembly_powereditors, ]
 
 developers = GroupDescriptor('developers', 'Developers', 'Devel')
 developers.creators.append(pmCreator1)
 developers.creators.append(pmCreator1b)
 developers.creators.append(pmManager)
-developers.creators.append(admin)
 developers.observers.append(pmObserver1)
 developers.serviceheads.append(pmReviewer1)
 developers.serviceheads.append(pmServiceHead1)
@@ -222,10 +221,8 @@ developers.divisionheads.append(pmDivisionHead1)
 developers.divisionheads.append(pmManager)
 developers.reviewers.append(pmReviewer1)
 developers.reviewers.append(pmManager)
-developers.reviewers.append(admin)
 developers.observers.append(pmReviewer1)
 developers.observers.append(pmManager)
-developers.observers.append(admin)
 developers.advisers.append(pmAdviser1)
 developers.advisers.append(pmManager)
 setattr(developers, 'signatures', 'developers signatures')
@@ -370,7 +367,7 @@ collegeMeeting.selectableCopyGroups = [developers.getIdSuffixed('reviewers'), ve
 collegeMeeting.podTemplates = [agendaTemplate, decisionsTemplate, itemTemplate]
 collegeMeeting.meetingConfigsToCloneTo = [{'meeting_config': 'meeting-config-council',
                                            'trigger_workflow_transitions_until': '__nothing__'}, ]
-collegeMeeting.itemAutoSentToOtherMCStates = ('accepted', 'accepted_but_modified',)
+collegeMeeting.itemAutoSentToOtherMCStates = ('accepted', 'accepted_but_modified', 'accepted_closed', 'accepted_but_modified_closed', )
 collegeMeeting.recurringItems = [
     RecurringItemDescriptor(
         id='recItem1',
@@ -489,6 +486,6 @@ data = PloneMeetingConfiguration(
     groups=(developers, vendors, endUsers))
 # necessary for testSetup.test_pm_ToolAttributesAreOnlySetOnFirstImportData
 data.restrictUsers = False
-data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2,
+data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2, powerEditor1,
                            restrictedpowerobserver1, restrictedpowerobserver2, budgetimpacteditor]
 # ------------------------------------------------------------------------------

@@ -104,14 +104,14 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         # every items must be in the 'decided' state if we close the meeting
         wftool = self.portal.portal_workflow
         # itemfrozen change into accepted
-        self.assertEquals('accepted', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item1, 'review_state'))
         # delayed rest delayed (it's already a 'decide' state)
-        self.assertEquals('delayed', wftool.getInfoFor(item2, 'review_state'))
+        self.assertEquals('delayed_closed', wftool.getInfoFor(item2, 'review_state'))
         # pre_accepted change into accepted
-        self.assertEquals('accepted', wftool.getInfoFor(item3, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item3, 'review_state'))
         # accepted_but_modified rest accepted_but_modified (it's already a 'decide' state)
-        self.assertEquals('accepted_but_modified', wftool.getInfoFor(item4, 'review_state'))
+        self.assertEquals('accepted_but_modified_closed', wftool.getInfoFor(item4, 'review_state'))
         # accepted rest accepted (it's already a 'decide' state)
-        self.assertEquals('accepted', wftool.getInfoFor(item6, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item6, 'review_state'))
         # presented change into accepted
-        self.assertEquals('accepted', wftool.getInfoFor(item7, 'review_state'))
+        self.assertEquals('accepted_closed', wftool.getInfoFor(item7, 'review_state'))

@@ -60,6 +60,7 @@ class testCustomMeetingItem(MeetingSeraingTestCase):
         # now close the meeting so the item is automatically accepted and sent to meetingConfig2
         self.closeMeeting(meeting)
         cfg = self.meetingConfig
+
         self.assertTrue(item.queryState() in cfg.getItemAutoSentToOtherMCStates())
         self.assertTrue(item._checkAlreadyClonedToOtherMC(destMeetingConfigId))
         # get the item that was sent to meetingConfig2 and check his motivation field
