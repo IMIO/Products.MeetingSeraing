@@ -644,7 +644,7 @@ class CustomMeetingItem(MeetingItem):
         else:
             return None
 
-    customItemDecidedStates = ('accepted', 'delayed', 'accepted_but_modified', )
+    customItemDecidedStates = ('accepted', 'delayed', 'accepted_but_modified', 'accepted_closed', 'delayed_closed', 'accepted_but_modified_closed',)
     MeetingItem.itemDecidedStates = customItemDecidedStates
 
     customBeforePublicationStates = ('itemcreated',
@@ -1029,12 +1029,8 @@ class MeetingSeraingWorkflowConditions(MeetingWorkflowConditions):
     security.declarePublic('mayValidateByDG')
 
     def mayValidateByDG(self):
-        res = False
         if _checkPermission(ReviewPortalContent, self.context):
-            res = True  # At least at present
-            if not self.context.getRawItems():
-                res = No(translate('item_required_to_publish', domain='PloneMeeting', context=self.context.REQUEST))
-        return res
+            return True
 
     security.declarePublic('mayDecide')
 
