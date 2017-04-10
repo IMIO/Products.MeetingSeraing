@@ -531,12 +531,13 @@ class CustomMeeting(Meeting):
     def getOJByCategory(self, itemUids=[], listTypes=['normal'],
                         ignore_review_states=[], by_proposing_group=False, group_prefixes={},
                         privacy='*', oralQuestion='both', toDiscuss='both', categories=[],
-                        excludedCategories=[], groupIds=[], firstNumber=1, renumber=False,
-                        includeEmptyCategories=False, includeEmptyGroups=False, isToPrintInMeeting='both',
+                        excludedCategories=[], groupIds=[], excludedGroupIds=[],
+                        firstNumber=1, renumber=False, includeEmptyCategories=False,
+                        includeEmptyGroups=False, isToPrintInMeeting='both',
                         forceCategOrderFromConfig=False):
         lists = self.context.getPrintableItemsByCategory(itemUids, listTypes, ignore_review_states, by_proposing_group,
                                                          group_prefixes, privacy, oralQuestion, toDiscuss, categories,
-                                                         excludedCategories, groupIds, firstNumber, renumber,
+                                                         excludedCategories, groupIds, excludedGroupIds, firstNumber, renumber,
                                                          includeEmptyCategories, includeEmptyGroups,
                                                          isToPrintInMeeting, forceCategOrderFromConfig)
         res = []
