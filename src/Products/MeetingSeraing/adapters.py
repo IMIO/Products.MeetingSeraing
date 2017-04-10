@@ -614,9 +614,11 @@ class CustomMeeting(Meeting):
                 break
         if not dt:
             return ''
-        day = '%s %s' % (translate('weekday_%s' % dt.strftime('%a').lower(), domain='plonelocales').lower(),
-                         dt.strftime('%d'))
-        month = translate('month_%s' % dt.strftime('%b').lower(), domain='plonelocales').lower()
+
+        day = '%s %s' % (translate('weekday_%s' % dt.strftime('%a').lower(), domain='plonelocales',
+                                  context=self.getSelf().REQUEST).lower(), dt.strftime('%d'))
+        month = translate('month_%s' % dt.strftime('%b').lower(), domain='plonelocales',
+                          context=self.getSelf().REQUEST).lower()
         year = dt.strftime('%Y')
         res = '%s %s %s' % (day, month, year)
         return res
