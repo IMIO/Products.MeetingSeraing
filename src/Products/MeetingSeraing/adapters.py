@@ -1361,6 +1361,7 @@ class CustomToolPloneMeeting(ToolPloneMeeting):
                     title='return_to_advise',
                     new_state_id='returned_to_advise', trigger_type=1, script_name='',
                     actbox_name='return_to_advise', actbox_url='', actbox_category='workflow',
+                    actbox_icon='%(portal_url)s/return_to_advise.png', 
                     props={'guard_expr': 'python:here.wfConditions().mayReturnToProposingGroup()'})
                 # Update connections between states and transitions and create new transitions
                 newTransitionNames = []
@@ -1381,10 +1382,12 @@ class CustomToolPloneMeeting(ToolPloneMeeting):
                         transition_title = 'return_to_proposing_group'
                     else:
                         transition_title = 'return_to_meeting'
+                    icon_url = '%s%s.png' % ('%(portal_url)s/', transitionName)
                     transition.setProperties(
                         title=transition_title,
                         new_state_id=stateName, trigger_type=1, script_name='',
-                        actbox_name=transitionName, actbox_url='', actbox_category='workflow',
+                        actbox_name=transitionName, actbox_url='',
+                        actbox_icon=icon_url, actbox_category='workflow',
                         props={'guard_expr': 'python:here.wfConditions().mayBackToMeeting("%s")' % transitionName})
                 # now that we created back transitions, we can assign them to newState 'returned_to_advise'
                 # set properties for new 'returned_to_advise' state
