@@ -13,7 +13,7 @@ __author__ = """Andre NUYENS <a.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
 from imio.actionspanel.utils import unrestrictedRemoveGivenObject
-from Products.PloneMeeting.interfaces import IAnnexable
+from Products.PloneMeeting.utils import get_annexes
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 
 
@@ -27,7 +27,7 @@ def onItemDuplicated(original, event):
     """
     newItem = event.newItem
     # Delete the decision annexes that have been copied.
-    for annex in IAnnexable(newItem).getAnnexes(relatedTo='item_decision'):
+    for annex in get_annexes(newItem, portal_types=['annexDecision']):
         unrestrictedRemoveGivenObject(annex)
     # clear some fields linked to meeting
     newDescri = _removeTypistNote(newItem.Description())
