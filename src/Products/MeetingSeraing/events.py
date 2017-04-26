@@ -32,9 +32,6 @@ def onItemDuplicated(original, event):
     # clear some fields linked to meeting
     newDescri = _removeTypistNote(newItem.Description())
     newItem.setDescription(newDescri)
-    newItem.setPvNote('')
-    newItem.setDgNote('')
-    newItem.setObservations('')
     # Make sure we have 'text/html' for every Rich fields
     forceHTMLContentTypeForEmptyRichFields(newItem)
 

@@ -408,7 +408,10 @@ class CustomMeeting(Meeting):
         for elt in itemUids:
             if elt == '':
                 itemUids.remove(elt)
-        items = self.context.getItems(uids=itemUids, listTypes=listTypes, ordered=True)
+        if itemUids:
+            items = self.context.getItems(uids=itemUids, listTypes=listTypes, ordered=True)
+        else:
+            items = self.context.getItems(uids=itemUids, listTypes=listTypes, ordered=True, unrestricted=True)
         if by_proposing_group:
             groups = tool.getMeetingGroups()
         else:
@@ -699,7 +702,7 @@ class CustomMeetingItem(MeetingItem):
         """
           Keep some new fields when item is cloned (to another mc or from itemtemplate).
         """
-        res = ['interventions', 'isToPrintInMeeting', 'pvNote', 'dgNote']
+        res = ['isToPrintInMeeting']
         if cloned_to_same_mc:
             res = res + []
         return res
