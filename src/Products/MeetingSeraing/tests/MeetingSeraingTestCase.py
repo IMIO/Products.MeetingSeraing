@@ -29,10 +29,10 @@ from Products.MeetingSeraing.tests.helpers import MeetingSeraingTestingHelpers
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.model import adaptations
 from Products.MeetingSeraing.adapters import customWfAdaptations
-from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
+from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
 
 MeetingConfig.wfAdaptations = customWfAdaptations
-adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
+adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
 
 class MeetingSeraingTestCase(PloneMeetingTestCase, MeetingSeraingTestingHelpers):
     """Base class for defining MeetingSeraing test cases."""
