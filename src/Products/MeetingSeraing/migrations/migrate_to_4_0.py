@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import logging
+
+from imio.helpers.xhtml import _turnToLxmlTree
+
+import lxml
+
 logger = logging.getLogger('MeetingSeraing')
 
 from plone import api
@@ -81,17 +86,52 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
             wfTool.manage_delObjects(self.wfs_to_delete)
         logger.info('Done.')
 
+    def addFirstLineIndentToMotivation(self):
+        """Add css class attribute p_css_class to every CONTENT_TAGS of p_xhtmlContent."""
+        logger.info('Replace praragraph indent in motivation ...')
+        brains = self.portal.portal_catalog(meta_type='MeetingItem')
+
+        for brain in brains:
+            item = brain.getObject()
+            xhtml_content = item.getMotivation()
+
+            if xhtml_content:
+                if isinstance(xhtml_content, lxml.html.HtmlElement):
+                    children = [xhtml_content]
+                else:
+                    tree = _turnToLxmlTree(xhtml_content)
+                    if not isinstance(tree, lxml.html.HtmlElement):
+                        continue
+                    children = tree.getchildren()
+
+                for child in children:
+                    if child.tag == 'p':
+                        child.attrib['style'] = 'text-indent: 40px;'
+                        if 'class' in child.attrib:
+                            del child.attrib['class']
+
+                # use encoding to 'ascii' so HTML entities are translated to something readable
+                xhtml_content = ''.join([lxml.html.tostring(x,
+                                                        encoding='ascii',
+                                                        pretty_print=False,
+                                                        method='xml') for x in children])
+                item.setMotivation(xhtml_content)
+
+        logger.info('Done.')
+
     def run(self):
-        # change self.profile_name that is reinstalled at the beginning of the PM migration
-        self.profile_name = u'profile-Products.MeetingSeraing:default'
-        # call steps from Products.PloneMeeting
-        PMMigrate_To_4_0.run(self)
-        # now MeetingLiege specific steps
-        logger.info('Migrating to MeetingSeraing 4.0...')
-        self._cleanCDLD()
-        self._migrateItemPositiveDecidedStates()
-        self._addSampleAnnexTypeForMeetings()
-        self._deleteUselessWorkflows()
+        # # change self.profile_name that is reinstalled at the beginning of the PM migration
+        # self.profile_name = u'profile-Products.MeetingSeraing:default'
+        # # call steps from Products.PloneMeeting
+        # PMMigrate_To_4_0.run(self)
+        # # now MeetingLiege specific steps
+        # logger.info('Migrating to MeetingSeraing 4.0...')
+        # self._cleanCDLD()
+        # self._migrateItemPositiveDecidedStates()
+        # self._addSampleAnnexTypeForMeetings()
+        # self._deleteUselessWorkflows()
+        self.addFirstLineIndentToMotivation()
+
 
 
 # The migration function -------------------------------------------------------
