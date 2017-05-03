@@ -106,7 +106,7 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
 
                 for child in children:
                     if child.tag == 'p':
-                        child.attrib['style'] = 'text-indent: 40px;'
+                        child.attrib['style'] = 'text-indent: 55px;'
                         if 'class' in child.attrib:
                             del child.attrib['class']
 
