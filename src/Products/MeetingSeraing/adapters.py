@@ -360,7 +360,7 @@ class CustomMeeting(Meeting):
                                     excludedCategories=[], groupIds=[], excludedGroupIds=[],
                                     firstNumber=1, renumber=False, includeEmptyCategories=False,
                                     includeEmptyGroups=False, isToPrintInMeeting='both',
-                                    forceCategOrderFromConfig=False):
+                                    forceCategOrderFromConfig=False, unrestricted=False):
         """Returns a list of (late or normal or both) items (depending on p_listTypes)
            ordered by category. Items being in a state whose name is in
            p_ignore_review_state will not be included in the result.
@@ -408,10 +408,10 @@ class CustomMeeting(Meeting):
         for elt in itemUids:
             if elt == '':
                 itemUids.remove(elt)
-        if itemUids:
-            items = self.context.getItems(uids=itemUids, listTypes=listTypes, ordered=True)
-        else:
-            items = self.context.getItems(uids=itemUids, listTypes=listTypes, ordered=True, unrestricted=True)
+        try:
+             items = self.context.getItems(uids=itemUids, listTypes=listTypes, ordered=True, unrestricted=unrestricted)
+        except Unauthorized:
+            return res
         if by_proposing_group:
             groups = tool.getMeetingGroups()
         else:
@@ -534,12 +534,12 @@ class CustomMeeting(Meeting):
                         excludedCategories=[], groupIds=[], excludedGroupIds=[],
                         firstNumber=1, renumber=False, includeEmptyCategories=False,
                         includeEmptyGroups=False, isToPrintInMeeting='both',
-                        forceCategOrderFromConfig=False):
+                        forceCategOrderFromConfig=False, unrestricted=False):
         lists = self.context.getPrintableItemsByCategory(itemUids, listTypes, ignore_review_states, by_proposing_group,
                                                          group_prefixes, privacy, oralQuestion, toDiscuss, categories,
                                                          excludedCategories, groupIds, excludedGroupIds, firstNumber, renumber,
                                                          includeEmptyCategories, includeEmptyGroups,
-                                                         isToPrintInMeeting, forceCategOrderFromConfig)
+                                                         isToPrintInMeeting, forceCategOrderFromConfig, unrestricted)
         res = []
         for sub_list in lists:
             # we use by categories, first element of each obj is a category
