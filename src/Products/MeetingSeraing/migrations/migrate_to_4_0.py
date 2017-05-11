@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import re
 
 from imio.helpers.xhtml import _turnToLxmlTree
 
@@ -123,21 +124,20 @@ class Migrate_To_4_0(PMMigrate_To_4_0):
         """Add css class attribute p_css_class to every CONTENT_TAGS of p_xhtmlContent."""
         logger.info('Replace styles for ticket #17185 ...')
         brains = self.portal.portal_catalog(meta_type='MeetingItem')
+        regex = re.compile('(text-align:justify|border-.*?; |border:.*?; |margin-.*?; )')
         for brain in brains:
             item = brain.getObject()
             # check every RichText fields
             for field in item.Schema().filterFields(default_content_type='text/html'):
                 content = field.get(item)
-                if content.find(' style="text-align:justify"') != -1 \
-                        or content.find('font-size:85%') \
-                        or content.find('class="stab"') \
-                        or content.find('border="0"')\
-                        or content.find('style="border-collapse:collapse; border:undefined"'):
-                    content = content.replace(' style="text-align:justify"', '')
+                if not content == '' and (content.find('font-size:85%') \
+                            or content.find('class="stab"') \
+                            or content.find('border="0"') \
+                            or regex.search(content)):
+                    content = regex.sub('', content)
                     content = content.replace('font-size:85%', 'font-size:80%')
                     content = content.replace('class="stab"', 'style="font-size:80%"')
                     content = content.replace('border="0"', 'border="1"')
-                    content = content.replace('style="border-collapse:collapse; border:undefined"', 'border="1"')
 
                     field.set(item, content)
 
