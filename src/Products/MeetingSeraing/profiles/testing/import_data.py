@@ -154,9 +154,9 @@ classifier3 = CategoryDescriptor('classifier3', 'Classifier 3')
 
 # Users and groups -------------------------------------------------------------
 admin = UserDescriptor('admin', ['Manager', 'MeetingManager'])
-pmManager = UserDescriptor('pmManager', [])
-pmCreator1 = UserDescriptor('pmCreator1', [])
-pmCreator1b = UserDescriptor('pmCreator1b', [])
+pmManager = UserDescriptor('pmManager', [], email="pmmanager@plonemeeting.org", fullname='M. PMManager')
+pmCreator1 = UserDescriptor('pmCreator1', [], email="pmcreator1@plonemeeting.org", fullname='M. PMCreator One')
+pmCreator1b = UserDescriptor('pmCreator1b', [], email="pmcreator1b@plonemeeting.org", fullname='M. PMCreator One bee')
 pmObserver1 = UserDescriptor('pmObserver1', [], email="pmobserver1@plonemeeting.org", fullname='M. PMObserver One')
 pmReviewer1 = UserDescriptor('pmReviewer1', [])
 pmServiceHead1 = UserDescriptor('pmServiceHead1', [])
@@ -294,6 +294,7 @@ collegeMeeting.annexTypes = [financialAnalysis, budgetAnalysisCfg1, overheadAnal
                              itemAnnex, decisionAnnex, marketingAnalysis,
                              adviceAnnex, adviceLegalAnalysis, meetingAnnex]
 collegeMeeting.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
+collegeMeeting.maxShownListings = '100'
 collegeMeeting.itemWorkflow = 'meetingitemseraing_workflow'
 collegeMeeting.meetingWorkflow = 'meetingseraing_workflow'
 collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemSeraingCollegeWorkflowConditions'
@@ -403,6 +404,7 @@ councilMeeting.annexTypes = [financialAnalysis, legalAnalysis,
 councilMeeting.usedItemAttributes = ['oralQuestion', 'itemInitiator', 'observations',
                                      'privacy', 'itemAssembly', 'itemIsSigned',
                                      'motivation', ]
+councilMeeting.maxShownListings = '100'
 councilMeeting.itemWorkflow = 'meetingitemseraing_workflow'
 councilMeeting.meetingWorkflow = 'meetingseraing_workflow'
 councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemSeraingCouncilWorkflowConditions'
