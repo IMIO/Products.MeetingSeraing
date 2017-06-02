@@ -25,7 +25,7 @@ from Products.PloneMeeting.tests.helpers import PloneMeetingTestingHelpers
 
 
 class MeetingSeraingTestingHelpers(PloneMeetingTestingHelpers):
-    '''Override some values of PloneMeetingTestingHelpers.'''
+    """Override some values of PloneMeetingTestingHelpers."""
 
     TRANSITIONS_FOR_PROPOSING_ITEM_1 = TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('proposeToServiceHead',
                                                                            'proposeToOfficeManager',
@@ -82,7 +82,8 @@ class MeetingSeraingTestingHelpers(PloneMeetingTestingHelpers):
     WF_STATE_NAME_MAPPINGS = {'itemcreated': 'itemcreated',
                               'proposed': 'proposed',
                               'validated': 'validated',
-                              'presented': 'presented'}
+                              'presented': 'presented',
+                              'itemfrozen': 'itemfrozen'}
 
     # in which state an item must be after a particular meeting transition?
     ITEM_WF_STATE_AFTER_MEETING_TRANSITION = {'close': 'accepted_closed', }
