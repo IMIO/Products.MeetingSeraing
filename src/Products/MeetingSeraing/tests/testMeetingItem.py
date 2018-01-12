@@ -341,13 +341,12 @@ class testMeetingItem(MeetingSeraingTestCase, pmtmi):
         new_img1 = newItem.get('dot.gif')
         new_img2 = newItem.get('dot2.gif')
         # normaly, every links are turned to resolveuid but for Seraing we change Description when item is cloned
-        # I pass the rest of test
-        # self.assertEqual(
-        #     newItem.getRawDescription(),
-        #     text_pattern.format(
-        #         'resolveuid/{0}'.format(new_img.UID()),
-        #         'resolveuid/{0}'.format(new_img1.UID()),
-        #         'resolveuid/{0}'.format(new_img2.UID())))
+        self.assertEqual(
+             newItem.getRawDescription(),
+             text_pattern.format(
+                 'resolveuid/{0}'.format(new_img.UID()),
+                 'resolveuid/{0}'.format(new_img1.UID()),
+                 'resolveuid/{0}'.format(new_img2.UID())))
 
 
 def test_suite():
