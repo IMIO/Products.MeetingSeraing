@@ -12,7 +12,7 @@
 __author__ = """Andre NUYENS <a.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
-from imio.actionspanel.utils import unrestrictedRemoveGivenObject
+from imio.actionspanel.interfaces import IContentDeletable
 from Products.PloneMeeting.utils import get_annexes
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 
