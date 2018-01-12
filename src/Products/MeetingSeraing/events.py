@@ -36,8 +36,8 @@ def onItemDuplicated(original, event):
         toDelete = [annex.getId() for annex in decisionAnnexes]
         newItem.manage_delObjects(ids=toDelete)
     # clear some fields linked to meeting
-    newDescri = _removeTypistNote(newItem.Description())
-    newItem.setDescription(newDescri)
+    newRawDescri = _removeTypistNote(newItem.getRawDescription())
+    newItem.setDescription(newRawDescri)
     # Make sure we have 'text/html' for every Rich fields
     forceHTMLContentTypeForEmptyRichFields(newItem)
 
