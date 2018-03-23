@@ -9,9 +9,6 @@
 
 from plone import api
 from Products.CMFPlone.utils import safe_unicode
-from Products.MeetingMons.config import FINANCE_ADVICE_LEGAL_TEXT
-from Products.MeetingMons.config import FINANCE_ADVICE_LEGAL_TEXT_NOT_GIVEN
-from Products.MeetingMons.config import FINANCE_ADVICE_LEGAL_TEXT_PRE
 from Products.PloneMeeting.browser.views import FolderDocumentGenerationHelperView
 from Products.PloneMeeting.browser.views import ItemDocumentGenerationHelperView
 from Products.PloneMeeting.browser.views import MeetingDocumentGenerationHelperView
@@ -58,7 +55,7 @@ def formatedAssembly(assembly, focus):
     return ('\n'.join(res))
 
 
-class MCItemDocumentGenerationHelperView(ItemDocumentGenerationHelperView):
+class MSItemDocumentGenerationHelperView(ItemDocumentGenerationHelperView):
     """Specific printing methods used for item."""
 
     def _financialAdviceDetails(self):
@@ -87,66 +84,6 @@ class MCItemDocumentGenerationHelperView(ItemDocumentGenerationHelperView):
             and adviceData['delay_infos']['delay_started_on_localized'] or ''
         res['delay_started_on'] = 'delay_started_on' in adviceData\
             and adviceData['delay_started_on'] or ''
-        return res
-
-    def getLegalTextForFDAdvice(self, isMeeting=False):
-        '''
-        Helper method. Return legal text for each advice type.
-        '''
-        adviceHolder = self.context.adapted().getItemWithFinanceAdvice()
-        if not self._mayGenerateFDAdvice():
-            return ''
-
-        financialStuff = self._financialAdviceDetails()
-        tool = api.portal.get_tool('portal_plonemeeting')
-        cfg = tool.getMeetingConfig(self.context)
-        financeAdviceId = cfg.adapted().getUsedFinanceGroupIds()[0]
-        adviceInd = adviceHolder.adviceIndex[financeAdviceId]
-        advice = adviceHolder.getAdviceDataFor(adviceHolder.context, financeAdviceId)
-        hidden = advice['hidden_during_redaction']
-        statusWhenStopped = advice['delay_infos']['delay_status_when_stopped']
-        adviceType = adviceInd['type']
-        comment = financialStuff['comment']
-        adviceGivenOnLocalized = advice['advice_given_on_localized']
-        delayStartedOnLocalized = advice['delay_infos']['delay_started_on_localized']
-        delayStatus = advice['delay_infos']['delay_status']
-        outOfFinancialdptLocalized = financialStuff['out_of_financial_dpt_localized']
-        limitDateLocalized = advice['delay_infos']['limit_date_localized']
-
-        if not isMeeting:
-            res = FINANCE_ADVICE_LEGAL_TEXT_PRE.format(delayStartedOnLocalized)
-
-        if not hidden and \
-           adviceGivenOnLocalized and \
-           (adviceType in (u'positive_finance', u'positive_with_remarks_finance',
-                           u'negative_finance', u'cautious_finance')):
-            if adviceType in (u'positive_finance', u'positive_with_remarks_finance'):
-                adviceTypeFr = 'favorable'
-            elif adviceType == u'negative_finance':
-                adviceTypeFr = 'défavorable'
-            else:
-                # u'cautious_finance'
-                adviceTypeFr = 'réservé'
-            #if it's a meetingItem, return the legal bullshit.
-            if not isMeeting:
-                res = res + FINANCE_ADVICE_LEGAL_TEXT.format(
-                    adviceTypeFr,
-                    outOfFinancialdptLocalized
-                )
-            #if it's a meeting, returns only the type and date of the advice.
-            else:
-                res = "<p>Avis {0} du Directeur Financier du {1}</p>".format(
-                    adviceTypeFr, outOfFinancialdptLocalized)
-
-            if comment and adviceType == u'negative_finance':
-                res = res + "<p>{0}</p>".format(comment)
-        elif statusWhenStopped == 'stopped_timed_out' or delayStatus == 'timed_out':
-            if not isMeeting:
-                res = res + FINANCE_ADVICE_LEGAL_TEXT_NOT_GIVEN
-            else:
-                res = "<p>Avis du Directeur financier expir? le {0}</p>".format(limitDateLocalized)
-        else:
-            res = ''
         return res
 
     def printAllAnnexes(self, portal_types=['annex']):
@@ -331,7 +268,7 @@ class MCItemDocumentGenerationHelperView(ItemDocumentGenerationHelperView):
                or str(self.real_context.Creator())
 
 
-class MCMeetingDocumentGenerationHelperView(MeetingDocumentGenerationHelperView):
+class MSMeetingDocumentGenerationHelperView(MeetingDocumentGenerationHelperView):
     """Specific printing methods used for meeting."""
 
     def printFormatedMeetingAssembly(self, focus=''):
@@ -345,7 +282,7 @@ class MCMeetingDocumentGenerationHelperView(MeetingDocumentGenerationHelperView)
         return formatedAssembly(assembly, focus)
 
 
-class MCFolderDocumentGenerationHelperView(FolderDocumentGenerationHelperView):
+class MSFolderDocumentGenerationHelperView(FolderDocumentGenerationHelperView):
 
     def get_all_items_dghv_with_finance_advice(self, brains):
         """
