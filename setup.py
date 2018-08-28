@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.0.dev0'
+version = '4.0.1dev0'
 
 setup(name='Products.MeetingSeraing',
       version=version,
@@ -26,12 +26,13 @@ setup(name='Products.MeetingSeraing',
                   'plone.app.robotframework',
                   'Products.CMFPlacefulWorkflow',
                   'zope.testing',
-                  'Products.PloneTestCase'],
+                  'Products.PloneTestCase',],
             templates=['Genshi', ]),
       install_requires=[
           'setuptools',
           'Products.CMFPlone',
           'Pillow',
-          'Products.PloneMeeting'],
+          'Products.PloneMeeting',
+          'Products.MeetingCommunes'],
       entry_points={},
       )
