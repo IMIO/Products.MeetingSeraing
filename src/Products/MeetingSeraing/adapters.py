@@ -231,8 +231,8 @@ class CustomSeraingMeeting(CustomMeeting):
     implements(IMeetingCustom)
     security = ClassSecurityInfo()
 
-    def __init__(self, item):
-        self.context = item
+    def __init__(self, meeting):
+        self.context = meeting
 
     security.declarePublic('isDecided')
 

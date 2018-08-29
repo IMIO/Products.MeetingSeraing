@@ -4,6 +4,7 @@
            xmlns:i18n="http://namespaces.zope.org/i18n"
            i18n_domain="MeetingSeraing">
 
+  <include file="events.zcml" />
   <!-- registerTranslations before including package Products.PloneMeeting
        so Products.MeetingSeraing can overrides Products.PloneMeeting translations -->
   <i18n:registerTranslations directory="locales" />
@@ -13,7 +14,6 @@
   <include package="Products.CMFPlacefulWorkflow"/>
   <include package="Products.MeetingCommunes"/>
   <include package="Products.PloneMeeting"/>
-  <include file="events.zcml" />
   <includeOverrides file="overrides.zcml" />
 
   <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
@@ -48,24 +48,25 @@
            factory="Products.MeetingSeraing.adapters.MeetingSeraingCouncilWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCouncilWorkflowConditions"/>
 
-  <!-- Customizations for every Meetings -->
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
-           factory="Products.MeetingSeraing.adapters.CustomSeraingMeeting"
-           provides="Products.PloneMeeting.interfaces.IMeetingCustom"/>
 
-  <!-- Customizations for every MeetingItems -->
-  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
-           factory="Products.MeetingSeraing.adapters.CustomSeraingMeetingItem"
-           provides="Products.PloneMeeting.interfaces.IMeetingItemCustom"/>
+  <configure package="Products.MeetingCommunes">
 
-  <!-- Customizations for every MeetingConfigs -->
-  <adapter for="Products.PloneMeeting.interfaces.IMeetingConfig"
-           factory="Products.MeetingSeraing.adapters.CustomSeraingMeetingConfig"
-           provides="Products.PloneMeeting.interfaces.IMeetingConfigCustom"/>
+      <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+               factory="Products.MeetingSeraing.adapters.CustomSeraingMeeting"
+               provides="Products.PloneMeeting.interfaces.IMeetingCustom"/>
 
-  <!-- Customizations for every ToolPloneMeeting -->
-  <adapter for="Products.PloneMeeting.interfaces.IToolPloneMeeting"
-           factory="Products.MeetingSeraing.adapters.CustomSeraingToolPloneMeeting"
-           provides="Products.PloneMeeting.interfaces.IToolPloneMeetingCustom"/>
+      <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
+               factory="Products.MeetingSeraing.adapters.CustomSeraingMeetingItem"
+               provides="Products.PloneMeeting.interfaces.IMeetingItemCustom"/>
+
+      <adapter for="Products.PloneMeeting.interfaces.IMeetingConfig"
+               factory="Products.MeetingSeraing.adapters.CustomSeraingMeetingConfig"
+               provides="Products.PloneMeeting.interfaces.IMeetingConfigCustom"/>
+
+      <adapter for="Products.PloneMeeting.interfaces.IToolPloneMeeting"
+               factory="Products.MeetingSeraing.adapters.CustomSeraingToolPloneMeeting"
+               provides="Products.PloneMeeting.interfaces.IToolPloneMeetingCustom"/>
+
+   </configure>
 
 </configure>
