@@ -172,6 +172,9 @@ def update_meeting_schema(baseSchema):
     ),)
 
     completeSchema = baseSchema + specificSchema.copy()
+
+    baseSchema['notes'].widget.description_msgid = "MeetingSeraing_descr_meeting_notes"
+    baseSchema['notes'].widget.label_msgid = "MeetingSeraing_msgid_meeting_notes"
     return completeSchema
 
 

@@ -229,6 +229,14 @@ msgstr ""
 msgid "MeetingSeraing_descr_dgnote" 
 msgstr ""
 
+#. Default: "Personal Note for DG on Meeting"
+msgid "MeetingSeraing_descr_meeting_notes"
+msgstr ""
+
+#. Default: "Personal Note for DG on Meeting"
+msgid "MeetingSeraing_msgid_meeting_notes"
+msgstr ""
+
 #. Default: "Motivation help field" 
 msgid "MeetingSeraing_descr_motivation" 
 msgstr ""
