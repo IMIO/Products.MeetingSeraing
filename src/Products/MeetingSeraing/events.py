@@ -27,7 +27,7 @@ def onItemDuplicated(original, event):
     """
     newItem = event.newItem
     # make sure we do not keep decision annexes
-    decisionAnnexes = get_annexes(newItem, portal_types=['annexDecision'])
+    decisionAnnexes = get_annexes(newItem, portal_types=['annex', 'annexDecision'])
     # if item is sent to Council, user may not delete annexes...
     # in this case, we simply pass because it is supposed not possible to have that
     # kind of annex on an item that is sent to council, and moreover, the item in the council
