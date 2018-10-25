@@ -52,6 +52,10 @@ msgstr "Cette zone n'est visible que par les gestionnaires de séances et les ad
 msgid "MeetingSeraing_descr_interventions"
 msgstr "Retranscription des interventions"
 
+#. Default: "Personal Note for DG on Meeting"
+msgid "MeetingSeraing_descr_meeting_notes"
+msgstr "Cette zone n'est visible que par les gestionnaires de séances et les administrateurs du système et apparaîtra dans le pv."
+
 #. Default: "Motivation help field"
 msgid "MeetingSeraing_descr_motivation"
 msgstr "N'oubliez-pas d'adapter les TEXTES LEGAUX / REGLEMENTAIRES SI NECESSAIRE"
@@ -96,6 +100,10 @@ msgstr "Note de pv"
 #. Default: "Sections"
 msgid "MeetingSeraing_label_sections"
 msgstr "Sections"
+
+#. Default: "Personal Note for DG on Meeting"
+msgid "MeetingSeraing_msgid_meeting_notes"
+msgstr "Note personnelle du DG pour le PV"
 
 #. Default: "Observations"
 msgid "PloneMeeting_itemObservations"
