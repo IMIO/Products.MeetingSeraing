@@ -75,12 +75,17 @@ from Products.MeetingSeraing.config import EDITOR_USECASES
 from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
 
 # disable most of wfAdaptations
-customWfAdaptations = ('return_to_proposing_group', 'returned_to_advise')
+customWfAdaptations = ('return_to_proposing_group_with_last_validation', 'returned_to_advise')
 MeetingConfig.wfAdaptations = customWfAdaptations
 originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
 # configure parameters for the returned_to_proposing_group wfAdaptation
 # we keep also 'itemfrozen' and 'itempublished' in case this should be activated for meeting-config-college...
+CUSTOM_RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES = ('proposed_to_servicehead',
+                                                      'proposed_to_officemanager',
+                                                      'proposed_to_divisionhead',
+                                                      'proposed')
+adaptations.RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES = CUSTOM_RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_proposing_group':
                                                  ['created', ],
@@ -982,63 +987,16 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         if wfAdaptation == 'returned_to_advise':
             wfTool = api.portal.get_tool('portal_workflow')
             itemStates = itemWorkflow.states
-            stateToClone = None
+            itemTransitions = itemWorkflow.transitions
             if 'returned_to_advise' not in itemStates and 'returned_to_proposing_group' in itemStates:
-                # add the 'returned_to_advise' state and clone the
-                # permissions from RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
-                # and apply permissions defined in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
-                return_to_advice_item_state = RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES + \
-                                              ('returned_to_proposing_group',)
-                itemWorkflow.states.addState('returned_to_advise')
-                newState = getattr(itemWorkflow.states, 'returned_to_advise')
-                # clone the permissions of the given RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE if it exists
-                cloned_permissions_with_meetingmanager = {}
-                stateToCloneInfos = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE.get(meetingConfig.getItemWorkflow(),
-                                                                                        {})
-                stateToCloneWFId = ''
-                stateToCloneStateId = ''
-                if stateToCloneInfos:
-                    # stateToCloneInfos is like 'meetingitem_workflow.itemcreated'
-                    stateToCloneWFId, stateToCloneStateId = stateToCloneInfos.split('.')
-                stateToCloneWF = getattr(wfTool, stateToCloneWFId, None)
-                stateToClone = None
-                if stateToCloneWF and hasattr(stateToCloneWF.states, stateToCloneStateId):
-                    stateToClone = getattr(itemWorkflow.states, stateToCloneStateId)
-                    # we must make sure the MeetingManagers still may access this item
-                    # so add MeetingManager role to every cloned permissions
-                    cloned_permissions = dict(stateToClone.permission_roles)
-                    # we need to use an intermediate dict because roles are stored as a tuple and we need a list...
-                    for permission in cloned_permissions:
-                        # the acquisition is defined like this : if permissions is a tuple, it is not acquired
-                        # if it is a list, it is acquired...  WTF???  So make sure we store the correct type...
-                        acquired = isinstance(cloned_permissions[permission], list) and True or False
-                        cloned_permissions_with_meetingmanager[permission] = list(cloned_permissions[permission])
-                        if 'MeetingManager' not in cloned_permissions[permission]:
-                            cloned_permissions_with_meetingmanager[permission].append('MeetingManager')
-                        if not acquired:
-                            cloned_permissions_with_meetingmanager[permission] = \
-                                tuple(cloned_permissions_with_meetingmanager[permission])
-                # now apply custom permissions defined in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
-                cloned_permissions_with_meetingmanager.update(
-                    RETURN_TO_ADVISE_CUSTOM_PERMISSIONS.get(meetingConfig.getItemWorkflow(), {}))
 
-                # if we are cloning an existing state permissions, make sure DeleteObjects
-                # is only be availble to ['Manager', 'MeetingManager']
-                # if custom permissions are defined, keep what is defined in it
-                if DeleteObjects not in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS.get(meetingConfig.getItemWorkflow(), {}):
-                    del_obj_perm = stateToClone.getPermissionInfo(DeleteObjects)
-                    if del_obj_perm['acquired']:
-                        cloned_permissions_with_meetingmanager[DeleteObjects] = ['Manager', ]
-                    else:
-                        cloned_permissions_with_meetingmanager[DeleteObjects] = ('Manager',)
+                if 'returned_to_advise' not in itemStates:
+                    itemStates.addState('returned_to_advise')
 
-                # finally, apply computed permissions, aka cloned + custom
-                newState.permission_roles = cloned_permissions_with_meetingmanager
-                # now create the necessary transitions : one to go to 'returned_to_proposing_group' state
-                # and x to go back to relevant state depending on current meeting state
-                # first, the transition 'return_to_advise'
-                itemWorkflow.transitions.addTransition('return_to_advise')
-                transition = itemWorkflow.transitions['return_to_advise']
+                if 'return_to_advise' not in itemTransitions:
+                    itemTransitions.addTransition('return_to_advise')
+
+                transition = itemTransitions['return_to_advise']
                 # use same guard from ReturnToProposingGroup
                 transition.setProperties(
                     title='return_to_advise',
@@ -1046,38 +1004,25 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     actbox_name='return_to_advise', actbox_url='', actbox_category='workflow',
                     actbox_icon='%(portal_url)s/return_to_advise.png',
                     props={'guard_expr': 'python:here.wfConditions().mayReturnToProposingGroup()'})
-                # Update connections between states and transitions and create new transitions
-                newTransitionNames = []
-                for stateName in return_to_advice_item_state:
-                    if stateName not in itemWorkflow.states:
-                        continue
-                    # first specify that we can go to 'return_to_advise' from this state
-                    currentTransitions = list(itemWorkflow.states[stateName].transitions)
-                    currentTransitions.append('return_to_advise')
-                    itemWorkflow.states[stateName].transitions = tuple(currentTransitions)
-                    # then build a back transition name with given stateName
-                    transitionName = 'backTo_%s_from_returned_to_advise' % stateName
-                    newTransitionNames.append(transitionName)
-                    itemWorkflow.transitions.addTransition(transitionName)
-                    transition = itemWorkflow.transitions[transitionName]
-                    # use a specific guard_expr 'mayBackToMeeting'
-                    if stateName in ('returned_to_proposing_group',):
-                        transition_title = 'return_to_proposing_group'
-                    else:
-                        transition_title = 'return_to_meeting'
-                    icon_url = '%s%s.png' % ('%(portal_url)s/', transitionName)
-                    transition.setProperties(
-                        title=transition_title,
-                        new_state_id=stateName, trigger_type=1, script_name='',
-                        actbox_name=transitionName, actbox_url='',
-                        actbox_icon=icon_url, actbox_category='workflow',
-                        props={'guard_expr': 'python:here.wfConditions().mayBackToMeeting("%s")' % transitionName})
-                # now that we created back transitions, we can assign them to newState 'returned_to_advise'
-                # set properties for new 'returned_to_advise' state
-                newState.setProperties(
-                    title='returned_to_advise', description='',
-                    transitions=newTransitionNames)
-            logger.info(WF_APPLIED % ("return_to_proposing_group", meetingConfig.getId()))
+
+                returned_to_advise = itemStates['returned_to_advise']
+                returned_to_advise.setProperties(
+                    transitions=['backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
+                                 'goTo_returned_to_proposing_group_proposed'])
+
+                return_to_advice_item_state = [adaptations.getValidationReturnedStates(meetingConfig)[-1]] + \
+                                              ['returned_to_proposing_group', 'presented', 'validated_by_dg', 'itemfrozen']
+
+                for state_id in return_to_advice_item_state:
+                    new_trx = list(itemStates[state_id].getTransitions()) + ['return_to_advise']
+                    itemStates[state_id].setProperties(transitions=new_trx)
+
+                # Initialize permission->roles mapping for new state "returned_to_advise",
+                returned_to_advise = itemStates['returned_to_advise']
+                for permission, roles in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS['meetingitemseraing_workflow'].iteritems():
+                    returned_to_advise.setPermission(permission, 0, roles)
+
+            logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
             return True
         return False
 
