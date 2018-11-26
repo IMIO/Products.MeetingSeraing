@@ -1006,8 +1006,10 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     props={'guard_expr': 'python:here.wfConditions().mayReturnToProposingGroup()'})
 
                 returned_to_advise = itemStates['returned_to_advise']
-                returned_to_advise.transitions=('backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
-                                 'goTo_returned_to_proposing_group_proposed',)
+                returned_to_advise.setProperties(
+                    title='returned_to_advise', description='',
+                    transitions=('backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
+                                 'goTo_returned_to_proposing_group_proposed',))
 
                 return_to_advice_item_state = [adaptations.getValidationReturnedStates(meetingConfig)[-1]] + \
                                               ['returned_to_proposing_group', 'presented', 'validated_by_dg', 'itemfrozen']
