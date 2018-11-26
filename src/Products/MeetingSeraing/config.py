@@ -45,13 +45,17 @@ PRODUCT_DEPENDENCIES = []
 # the id of the collection querying finance advices
 FINANCE_ADVICES_COLLECTION_ID = 'searchitemswithfinanceadvice'
 
-from Products.PloneMeeting import config as PMconfig
+from Products.PloneMeeting.MeetingConfig import MEETINGROLES
+from Products.PloneMeeting.MeetingConfig import MEETING_GROUP_SUFFIXES
+from Products.PloneMeeting.MeetingConfig import MEETINGREVIEWERS
+from Products.PloneMeeting.MeetingConfig import MEETING_STATES_ACCEPTING_ITEMS
+
 SERAINGROLES = {}
 SERAINGROLES['serviceheads'] = 'MeetingServiceHead'
 SERAINGROLES['officemanagers'] = 'MeetingOfficeManager'
 SERAINGROLES['divisionheads'] = 'MeetingDivisionHead'
-PMconfig.MEETINGROLES.update(SERAINGROLES)
-PMconfig.MEETING_GROUP_SUFFIXES = PMconfig.MEETINGROLES.keys()
+MEETINGROLES.update(SERAINGROLES)
+MEETING_GROUP_SUFFIXES.extend(SERAINGROLES.keys())
 
 POWEREDITORS_GROUP_SUFFIX = 'powereditors'
 EDITOR_USECASES = {'power_editors': 'Editor', }
@@ -62,7 +66,10 @@ SERAINGMEETINGREVIEWERS = OrderedDict([('reviewers', 'proposed'),
                                      ('divisionheads', 'proposed_to_divisionhead'),
                                      ('officemanagers', 'proposed_to_officemanager'),
                                      ('serviceheads', 'proposed_to_servicehead'), ])
-PMconfig.MEETINGREVIEWERS = SERAINGMEETINGREVIEWERS
+MEETINGREVIEWERS.clear()
+MEETINGREVIEWERS.update(SERAINGMEETINGREVIEWERS)
 
 CUSTOMMEETING_STATES_ACCEPTING_ITEMS = ('created', 'validated_by_dg', 'frozen', 'decided')
-PMconfig.MEETING_STATES_ACCEPTING_ITEMS = CUSTOMMEETING_STATES_ACCEPTING_ITEMS
+for state in MEETING_STATES_ACCEPTING_ITEMS:
+    MEETING_STATES_ACCEPTING_ITEMS.remove(state)
+MEETING_STATES_ACCEPTING_ITEMS += CUSTOMMEETING_STATES_ACCEPTING_ITEMS
