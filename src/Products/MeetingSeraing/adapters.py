@@ -75,7 +75,7 @@ from Products.MeetingSeraing.config import EDITOR_USECASES
 from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
 
 # disable most of wfAdaptations
-customWfAdaptations = ('return_to_proposing_group_with_last_validation', 'returned_to_advise')
+customWfAdaptations = ('return_to_proposing_group', 'return_to_proposing_group_with_last_validation', 'returned_to_advise')
 MeetingConfig.wfAdaptations = customWfAdaptations
 originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
@@ -1006,16 +1006,15 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     props={'guard_expr': 'python:here.wfConditions().mayReturnToProposingGroup()'})
 
                 returned_to_advise = itemStates['returned_to_advise']
-                returned_to_advise.setProperties(
-                    transitions=['backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
-                                 'goTo_returned_to_proposing_group_proposed'])
+                returned_to_advise.transitions=('backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
+                                 'goTo_returned_to_proposing_group_proposed',)
 
                 return_to_advice_item_state = [adaptations.getValidationReturnedStates(meetingConfig)[-1]] + \
                                               ['returned_to_proposing_group', 'presented', 'validated_by_dg', 'itemfrozen']
 
                 for state_id in return_to_advice_item_state:
-                    new_trx = list(itemStates[state_id].getTransitions()) + ['return_to_advise']
-                    itemStates[state_id].setProperties(transitions=new_trx)
+                    new_trx = tuple(list(itemStates[state_id].getTransitions()) + ['return_to_advise'])
+                    itemStates[state_id].transitions = new_trx
 
                 # Initialize permission->roles mapping for new state "returned_to_advise",
                 returned_to_advise = itemStates['returned_to_advise']
