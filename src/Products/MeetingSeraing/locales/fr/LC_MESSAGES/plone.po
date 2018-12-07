@@ -203,6 +203,10 @@ msgstr "Gelé"
 msgid "meeting_item_description"
 msgstr "Description dans l'ordre du jour"
 
+#. Default: "Go to returned to proposing group (proposed)"
+msgid "goTo_returned_to_proposing_group_proposed"
+msgstr "Proposer au directeur"
+
 msgid "propose"
 msgstr "Proposer au directeur"
 
