@@ -150,7 +150,9 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
                                                           'MeetingOfficeManager',
                                                           'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
                                                      'Review portal content':
-                                                         ('Manager', 'MeetingReviewer', 'MeetingManager',),
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
                                                      'Add portal content':
                                                          ('Manager', 'MeetingMember', 'MeetingServiceHead',
                                                           'MeetingOfficeManager',
@@ -171,57 +173,17 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
                                                      'Delete objects':
                                                          ('Manager', 'MeetingManager',), }
                                                 }
+
 adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 
+RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {'meetingitemseraing_workflow': 'meetingitemseraing_workflow.itemcreated'}
+adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
+
 RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
-                                       # view permissions
-                                           {'Access contents information':
-                                                ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead',
-                                                 'MeetingOfficeManager',
-                                                 'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal',
-                                                 'Reader', 'Editor',),
-                                            'View':
-                                                ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead',
-                                                 'MeetingOfficeManager',
-                                                 'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal',
-                                                 'Reader', 'Editor',),
-                                            'PloneMeeting: Read budget infos':
-                                                ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead',
-                                                 'MeetingOfficeManager',
-                                                 'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal',
-                                                 'Reader', 'Editor',),
-                                            'PloneMeeting: Read decision':
-                                                ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead',
-                                                 'MeetingOfficeManager',
-                                                 'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal',
-                                                 'Reader', 'Editor',),
-                                            'PloneMeeting: Read item observations':
-                                                ('Manager', 'MeetingManager', 'MeetingMember', 'MeetingServiceHead',
-                                                 'MeetingOfficeManager',
-                                                 'MeetingDivisionHead', 'MeetingReviewer', 'MeetingObserverLocal',
-                                                 'Reader', 'Editor',),
+                                            {
                                             # edit permissions
                                             'Modify portal content':
-                                                ('Manager', 'MeetingManager',),
-                                            'PloneMeeting: Write budget infos':
-                                                ('Manager', 'MeetingManager', 'MeetingBudgetImpactEditor'),
-                                            'PloneMeeting: Write decision':
-                                                ('Manager', 'MeetingManager',),
-                                            'Review portal content':
-                                                ('Manager', 'MeetingReviewer', 'MeetingManager',),
-                                            'Add portal content':
-                                                ('Manager', 'MeetingManager',),
-                                            'PloneMeeting: Add annex':
-                                                ('Manager', 'MeetingManager',),
-                                            'PloneMeeting: Add annexDecision':
-                                                ('Manager', 'MeetingManager',),
-                                            # MeetingManagers edit permissions
-                                            'PloneMeeting: Write marginal notes':
-                                                ('Manager',),
-                                            'PloneMeeting: Write item MeetingManager reserved fields':
-                                                ('Manager', 'MeetingManager',),
-                                            'Delete objects':
-                                                ('Manager', 'MeetingManager',), }
+                                                ('Manager', 'MeetingManager',)}
                                        }
 
 RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {'meetingitemseraing_workflow':
@@ -989,9 +951,58 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             itemStates = itemWorkflow.states
             itemTransitions = itemWorkflow.transitions
             if 'returned_to_advise' not in itemStates and 'returned_to_proposing_group' in itemStates:
-
                 if 'returned_to_advise' not in itemStates:
+                    # add the 'returned_to_proposing_group' state and clone the
+                    # permissions from RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
+                    # and apply permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
+                    # RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS contains custom permissions by workflow
+                    customPermissions = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS. \
+                        get(meetingConfig.getItemWorkflow(), {})
                     itemStates.addState('returned_to_advise')
+                    newState = getattr(itemStates, 'returned_to_advise')
+                    # clone the permissions of the given RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE if it exists
+                    cloned_permissions_with_meetingmanager = {}
+                    # state to clone contains the state to clone and the workflow_id where this state is
+                    stateToCloneInfos = adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE.get(meetingConfig.getItemWorkflow(), {})
+                    stateToCloneWFId = ''
+                    stateToCloneStateId = ''
+                    if stateToCloneInfos:
+                        # stateToCloneInfos is like 'meetingitem_workflow.itemcreated'
+                        stateToCloneWFId, stateToCloneStateId = stateToCloneInfos.split('.')
+                    stateToCloneWF = getattr(wfTool, stateToCloneWFId, None)
+                    stateToClone = None
+                    if stateToCloneWF and hasattr(stateToCloneWF.states, stateToCloneStateId):
+                        stateToClone = getattr(stateToCloneWF.states, stateToCloneStateId)
+                        # we must make sure the MeetingManagers still may access this item
+                        # so add MeetingManager role to every cloned permissions
+                        cloned_permissions = dict(stateToClone.permission_roles)
+                        # we need to use an intermediate dict because roles are stored as a tuple and we need a list...
+                        for permission in cloned_permissions:
+                            # the acquisition is defined like this : if permissions is a tuple, it is not acquired
+                            # if it is a list, it is acquired...  WTF???  So make sure we store the correct type...
+                            acquired = isinstance(cloned_permissions[permission], list) and True or False
+                            cloned_permissions_with_meetingmanager[permission] = list(cloned_permissions[permission])
+                            if not 'MeetingManager' in cloned_permissions[permission]:
+                                cloned_permissions_with_meetingmanager[permission].append('MeetingManager')
+                            if not acquired:
+                                cloned_permissions_with_meetingmanager[permission] = \
+                                    tuple(cloned_permissions_with_meetingmanager[permission])
+
+                    # now apply custom permissions defined in customPermissions
+                    cloned_permissions_with_meetingmanager.update(customPermissions)
+
+                    # if we are cloning an existing state permissions, make sure DeleteObjects
+                    # is only be availble to ['Manager', 'MeetingManager']
+                    # if custom permissions are defined, keep what is defined in it
+                    if not DeleteObjects in customPermissions and stateToClone:
+                        del_obj_perm = stateToClone.getPermissionInfo(DeleteObjects)
+                        if del_obj_perm['acquired']:
+                            cloned_permissions_with_meetingmanager[DeleteObjects] = ['Manager', ]
+                        else:
+                            cloned_permissions_with_meetingmanager[DeleteObjects] = ('Manager',)
+
+                    # finally, apply computed permissions, aka cloned + custom
+                    newState.permission_roles = cloned_permissions_with_meetingmanager
 
                 if 'return_to_advise' not in itemTransitions:
                     itemTransitions.addTransition('return_to_advise')
