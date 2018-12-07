@@ -27,11 +27,12 @@ import logging
 
 from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS, \
     RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
-from Products.MeetingSeraing.adapters import RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
 from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.tests.testWFAdaptations import testWFAdaptations as pmtwfa
+
+from Products.CMFCore.permissions import ModifyPortalContent, ReviewPortalContent
 
 
 class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
@@ -40,7 +41,8 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
     def test_pm_WFA_availableWFAdaptations(self):
         '''Most of wfAdaptations makes no sense, just make sure most are disabled.'''
         self.assertEquals(set(self.meetingConfig.listWorkflowAdaptations()),
-                          set(('return_to_proposing_group_with_last_validation', 'returned_to_advise')))
+                          {'return_to_proposing_group', 'return_to_proposing_group_with_last_validation',
+                           'returned_to_advise'})
 
     def test_pm_WFA_no_publication(self):
         '''No sense...'''
@@ -181,10 +183,6 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
         # a subplugin can call these test separately
         # using RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
         self._return_to_advise_active_from_item_states()
-        # RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
-        self._return_to_advise_active_state_to_clone()
-        # RETURN_TO_ADVISE_CUSTOM_PERMISSIONS
-        self._return_to_advise_active_custom_permissions()
 
     def _return_to_advise_active_from_item_states(self):
         '''Helper method to test 'returned_to_advise' wfAdaptation regarding the
@@ -200,23 +198,6 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
                 from_states.add(state.id)
         # at least every states in from_states were defined in RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
         self.failIf(from_states.difference(set(RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES)))
-
-    def _return_to_advise_active_state_to_clone(self):
-        '''Helper method to test 'return_to_proposing_group' wfAdaptation regarding the
-           RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE defined value.
-           In our usecase, this is Nonsense as we use RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
-        return
-
-    def _return_to_advise_active_custom_permissions(self):
-        '''Helper method to test 'return_to_proposing_group' wfAdaptation regarding the
-           RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS defined value.
-           In our use case, just test that permissions of 'returned_to_proposing_group' state
-           are the one defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
-        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
-        returned_to_advise_state_permissions = itemWF.states['returned_to_advise'].permission_roles
-        for permission in returned_to_advise_state_permissions:
-            self.assertEquals(returned_to_advise_state_permissions[permission],
-                              RETURN_TO_ADVISE_CUSTOM_PERMISSIONS[self.meetingConfig.getItemWorkflow()][permission])
 
     def _return_to_advise_active_wf_functionality(self):
         '''Tests the workflow functionality of using the 'return_to_proposing_group' wfAdaptation.
@@ -244,9 +225,22 @@ class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
         self.failUnless('return_to_advise' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
         # send the item back to the proposing group so the proposing group as an edit access to it
         self.do(item, 'return_to_proposing_group')
+
+        for userId in ('pmCreator1', 'pmReviewer1'):
+            self.changeUser(userId)
+            self.failUnless(self.hasPermission(ModifyPortalContent, item))
+            self.failUnless(self.hasPermission(ReviewPortalContent, item))
+            self.failUnless('return_to_advise' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+            self.failUnless('goTo_returned_to_proposing_group_proposed' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+
         self.do(item, 'return_to_advise')
-        self.changeUser('pmCreator1')
-        self.failIf(self.hasPermission('Modify portal content', item))
+        for userId in ('pmCreator1', 'pmReviewer1'):
+            self.changeUser(userId)
+            self.failIf(self.hasPermission(ModifyPortalContent, item))
+            self.failUnless(self.hasPermission(ReviewPortalContent, item))
+            self.failUnless('backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+            self.failUnless('goTo_returned_to_proposing_group_proposed' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+
         # MeetingManagers can edit it also
         self.changeUser('pmManager')
         self.failUnless(self.hasPermission('Modify portal content', item))

@@ -108,10 +108,88 @@ adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROU
 
 RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ('presented', 'validated_by_dg', 'itemfrozen',)
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
+                                                # view permissions
+                                                    {'Access contents information':
+                                                         ('Manager', 'MeetingManager', 'MeetingMember',
+                                                          'MeetingServiceHead', 'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingObserverLocal', 'Reader', 'Editor',),
+                                                     'View':
+                                                         ('Manager', 'MeetingManager', 'MeetingMember',
+                                                          'MeetingServiceHead', 'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingObserverLocal', 'Reader', 'Editor',),
+                                                     'PloneMeeting: Read budget infos':
+                                                         ('Manager', 'MeetingManager', 'MeetingMember',
+                                                          'MeetingServiceHead', 'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingObserverLocal', 'Reader', 'Editor',),
+                                                     'PloneMeeting: Read decision':
+                                                         ('Manager', 'MeetingManager', 'MeetingMember',
+                                                          'MeetingServiceHead', 'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingObserverLocal', 'Reader', 'Editor',),
+                                                     'PloneMeeting: Read item observations':
+                                                         ('Manager', 'MeetingManager', 'MeetingMember',
+                                                          'MeetingServiceHead', 'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingObserverLocal', 'Reader', 'Editor',),
+                                                     # edit permissions
+                                                     'Modify portal content':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                     'PloneMeeting: Write budget infos':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',
+                                                          'MeetingBudgetImpactEditor',),
+                                                     'PloneMeeting: Write decision':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                     'Review portal content':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                     'Add portal content':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                     'PloneMeeting: Add annex':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                     'PloneMeeting: Add annexDecision':
+                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                          'MeetingOfficeManager',
+                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                     # MeetingManagers edit permissions
+                                                     'PloneMeeting: Write marginal notes':
+                                                         ('Manager',),
+                                                     'PloneMeeting: Write item MeetingManager reserved fields':
+                                                         ('Manager', 'MeetingManager',),
+                                                     'Delete objects':
+                                                         ('Manager', 'MeetingManager',), }
+                                                }
 
+adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 
 RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {'meetingitemseraing_workflow': 'meetingitemseraing_workflow.itemcreated'}
 adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
+
+RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
+                                            {
+                                            # edit permissions
+                                            'Modify portal content':
+                                                ('Manager', 'MeetingManager',)}
+                                       }
+
+RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {'meetingitemseraing_workflow':
+                                                       'meetingitemseraing_workflow.itemcreated'}
+adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
+
 
 class CustomSeraingMeeting(CustomMeeting):
     """Adapter that adapts a meeting implementing IMeeting to the
@@ -878,7 +956,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     # permissions from RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
                     # and apply permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
                     # RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS contains custom permissions by workflow
-                    customPermissions = adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS. \
+                    customPermissions = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS. \
                         get(meetingConfig.getItemWorkflow(), {})
                     itemStates.addState('returned_to_advise')
                     newState = getattr(itemStates, 'returned_to_advise')
@@ -950,6 +1028,11 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 for state_id in return_to_advice_item_state:
                     new_trx = tuple(list(itemStates[state_id].getTransitions()) + ['return_to_advise'])
                     itemStates[state_id].transitions = new_trx
+
+                # Initialize permission->roles mapping for new state "returned_to_advise",
+                returned_to_advise = itemStates['returned_to_advise']
+                for permission, roles in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS['meetingitemseraing_workflow'].iteritems():
+                    returned_to_advise.setPermission(permission, 0, roles)
 
             logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
             return True
