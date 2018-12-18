@@ -115,3 +115,12 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         self.assertEquals('accepted_closed', wftool.getInfoFor(item6, 'review_state'))
         # presented change into accepted
         self.assertEquals('accepted_closed', wftool.getInfoFor(item7, 'review_state'))
+
+    def test_getOJByCategoryDoReturnSmth(self):
+        self.changeUser('pmManager')
+        meetingDate = DateTime().strftime('%y/%m/%d %H:%M:00')
+        meeting = self.create('Meeting', date=meetingDate)
+        item = self.create('MeetingItem')
+        item.setProposingGroup('vendors')
+        self.presentItem(item)
+        self.assertIsNotNone(meeting.adapted().getOJByCategory())
