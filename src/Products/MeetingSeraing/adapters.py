@@ -40,7 +40,7 @@ from Products.Archetypes.atapi import DisplayList
 from plone import api
 
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
-from Products.PloneMeeting.interfaces import IMeetingCustom
+from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItem
 from Products.PloneMeeting.interfaces import IMeetingItemCustom
 from Products.PloneMeeting.interfaces import IToolPloneMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingConfigCustom
