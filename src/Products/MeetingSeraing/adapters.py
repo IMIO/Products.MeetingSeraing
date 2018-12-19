@@ -1052,7 +1052,7 @@ InitializeClass(CustomSeraingToolPloneMeeting)
 
 # ------------------------------------------------------------------------------
 
-class MLItemPrettyLinkAdapter(ItemPrettyLinkAdapter):
+class MSItemPrettyLinkAdapter(ItemPrettyLinkAdapter):
     """
       Override to take into account MeetingLiege use cases...
     """
@@ -1062,7 +1062,7 @@ class MLItemPrettyLinkAdapter(ItemPrettyLinkAdapter):
           Manage icons to display before the icons managed by PrettyLink._icons.
         """
         # Default PM item icons
-        icons = super(MLItemPrettyLinkAdapter, self)._leadingIcons()
+        icons = super(MSItemPrettyLinkAdapter, self)._leadingIcons()
 
         if self.context.isDefinedInTool():
             return icons
