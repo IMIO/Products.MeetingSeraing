@@ -31,7 +31,7 @@ def onItemDuplicated(original, event):
     # if new state of item is "delayed", we keep simply the Annex Decision
     # if item is sent to Council, we keep annexDecision, but it's transfer in simple annex type (do it in config)
     if decisionAnnexes and IContentDeletable(newItem).mayDelete() and \
-            newItem.queryState() not in ['delayed', ] and \
+            original.queryState() not in ['delayed', ] and \
             newItem.portal_plonemeeting.getMeetingConfig(newItem) == \
             original.portal_plonemeeting.getMeetingConfig(original):
         toDelete = [annex.getId() for annex in decisionAnnexes]
