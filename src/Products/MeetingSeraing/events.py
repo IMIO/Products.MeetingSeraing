@@ -27,12 +27,13 @@ def onItemDuplicated(original, event):
     """
     newItem = event.newItem
     # make sure we do not keep decision annexes
-    decisionAnnexes = get_annexes(newItem, portal_types=['annex', 'annexDecision'])
-    # if item is sent to Council, user may not delete annexes...
-    # in this case, we simply pass because it is supposed not possible to have that
-    # kind of annex on an item that is sent to council, and moreover, the item in the council
-    # is only editable by MeetingManagers
-    if decisionAnnexes and IContentDeletable(newItem).mayDelete():
+    decisionAnnexes = get_annexes(newItem, portal_types=['annexDecision', ])
+    # if new state of item is "delayed", we keep simply the Annex Decision
+    # if item is sent to Council, we keep annexDecision, but it's transfer in simple annex type (do it in config)
+    if decisionAnnexes and IContentDeletable(newItem).mayDelete() and \
+            newItem.queryState() not in ['delayed', ] and \
+            newItem.portal_plonemeeting.getMeetingConfig(newItem) == \
+            original.portal_plonemeeting.getMeetingConfig(original):
         toDelete = [annex.getId() for annex in decisionAnnexes]
         newItem.manage_delObjects(ids=toDelete)
     # clear some fields linked to meeting

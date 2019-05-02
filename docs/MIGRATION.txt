@@ -1,5 +1,0 @@
-Migration vers MeetingSeraing 3.2.0.1
-========================================
-
-Execute upgrade steps :
-No step

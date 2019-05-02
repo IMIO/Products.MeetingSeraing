@@ -132,8 +132,8 @@ class testMeetingItem(MeetingSeraingTestCase, pmtmi):
         # but new item is missing the normal annexes because
         # no annexType for normal annexes are defined in the cfg2
         self.assertEqual(len(get_annexes(newItem, portal_types=['annex'])), 0)
-        # for Seraing, item had not annexes decisions
-        self.assertEqual(len(get_annexes(newItem, portal_types=['annexDecision'])), 0)
+        # XXX Seraing, decision's annexe are keep (but in their config, these annexes was send in simply annexes
+        self.assertEqual(len(get_annexes(newItem, portal_types=['annexDecision'])), 2)
         # moreover a message was added
         messages = IStatusMessage(self.request).show()
         expectedMessage = translate("annex_not_kept_because_no_available_annex_type_warning",
@@ -158,49 +158,6 @@ class testMeetingItem(MeetingSeraingTestCase, pmtmi):
         self.assertEqual(len(get_annexes(clonedItem, portal_types=['annex'])), 2)
         # for Seraing, item had not annexes decisions
         self.assertEqual(len(get_annexes(clonedItem, portal_types=['annexDecision'])), 0)
-
-    def test_pm_SendItemToOtherMCWithAnnexes(self):
-        """Test that sending an item to another MeetingConfig behaves normaly with annexes.
-           This is a complementary test to testToolPloneMeeting.testCloneItemWithContent.
-           Here we test the fact that the item is sent to another MeetingConfig."""
-        cfg2 = self.meetingConfig2
-        cfg2Id = cfg2.getId()
-        data = self._setupSendItemToOtherMC(with_annexes=True)
-        newItem = data['newItem']
-        decisionAnnex2 = data['decisionAnnex2']
-        # Check that annexes are correctly sent too
-        # we had 2 normal annexes and 2 decision annexes
-        self.assertEqual(len(get_categorized_elements(newItem)), 2)
-        self.assertEqual(len(get_categorized_elements(newItem, portal_type='annex')), 2)
-        self.assertEqual(len(get_categorized_elements(newItem, portal_type='annexDecision')), 0)
-        # As annexes are references from the item, check that these are not
-        self.assertEqual(
-            (newItem, ),
-            tuple(newItem.getParentNode().objectValues('MeetingItem'))
-            )
-        # Especially test that use content_category is correct on the duplicated annexes
-        for v in get_categorized_elements(newItem):
-            self.assertTrue(cfg2Id in v['icon_url'])
-
-        # Now check the annexType of new annexes
-        # annexes have no correspondences so default one is used each time
-        defaultMC2ItemAT = get_categories(newItem.objectValues()[0], the_objects=True)[0]
-        self.assertEqual(newItem.objectValues()[0].content_category,
-                         calculate_category_id(defaultMC2ItemAT))
-        self.assertEqual(newItem.objectValues()[1].content_category,
-                         calculate_category_id(defaultMC2ItemAT))
-
-    def test_pm_SendItemToOtherMCAnnexContentCategoryIsIndexed(self):
-        """When an item is sent to another MC and contains annexes,
-           if content_category does not exist in destination MC,
-           it is not indexed at creation time but after correct content_category
-           has been set.
-           Test if a corresponding annexType exist (with same id) and when using
-           an annexType with a different id between origin/destination MCs."""
-        data = self._setupSendItemToOtherMC(with_annexes=True)
-        decisionAnnexes = [annex for annex in data['newItem'].objectValues()
-                           if annex.portal_type == 'annexDecision']
-        self.assertTrue(len(decisionAnnexes) == 0)
 
     def _extraNeutralFields(self):
         """This method is made to be overrided by subplugins that added

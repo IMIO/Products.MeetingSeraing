@@ -1,6 +1,10 @@
 Products.MeetingSeraing Changelog
 ====================================
 
+4.02 (2019-05-02)
+-----------------
+- Change rules for keeping annexes and decision's annexes
+
 4.0 (unreleased)
 ----------------
 - Adapted workflows to define the icon to use for transitions

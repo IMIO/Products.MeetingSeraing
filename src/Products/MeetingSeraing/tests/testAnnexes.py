@@ -28,15 +28,6 @@ from Products.PloneMeeting.tests.testAnnexes import testAnnexes as pmta
 
 class testAnnexes(MeetingSeraingTestCase, pmta):
     """ """
-    def test_pm_AnnexesCreationDateKeptWhenItemDuplicated(self):
-        """When an item is duplicated, if annexes are kept,
-           the annexes creation date is also kept."""
-        self.changeUser('pmCreator1')
-        item = self.create('MeetingItem')
-        annex1 = self.addAnnex(item)
-        annex2 = self.addAnnex(item)
-        clonedItem = item.clone()
-        self.assertEqual(len(clonedItem.objectValues()), 0)
 
 
 def test_suite():
