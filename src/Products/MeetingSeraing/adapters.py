@@ -730,7 +730,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
 
     security.declarePrivate('_freezePresentedItem')
 
-    def _freezePresentedItem(self):
+    def _latePresentedItem(self):
         """Presents an item into a frozen meeting. """
         wTool = getToolByName(self.context, 'portal_workflow')
         wTool.doActionFor(self.context, 'itemValidateByDG')

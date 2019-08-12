@@ -92,10 +92,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         '''Not used yet...'''
         pass
 
-    def test_pm_WFA_return_to_proposing_group(self):
-        '''See doc in PloneMeeting/tests/testWFAdaptations.py'''
-        pmtwfa.test_pm_WFA_return_to_proposing_group(self)
-
     def test_pm_WFA_hide_decisions_when_under_writing(self):
         '''No sense...'''
         pass

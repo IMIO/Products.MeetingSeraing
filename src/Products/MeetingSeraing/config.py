@@ -28,7 +28,7 @@ PMconfig.EXTRA_GROUP_SUFFIXES = [
 ]
 
 SERAINGMEETINGREVIEWERS = {
-    'meetingitemcollegeliege_workflow': OrderedDict([('reviewers', 'proposed'),
+    'meetingitemseraing_workflow': OrderedDict([('reviewers', 'proposed'),
                                      ('divisionheads', 'proposed_to_divisionhead'),
                                      ('officemanagers', 'proposed_to_officemanager'),
                                      ('serviceheads', 'proposed_to_servicehead'), ])}
