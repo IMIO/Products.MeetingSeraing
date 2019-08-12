@@ -23,10 +23,10 @@
 #
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testFaceted import testFaceted as pmtf
+from Products.MeetingCommunes.tests.testFaceted import testFaceted as mctf
 
 
-class testFaceted(MeetingSeraingTestCase, pmtf):
+class testFaceted(MeetingSeraingTestCase, mctf):
     '''Tests the faceted navigation.'''
 
 

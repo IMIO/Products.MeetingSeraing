@@ -23,11 +23,11 @@
 #
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testChangeItemOrderView import testChangeItemOrderView as pmtciov
+from Products.MeetingCommunes.tests.testChangeItemOrderView import testChangeItemOrderView as mcciov
 
 
-class testChangeItemOrderView(MeetingSeraingTestCase, pmtciov):
-    '''Tests the ChangeItemOrderView class methods.'''
+class testChangeItemOrderView(MeetingSeraingTestCase, mcciov):
+    """Tests the ChangeItemOrderView class methods."""
 
 
 def test_suite():

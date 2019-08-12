@@ -23,11 +23,10 @@
 #
 import logging
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testMeetingConfig import testMeetingConfig as pmtmc
-from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
+from Products.MeetingCommunes.tests.testMeetingConfig import testMeetingConfig as mctmc
 
 
-class testMeetingConfig(MeetingSeraingTestCase, pmtmc):
+class testMeetingConfig(MeetingSeraingTestCase, mctmc):
     '''Call testMeetingConfig tests.'''
 
     def test_pm_searchItemsToPrevalidate(self):

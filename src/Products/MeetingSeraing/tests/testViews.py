@@ -23,10 +23,10 @@
 #
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testViews import testViews as pmtv
+from Products.MeetingCommunes.tests.testViews import testViews as mctv
 
 
-class testViews(MeetingSeraingTestCase, pmtv):
+class testViews(MeetingSeraingTestCase, mctv):
     ''' '''
 
 

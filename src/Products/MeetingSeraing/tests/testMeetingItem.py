@@ -26,21 +26,18 @@ from os import path
 
 from DateTime import DateTime
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testMeetingItem import testMeetingItem as pmtmi
+from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 from Products.CMFCore.permissions import View
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.PloneMeeting.utils import get_annexes
-from collective.iconifiedcategory.utils import calculate_category_id
-from collective.iconifiedcategory.utils import get_categorized_elements
-from collective.iconifiedcategory.utils import get_categories
 from collective.iconifiedcategory.utils import get_config_root
 from collective.iconifiedcategory.utils import get_group
 from zope.i18n import translate
 from zope.annotation.interfaces import IAnnotations
 
 
-class testMeetingItem(MeetingSeraingTestCase, pmtmi):
+class testMeetingItem(MeetingSeraingTestCase, mctmi):
     """
         Tests the MeetingItem class methods.
     """

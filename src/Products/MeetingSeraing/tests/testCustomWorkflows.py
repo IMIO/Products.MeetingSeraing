@@ -71,20 +71,20 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         meetingDate = DateTime().strftime('%y/%m/%d %H:%M:00')
         meeting = self.create('Meeting', date=meetingDate)
         item1 = self.create('MeetingItem')  # id=o2
-        item1.setProposingGroup('vendors')
-        item1.setAssociatedGroups(('developers',))
+        item1.setProposingGroup(self.vendors_uid)
+        item1.setAssociatedGroups((self.developers_uid,))
         item2 = self.create('MeetingItem')  # id=o3
-        item2.setProposingGroup('developers')
+        item2.setProposingGroup(self.developers_uid)
         item3 = self.create('MeetingItem')  # id=o4
-        item3.setProposingGroup('vendors')
+        item3.setProposingGroup(self.vendors_uid)
         item4 = self.create('MeetingItem')  # id=o5
-        item4.setProposingGroup('developers')
+        item4.setProposingGroup(self.developers_uid)
         item5 = self.create('MeetingItem')  # id=o7
-        item5.setProposingGroup('vendors')
+        item5.setProposingGroup(self.vendors_uid)
         item6 = self.create('MeetingItem', title='The sixth item')
-        item6.setProposingGroup('vendors')
+        item6.setProposingGroup(self.vendors_uid)
         item7 = self.create('MeetingItem')  # id=o8
-        item7.setProposingGroup('vendors')
+        item7.setProposingGroup(self.vendors_uid)
         for item in (item1, item2, item3, item4, item5, item6, item7):
             self.presentItem(item)
         # we freeze the meeting
@@ -121,6 +121,6 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         meetingDate = DateTime().strftime('%y/%m/%d %H:%M:00')
         meeting = self.create('Meeting', date=meetingDate)
         item = self.create('MeetingItem')
-        item.setProposingGroup('vendors')
+        item.setProposingGroup(self.vendors_uid)
         self.presentItem(item)
         self.assertIsNotNone(meeting.adapted().getOJByCategory())

@@ -1,11 +1,16 @@
 Products.MeetingSeraing Changelog
 ====================================
 
+4.1 (unreleased)
+----------------
+- Compatible for PloneMeeting 4.1
+
+
 4.02 (2019-05-02)
 -----------------
 - Change rules for keeping annexes and decision's annexes
 
-4.0 (unreleased)
+4.0 (2017-01-01)
 ----------------
 - Adapted workflows to define the icon to use for transitions
 - Removed field MeetingConfig.cdldProposingGroup and use the 'indexAdvisers' value

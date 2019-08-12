@@ -31,34 +31,10 @@ from Products.DataGridField import DataGridField
 from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
 
-from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.Meeting import Meeting
-from Products.PloneMeeting.config import WriteRiskyConfig
 
 from Products.PloneMeeting.config import registerClasses
-
-
-def update_config_schema(baseSchema):
-    specificSchema = Schema((
-        BooleanField(
-            name='initItemDecisionIfEmptyOnDecide',
-            default=True,
-            widget=BooleanField._properties['widget'](
-                description="InitItemDecisionIfEmptyOnDecide",
-                description_msgid="init_item_decision_if_empty_on_decide",
-                label='Inititemdecisionifemptyondecide',
-                label_msgid='MeetingCommunes_label_initItemDecisionIfEmptyOnDecide',
-                i18n_domain='PloneMeeting'),
-            write_permission=WriteRiskyConfig,
-        ),
-    ),)
-
-    completeConfigSchema = baseSchema + specificSchema.copy()
-    return completeConfigSchema
-
-
-MeetingConfig.schema = update_config_schema(MeetingConfig.schema)
 
 
 def update_item_schema(baseSchema):

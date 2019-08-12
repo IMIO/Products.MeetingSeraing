@@ -30,12 +30,12 @@ from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CU
 from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testWFAdaptations import testWFAdaptations as pmtwfa
+from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
 
 from Products.CMFCore.permissions import ModifyPortalContent, ReviewPortalContent
 
 
-class testWFAdaptations(MeetingSeraingTestCase, pmtwfa):
+class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
     '''Tests various aspects of votes management.'''
 
     def test_pm_WFA_availableWFAdaptations(self):

@@ -22,12 +22,12 @@
 # 02110-1301, USA.
 #
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testAdvices import testAdvices as pmta
+from Products.MeetingCommunes.tests.testAdvices import testAdvices as mcta
 
 
-class testAdvices(MeetingSeraingTestCase, pmta):
-    '''Tests various aspects of advices management.
-       Advices are enabled for PloneGov Assembly, not for PloneMeeting Assembly.'''
+class testAdvices(MeetingSeraingTestCase, mcta):
+    """Tests various aspects of advices management.
+       Advices are enabled for PloneGov Assembly, not for PloneMeeting Assembly."""
 
 
 def test_suite():

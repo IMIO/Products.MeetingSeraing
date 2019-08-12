@@ -26,15 +26,14 @@ from collective.iconifiedcategory.interfaces import IIconifiedCategorySettings
 from DateTime import DateTime
 from plone import api
 from Products.PloneMeeting.columns import PMAnnexActionsColumn
-from Products.PloneMeeting.columns import PMPrettyLinkColumn
 from Products.PloneMeeting.config import AddAnnex
 from Products.PloneMeeting.config import AddAnnexDecision
 
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testColumns import testColumns as pmtc
+from Products.MeetingCommunes.tests.testColumns import testColumns as mctc
 
 
-class testColumns(MeetingSeraingTestCase, pmtc):
+class testColumns(MeetingSeraingTestCase, mctc):
     ''' '''
 
     def test_pm_AnnexActionsColumnShowArrows(self):
