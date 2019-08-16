@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from Products.PloneMeeting.profiles import MeetingConfigDescriptor
+
+from copy import deepcopy
+from Products.MeetingCommunes.profiles.testing import import_data as mc_import_data
 from Products.PloneMeeting.profiles import AnnexTypeDescriptor
 from Products.PloneMeeting.profiles import ItemAnnexSubTypeDescriptor
 from Products.PloneMeeting.profiles import ItemAnnexTypeDescriptor
@@ -55,9 +57,11 @@ categories = []
 
 # Meeting configurations -------------------------------------------------------
 # codir
-codirMeeting = MeetingConfigDescriptor(
-    'codir', 'Comité de Direction',
-    'Comité de Direction')
+codirMeeting = deepcopy(mc_import_data.collegeMeeting)
+codirMeeting.id = 'meeting-config-codir'
+codirMeeting.Title = 'Comité de direction'
+codirMeeting.folderTitle = 'Comité de direction'
+codirMeeting.shortName = 'CoDir'
 codirMeeting.meetingManagers = ['pmManager', ]
 codirMeeting.assembly = 'Pierre Dupont - Bourgmestre,\n' \
                         'Charles Exemple - 1er Echevin,\n' \
@@ -66,7 +70,6 @@ codirMeeting.assembly = 'Pierre Dupont - Bourgmestre,\n' \
 codirMeeting.signatures = 'Pierre Dupont, Bourgmestre - Charles Exemple, 1er Echevin'
 codirMeeting.certifiedSignatures = []
 codirMeeting.categories = categories
-codirMeeting.shortName = 'CoDir'
 codirMeeting.annexTypes = [financialAnalysis, itemAnnex, decisionAnnex, marketingAnalysis,
                              adviceAnnex, adviceLegalAnalysis, meetingAnnex]
 codirMeeting.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
@@ -77,6 +80,7 @@ codirMeeting.itemActionsInterface = 'Products.MeetingSeraing.interfaces.IMeeting
 codirMeeting.meetingConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingSeraingCollegeWorkflowConditions'
 codirMeeting.meetingActionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingSeraingCollegeWorkflowActions'
 codirMeeting.transitionsToConfirm = []
+codirMeeting.workflowAdaptations = []
 codirMeeting.transitionsForPresentingAnItem = ('proposeToServiceHead',
                                                'proposeToOfficeManager',
                                                'proposeToDivisionHead',
@@ -134,8 +138,7 @@ codirMeeting.itemTemplates = []
 
 
 data = PloneMeetingConfiguration(meetingFolderTitle='Mes séances',
-                                 meetingConfigs=(codirMeeting, ),
-                                 groups=[])
+                                 meetingConfigs=(codirMeeting, ), orgs=[])
 # necessary for testSetup.test_pm_ToolAttributesAreOnlySetOnFirstImportData
 data.restrictUsers = False
 # ------------------------------------------------------------------------------

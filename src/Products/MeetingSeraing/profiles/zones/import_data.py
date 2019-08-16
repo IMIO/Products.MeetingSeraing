@@ -54,7 +54,7 @@ categories = []
 # Users and groups -------------------------------------------------------------
 
 # Meeting configurations -------------------------------------------------------
-# codir
+# college
 collegeMeeting = MeetingConfigDescriptor(
     'meeting-config-zcollege', 'Collège',
     'Collège', isDefault=False)
@@ -218,8 +218,7 @@ councilMeeting.itemTemplates = []
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes seances',
-    meetingConfigs=(collegeMeeting, councilMeeting),
-    groups=([]))
+    meetingConfigs=(collegeMeeting, councilMeeting), orgs=[])
 # necessary for testSetup.test_pm_ToolAttributesAreOnlySetOnFirstImportData
 data.restrictUsers = False
 # ------------------------------------------------------------------------------

@@ -16,14 +16,7 @@ __docformat__ = 'plaintext'
 import os
 import logging
 logger = logging.getLogger('MeetingSeraing: setuphandlers')
-from DateTime import DateTime
 from plone import api
-from plone import namedfile
-from plone.app.textfield.value import RichTextValue
-from plone.dexterity.utils import createContentInContainer
-from collective.iconifiedcategory.utils import calculate_category_id
-from collective.iconifiedcategory.utils import get_config_root
-from Products.CMFPlone.utils import _createObjectByType
 from Products.PloneMeeting.exportimport.content import ToolInitializer
 from Products.MeetingSeraing.config import PROJECTNAME
 
@@ -57,13 +50,15 @@ def logStep(method, context):
     logger.info("Applying '%s' in profile '%s'" % (method, '/'.join(context._profile_path.split(os.sep)[-3:])))
 
 
-def isNotMeetingSeraingSeraingProfile(context):
-    return context.readDataFile("MeetingSeraing_seraing_marker.txt") is None
+def isMeetingSeraingConfigureProfile(context):
+    return context.readDataFile("MeetingSeraing_seraing_marker.txt") or \
+        context.readDataFile("MeetingSeraing_codir_marker.txt") or \
+        context.readDataFile("MeetingSeraing_zones_marker.txt")
 
 
 def installMeetingSeraing(context):
     """ Run the default profile before bing able to run the Seraing profile"""
-    if isNotMeetingSeraingSeraingProfile(context):
+    if not isMeetingSeraingConfigureProfile(context):
         return
 
     logStep("installMeetingSeraing", context)
@@ -93,7 +88,7 @@ def _installPloneMeeting(context):
 def initializeTool(context):
     """Initialises the PloneMeeting tool based on information from the current
        profile."""
-    if isNotMeetingSeraingSeraingProfile(context):
+    if not isMeetingSeraingConfigureProfile(context):
         return
 
     logStep("initializeTool", context)
@@ -140,7 +135,7 @@ def reorderSkinsLayers(context, site):
        Reinstall Products.plonemeetingskin and re-apply MeetingSeraing skins.xml step
        as the reinstallation of MeetingSeraing and PloneMeeting changes the portal_skins layers order
     """
-    if isNotMeetingSeraingProfile(context) and isNotMeetingSeraingSeraingProfile(context):
+    if isNotMeetingSeraingProfile(context) and isMeetingSeraingConfigureProfile(context):
         return
 
     logStep("reorderSkinsLayers", context)
@@ -167,7 +162,7 @@ def reorderCss(context):
        Make sure CSS are correctly reordered in portal_css so things
        work as expected...
     """
-    if isNotMeetingSeraingProfile(context) and isNotMeetingSeraingSeraingProfile(context):
+    if isNotMeetingSeraingProfile(context) and isMeetingSeraingConfigureProfile(context):
         return
 
     site = context.getSite()
