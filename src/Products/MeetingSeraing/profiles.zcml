@@ -23,20 +23,6 @@
    description="PloneMeeting for City College and Council of Seraing"
    provides="Products.GenericSetup.interfaces.EXTENSION"
    for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
-
-  <genericsetup:registerProfile
-   name="zcodir"
-   title="PloneMeeting / CoDir"
-   description="PloneMeeting for CoDir (Seraing)"
-   provides="Products.GenericSetup.interfaces.EXTENSION"
-   for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
-
-  <genericsetup:registerProfile
-   name="zones"
-   title="PloneMeeting / zones (police ou secours)"
-   description="PloneMeeting for zones (help or police) (Belgium)"
-   provides="Products.GenericSetup.interfaces.EXTENSION"
-   for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
    
   <!-- ##/code-section profiles.zcml-bottom -->
 
