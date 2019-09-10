@@ -28,8 +28,8 @@ PMconfig.EXTRA_GROUP_SUFFIXES = [
 ]
 
 SERAINGMEETINGREVIEWERS = {
-    'meetingitemseraing_workflow': OrderedDict([('reviewers', 'proposed'),
-                                     ('divisionheads', 'proposed_to_divisionhead'),
-                                     ('officemanagers', 'proposed_to_officemanager'),
-                                     ('serviceheads', 'proposed_to_servicehead'), ])}
+    'meetingitemseraing_workflow': OrderedDict([('reviewers', ['proposed']),
+                                     ('divisionheads', ['proposed_to_divisionhead']),
+                                     ('officemanagers', ['proposed_to_officemanager']),
+                                     ('serviceheads', ['proposed_to_servicehead']), ])}
 PMconfig.MEETINGREVIEWERS.update(SERAINGMEETINGREVIEWERS)
