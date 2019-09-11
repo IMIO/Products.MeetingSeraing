@@ -2,58 +2,19 @@
 
 from copy import deepcopy
 from Products.MeetingCommunes.profiles.testing import import_data as mc_import_data
-from Products.PloneMeeting.profiles.testing import import_data as pm_import_data
-from Products.PloneMeeting.config import MEETINGREVIEWERS
-from Products.PloneMeeting.profiles import PloneGroupDescriptor
-from Products.PloneMeeting.profiles import UserDescriptor
 
 data = deepcopy(mc_import_data.data)
 
 # Remove persons -------------------------------------------------
 data.persons = []
 
-# Users and groups -----------------------------------------------
-pmServiceHead1 = UserDescriptor('pmServiceHead1', [])
-pmOfficeManager1 = UserDescriptor('pmOfficeManager1', [])
-pmDivisionHead1 = UserDescriptor('pmDivisionHead1', [])
-
-plonemeeting_assembly_powereditors = PloneGroupDescriptor('meeting-config-college_powereditors',
-                                                          'meeting-config-council_powereditors', [])
-powerEditor1 = UserDescriptor('powerEditor1', [])
-powerEditor1.ploneGroups = [plonemeeting_assembly_powereditors, ]
-
-# Inherited users
-pmReviewer1 = deepcopy(pm_import_data.pmReviewer1)
-pmReviewer2 = deepcopy(pm_import_data.pmReviewer2)
-pmReviewerLevel1 = deepcopy(pm_import_data.pmReviewerLevel1)
-pmReviewerLevel2 = deepcopy(pm_import_data.pmReviewerLevel2)
-pmManager = deepcopy(pm_import_data.pmManager)
-
-# Groups
-
-developers = data.orgs[0]
-developers.serviceheads.append(pmReviewer1)
-developers.serviceheads.append(pmServiceHead1)
-developers.serviceheads.append(pmManager)
-developers.officemanagers.append(pmOfficeManager1)
-developers.officemanagers.append(pmManager)
-developers.divisionheads.append(pmDivisionHead1)
-developers.divisionheads.append(pmManager)
-
-# to serviceheads that is first reviewer level
-developers.prereviewers = [descr for descr in developers.prereviewers if descr.id != 'pmReviewerLevel1']
-getattr(developers, MEETINGREVIEWERS['meetingitemseraing_workflow'].keys()[-1]).append(pmReviewerLevel1)
-
-vendors = data.orgs[1]
-vendors.serviceheads.append(pmReviewer2)
-vendors.officemanagers.append(pmReviewer2)
-vendors.divisionheads.append(pmReviewer2)
+# No Users and groups -----------------------------------------------
 
 # Meeting configurations -------------------------------------------------------
 # college
 collegeMeeting = deepcopy(mc_import_data.collegeMeeting)
 collegeMeeting.id = 'meeting-config-college'
-collegeMeeting.Title = 'Collège Communal'
+collegeMeeting.title = 'Collège Communal'
 collegeMeeting.folderTitle = 'Collège Communal'
 collegeMeeting.shortName = 'College'
 collegeMeeting.isDefault = True
@@ -111,7 +72,7 @@ collegeMeeting.itemAutoSentToOtherMCStates = ('accepted', 'accepted_but_modified
 # Conseil communal
 councilMeeting = deepcopy(mc_import_data.councilMeeting)
 councilMeeting.id = 'meeting-config-council'
-councilMeeting.Title = 'Conseil Communal'
+councilMeeting.title = 'Conseil Communal'
 councilMeeting.folderTitle = 'Conseil Communal'
 councilMeeting.shortName = 'Council'
 councilMeeting.isDefault = False
@@ -165,4 +126,4 @@ councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'pro
 councilMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'accepted_closed', 'delayed_closed', 'accepted_but_modified_closed', ]
 
 data.meetingConfigs = (collegeMeeting, councilMeeting)
-data.usersOutsideGroups += [powerEditor1, pmServiceHead1, pmOfficeManager1, pmDivisionHead1]
+data.usersOutsideGroups = []
