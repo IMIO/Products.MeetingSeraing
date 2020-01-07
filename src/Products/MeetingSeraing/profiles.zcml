@@ -23,6 +23,14 @@
    description="PloneMeeting for City College and Council of Seraing"
    provides="Products.GenericSetup.interfaces.EXTENSION"
    for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+  <genericsetup:upgradeStep
+      title="Go to MeetingSeraing 4.1"
+      description=""
+      source="*"
+      destination="4.1"
+      handler="Products.MeetingSeraing.migrations.migrate_to_4_1.migrate"
+      profile="Products.MeetingSeraing:default" />
    
   <!-- ##/code-section profiles.zcml-bottom -->
 
