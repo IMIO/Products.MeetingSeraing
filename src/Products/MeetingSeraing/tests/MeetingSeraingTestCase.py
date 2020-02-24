@@ -20,7 +20,7 @@
 # 02110-1301, USA.
 #
 
-from Products.PloneMeeting.tests.PloneMeetingTestCase import PloneMeetingTestCase
+from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
 from Products.MeetingSeraing.testing import MS_TESTING_PROFILE_FUNCTIONAL
 from Products.MeetingSeraing.tests.helpers import MeetingSeraingTestingHelpers
 
@@ -34,12 +34,12 @@ from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_CUSTOM_ST
 MeetingConfig.wfAdaptations = customWfAdaptations
 adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
 
-class MeetingSeraingTestCase(PloneMeetingTestCase, MeetingSeraingTestingHelpers):
+class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpers):
     """Base class for defining MeetingSeraing test cases."""
 
     layer = MS_TESTING_PROFILE_FUNCTIONAL
 
     def setUp(self):
-        PloneMeetingTestCase.setUp(self)
+        MeetingCommunesTestCase.setUp(self)
         self.meetingConfig = getattr(self.tool, 'meeting-config-college')
         self.meetingConfig2 = getattr(self.tool, 'meeting-config-council')

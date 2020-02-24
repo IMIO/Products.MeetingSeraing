@@ -21,10 +21,10 @@
 #
 
 from DateTime import DateTime
-from Products.PloneMeeting.tests.helpers import PloneMeetingTestingHelpers
+from Products.MeetingCommunes.tests.helpers import MeetingCommunesTestingHelpers
 
 
-class MeetingSeraingTestingHelpers(PloneMeetingTestingHelpers):
+class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
     """Override some values of PloneMeetingTestingHelpers."""
 
     TRANSITIONS_FOR_PROPOSING_ITEM_1 = TRANSITIONS_FOR_PROPOSING_ITEM_2 = ('proposeToServiceHead',

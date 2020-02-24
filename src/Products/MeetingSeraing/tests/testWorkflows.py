@@ -23,12 +23,11 @@
 #
 
 from AccessControl import Unauthorized
-from DateTime import DateTime
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.tests.testWorkflows import testWorkflows as pmtw
+from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
 
 
-class testWorkflows(MeetingSeraingTestCase, pmtw):
+class testWorkflows(MeetingSeraingTestCase, mctw):
     """Tests the default workflows implemented in MeetingSeraing.
 
        WARNING:
