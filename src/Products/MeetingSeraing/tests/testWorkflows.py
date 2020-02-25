@@ -23,8 +23,11 @@
 #
 
 from AccessControl import Unauthorized
+from DateTime import DateTime
+from Products.CMFCore.permissions import View
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
+from Products.PloneMeeting.config import EXECUTE_EXPR_VALUE
 
 
 class testWorkflows(MeetingSeraingTestCase, mctw):
@@ -145,6 +148,114 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
     def test_pm_RecurringItems(self):
         """Bypass this test..."""
         pass
+
+
+    def test_pm_MeetingExecuteActionOnLinkedItemsGiveAccessToAcceptedItemsOfAMeetingToPowerAdvisers(self):
+        '''Test the MeetingConfig.onMeetingTransitionItemActionToExecute parameter :
+           specific usecase, being able to give access to decided items of a meeting only when meeting
+           is closed, even if item is decided before the meeting is closed.'''
+        self.changeUser('siteadmin')
+        cfg = self.meetingConfig
+        # call updateLocalRoles on item only if it not already decided
+        # as updateLocalRoles is called when item review_state changed
+        self.assertTrue('accepted' in cfg.getItemDecidedStates())
+        cfg.setOnMeetingTransitionItemActionToExecute(
+            [{'meeting_transition': 'decide',
+              'item_action': 'itemValidateByDG',
+              'tal_expression': ''},
+             {'meeting_transition': 'decide',
+              'item_action': 'itemfreeze',
+              'tal_expression': ''},
+
+             {'meeting_transition': 'close',
+              'item_action': 'itemValidateByDG',
+              'tal_expression': ''},
+             {'meeting_transition': 'close',
+              'item_action': 'itemfreeze',
+              'tal_expression': ''},
+             {'meeting_transition': 'close',
+              'item_action': EXECUTE_EXPR_VALUE,
+              'tal_expression': 'python: item.queryState() in cfg.getItemDecidedStates() and '
+                'item.updateLocalRoles()'},
+             {'meeting_transition': 'close',
+              'item_action': 'accept',
+              'tal_expression': ''}, ])
+        # configure access of powerobservers only access if meeting is 'closed'
+        cfg.setPowerObservers([
+            {'item_access_on': 'python: item.getMeeting().queryState() == "closed"',
+             'item_states': ['accepted'],
+             'label': 'Power observers',
+             'meeting_access_on': '',
+             'meeting_states': ['closed'],
+             'row_id': 'powerobservers'}])
+        self.changeUser('pmManager')
+        item1 = self.create('MeetingItem')
+        item1.setDecision(self.decisionText)
+        item2 = self.create('MeetingItem', decision=self.decisionText)
+        item2.setDecision(self.decisionText)
+        meeting = self.create('Meeting', date=DateTime('2019/09/10'))
+        self.presentItem(item1)
+        self.presentItem(item2)
+        self.decideMeeting(meeting)
+        self.do(item1, 'accept')
+        self.assertEqual(item1.queryState(), 'accepted')
+        # power observer does not have access to item1/item2
+        self.changeUser('powerobserver1')
+        self.assertFalse(self.hasPermission(View, item1))
+        self.assertFalse(self.hasPermission(View, item2))
+        self.changeUser('pmManager')
+        self.closeMeeting(meeting)
+        # items are accepted
+        self.assertEqual(item1.queryState(), 'accepted')
+        self.assertEqual(item2.queryState(), 'accepted')
+        # and powerobserver has also access to item1 that was already accepted before meeting was closed
+        self.assertTrue(self.hasPermission(View, item1))
+        self.assertTrue(self.hasPermission(View, item2))
+
+
+    def test_pm_MeetingExecuteActionOnLinkedItemsCaseTALExpression(self):
+        '''Test the MeetingConfig.onMeetingTransitionItemActionToExecute parameter :
+           executing a TAL expression on every items.'''
+        # when we freeze a meeting, we will append word '(frozen)' to the item title
+        # first, wrong tal_expression, nothing is done
+        self.changeUser('siteadmin')
+        cfg = self.meetingConfig
+        cfg.setOnMeetingTransitionItemActionToExecute(
+            [{'meeting_transition': 'freeze',
+              'item_action': EXECUTE_EXPR_VALUE,
+              'tal_expression': 'item/unknown'},
+             {'meeting_transition': 'freeze',
+              'item_action': 'itemValidateByDG',
+              'tal_expression': ''},
+             {'meeting_transition': 'freeze',
+              'item_action': 'itemfreeze',
+              'tal_expression': ''}, ])
+        self.changeUser('pmManager')
+        # create a meeting with items
+        meeting = self._createMeetingWithItems()
+        # for now, every items are 'presented'
+        for item in meeting.getItems():
+            self.assertEqual(item.queryState(), 'presented')
+        # freeze the meeting, nothing is done by the expression and the items are frozen
+        self.freezeMeeting(meeting)
+        for item in meeting.getItems():
+            self.assertEqual(item.queryState(), 'itemfrozen')
+
+        # now a valid config, append ('accepted') to item title when meeting is decided
+        title_suffix = " (accepted)"
+        cfg.setOnMeetingTransitionItemActionToExecute(
+            [{'meeting_transition': 'decide',
+              'item_action': EXECUTE_EXPR_VALUE,
+              'tal_expression': 'python: item.setTitle(item.Title() + "{0}")'.format(title_suffix)},
+             {'meeting_transition': 'decide',
+              'item_action': 'accept',
+              'tal_expression': ''}])
+        for item in meeting.getItems():
+            self.assertFalse(title_suffix in item.Title())
+        self.decideMeeting(meeting)
+        for item in meeting.getItems():
+            self.assertTrue(title_suffix in item.Title())
+            self.assertEqual(item.queryState(), 'accepted')
 
 
 def test_suite():

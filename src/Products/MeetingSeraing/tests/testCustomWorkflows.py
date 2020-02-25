@@ -55,7 +55,7 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         self.assertEquals('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
         # when an item is 'itemfrozen' it will stay itemfrozen if nothing
         # is defined in the meetingConfig.onMeetingTransitionItemTransitionToTrigger
-        self.meetingConfig.setOnMeetingTransitionItemTransitionToTrigger([])
+        self.meetingConfig.setOnMeetingTransitionItemActionToExecute([])
         self.backToState(meeting, 'created')
         self.assertEquals('itemfrozen', wftool.getInfoFor(item1, 'review_state'))
         self.assertEquals('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
