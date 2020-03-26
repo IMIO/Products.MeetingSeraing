@@ -109,6 +109,7 @@ adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROU
 
 RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ('presented', 'validated_by_dg', 'itemfrozen',)
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+
 RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
                                                 # view permissions
                                                     {'Access contents information':
