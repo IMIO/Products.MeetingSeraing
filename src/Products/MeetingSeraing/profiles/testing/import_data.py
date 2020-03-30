@@ -49,11 +49,6 @@ vendors.divisionheads.append(pmReviewer2)
 # Meeting configurations -------------------------------------------------------
 # college
 collegeMeeting = deepcopy(mc_import_data.collegeMeeting)
-collegeMeeting.id = 'meeting-config-college'
-collegeMeeting.Title = 'Collège Communal'
-collegeMeeting.folderTitle = 'Collège Communal'
-collegeMeeting.shortName = 'College'
-collegeMeeting.isDefault = True
 collegeMeeting.itemWorkflow = 'meetingitemseraing_workflow'
 collegeMeeting.meetingWorkflow = 'meetingseraing_workflow'
 collegeMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemSeraingCollegeWorkflowConditions'
@@ -119,11 +114,6 @@ collegeMeeting.itemAutoSentToOtherMCStates = ('accepted', 'accepted_but_modified
 
 # Conseil communal
 councilMeeting = deepcopy(mc_import_data.councilMeeting)
-councilMeeting.id = 'meeting-config-council'
-councilMeeting.Title = 'Conseil Communal'
-councilMeeting.folderTitle = 'Conseil Communal'
-councilMeeting.shortName = 'Council'
-councilMeeting.isDefault = False
 councilMeeting.itemWorkflow = 'meetingitemseraing_workflow'
 councilMeeting.meetingWorkflow = 'meetingseraing_workflow'
 councilMeeting.itemConditionsInterface = 'Products.MeetingSeraing.interfaces.IMeetingItemSeraingCouncilWorkflowConditions'

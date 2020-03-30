@@ -680,7 +680,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
 
     def doDelay(self, stateChange):
         """After cloned item, we validate this item"""
-        MeetingItemWorkflowActions(self.context).doDelay(stateChange)
+        super(MeetingItemCommunesWorkflowActions, self).doDelay(stateChange)
         clonedItem = self.context.getBRefs('ItemPredecessor')[0]
         self.context.portal_workflow.doActionFor(clonedItem, 'validate')
 
