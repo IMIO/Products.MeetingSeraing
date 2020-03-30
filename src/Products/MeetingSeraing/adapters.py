@@ -681,7 +681,9 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
     def doDelay(self, stateChange):
         """After cloned item, we validate this item"""
         super(MeetingItemSeraingWorkflowActions, self).doDelay(stateChange)
-        clonedItem = self.context.getBRefs('ItemPredecessor')[0]
+        # make sure we get freshly cloned item in case we delay self.context several times...
+        clonedItem = [item for item in self.context.getBRefs('ItemPredecessor')
+                      if item.queryState() == 'itemcreated'][0]
         wfTool = api.portal.get_tool('portal_workflow')
         # make sure item may be validated
         with api.env.adopt_roles(['Manager']):
