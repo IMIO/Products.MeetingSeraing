@@ -324,3 +324,11 @@ msgstr ""
 #. Default: "Not required opinion"
 msgid "not_required_finance"
 msgstr ""
+
+#. Default: "An item has been delayed (notify the \"Service Heads\")"
+msgid "event_item_delayed-service_heads"
+msgstr ""
+
+#. Default: "An advice was added or updated on an item (notify the \"Service Heads\")"
+msgid "event_add_advice-service_heads"
+msgstr ""

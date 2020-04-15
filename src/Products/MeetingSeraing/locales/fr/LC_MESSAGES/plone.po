@@ -147,7 +147,7 @@ msgstr "Retourner au groupe proposant"
 msgid "create_to_codir_from_meeting-config-college"
 msgstr "Envoyer vers CODIR"
 
-#. Default: "Create a plonmeeting item from a college item"
+#. Default: "Create an item college from an item CoDir"
 msgid "create_to_meeting-config-college_from_codir"
 msgstr "Envoyer vers Collège Communal"
 
@@ -191,6 +191,10 @@ msgstr "Geler"
 msgid "frozen"
 msgstr "Gelée"
 
+#. Default: "Go to returned to proposing group (proposed)"
+msgid "goTo_returned_to_proposing_group_proposed"
+msgstr "Proposer au directeur"
+
 #. Default: "Validate item by DG"
 msgid "itemValidateByDG"
 msgstr "Valider le point par le DG"
@@ -202,10 +206,6 @@ msgstr "Gelé"
 #. Default: "Description"
 msgid "meeting_item_description"
 msgstr "Description dans l'ordre du jour"
-
-#. Default: "Go to returned to proposing group (proposed)"
-msgid "goTo_returned_to_proposing_group_proposed"
-msgstr "Proposer au directeur"
 
 msgid "propose"
 msgstr "Proposer au directeur"

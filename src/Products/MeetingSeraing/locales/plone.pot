@@ -320,3 +320,8 @@ msgstr ""
 #. Default: "Create an item college from an item CoDir"
 msgid "create_to_meeting-config-college_from_codir"
 msgstr ""
+
+#. Default: "Go to returned to proposing group (proposed)"
+msgid "goTo_returned_to_proposing_group_proposed"
+msgstr "Proposer au directeur"
+

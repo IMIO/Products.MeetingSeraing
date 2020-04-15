@@ -48,7 +48,6 @@
            factory="Products.MeetingSeraing.adapters.MeetingSeraingCouncilWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCouncilWorkflowConditions"/>
 
-
   <configure package="Products.MeetingCommunes">
 
       <adapter for="Products.PloneMeeting.interfaces.IMeeting"

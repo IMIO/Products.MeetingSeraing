@@ -592,6 +592,10 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         """See doc in interfaces.py."""
         return ('created', 'validated_by_dg', 'frozen', 'decided')
 
+    def extraItemEvents(self):
+        """Override pm method"""
+        return ("event_item_delayed-service_heads", "event_add_advice-service_heads")
+
 
 class MeetingSeraingWorkflowActions(MeetingCommunesWorkflowActions):
     """Adapter that adapts a meeting item implementing IMeetingItem to the
@@ -688,6 +692,8 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         # make sure item may be validated
         with api.env.adopt_roles(['Manager']):
             wfTool.doActionFor(clonedItem, 'validate')
+        # Send, if configured, a mail to the person who created the item
+        clonedItem.sendMailIfRelevant('event_item_delayed-service_heads', 'MeetingServiceHead', isRole=True)
 
     security.declarePrivate('doAccept_close')
 
