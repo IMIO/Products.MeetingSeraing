@@ -90,7 +90,9 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertTrue(self.hasPermission(View, item))
         self.assertTrue(self.hasPermission(View, meeting))
         # frozen items/meetings are accessible by both powerobs
+        self.changeUser('pmManager')
         self.freezeMeeting(meeting)
+        self.changeUser('powerobserver1')
         self.assertTrue(item.queryState() == 'itemfrozen')
         self.changeUser('restrictedpowerobserver1')
         self.assertTrue(self.hasPermission(View, item))
@@ -99,8 +101,8 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertTrue(self.hasPermission(View, item))
         self.assertTrue(self.hasPermission(View, meeting))
         # decide the meeting the item, meeting accessible to both
-        self.decideMeeting(meeting)
         self.changeUser('pmManager')
+        self.decideMeeting(meeting)
         self.do(item, 'accept')
         self.changeUser('restrictedpowerobserver1')
         self.assertTrue(self.hasPermission(View, item))
