@@ -17,6 +17,7 @@ from Products.PloneMeeting.events import _advice_update_item
 from Products.PloneMeeting.events import storeImagesLocallyDexterity
 from Products.PloneMeeting.utils import _addManagedPermissions
 from Products.PloneMeeting.utils import AdviceAfterAddEvent
+from Products.PloneMeeting.utils import AdviceAfterModifyEvent
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 from Products.PloneMeeting.utils import get_annexes
 from zope.event import notify
@@ -53,6 +54,7 @@ def _removeTypistNote(field):
     import re
     return re.sub('<span class="highlight-purple">.*?</span>', '', field)
 
+
 def onAdviceAdded(advice, event):
     '''Called when a meetingadvice is added so we can warn parent item.'''
     # if advice is added because we are pasting, pass as we will remove the advices...
@@ -87,4 +89,26 @@ def onAdviceAdded(advice, event):
 
     # Send mail if relevant
     item.sendMailIfRelevant('adviceEdited', 'MeetingMember', isRole=True)
+    item.sendMailIfRelevant('event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
+
+def onAdviceModified(advice, event):
+    '''Called when a meetingadvice is modified so we can warn parent item.'''
+    if advice.REQUEST.get('currentlyStoringExternalImages', False) is True:
+        return
+
+    # update advice_row_id
+    advice._updateAdviceRowId()
+
+    item = advice.getParentNode()
+    item.updateLocalRoles()
+
+    # make sure external images used in RichText fields are stored locally
+    storeImagesLocallyDexterity(advice)
+
+    # notify our own PM event so we are sure that this event is called
+    # after the onAviceModified event
+    notify(AdviceAfterModifyEvent(advice))
+
+    # update item
+    _advice_update_item(item)
     item.sendMailIfRelevant('event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)

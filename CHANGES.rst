@@ -4,7 +4,9 @@ Products.MeetingSeraing Changelog
 4.1 (unreleased)
 ----------------
 - Compatible for PloneMeeting 4.1
-
+- Added two new mail's notification:
+    - When item is delayed, send mail to service head;
+    - When advice is added or modified, send mail to service head;
 
 4.02 (2019-05-02)
 -----------------
