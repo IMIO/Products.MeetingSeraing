@@ -6,7 +6,8 @@ Products.MeetingSeraing Changelog
 - Compatible for PloneMeeting 4.1
 - Added two new mail's notification:
     - When item is delayed, send mail to service head;
-    - When advice is added or modified, send mail to service head;
+    - When advice is added or modified, send mail to service head.
+- Keep "Taken over" for severals states
 
 4.02 (2019-05-02)
 -----------------
