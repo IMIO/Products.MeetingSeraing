@@ -265,6 +265,55 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
             pm_logger.info('No decision annexes found on duplicated item clonedToCfg2Again')
         self.assertTrue(clonedToCfg2AgainAnnex and clonedToCfg2AgainAnnex.to_print or True)
 
+    def test_pm_HistorizedTakenOverBy(self):
+        '''Test the functionnality under takenOverBy that will automatically set back original
+           user that took over item first time.  So if a user take over an item in state1, it is saved.
+           If item goes to state2, taken over by is keep in somes cases (cf xxx on setTakenOverBy in adapters.py '',
+           if item comes back to state1, original user that took item over is automatically set again.'''
+        cfg = self.meetingConfig
+        # create an item
+        self.changeUser('pmCreator1')
+        item = self.create('MeetingItem')
+        self.assertTrue(not item.takenOverByInfos)
+        # take item over
+        item.setTakenOverBy('pmCreator1')
+        item_created_key = "%s__wfstate__%s" % (cfg.getItemWorkflow(), item.queryState())
+        self.assertEqual(item.takenOverByInfos[item_created_key], 'pmCreator1')
+        # if takenOverBy is removed, takenOverByInfos is cleaned too
+        item.setTakenOverBy('')
+        self.assertTrue(item_created_key not in item.takenOverByInfos)
+        # take item over and propose item
+        item.setTakenOverBy('pmCreator1')
+        self.proposeItem(item)
+        # takenOverBy was set back to ''
+        self.assertEqual(item.takenOverByInfos[item_created_key], 'pmCreator1')
+        self.changeUser('pmReviewer1')
+        # take item over
+        item.setTakenOverBy('pmReviewer1')
+        # send item back to itemcreated, 'pmCreator1' will be automatically
+        # selected as user that took item over
+        self.backToState(item, self._stateMappingFor('itemcreated'))
+        self.assertEqual(item.getTakenOverBy(), 'pmCreator1')
+        # propose it again, it will be set to 'pmReviewer1'
+        self.changeUser('pmCreator1')
+        self.proposeItem(item)
+        self.assertTrue(not item.getTakenOverBy())
+        # while setting to a state where a user already took item
+        # over, if user we will set automatically does not have right anymore
+        # to take over item, it will not be set, '' will be set and takenOverByInfos is cleaned
+        item.takenOverByInfos[item_created_key] = 'pmCreator2'
+        # now set item back to itemcreated
+        self.changeUser('pmReviewer1')
+        self.backToState(item, self._stateMappingFor('itemcreated'))
+        self.assertTrue(not item.getTakenOverBy())
+        self.assertTrue(item_created_key not in item.takenOverByInfos)
+        # we can set an arbitrary key in the takenOverByInfos
+        # instead of current item state if directly passed
+        arbitraryKey = "%s__wfstate__%s" % (cfg.getItemWorkflow(), 'validated')
+        self.assertTrue(arbitraryKey not in item.takenOverByInfos)
+        item.setTakenOverBy('pmReviewer1', **{'wf_state': arbitraryKey})
+        self.assertTrue(arbitraryKey in item.takenOverByInfos)
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

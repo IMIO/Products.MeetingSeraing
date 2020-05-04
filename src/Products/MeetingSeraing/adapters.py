@@ -529,11 +529,11 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         if not self._at_creation_flag:
             # save takenOverBy to takenOverByInfos for current review_state
             # or check for a wf_state in kwargs
+            tool = api.portal.get_tool('portal_plonemeeting')
+            cfg = tool.getMeetingConfig(self)
             if 'wf_state' in kwargs:
                 wf_state = kwargs['wf_state']
             else:
-                tool = api.portal.get_tool('portal_plonemeeting')
-                cfg = tool.getMeetingConfig(self)
                 wf_state = "%s__wfstate__%s" % (cfg.getItemWorkflow(), self.queryState())
             if value:
                 self.takenOverByInfos[wf_state] = value
@@ -543,7 +543,6 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
                 wf_state_gs = ['validated','presented', 'validated_by_dg', 'itemfrozen']
                 wf_state_close = ['accepted', 'accepted_but_closed', 'accepted_but_modified',
                                   'accepted_but_modified_but_closed', 'delayed', 'delayed_closed']
-                wf_states = []
                 wf_states_to_use = []
                 cpt = 0
                 if self.queryState() in wf_states_service:
