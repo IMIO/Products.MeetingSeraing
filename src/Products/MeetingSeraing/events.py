@@ -12,7 +12,9 @@
 __author__ = """Andre NUYENS <a.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
-from imio.actionspanel.interfaces import IContentDeletable
+from plone import api
+from imio.actionspanel.utils import unrestrictedRemoveGivenObject
+from Products.CMFPlone.utils import safe_unicode
 from Products.PloneMeeting.events import _advice_update_item
 from Products.PloneMeeting.events import storeImagesLocallyDexterity
 from Products.PloneMeeting.utils import _addManagedPermissions
@@ -21,6 +23,7 @@ from Products.PloneMeeting.utils import AdviceAfterModifyEvent
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 from Products.PloneMeeting.utils import get_annexes
 from zope.event import notify
+from zope.i18n import translate
 
 
 def onItemLocalRolesUpdated(item, event):
@@ -32,17 +35,16 @@ def onItemDuplicated(original, event):
     """After item's cloning, we removed decision annexe.
     """
     newItem = event.newItem
-    # make sure we do not keep decision annexes
-    decisionAnnexes = get_annexes(newItem, portal_types=['annexDecision', ])
-    # if new state of item is "delayed", we keep simply the Annex Decision
-    # if item is sent to Council, we keep annexDecision, but it's transfer in simple annex type (do it in config)
-    if decisionAnnexes and IContentDeletable(newItem).mayDelete() and \
-            original.queryState() not in ['delayed', ] and \
-            newItem.portal_plonemeeting.getMeetingConfig(newItem) == \
-            original.portal_plonemeeting.getMeetingConfig(original):
-        toDelete = [annex.getId() for annex in decisionAnnexes]
-        newItem.manage_delObjects(ids=toDelete)
-    # clear some fields linked to meeting
+    annexes = get_annexes(newItem)
+    for annex in annexes:
+        if getattr(annex, 'scan_id', None):
+            unrestrictedRemoveGivenObject(annex)
+            msg = translate('annex_not_kept_because_using_scan_id',
+                            mapping={'annexTitle': safe_unicode(annex.Title())},
+                            domain='PloneMeeting',
+                            context=newItem.REQUEST)
+            api.portal.show_message(msg, request=newItem.REQUEST, type='warning')
+    # xxx Seraing clear some fields linked to meeting
     newRawDescri = _removeTypistNote(newItem.getRawDescription())
     newItem.setDescription(newRawDescri)
     # Make sure we have 'text/html' for every Rich fields
@@ -56,7 +58,7 @@ def _removeTypistNote(field):
 
 
 def onAdviceAdded(advice, event):
-    '''Called when a meetingadvice is added so we can warn parent item.'''
+    """Called when a meetingadvice is added so we can warn parent item."""
     # if advice is added because we are pasting, pass as we will remove the advices...
     if advice.REQUEST.get('currentlyPastingItems', False):
         return
@@ -91,8 +93,9 @@ def onAdviceAdded(advice, event):
     item.sendMailIfRelevant('adviceEdited', 'MeetingMember', isRole=True)
     item.sendMailIfRelevant('event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
 
+
 def onAdviceModified(advice, event):
-    '''Called when a meetingadvice is modified so we can warn parent item.'''
+    """Called when a meetingadvice is modified so we can warn parent item."""
     if advice.REQUEST.get('currentlyStoringExternalImages', False) is True:
         return
 
