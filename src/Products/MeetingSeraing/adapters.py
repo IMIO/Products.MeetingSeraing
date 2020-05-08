@@ -58,6 +58,7 @@ from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.MeetingItem import MeetingItemWorkflowActions
 from Products.PloneMeeting.model import adaptations
 from Products.PloneMeeting.model.adaptations import WF_APPLIED
+from Products.PloneMeeting.utils import sendMailIfRelevant
 
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowActions
@@ -713,7 +714,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         with api.env.adopt_roles(['Manager']):
             wfTool.doActionFor(clonedItem, 'validate')
         # Send, if configured, a mail to the person who created the item
-        clonedItem.sendMailIfRelevant('event_item_delayed-service_heads', 'MeetingServiceHead', isRole=True)
+        sendMailIfRelevant(clonedItem, 'event_item_delayed-service_heads', 'MeetingServiceHead', isRole=True)
 
     security.declarePrivate('doAccept_close')
 

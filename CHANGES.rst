@@ -8,6 +8,8 @@ Products.MeetingSeraing Changelog
     - When item is delayed, send mail to service head;
     - When advice is added or modified, send mail to service head.
 - Keep "Taken over" for severals states
+- Fix sendMailIfRelevant.
+  [odelaere]
 
 4.02 (2019-05-02)
 -----------------

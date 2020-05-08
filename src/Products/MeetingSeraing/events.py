@@ -22,6 +22,8 @@ from Products.PloneMeeting.utils import AdviceAfterAddEvent
 from Products.PloneMeeting.utils import AdviceAfterModifyEvent
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 from Products.PloneMeeting.utils import get_annexes
+from Products.PloneMeeting.utils import sendMailIfRelevant
+
 from zope.event import notify
 from zope.i18n import translate
 
@@ -90,8 +92,8 @@ def onAdviceAdded(advice, event):
     _advice_update_item(item)
 
     # Send mail if relevant
-    item.sendMailIfRelevant('adviceEdited', 'MeetingMember', isRole=True)
-    item.sendMailIfRelevant('event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
+    sendMailIfRelevant(item, 'adviceEdited', 'MeetingMember', isRole=True)
+    sendMailIfRelevant(item, 'event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
 
 
 def onAdviceModified(advice, event):
@@ -114,4 +116,4 @@ def onAdviceModified(advice, event):
 
     # update item
     _advice_update_item(item)
-    item.sendMailIfRelevant('event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
+    sendMailIfRelevant(item, 'event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
