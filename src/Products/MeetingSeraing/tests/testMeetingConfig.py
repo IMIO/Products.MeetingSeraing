@@ -82,19 +82,6 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
         self.changeUser('pmManager')
         self.assertRaises(Unauthorized, self.tool.manage_delObjects, [cfgId, ])
 
-        # fails if items left in the meetingConfig
-        # we have recurring items
-        self.changeUser('admin')
-        self.assertTrue(cfg.getRecurringItems())
-        with self.assertRaises(BeforeDeleteException) as cm:
-            self.tool.manage_delObjects([cfgId, ])
-        can_not_delete_meetingitem_container = \
-            translate('can_not_delete_meetingitem_container',
-                      domain="plone",
-                      context=self.request)
-        self.assertEquals(cm.exception.message, can_not_delete_meetingitem_container)
-        self._removeConfigObjectsFor(cfg)
-
         # fails if a meeting exists
         self.changeUser('pmManager')
         meeting = self.create('Meeting', date='2008/06/23 15:39:00')
@@ -163,6 +150,9 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
         for annex_type in annex_types:
             annex_type.other_mc_correspondences = set()
 
+        # items stored in MeetingConfig (recurring, itemtemplates) do not avoid removal
+        self.assertTrue(cfg.recurringitems.objectIds())
+        self.assertTrue(cfg.itemtemplates.objectIds())
         # everything ok, MeetingConfig may be deleted
         self.assertTrue(cfgId in self.tool.objectIds() and cfg2Id in self.tool.objectIds())
         self.tool.manage_delObjects([cfgId, cfg2Id])
