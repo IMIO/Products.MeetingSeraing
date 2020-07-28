@@ -22,9 +22,9 @@ EDITOR_USECASES = {'power_editors': 'Editor', }
 
 # group suffixes
 PMconfig.EXTRA_GROUP_SUFFIXES = [
-    {'fct_title': u'serviceheads', 'fct_id': u'serviceheads', 'fct_orgs': []},
-    {'fct_title': u'officemanagers', 'fct_id': u'officemanagers', 'fct_orgs': []},
-    {'fct_title': u'divisionheads', 'fct_id': u'divisionheads',  'fct_orgs': []},
+    {'fct_title': u'serviceheads', 'fct_id': u'serviceheads', 'fct_orgs': [], 'enabled': True},
+    {'fct_title': u'officemanagers', 'fct_id': u'officemanagers', 'fct_orgs': [], 'enabled': True},
+    {'fct_title': u'divisionheads', 'fct_id': u'divisionheads',  'fct_orgs': [], 'enabled': True},
 ]
 
 SERAINGMEETINGREVIEWERS = {
