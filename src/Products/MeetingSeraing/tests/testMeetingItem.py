@@ -22,19 +22,17 @@
 # 02110-1301, USA.
 #
 
-from os import path
-
-from DateTime import DateTime
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
-from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
-from Products.CMFCore.permissions import View
-from Products.statusmessages.interfaces import IStatusMessage
-from Products.PloneMeeting.utils import get_annexes
 from collective.iconifiedcategory.utils import get_config_root
 from collective.iconifiedcategory.utils import get_group
-from zope.i18n import translate
+from DateTime import DateTime
+from Products.CMFCore.permissions import View
+from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
+from Products.PloneMeeting.utils import get_annexes
+from Products.statusmessages.interfaces import IStatusMessage
 from zope.annotation.interfaces import IAnnotations
+from zope.i18n import translate
 
 
 class testMeetingItem(MeetingSeraingTestCase, mctmi):
@@ -313,6 +311,30 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertTrue(arbitraryKey not in item.takenOverByInfos)
         item.setTakenOverBy('pmReviewer1', **{'wf_state': arbitraryKey})
         self.assertTrue(arbitraryKey in item.takenOverByInfos)
+
+    def test_pm_MayTakeOverDecidedItem(self):
+        """Overrided, this is not possible for now..."""
+        cfg = self.meetingConfig
+        self.assertTrue('accepted' in cfg.getItemDecidedStates())
+        self.assertTrue('delayed' in cfg.getItemDecidedStates())
+        self.changeUser('pmCreator1')
+        item1 = self.create('MeetingItem', decision=self.decisionText)
+        item2 = self.create('MeetingItem', decision=self.decisionText)
+        self.changeUser('pmManager')
+        meeting = self.create('Meeting', date=DateTime('2020/06/11'))
+        self.presentItem(item1)
+        self.presentItem(item2)
+        self.changeUser('pmCreator1')
+        self.assertFalse(item1.adapted().mayTakeOver())
+        self.assertFalse(item2.adapted().mayTakeOver())
+        self.changeUser('pmManager')
+        self.decideMeeting(meeting)
+        self.do(item1, 'accept')
+        self.do(item2, 'delay')
+        self.changeUser('pmCreator1')
+        # XXX changed
+        self.assertFalse(item1.adapted().mayTakeOver())
+        self.assertFalse(item2.adapted().mayTakeOver())
 
 
 def test_suite():

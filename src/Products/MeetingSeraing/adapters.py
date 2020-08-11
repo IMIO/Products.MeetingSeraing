@@ -44,6 +44,7 @@ from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItem
 from Products.PloneMeeting.interfaces import IMeetingItemCustom
 from Products.PloneMeeting.interfaces import IToolPloneMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingConfigCustom
+from Products.PloneMeeting.config import PMMessageFactory as _
 from Products.MeetingCommunes.adapters import CustomMeeting
 from Products.MeetingCommunes.adapters import CustomMeetingItem
 from Products.MeetingCommunes.adapters import CustomMeetingConfig
@@ -55,7 +56,6 @@ from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowConditions
 from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
-from Products.PloneMeeting.MeetingItem import MeetingItemWorkflowActions
 from Products.PloneMeeting.model import adaptations
 from Products.PloneMeeting.model.adaptations import WF_APPLIED
 from Products.PloneMeeting.utils import sendMailIfRelevant
@@ -90,20 +90,20 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES = ('proposed_to_servicehead',
 adaptations.RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES = CUSTOM_RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {'backTo_presented_from_returned_to_proposing_group':
-                                                 ['created', ],
+                                             ['created', ],
                                              'backTo_validated_by_dg_from_returned_to_proposing_group':
-                                                 ['validated_by_dg', ],
+                                             ['validated_by_dg', ],
                                              'backTo_itemfrozen_from_returned_to_proposing_group':
-                                                 ['frozen', 'decided', 'decisions_published', ],
+                                             ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_presented_from_returned_to_advise':
-                                                 ['created', ],
+                                             ['created', ],
                                              'backTo_validated_by_dg_from_returned_to_advise':
-                                                 ['validated_by_dg', ],
+                                             ['validated_by_dg', ],
                                              'backTo_itemfrozen_from_returned_to_advise':
-                                                 ['frozen', 'decided', 'decisions_published', ],
+                                             ['frozen', 'decided', 'decisions_published', ],
                                              'backTo_returned_to_proposing_group_from_returned_to_advise':
-                                                 ['created', 'validated_by_dg', 'frozen', 'decided',
-                                                  'decisions_published', ],
+                                             ['created', 'validated_by_dg', 'frozen', 'decided',
+                                              'decisions_published', ],
                                              'NO_MORE_RETURNABLE_STATES': ['closed', 'archived', ]
                                              }
 adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
@@ -183,15 +183,16 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {
     'meetingitemseraing_workflow': 'meetingitemseraing_workflow.itemcreated'}
 adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
 
-RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
+RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
+    'meetingitemseraing_workflow':
     {
         # edit permissions
         'Modify portal content':
             ('Manager', 'MeetingManager',)}
 }
 
-RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {'meetingitemseraing_workflow':
-                                                       'meetingitemseraing_workflow.itemcreated'}
+RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {
+    'meetingitemseraing_workflow': 'meetingitemseraing_workflow.itemcreated'}
 adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
 
 
@@ -540,8 +541,8 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
                 self.takenOverByInfos[wf_state] = value
                 # xxx for Seraing, in some states, we would keep the "Taken over" for some next states
                 wf_states_service = ['itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
-                                     'proposed_to_divisionhead', 'proposed' ]
-                wf_state_gs = ['validated','presented', 'validated_by_dg', 'itemfrozen']
+                                     'proposed_to_divisionhead', 'proposed']
+                wf_state_gs = ['validated', 'presented', 'validated_by_dg', 'itemfrozen']
                 wf_state_close = ['accepted', 'accepted_but_closed', 'accepted_but_modified',
                                   'accepted_but_modified_but_closed', 'delayed', 'delayed_closed']
                 wf_states_to_use = []
@@ -787,14 +788,6 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
     implements(IMeetingItemSeraingWorkflowConditions)
     security = ClassSecurityInfo()
 
-    useHardcodedTransitionsForPresentingAnItem = True
-    transitionsForPresentingAnItem = ('proposeToServiceHead',
-                                      'proposeToOfficeManager',
-                                      'proposeToDivisionHead',
-                                      'propose',
-                                      'validate',
-                                      'present')
-
     def __init__(self, item):
         self.context = item  # Implements IMeetingItem
 
@@ -820,9 +813,9 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         # The user must have the 'Review portal content permission and be reviewer or manager'
         if _checkPermission(ReviewPortalContent, self.context):
             res = True
-            memnber = self.context.portal_membership.getAuthenticatedMember()
+            member = self.context.portal_membership.getAuthenticatedMember()
             tool = getToolByName(self.context, 'portal_plonemeeting')
-            if not memnber.has_role('MeetingReviewer', self.context) and not tool.isManager(self.context):
+            if not member.has_role('MeetingReviewer', self.context) and not tool.isManager(self.context):
                 res = False
         return res
 
@@ -843,14 +836,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
           Check that the user has the 'Review portal content'
         """
-        res = False
-        if not self.context.getCategory():
-            return No(translate('required_category_ko',
-                                domain="PloneMeeting",
-                                context=self.context.REQUEST))
-        if _checkPermission(ReviewPortalContent, self.context):
-            res = True
-        return res
+        return self._check_review_and_required()
 
     security.declarePublic('mayProposeToOfficeManager')
 
@@ -858,10 +844,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
           Check that the user has the 'Review portal content'
         """
-        res = False
-        if _checkPermission(ReviewPortalContent, self.context):
-            res = True
-        return res
+        return self._check_review_and_required()
 
     security.declarePublic('mayProposeToDivisionHead')
 
@@ -869,22 +852,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
           Check that the user has the 'Review portal content'
         """
-        res = False
-        if _checkPermission(ReviewPortalContent, self.context):
-            res = True
-        return res
-
-    security.declarePublic('mayPropose')
-
-    def mayPropose(self):
-        """
-          Check that the user has the 'Review portal content'
-        """
-        res = False
-        if _checkPermission(ReviewPortalContent, self.context):
-            return True
-
-    security.declarePublic('mayBackToMeeting')
+        return self._check_review_and_required()
 
     security.declarePublic('mayPresent')
 

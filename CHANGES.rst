@@ -10,6 +10,10 @@ Products.MeetingSeraing Changelog
 - Keep "Taken over" for severals states
 - Fix sendMailIfRelevant.
   [odelaere]
+- Adapted code and tests regarding DX meetingcategory.
+  [gbastien]
+- Adapted templates regarding last changes in Products.PloneMeeting.
+  [gbastien]
 
 4.02 (2019-05-02)
 -----------------
