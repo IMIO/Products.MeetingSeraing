@@ -30,11 +30,9 @@ from Products.Archetypes.atapi import TextField
 from Products.DataGridField import DataGridField
 from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
-
-from Products.PloneMeeting.MeetingItem import MeetingItem
-from Products.PloneMeeting.Meeting import Meeting
-
 from Products.PloneMeeting.config import registerClasses
+from Products.PloneMeeting.Meeting import Meeting
+from Products.PloneMeeting.MeetingItem import MeetingItem
 
 
 def update_item_schema(baseSchema):

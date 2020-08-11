@@ -23,4 +23,3 @@ for reviewSuffix in reviewSuffixes:
         isReviewer = True
         break
 return isReviewer
-

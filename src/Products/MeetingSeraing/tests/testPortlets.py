@@ -22,8 +22,8 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testPortlets import testPortlets as mctp
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 
 
 class testPortlets(MeetingSeraingTestCase, mctp):

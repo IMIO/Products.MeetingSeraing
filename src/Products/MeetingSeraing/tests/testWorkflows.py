@@ -25,8 +25,8 @@
 from AccessControl import Unauthorized
 from DateTime import DateTime
 from Products.CMFCore.permissions import View
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.config import EXECUTE_EXPR_VALUE
 
 

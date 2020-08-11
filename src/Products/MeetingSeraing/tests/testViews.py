@@ -22,8 +22,8 @@
 # 02110-1301, USA.
 #
 
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testViews import testViews as mctv
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 
 
 class testViews(MeetingSeraingTestCase, mctv):

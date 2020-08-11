@@ -6,8 +6,11 @@
 
 VERSION = '1.00'
 
+from os.path import join as pjoin
+from os.path import dirname
+
 import sys
-from os.path import dirname, join as pjoin
+
 
 APPPATH = dirname(__file__)
 APPNAME = 'ecolsanit'

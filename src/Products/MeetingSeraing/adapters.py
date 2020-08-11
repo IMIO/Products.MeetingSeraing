@@ -25,55 +25,54 @@
 # ------------------------------------------------------------------------------
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
+from AccessControl.class_init import InitializeClass
 from appy.gen import No
 from DateTime import DateTime
-from AccessControl.class_init import InitializeClass
-from zope.interface import implements
-from zope.i18n import translate
-
+from plone import api
+from Products.Archetypes.atapi import DisplayList
 from Products.CMFCore.permissions import DeleteObjects
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.permissions import ReviewPortalContent
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.atapi import DisplayList
-from plone import api
-
-from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
-from Products.PloneMeeting.interfaces import IMeetingCustom, IMeetingItem
-from Products.PloneMeeting.interfaces import IMeetingItemCustom
-from Products.PloneMeeting.interfaces import IToolPloneMeetingCustom
-from Products.PloneMeeting.interfaces import IMeetingConfigCustom
-from Products.PloneMeeting.config import PMMessageFactory as _
 from Products.MeetingCommunes.adapters import CustomMeeting
-from Products.MeetingCommunes.adapters import CustomMeetingItem
 from Products.MeetingCommunes.adapters import CustomMeetingConfig
+from Products.MeetingCommunes.adapters import CustomMeetingItem
 from Products.MeetingCommunes.adapters import CustomToolPloneMeeting
-from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
-from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
 from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowConditions
+from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
+from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
+from Products.MeetingSeraing.config import EDITOR_USECASES
+from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowActions
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowConditions
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowActions
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowConditions
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowActions
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowConditions
+from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowActions
+from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowConditions
+from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowActions
+from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowConditions
+from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
+from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
+from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
+from Products.PloneMeeting.config import PMMessageFactory as _
+from Products.PloneMeeting.interfaces import IMeetingConfigCustom
+from Products.PloneMeeting.interfaces import IMeetingCustom
+from Products.PloneMeeting.interfaces import IMeetingItem
+from Products.PloneMeeting.interfaces import IMeetingItemCustom
+from Products.PloneMeeting.interfaces import IToolPloneMeetingCustom
 from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.model import adaptations
 from Products.PloneMeeting.model.adaptations import WF_APPLIED
 from Products.PloneMeeting.utils import sendMailIfRelevant
+from zope.i18n import translate
+from zope.interface import implements
 
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowConditions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
-from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowConditions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowConditions
-from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowConditions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowConditions
-from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowActions
-from Products.MeetingSeraing.config import EDITOR_USECASES
-from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
 
 # disable most of wfAdaptations
 customWfAdaptations = ('return_to_proposing_group', 'return_to_proposing_group_with_last_validation',

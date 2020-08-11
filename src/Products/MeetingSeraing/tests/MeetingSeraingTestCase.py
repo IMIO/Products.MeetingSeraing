@@ -21,15 +21,15 @@
 #
 
 from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
+from Products.MeetingSeraing.adapters import customWfAdaptations
+from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
 from Products.MeetingSeraing.testing import MS_TESTING_PROFILE_FUNCTIONAL
 from Products.MeetingSeraing.tests.helpers import MeetingSeraingTestingHelpers
-
 # monkey patch the MeetingConfig.wfAdaptations again because it is done in
 # adapters.py but overrided by Products.PloneMeeting here in the tests...
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.model import adaptations
-from Products.MeetingSeraing.adapters import customWfAdaptations
-from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
+
 
 MeetingConfig.wfAdaptations = customWfAdaptations
 adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE

@@ -13,12 +13,15 @@ __author__ = """Andre NUYENS <andre.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
 
-import os
-import logging
-logger = logging.getLogger('MeetingSeraing: setuphandlers')
 from plone import api
-from Products.PloneMeeting.exportimport.content import ToolInitializer
 from Products.MeetingSeraing.config import PROJECTNAME
+from Products.PloneMeeting.exportimport.content import ToolInitializer
+
+import logging
+import os
+
+
+logger = logging.getLogger('MeetingSeraing: setuphandlers')
 
 
 def isNotMeetingSeraingProfile(context):

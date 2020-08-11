@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from copy import deepcopy
-from Products.PloneMeeting.profiles.testing import import_data as pm_import_data
 from Products.MeetingCommunes.profiles.testing import import_data as mc_import_data
 from Products.PloneMeeting.config import MEETINGREVIEWERS
 from Products.PloneMeeting.profiles import PloneGroupDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
+from Products.PloneMeeting.profiles.testing import import_data as pm_import_data
+
 
 data = deepcopy(mc_import_data.data)
 

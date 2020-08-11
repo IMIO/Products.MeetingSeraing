@@ -23,9 +23,9 @@
 #
 
 from DateTime import DateTime
-from zope.annotation import IAnnotations
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from zope.annotation import IAnnotations
 
 
 class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):

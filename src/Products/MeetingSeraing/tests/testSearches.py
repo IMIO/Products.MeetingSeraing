@@ -23,8 +23,8 @@
 #
 
 from collective.compoundcriterion.interfaces import ICompoundCriterionFilter
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.MeetingCommunes.tests.testSearches import testSearches as mcts
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from zope.component import getAdapter
 
 

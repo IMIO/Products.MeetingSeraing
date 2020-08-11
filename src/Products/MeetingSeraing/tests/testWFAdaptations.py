@@ -23,16 +23,15 @@
 #
 
 from DateTime import DateTime
-import logging
-
-from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS, \
-    RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
-from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
-
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.CMFCore.permissions import ModifyPortalContent
+from Products.CMFCore.permissions import ReviewPortalContent
 from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
+from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
+from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 
-from Products.CMFCore.permissions import ModifyPortalContent, ReviewPortalContent
+import logging
 
 
 class testWFAdaptations(MeetingSeraingTestCase, mctwfa):

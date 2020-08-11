@@ -1,8 +1,8 @@
-from zope.component import getMultiAdapter
-from plone.memoize.instance import memoize
 from plone.app.layout.viewlets import ViewletBase
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
 
 
 class MessagesViewlet(ViewletBase):

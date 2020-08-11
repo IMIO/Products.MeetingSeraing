@@ -12,8 +12,8 @@
 __author__ = """Andre NUYENS <a.nuyens@imio.be>"""
 __docformat__ = 'plaintext'
 
-from plone import api
 from imio.actionspanel.utils import unrestrictedRemoveGivenObject
+from plone import api
 from Products.CMFPlone.utils import safe_unicode
 from Products.PloneMeeting.events import _advice_update_item
 from Products.PloneMeeting.events import storeImagesLocallyDexterity
@@ -23,7 +23,6 @@ from Products.PloneMeeting.utils import AdviceAfterModifyEvent
 from Products.PloneMeeting.utils import forceHTMLContentTypeForEmptyRichFields
 from Products.PloneMeeting.utils import get_annexes
 from Products.PloneMeeting.utils import sendMailIfRelevant
-
 from zope.event import notify
 from zope.i18n import translate
 

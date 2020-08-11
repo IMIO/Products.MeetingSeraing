@@ -25,12 +25,11 @@
 from collective.iconifiedcategory.interfaces import IIconifiedCategorySettings
 from DateTime import DateTime
 from plone import api
+from Products.MeetingCommunes.tests.testColumns import testColumns as mctc
+from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.columns import PMAnnexActionsColumn
 from Products.PloneMeeting.config import AddAnnex
 from Products.PloneMeeting.config import AddAnnexDecision
-
-from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.MeetingCommunes.tests.testColumns import testColumns as mctc
 
 
 class testColumns(MeetingSeraingTestCase, mctc):

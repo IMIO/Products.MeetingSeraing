@@ -8,6 +8,7 @@ from Products.MeetingCommunes.testing import MCLayer
 
 import Products.MeetingSeraing
 
+
 class MSLayer(MCLayer):
     """ """
 
