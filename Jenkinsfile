@@ -1,4 +1,4 @@
-pmPipeline {
+pmDockerPipeline {
   profileName = 'seraing'
   testSuiteName = 'testseraing'
   unitTestParameter = ''
