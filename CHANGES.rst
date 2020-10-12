@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1.1 (unreleased)
+4.1.1 (2020-10-12)
 ------------------
 
 - Fixed MANIFEST.in
