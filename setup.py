@@ -4,7 +4,7 @@ from setuptools import setup
 import os
 
 
-version = '4.1.dev'
+version = '4.1'
 
 setup(name='Products.MeetingSeraing',
       version=version,

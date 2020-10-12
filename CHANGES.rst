@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1 (unreleased)
+4.1 (2020-10-12)
 ----------------
 - Compatible for PloneMeeting 4.1
 - Added two new mail's notification:
