@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed MANIFEST.in
+  [aduchene]
 
 
 4.1 (2020-10-12)
