@@ -1,6 +1,12 @@
 Products.MeetingSeraing Changelog
 ====================================
 
+4.1.1 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 4.1 (2020-10-12)
 ----------------
 - Compatible for PloneMeeting 4.1
