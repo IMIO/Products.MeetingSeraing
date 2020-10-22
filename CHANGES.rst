@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Updated sections label to commissions label. SUP-15177
+  [aduchene]
 
 
 4.1.1 (2020-10-12)

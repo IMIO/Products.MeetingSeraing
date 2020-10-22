@@ -126,16 +126,16 @@ def update_meeting_schema(baseSchema):
         DataGridField(
             name='sections',
             widget=DataGridField._properties['widget'](
-                description="Sections",
-                description_msgid="sections_descr",
+                description="Commissions",
+                description_msgid="commissions_descr",
                 condition="python: here.portal_type in ('MeetingCouncil', 'MeetingZCouncil')",
-                columns={'name_section': SelectColumn("Sections name", vocabulary="listSections",
-                                                      col_description="Select the section name."),
-                         'date_section': Column("Section date",
+                columns={'name_section': SelectColumn("Commission name", vocabulary="listSections",
+                                                      col_description="Select the commission name."),
+                         'date_section': Column("Commission date",
                                                 col_description="Enter valid from date, "
                                                                 "use following format : DD/MM/YYYY."), },
-                label='Sections',
-                label_msgid='MeetingSeraing_label_sections',
+                label='Commissions',
+                label_msgid='MeetingSeraing_label_commissions',
                 i18n_domain='PloneMeeting',
             ),
             allow_oddeven=True,

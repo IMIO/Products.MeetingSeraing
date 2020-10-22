@@ -433,15 +433,15 @@ class CustomSeraingMeeting(CustomMeeting):
         """Vocabulary for column 'name_section' of Meeting.sections."""
         if self.portal_type == 'MeetingCouncil':
             res = [('oj', "Collège d'arrêt de l'OJ"),
-                   ('tec', "Section du développement territorial, économique et du commerce"),
-                   ('fin', "Section des finances et des marchés publics"),
-                   ('env', "Section de la propreté, de l'environnement, du développement durable et des travaux"),
-                   ('ag', "Section de l'administration générale"),
-                   ('ens', "Section de l'enseignement"),
-                   ('as', "Section des affaires sociales"),
-                   ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
-                   ('cul', "Section de la culture et des sports"),
-                   ('ec', "Section de l'état civil")]
+                   ('tec', "Commission du développement territorial et économique"),
+                   ('fin', "Commission des travaux, des marchés publics et des finances"),
+                   ('env', "Commission de la jeunesse, de la citoyenneté et du bien-être animal"),
+                   ('ag', "Commission de l'administration générale, du budget et des grands projets"),
+                   ('ens', "Commission de l'enseignement et de l'enfance"),
+                   ('as', "Commission des affaires sociales"),
+                   ('prev', "Commission de la prévention, du tourisme, du logement et des nouvelles technologies"),
+                   ('cul', "Commission de la culture et des sports"),
+                   ('ec', "Commission de la population et de l'état civil")]
         else:
             res = [('oj', "Collège d'arrêt de l'OJ"), ]
         return DisplayList(tuple(res))

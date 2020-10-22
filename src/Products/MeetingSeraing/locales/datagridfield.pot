@@ -11,16 +11,16 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: datagridfield\n"
 
-#. Default: "Name of section"
-msgid "Sections name"
+#. Default: "Date of commission"
+msgid "Commission date"
 msgstr ""
 
-#. Default: "Date of section"
-msgid "Section date"
+#. Default: "Name of commission"
+msgid "Commission name"
 msgstr ""
 
-#. Default: "Select the section name."
-msgid "Select the section name."
+#. Default: "Select the commission name."
+msgid "Select the commission name."
 msgstr ""
 
 #. Default: "Enter valid from date, use following format : DD/MM/YYYY."

@@ -97,9 +97,9 @@ msgstr "Avant-séance"
 msgid "MeetingSeraing_label_pvNote"
 msgstr "Note de pv"
 
-#. Default: "Sections"
-msgid "MeetingSeraing_label_sections"
-msgstr "Sections"
+#. Default: "Commissions"
+msgid "MeetingSeraing_label_commissions"
+msgstr "Commissions"
 
 #. Default: "Personal Note for DG on Meeting"
 msgid "MeetingSeraing_msgid_meeting_notes"
