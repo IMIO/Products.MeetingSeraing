@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1.2 (unreleased)
+4.1.2 (2020-10-22)
 ------------------
 
 - Updated sections label to commissions label. SUP-15177
