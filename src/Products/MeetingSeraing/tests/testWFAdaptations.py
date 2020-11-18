@@ -2,24 +2,7 @@
 #
 # File: testWFAdaptations.py
 #
-# Copyright (c) 2013 by Imio.be
-#
 # GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
 #
 
 from DateTime import DateTime
@@ -30,6 +13,7 @@ from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingT
 from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 
 import logging
 
@@ -45,55 +29,68 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
 
     def test_pm_WFA_no_publication(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_no_proposal(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_pre_validation(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_items_come_validated(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_only_creator_may_delete(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_no_global_observation(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_everyone_reads_all(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_creator_edits_unless_closed(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_add_published_state(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_return_to_proposing_group_with_all_validations(self):
         '''Not used yet...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_return_to_proposing_group_with_last_validation(self):
         '''Not used yet...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_WFA_hide_decisions_when_under_writing(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def _return_to_proposing_group_inactive(self):
         '''Tests while 'return_to_proposing_group' wfAdaptation is inactive.'''
@@ -112,10 +109,13 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
            In our use case, just test that permissions of 'returned_to_proposing_group' state
            are the one defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
         itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
-        returned_to_proposing_group_state_permissions = itemWF.states['returned_to_proposing_group'].permission_roles
+        returned_to_proposing_group_state_permissions = itemWF.states[
+            'returned_to_proposing_group'].permission_roles
         for permission in returned_to_proposing_group_state_permissions:
-            self.assertEquals(returned_to_proposing_group_state_permissions[permission],
-                              RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS[self.meetingConfig.getItemWorkflow()][permission])
+            self.assertEquals(
+                returned_to_proposing_group_state_permissions[permission],
+                RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS[
+                    self.meetingConfig.getItemWorkflow()][permission])
 
     def _return_to_proposing_group_active_wf_functionality(self):
         '''Tests the workflow functionality of using the 'return_to_proposing_group' wfAdaptation.
@@ -161,7 +161,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         '''Test the workflowAdaptation 'return_to_advise'.'''
         # ease override by subproducts
         cfg = self.meetingConfig
-        self.failIf(not 'returned_to_advise' in cfg.listWorkflowAdaptations())
+        self.failIf('returned_to_advise' not in cfg.listWorkflowAdaptations())
         # activate the wfAdaptations and check
         cfg.setWorkflowAdaptations(('return_to_proposing_group_with_last_validation', 'returned_to_advise'))
         logger = logging.getLogger('MeetingSeraing: testing')
@@ -225,24 +225,31 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
             self.changeUser(userId)
             self.failUnless(self.hasPermission(ModifyPortalContent, item))
             self.failUnless(self.hasPermission(ReviewPortalContent, item))
-            self.failUnless('return_to_advise' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
-            self.failUnless('goTo_returned_to_proposing_group_proposed' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+            self.failUnless('return_to_advise' in [tr['name'] for tr
+                                                   in self.wfTool.getTransitionsFor(item)])
+            self.failUnless('goTo_returned_to_proposing_group_proposed' in
+                            [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
 
         self.do(item, 'return_to_advise')
         for userId in ('pmCreator1', 'pmReviewer1'):
             self.changeUser(userId)
             self.failIf(self.hasPermission(ModifyPortalContent, item))
             self.failUnless(self.hasPermission(ReviewPortalContent, item))
-            self.failUnless('backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
-            self.failUnless('goTo_returned_to_proposing_group_proposed' in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+            self.failUnless(
+                'backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed' in
+                [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
+            self.failUnless('goTo_returned_to_proposing_group_proposed' in
+                            [tr['name'] for tr in self.wfTool.getTransitionsFor(item)])
 
         # MeetingManagers can edit it also
         self.changeUser('pmManager')
         self.failUnless(self.hasPermission('Modify portal content', item))
-        # assert item may only go back to returned_to_proposing_group or to returned_to_proposing_group_proposed
-        self.assertListEqual(self.transitions(item),
-                             ['backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
-                              'goTo_returned_to_proposing_group_proposed'])
+        # assert item may only go back to returned_to_proposing_group or
+        # to returned_to_proposing_group_proposed
+        self.assertListEqual(
+            self.transitions(item),
+            ['backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed',
+             'goTo_returned_to_proposing_group_proposed'])
         self.do(item, 'backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed')
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'

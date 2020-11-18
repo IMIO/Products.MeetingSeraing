@@ -8,6 +8,7 @@
 from collective.compoundcriterion.interfaces import ICompoundCriterionFilter
 from Products.MeetingCommunes.tests.testSearches import testSearches as mcts
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 from zope.component import getAdapter
 
 
@@ -16,11 +17,13 @@ class testSearches(MeetingSeraingTestCase, mcts):
 
     def test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel(self):
         '''Not used yet...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_SearchItemsToCorrectToValidateOfEveryReviewerGroups(self):
         '''Not used yet...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_SearchMyItemsTakenOver(self):
         '''Test the 'search-my-items-taken-over' method.  This should return
