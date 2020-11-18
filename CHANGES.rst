@@ -4,8 +4,10 @@ Products.MeetingSeraing Changelog
 4.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Renamed `testSearches.test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel`
+  to `testSearches.test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel`
+  as it was renamed in `Products.PloneMeeting` and we bypass it this way.
+  [gbastien]
 
 4.1.2 (2020-10-22)
 ------------------
