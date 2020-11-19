@@ -1,6 +1,6 @@
-pmDockerPipeline {
-  profileName = 'seraing'
-  testSuiteName = 'testseraing'
-  unitTestParameter = ''
-  upstream = 'IMIO-github-Jenkinsfile/Products.MeetingCommunes/master'
-}
+//pmDockerPipeline {
+//  profileName = 'seraing'
+//  testSuiteName = 'testseraing'
+//  unitTestParameter = ''
+//  upstream = 'IMIO-github-Jenkinsfile/Products.MeetingCommunes/master'
+//}
