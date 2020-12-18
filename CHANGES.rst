@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1.3 (unreleased)
+4.1.3 (2020-12-18)
 ------------------
 
 - Renamed `testSearches.test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel`
