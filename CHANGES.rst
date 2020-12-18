@@ -8,6 +8,9 @@ Products.MeetingSeraing Changelog
   to `testSearches.test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel`
   as it was renamed in `Products.PloneMeeting` and we bypass it this way.
   [gbastien]
+- Changed setTakenOverBy as it should not reinit itself
+  when transitionning from itemfrozen to accepted. SUP-15933
+  [aduchene]
 
 4.1.2 (2020-10-22)
 ------------------

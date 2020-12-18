@@ -541,8 +541,8 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
                 # xxx for Seraing, in some states, we would keep the "Taken over" for some next states
                 wf_states_service = ['itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
                                      'proposed_to_divisionhead', 'proposed']
-                wf_state_gs = ['validated', 'presented', 'validated_by_dg', 'itemfrozen']
-                wf_state_close = ['accepted', 'accepted_but_closed', 'accepted_but_modified',
+                wf_state_gs = ['validated', 'presented', 'validated_by_dg', 'itemfrozen', 'accepted']
+                wf_state_close = ['accepted_but_closed', 'accepted_but_modified',
                                   'accepted_but_modified_but_closed', 'delayed', 'delayed_closed']
                 wf_states_to_use = []
                 cpt = 0
