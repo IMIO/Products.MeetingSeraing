@@ -526,44 +526,26 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
     security.declarePublic('setTakenOverBy')
 
     def setTakenOverBy(self, value, **kwargs):
-        # call original method
-        if not self._at_creation_flag:
-            # save takenOverBy to takenOverByInfos for current review_state
-            # or check for a wf_state in kwargs
-            tool = api.portal.get_tool('portal_plonemeeting')
-            cfg = tool.getMeetingConfig(self)
-            if 'wf_state' in kwargs:
-                wf_state = kwargs['wf_state']
+        def _is_transitioning():
+            return self.REQUEST and hasattr(self.REQUEST, "form") and "transition" in self.REQUEST.form
+
+        def _get_current_transition():
+            if not _is_transitioning():
+                return None
+            return self.REQUEST.form['transition']
+
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(self)
+        if _is_transitioning():
+            if _get_current_transition() in cfg.getTransitionsReinitializingTakenOverBy():
+                # If transition should reinitialize TakenOverBy
+                self.getField('takenOverBy').set(self, "", **kwargs)
             else:
-                wf_state = "%s__wfstate__%s" % (cfg.getItemWorkflow(), self.queryState())
-            if value:
-                self.takenOverByInfos[wf_state] = value
-                # xxx for Seraing, in some states, we would keep the "Taken over" for some next states
-                wf_states_service = ['itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
-                                     'proposed_to_divisionhead', 'proposed']
-                wf_state_gs = ['validated', 'presented', 'validated_by_dg', 'itemfrozen', 'accepted']
-                wf_state_close = ['accepted_but_closed', 'accepted_but_modified',
-                                  'accepted_but_modified_but_closed', 'delayed', 'delayed_closed']
-                wf_states_to_use = []
-                cpt = 0
-                if self.queryState() in wf_states_service:
-                    wf_states_to_use = wf_states_service
-                elif self.queryState() in wf_state_gs:
-                    wf_states_to_use = wf_state_gs
-                elif self.queryState() in wf_state_close:
-                    wf_states_to_use
-                for wf_state_service in wf_states_to_use:
-                    if self.queryState() == wf_state_service:
-                        break
-                    cpt += 1
-                wf_states = wf_states_to_use[cpt:]
-                # add for next states the taken over info
-                for wf_state in wf_states:
-                    wf_state = "%s__wfstate__%s" % (cfg.getItemWorkflow(), wf_state)
-                    self.takenOverByInfos[wf_state] = value
-            elif not value and wf_state in self.takenOverByInfos:
-                del self.takenOverByInfos[wf_state]
-        self.getField('takenOverBy').set(self, value, **kwargs)
+                # Else keep the old value when transitioning
+                self.getField('takenOverBy').set(self, self.getTakenOverBy(), **kwargs)
+        else:
+            # If it's not transitioning set the value
+            self.getField('takenOverBy').set(self, value, **kwargs)
 
     MeetingItem.setTakenOverBy = setTakenOverBy
 

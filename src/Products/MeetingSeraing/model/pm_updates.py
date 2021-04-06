@@ -23,6 +23,8 @@
 # 02110-1301, USA.
 #
 # ------------------------------------------------------------------------------
+from Products.Archetypes.Field import LinesField
+from Products.Archetypes.Widget import InAndOutWidget
 from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import RichWidget
 from Products.Archetypes.atapi import Schema
@@ -32,7 +34,9 @@ from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
 from Products.PloneMeeting.config import registerClasses
 from Products.PloneMeeting.Meeting import Meeting
+from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
+from Products.PloneMeeting.config import WriteRiskyConfig
 
 
 def update_item_schema(baseSchema):
@@ -153,6 +157,27 @@ def update_meeting_schema(baseSchema):
 
 
 Meeting.schema = update_meeting_schema(Meeting.schema)
+
+
+def update_meetingconfig_schema(baseSchema):
+    specificSchema = Schema((
+    LinesField(
+        name='transitionsReinitializingTakenOverBy',
+        default=[],
+        widget=InAndOutWidget(
+            label='TransitionsReinitializingTakenOverBy',
+            label_msgid='MeetingSeraing_label_transitions_reinitializing_taken_over_by',
+            i18n_domain='PloneMeeting',
+        ),
+        write_permission=WriteRiskyConfig,
+        vocabulary='listEveryItemTransitions',
+    ),
+    ),)
+    completeSchema = baseSchema + specificSchema.copy()
+    return completeSchema
+
+
+MeetingConfig.schema = update_meetingconfig_schema(MeetingConfig.schema)
 
 
 # Classes have already been registered, but we register them again here
