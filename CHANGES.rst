@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1.4 (unreleased)
+4.1.4 (2021-04-07)
 ------------------
 
 - SUP-16268: refactored takenOverBy feature. Now takenOverBy is kept between transitions except for those defined in `MeetingConfig.transitionsReinitializingTakenOverBy`.
