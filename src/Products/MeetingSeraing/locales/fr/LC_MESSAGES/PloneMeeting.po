@@ -336,4 +336,4 @@ msgstr "Renoyer pour avis"
 
 
 msgid "MeetingSeraing_label_transitions_reinitializing_taken_over_by"
-msgstr "Transitions qui réinitialisent complètement la prise en charge"
+msgstr "Transitions qui réinitialisent la prise en charge"

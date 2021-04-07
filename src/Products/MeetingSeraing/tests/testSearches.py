@@ -33,6 +33,7 @@ class testSearches(MeetingSeraingTestCase, mcts):
         cfg = self.meetingConfig
         cfg.setUseCopies(True)
         cfg.setItemCopyGroupsStates((self._stateMappingFor('proposed'), 'validated', ))
+        cfg.setTransitionsReinitializingTakenOverBy(["validate"])
 
         itemTypeName = cfg.getItemTypeName()
 
@@ -57,9 +58,13 @@ class testSearches(MeetingSeraingTestCase, mcts):
         item.reindexObject(idxs=['getTakenOverBy', ])
         # now it is returned
         self.failUnless(collection.results())
-        self.proposeItem(item)
-        self.assertTrue(self.member.getId() in item.takenOverByInfos.values())
+        for transition in self.TRANSITIONS_FOR_PROPOSING_ITEM_1:
+            self._do_transition_with_request(item, transition)
+        self.assertEqual(self.member.getId(), item.getTakenOverBy())
         self.failUnless(collection.results())
+        for transition in self.TRANSITIONS_FOR_VALIDATING_ITEM_1:
+            self._do_transition_with_request(item, transition)
+        self.failIf(collection.results())
 
 
 def test_suite():
