@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed issue with mayPresent.
+  [aduchene]
 
 
 4.1.4 (2021-04-07)

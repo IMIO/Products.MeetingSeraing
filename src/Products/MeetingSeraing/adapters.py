@@ -152,9 +152,11 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
                                                           'MeetingOfficeManager',
                                                           'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
                                                      'Review portal content':
-                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                         ('Manager', 'MeetingMember',
+                                                          'MeetingServiceHead',
                                                           'MeetingOfficeManager',
-                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingManager',),
                                                      'Add portal content':
                                                          ('Manager', 'MeetingMember', 'MeetingServiceHead',
                                                           'MeetingOfficeManager',
@@ -835,30 +837,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         return self._check_review_and_required()
 
-    security.declarePublic('mayPresent')
-
-    def mayPresent(self):
-        # only MeetingManagers may present an item, the 'Review portal content'
-        # permission is not enough as MeetingReviewer may have the 'Review portal content'
-        # when using the 'reviewers_take_back_validated_item' wfAdaptation
-        tool = api.portal.get_tool('portal_plonemeeting')
-        if not _checkPermission(ReviewPortalContent, self.context) or \
-           not tool.isManager(self.context):
-            return False
-        # We may present the item if Plone currently publishes a meeting.
-        # Indeed, an item may only be presented within a meeting.
-        # if we are not on a meeting, try to get the next meeting accepting items
-        if not self._publishedObjectIsMeeting():
-            meeting = self.context.getMeetingToInsertIntoWhenNoCurrentMeetingObject()
-            return bool(meeting)
-
-        # here we are sure that we have a meeting that will accept the item
-        # Verify if all automatic advices have been given on this item.
-        res = True  # for now...
-        if self.context.enforceAdviceMandatoriness() and \
-           not self.context.mandatoryAdvicesAreOk():
-            res = No(_('mandatory_advice_ko'))
-        return res
+    security.declarePublic('mayBackToMeeting')
 
     def mayBackToMeeting(self, transitionName):
         """Specific guard for the 'return_to_proposing_group' wfAdaptation.
