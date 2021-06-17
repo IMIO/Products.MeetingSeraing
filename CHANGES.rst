@@ -6,6 +6,8 @@ Products.MeetingSeraing Changelog
 
 - Fixed issue with mayPresent.
   [aduchene]
+- SUP-18390: Fixed incorrect permissions in return_to_proposing_group_with_last_validation WFA
+  [aduchene]
 
 
 4.1.4 (2021-04-07)
