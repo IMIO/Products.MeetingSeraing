@@ -1016,7 +1016,6 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         if wfAdaptation == 'patch_return_to_proposing_group_with_last_validation':
             if "return_to_proposing_group_with_last_validation" in meetingConfig.workflowAdaptations:
                 # TODO : remove this when PloneMeeting is in v4.2
-                wfTool = api.portal.get_tool('portal_workflow')
                 returned_to_proposing_group_proposed = itemWorkflow.states.returned_to_proposing_group_proposed
 
                 for permission in returned_to_proposing_group_proposed.permission_roles:
