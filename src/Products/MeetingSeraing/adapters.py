@@ -76,7 +76,7 @@ from zope.interface import implements
 
 # disable most of wfAdaptations
 customWfAdaptations = ('return_to_proposing_group', 'return_to_proposing_group_with_last_validation',
-                       'returned_to_advise')
+                       'returned_to_advise', 'patch_return_to_proposing_group_with_last_validation')
 MeetingConfig.wfAdaptations = customWfAdaptations
 originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
@@ -593,19 +593,6 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
     def onEdit(self, isCreated):  # noqa
         self.context.createPowerEditorsGroup()
 
-        if "return_to_proposing_group_with_last_validation" in self.context.workflowAdaptations:
-            # TODO : remove this when PloneMeeting is in v4.2
-            wfTool = api.portal.get_tool('portal_workflow')
-            itemWorkflow = wfTool.getWorkflowsFor(self.context.getItemTypeName())[0]
-            returned_to_proposing_group_proposed = itemWorkflow.states.returned_to_proposing_group_proposed
-
-            for permission in returned_to_proposing_group_proposed.permission_roles:
-                if permission != "View":
-                    # MeetingMember should not have permission to do anything else at this point
-                    old_roles = returned_to_proposing_group_proposed.permission_roles[permission]
-                    new_roles = tuple(r for r in old_roles if r != "MeetingMember")
-                    returned_to_proposing_group_proposed.setPermission(permission, 0, new_roles)
-
     def getMeetingStatesAcceptingItem(self):
         """See doc in interfaces.py."""
         return ('created', 'validated_by_dg', 'frozen', 'decided')
@@ -1024,6 +1011,22 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     returned_to_advise.setPermission(permission, 0, roles)
 
             logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
+            return True
+
+        if wfAdaptation == 'patch_return_to_proposing_group_with_last_validation':
+            if "return_to_proposing_group_with_last_validation" in meetingConfig.workflowAdaptations:
+                # TODO : remove this when PloneMeeting is in v4.2
+                wfTool = api.portal.get_tool('portal_workflow')
+                returned_to_proposing_group_proposed = itemWorkflow.states.returned_to_proposing_group_proposed
+
+                for permission in returned_to_proposing_group_proposed.permission_roles:
+                    if permission != "View":
+                        # MeetingMember should not have permission to do anything else at this point
+                        old_roles = returned_to_proposing_group_proposed.permission_roles[
+                            permission]
+                        new_roles = tuple(r for r in old_roles if r != "MeetingMember")
+                        returned_to_proposing_group_proposed.setPermission(permission, 0, new_roles)
+            logger.info(WF_APPLIED % ("return_to_proposing_group_with_last_validation_patch", meetingConfig.getId()))
             return True
         return False
 
