@@ -1026,7 +1026,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                             permission]
                         new_roles = tuple(r for r in old_roles if r != "MeetingMember")
                         returned_to_proposing_group_proposed.setPermission(permission, 0, new_roles)
-            logger.info(WF_APPLIED % ("return_to_proposing_group_with_last_validation_patch", meetingConfig.getId()))
+            logger.info(WF_APPLIED % ("patch_return_to_proposing_group_with_last_validation", meetingConfig.getId()))
             return True
         return False
 
