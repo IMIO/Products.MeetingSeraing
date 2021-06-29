@@ -23,10 +23,12 @@
 # 02110-1301, USA.
 #
 # ------------------------------------------------------------------------------
+
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
 from appy.gen import No
+from copy import deepcopy
 from DateTime import DateTime
 from plone import api
 from Products.Archetypes.atapi import DisplayList
@@ -1013,19 +1015,17 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
             return True
 
-        if wfAdaptation == 'patch_return_to_proposing_group_with_last_validation':
+        if wfAdaptation == "patch_return_to_proposing_group_with_last_validation":
             if "return_to_proposing_group_with_last_validation" in meetingConfig.workflowAdaptations:
                 # TODO : remove this when PloneMeeting is in v4.2
                 returned_to_proposing_group_proposed = itemWorkflow.states.returned_to_proposing_group_proposed
-
-                for permission in returned_to_proposing_group_proposed.permission_roles:
-                    if permission != "View":
-                        # MeetingMember should not have permission to do anything else at this point
-                        old_roles = returned_to_proposing_group_proposed.permission_roles[
-                            permission]
-                        new_roles = tuple(r for r in old_roles if r != "MeetingMember")
-                        returned_to_proposing_group_proposed.setPermission(permission, 0, new_roles)
-            logger.info(WF_APPLIED % ("patch_return_to_proposing_group_with_last_validation", meetingConfig.getId()))
+                proposed = itemWorkflow.states.proposed
+                returned_to_proposing_group_proposed.permission_roles = deepcopy(
+                    proposed.permission_roles
+                )
+            logger.info(WF_APPLIED % (
+                "patch_return_to_proposing_group_with_last_validation", meetingConfig.getId())
+            )
             return True
         return False
 
