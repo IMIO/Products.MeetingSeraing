@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1.5 (unreleased)
+4.1.5 (2022-03-09)
 ------------------
 
 - Fixed issue with mayPresent.
