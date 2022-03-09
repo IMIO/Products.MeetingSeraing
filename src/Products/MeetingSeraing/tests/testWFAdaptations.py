@@ -83,9 +83,8 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
             self._testMethodName))
 
     def test_pm_WFA_return_to_proposing_group_with_last_validation(self):
-        '''Not used yet...'''
-        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
-            self._testMethodName))
+        self.meetingConfig.setWorkflowAdaptations('patch_return_to_proposing_group_with_last_validation')
+        super(testWFAdaptations, self).test_pm_WFA_return_to_proposing_group_with_last_validation()
 
     def test_pm_WFA_hide_decisions_when_under_writing(self):
         '''No sense...'''

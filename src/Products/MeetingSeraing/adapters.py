@@ -76,7 +76,7 @@ from zope.interface import implements
 
 # disable most of wfAdaptations
 customWfAdaptations = ('return_to_proposing_group', 'return_to_proposing_group_with_last_validation',
-                       'returned_to_advise')
+                       'returned_to_advise', 'patch_return_to_proposing_group_with_last_validation')
 MeetingConfig.wfAdaptations = customWfAdaptations
 originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
@@ -1011,6 +1011,25 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     returned_to_advise.setPermission(permission, 0, roles)
 
             logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
+            return True
+
+        if wfAdaptation == "patch_return_to_proposing_group_with_last_validation":
+            EXCLUDED_ROLES = ("MeetingMember", "MeetingServiceHead", "MeetingOfficeManager",
+                              "MeetingDivisionHead", "MeetingReviewer")
+
+            if "return_to_proposing_group_with_last_validation" in meetingConfig.workflowAdaptations:
+                # TODO : remove this when PloneMeeting is in v4.2
+                returned_to_proposing_group_proposed = itemWorkflow.states.returned_to_proposing_group_proposed
+
+                for permission in returned_to_proposing_group_proposed.permission_roles:
+                    if permission != "View":
+                        # MeetingMember should not have permission to do anything else at this point
+                        old_roles = returned_to_proposing_group_proposed.permission_roles[
+                            permission]
+                        new_roles = tuple(r for r in old_roles if r not in EXCLUDED_ROLES)
+                        returned_to_proposing_group_proposed.setPermission(permission, 0, new_roles)
+            logger.info(WF_APPLIED % (
+            "patch_return_to_proposing_group_with_last_validation", meetingConfig.getId()))
             return True
         return False
 
