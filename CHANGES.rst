@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed typo getMeetingStatesAcceptingItem -> getMeetingStatesAcceptingItems.
+  [aduchene]
 
 
 4.1.5 (2022-03-09)
