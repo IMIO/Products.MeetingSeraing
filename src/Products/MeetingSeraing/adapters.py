@@ -595,7 +595,7 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
     def onEdit(self, isCreated):  # noqa
         self.context.createPowerEditorsGroup()
 
-    def getMeetingStatesAcceptingItem(self):
+    def getMeetingStatesAcceptingItems(self):
         """See doc in interfaces.py."""
         return ('created', 'validated_by_dg', 'frozen', 'decided')
 
