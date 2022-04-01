@@ -6,6 +6,8 @@ Products.MeetingSeraing Changelog
 
 - Fixed typo getMeetingStatesAcceptingItem -> getMeetingStatesAcceptingItems.
   [aduchene]
+- Fixed wrong permissions in `patch_return_to_proposing_group_with_last_validation`.
+  [aduchene]
 
 
 4.1.5 (2022-03-09)
