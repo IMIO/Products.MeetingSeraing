@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1.7 (unreleased)
+4.2.0a1 (unreleased)
 ------------------
 
 - Nothing changed yet.
