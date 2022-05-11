@@ -136,9 +136,7 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
         "archived",
     ],
 }
-adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = (
-    CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
-)
+adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
 
 RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
     "presented",
@@ -324,14 +322,14 @@ class CustomSeraingMeeting(CustomMeeting):
 
     security.declarePublic("isDecided")
 
-    def isDecided(self):
+    def is_decided(self):
         """
         The meeting is supposed 'decided', if at least in state :
         - 'in_council' for MeetingCouncil
         - 'decided' for MeetingCollege
         """
         meeting = self.getSelf()
-        return meeting.queryState() in ("in_council", "decided", "closed", "archived")
+        return meeting.query_state() in ("in_council", "decided", "closed", "archived")
 
     # Implements here methods that will be used by templates
 
@@ -424,7 +422,7 @@ class CustomSeraingMeeting(CustomMeeting):
         if items:
             for item in items:
                 # Check if the review_state has to be taken into account
-                if item.queryState() in ignore_review_states:
+                if item.query_state() in ignore_review_states:
                     continue
                 elif not (privacy == "*" or item.getPrivacy() == privacy):
                     continue
@@ -769,10 +767,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         tool = api.portal.get_tool("portal_plonemeeting")
         cfg = tool.getMeetingConfig(self)
         if _is_transitioning():
-            if (
-                _get_current_transition()
-                in cfg.getTransitionsReinitializingTakenOverBy()
-            ):
+            if _get_current_transition() in cfg.getTransitionsReinitializingTakenOverBy():
                 # If transition should reinitialize TakenOverBy
                 self.getField("takenOverBy").set(self, "", **kwargs)
             else:
@@ -937,7 +932,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         clonedItem = [
             item
             for item in self.context.getBRefs("ItemPredecessor")
-            if item.queryState() == "itemcreated"
+            if item.query_state() == "itemcreated"
         ][0]
         wfTool = api.portal.get_tool("portal_workflow")
         # make sure item may be validated
@@ -1024,9 +1019,6 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
     implements(IMeetingItemSeraingWorkflowConditions)
     security = ClassSecurityInfo()
 
-    def __init__(self, item):
-        self.context = item  # Implements IMeetingItem
-
     security.declarePublic("mayDecide")
 
     def mayDecide(self):
@@ -1038,7 +1030,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
             _checkPermission(ReviewPortalContent, self.context)
             and meeting
             and (
-                meeting.queryState()
+                meeting.query_state()
                 in [
                     "decided",
                     "closed",
@@ -1060,10 +1052,9 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         if _checkPermission(ReviewPortalContent, self.context):
             res = True
             member = self.context.portal_membership.getAuthenticatedMember()
-            tool = getToolByName(self.context, "portal_plonemeeting")
             if not member.has_role(
                 "MeetingReviewer", self.context
-            ) and not tool.isManager(self.context):
+            ) and not self.tool.isManager(self.cfg):
                 res = False
         return res
 
@@ -1073,11 +1064,19 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         res = False
         if _checkPermission(ReviewPortalContent, self.context):
             if self.context.hasMeeting() and (
-                self.context.getMeeting().queryState()
+                self.context.getMeeting().query_state()
                 in ("created", "validated_by_dg", "frozen", "decided", "closed")
             ):
                 res = True
         return res
+
+    security.declarePublic("mayPropose")
+
+    def mayPropose(self):
+        """
+        Check that the user has the 'Review portal content'
+        """
+        return _checkPermission(ReviewPortalContent, self.context)
 
     security.declarePublic("mayProposeToServiceHead")
 
@@ -1085,7 +1084,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         Check that the user has the 'Review portal content'
         """
-        return self._check_review_and_required()
+        return _checkPermission(ReviewPortalContent, self.context)
 
     security.declarePublic("mayProposeToOfficeManager")
 
@@ -1093,7 +1092,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         Check that the user has the 'Review portal content'
         """
-        return self._check_review_and_required()
+        return _checkPermission(ReviewPortalContent, self.context)
 
     security.declarePublic("mayProposeToDivisionHead")
 
@@ -1101,7 +1100,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         Check that the user has the 'Review portal content'
         """
-        return self._check_review_and_required()
+        return _checkPermission(ReviewPortalContent, self.context)
 
     security.declarePublic("mayBackToMeeting")
 
@@ -1112,11 +1111,11 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         tool = getToolByName(self.context, "portal_plonemeeting")
         if not _checkPermission(
             ReviewPortalContent, self.context
-        ) and not tool.isManager(self.context):
+        ) and not self.tool.isManager(self.cfg):
             return
         # get the linked meeting
         meeting = self.context.getMeeting()
-        meetingState = meeting.queryState()
+        meetingState = meeting.query_state()
         # use RETURN_TO_PROPOSING_GROUP_MAPPINGS to know in wich meetingStates
         # the given p_transitionName can be triggered
         authorizedMeetingStates = adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS[
@@ -1129,9 +1128,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         # specifig states (like 'closed' for example)
         if (
             meetingState
-            in adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS[
-                "NO_MORE_RETURNABLE_STATES"
-            ]
+            in adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS["NO_MORE_RETURNABLE_STATES"]
         ):
             # avoid to display No(...) message for each transition having the 'mayBackToMeeting'
             # guard expr, just return the No(...) msg for the first transitionName checking this...
@@ -1170,7 +1167,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         if (
             _checkPermission(ReviewPortalContent, self.context)
             and meeting
-            and (meeting.queryState() in ["closed"])
+            and (meeting.query_state() in ["closed"])
         ):
             res = True
         return res
@@ -1231,10 +1228,8 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     # permissions from RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
                     # and apply permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
                     # RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS contains custom permissions by workflow
-                    customPermissions = (
-                        RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.get(
-                            meetingConfig.getItemWorkflow(), {}
-                        )
+                    customPermissions = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.get(
+                        meetingConfig.getItemWorkflow(), {}
                     )
                     itemStates.addState("returned_to_advise")
                     newState = getattr(itemStates, "returned_to_advise")
@@ -1258,9 +1253,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     if stateToCloneWF and hasattr(
                         stateToCloneWF.states, stateToCloneStateId
                     ):
-                        stateToClone = getattr(
-                            stateToCloneWF.states, stateToCloneStateId
-                        )
+                        stateToClone = getattr(stateToCloneWF.states, stateToCloneStateId)
                         # we must make sure the MeetingManagers still may access this item
                         # so add MeetingManager role to every cloned permissions
                         cloned_permissions = dict(stateToClone.permission_roles)
@@ -1277,9 +1270,9 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                                 cloned_permissions[permission]
                             )
                             if "MeetingManager" not in cloned_permissions[permission]:
-                                cloned_permissions_with_meetingmanager[
-                                    permission
-                                ].append("MeetingManager")
+                                cloned_permissions_with_meetingmanager[permission].append(
+                                    "MeetingManager"
+                                )
                             if not acquired:
                                 cloned_permissions_with_meetingmanager[
                                     permission
@@ -1347,8 +1340,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
 
                 for state_id in return_to_advice_item_state:
                     new_trx = tuple(
-                        list(itemStates[state_id].getTransitions())
-                        + ["return_to_advise"]
+                        list(itemStates[state_id].getTransitions()) + ["return_to_advise"]
                     )
                     itemStates[state_id].transitions = new_trx
 
@@ -1415,7 +1407,7 @@ class MSItemPrettyLinkAdapter(ItemPrettyLinkAdapter):
         if self.context.isDefinedInTool():
             return icons
 
-        itemState = self.context.queryState()
+        itemState = self.context.query_state()
         # Add our icons for some review states
         if itemState == "proposed":
             icons.append(

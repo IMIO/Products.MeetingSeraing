@@ -19,15 +19,15 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
 
     def test_pm_WholeDecisionProcess(self):
         """
-            This test covers the whole decision workflow. It begins with the
-            creation of some items, and ends by closing a meeting.
-            This call sub tests for college process : council using the same wf
+        This test covers the whole decision workflow. It begins with the
+        creation of some items, and ends by closing a meeting.
+        This call sub tests for college process : council using the same wf
         """
         self._testWholeDecisionProcessCollege()
 
     def _testWholeDecisionProcessCollege(self):
         '''This test covers the whole decision workflow. It begins with the
-           creation of some items, and ends by closing a meeting.'''
+        creation of some items, and ends by closing a meeting.'''
         # pmCreator1 creates an item with 1 annex and proposes it
         self.changeUser('pmCreator1')
         item1 = self.create('MeetingItem', title='The first item')
@@ -71,8 +71,9 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.addAnnex(item1, relatedTo='item_decision')
         # pmCreator2 creates and proposes an item
         self.changeUser('pmCreator2')
-        item2 = self.create('MeetingItem', title='The second item',
-                            preferredMeeting=meeting.UID())
+        item2 = self.create(
+            'MeetingItem', title='The second item', preferredMeeting=meeting.UID()
+        )
         self.do(item2, 'proposeToServiceHead')
         # pmReviewer1 can not validate the item has not in the same proposing group
         self.changeUser('pmReviewer1')
@@ -117,52 +118,75 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
 
     def test_pm_WorkflowPermissions(self):
         """Bypass this test..."""
-        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
-            self._testMethodName))
+        pm_logger.info(
+            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
+        )
 
     def test_pm_RecurringItems(self):
         """Bypass this test..."""
-        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
-            self._testMethodName))
+        pm_logger.info(
+            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
+        )
 
-    def test_pm_MeetingExecuteActionOnLinkedItemsGiveAccessToAcceptedItemsOfAMeetingToPowerAdvisers(self):
+    def test_pm_MeetingExecuteActionOnLinkedItemsGiveAccessToAcceptedItemsOfAMeetingToPowerAdvisers(
+        self,
+    ):
         '''Test the MeetingConfig.onMeetingTransitionItemActionToExecute parameter :
-           specific usecase, being able to give access to decided items of a meeting only when meeting
-           is closed, even if item is decided before the meeting is closed.'''
+        specific usecase, being able to give access to decided items of a meeting only when meeting
+        is closed, even if item is decided before the meeting is closed.'''
         self.changeUser('siteadmin')
         cfg = self.meetingConfig
         # call updateLocalRoles on item only if it not already decided
         # as updateLocalRoles is called when item review_state changed
         self.assertTrue('accepted' in cfg.getItemDecidedStates())
         cfg.setOnMeetingTransitionItemActionToExecute(
-            [{'meeting_transition': 'decide',
-              'item_action': 'itemValidateByDG',
-              'tal_expression': ''},
-             {'meeting_transition': 'decide',
-              'item_action': 'itemfreeze',
-              'tal_expression': ''},
-
-             {'meeting_transition': 'close',
-              'item_action': 'itemValidateByDG',
-              'tal_expression': ''},
-             {'meeting_transition': 'close',
-              'item_action': 'itemfreeze',
-              'tal_expression': ''},
-             {'meeting_transition': 'close',
-              'item_action': EXECUTE_EXPR_VALUE,
-              'tal_expression': 'python: item.queryState() in cfg.getItemDecidedStates() and '
-                'item.updateLocalRoles()'},
-             {'meeting_transition': 'close',
-              'item_action': 'accept',
-              'tal_expression': ''}, ])
+            [
+                {
+                    'meeting_transition': 'decide',
+                    'item_action': 'itemValidateByDG',
+                    'tal_expression': '',
+                },
+                {
+                    'meeting_transition': 'decide',
+                    'item_action': 'itemfreeze',
+                    'tal_expression': '',
+                },
+                {
+                    'meeting_transition': 'close',
+                    'item_action': 'itemValidateByDG',
+                    'tal_expression': '',
+                },
+                {
+                    'meeting_transition': 'close',
+                    'item_action': 'itemfreeze',
+                    'tal_expression': '',
+                },
+                {
+                    'meeting_transition': 'close',
+                    'item_action': EXECUTE_EXPR_VALUE,
+                    'tal_expression': 'python: item.queryState() in cfg.getItemDecidedStates() and '
+                    'item.update_local_roles()',
+                },
+                {
+                    'meeting_transition': 'close',
+                    'item_action': 'accept',
+                    'tal_expression': '',
+                },
+            ]
+        )
         # configure access of powerobservers only access if meeting is 'closed'
-        cfg.setPowerObservers([
-            {'item_access_on': 'python: item.getMeeting().queryState() == "closed"',
-             'item_states': ['accepted'],
-             'label': 'Power observers',
-             'meeting_access_on': '',
-             'meeting_states': ['closed'],
-             'row_id': 'powerobservers'}])
+        cfg.setPowerObservers(
+            [
+                {
+                    'item_access_on': 'python: item.getMeeting().queryState() == "closed"',
+                    'item_states': ['accepted'],
+                    'label': 'Power observers',
+                    'meeting_access_on': '',
+                    'meeting_states': ['closed'],
+                    'row_id': 'powerobservers',
+                }
+            ]
+        )
         self.changeUser('pmManager')
         item1 = self.create('MeetingItem')
         item1.setDecision(self.decisionText)
@@ -189,21 +213,30 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
 
     def test_pm_MeetingExecuteActionOnLinkedItemsCaseTALExpression(self):
         '''Test the MeetingConfig.onMeetingTransitionItemActionToExecute parameter :
-           executing a TAL expression on every items.'''
+        executing a TAL expression on every items.'''
         # when we freeze a meeting, we will append word '(frozen)' to the item title
         # first, wrong tal_expression, nothing is done
         self.changeUser('siteadmin')
         cfg = self.meetingConfig
         cfg.setOnMeetingTransitionItemActionToExecute(
-            [{'meeting_transition': 'freeze',
-              'item_action': EXECUTE_EXPR_VALUE,
-              'tal_expression': 'item/unknown'},
-             {'meeting_transition': 'freeze',
-              'item_action': 'itemValidateByDG',
-              'tal_expression': ''},
-             {'meeting_transition': 'freeze',
-              'item_action': 'itemfreeze',
-              'tal_expression': ''}, ])
+            [
+                {
+                    'meeting_transition': 'freeze',
+                    'item_action': EXECUTE_EXPR_VALUE,
+                    'tal_expression': 'item/unknown',
+                },
+                {
+                    'meeting_transition': 'freeze',
+                    'item_action': 'itemValidateByDG',
+                    'tal_expression': '',
+                },
+                {
+                    'meeting_transition': 'freeze',
+                    'item_action': 'itemfreeze',
+                    'tal_expression': '',
+                },
+            ]
+        )
         self.changeUser('pmManager')
         # create a meeting with items
         meeting = self._createMeetingWithItems()
@@ -218,12 +251,21 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # now a valid config, append ('accepted') to item title when meeting is decided
         title_suffix = " (accepted)"
         cfg.setOnMeetingTransitionItemActionToExecute(
-            [{'meeting_transition': 'decide',
-              'item_action': EXECUTE_EXPR_VALUE,
-              'tal_expression': 'python: item.setTitle(item.Title() + "{0}")'.format(title_suffix)},
-             {'meeting_transition': 'decide',
-              'item_action': 'accept',
-              'tal_expression': ''}])
+            [
+                {
+                    'meeting_transition': 'decide',
+                    'item_action': EXECUTE_EXPR_VALUE,
+                    'tal_expression': 'python: item.setTitle(item.Title() + "{0}")'.format(
+                        title_suffix
+                    ),
+                },
+                {
+                    'meeting_transition': 'decide',
+                    'item_action': 'accept',
+                    'tal_expression': '',
+                },
+            ]
+        )
         for item in meeting.getItems():
             self.assertFalse(title_suffix in item.Title())
         self.decideMeeting(meeting)
@@ -234,6 +276,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
 
 def test_suite():
     from unittest import TestSuite, makeSuite
+
     suite = TestSuite()
     suite.addTest(makeSuite(testWorkflows, prefix='test_pm_'))
     return suite
