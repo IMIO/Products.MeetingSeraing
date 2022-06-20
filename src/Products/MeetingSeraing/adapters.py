@@ -82,6 +82,22 @@ from zope.interface import implements
 
 # disable most of wfAdaptations
 customWfAdaptations = (
+    'item_validation_shortcuts',
+    'item_validation_no_validate_shortcuts',
+    'only_creator_may_delete',
+    # first define meeting workflow state removal
+    'no_freeze',
+    'no_publication',
+    'no_decide',
+    # then define added item decided states
+    'accepted_but_modified',
+    'postpone_next_meeting',
+    'mark_not_applicable',
+    'removed',
+    'removed_and_duplicated',
+    'refused',
+    'delayed',
+    'pre_accepted',
     "return_to_proposing_group",
     "return_to_proposing_group_with_last_validation",
     "returned_to_advise",
@@ -341,6 +357,7 @@ class CustomSeraingMeeting(CustomMeeting):
         listTypes=["normal"],
         ignore_review_states=[],
         by_proposing_group=False,
+        group_proposing_group=False,
         group_prefixes={},
         privacy="*",
         oralQuestion="both",
@@ -445,7 +462,10 @@ class CustomSeraingMeeting(CustomMeeting):
                     or item.getIsToPrintInMeeting() == isToPrintInMeeting
                 ):
                     continue
-                currentCat = item.getCategory(theObject=True)
+                if group_proposing_group:
+                    currentCat = item.getProposingGroup(theObject=True)
+                else:
+                    currentCat = item.getCategory(theObject=True)
                 # Add the item to a new category, excepted if the
                 # category already exists.
                 catExists = False

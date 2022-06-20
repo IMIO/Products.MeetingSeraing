@@ -61,10 +61,6 @@ collegeMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transitio
                                                               'item_transition': 'backToItemValidatedByDG'},
                                                              {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
-collegeMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
-                                  'proposed_to_divisionhead', 'proposed', 'validated',
-                                  'presented', 'itemfrozen', 'accepted',
-                                  'delayed', )
 collegeMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified',
                                     'accepted_closed', 'delayed_closed', 'accepted_but_modified_closed', ]
 collegeMeeting.workflowAdaptations = []
@@ -123,9 +119,6 @@ councilMeeting.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transitio
                                                              {'meeting_transition': 'backToCreated',
                                                               'item_transition': 'backToPresented'},)
 councilMeeting.itemCopyGroupsStates = []
-councilMeeting.itemTopicStates = ('itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
-                                  'proposed_to_divisionhead', 'proposed', 'validated',
-                                  'presented', 'itemfrozen', 'accepted', 'delayed', )
 councilMeeting.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified',
                                     'accepted_closed', 'delayed_closed', 'accepted_but_modified_closed']
 councilMeeting.workflowAdaptations = []

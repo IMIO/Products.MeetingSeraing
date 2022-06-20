@@ -17,6 +17,7 @@ from Products.PloneMeeting.model.adaptations import (
 )
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 
+import datetime as dt
 import logging
 
 
@@ -28,6 +29,21 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.assertEquals(
             set(self.meetingConfig.listWorkflowAdaptations()),
             {
+                'no_freeze',
+                'item_validation_no_validate_shortcuts',
+                'mark_not_applicable',
+                'no_decide',
+                'only_creator_may_delete',
+                'delayed',
+                'pre_accepted',
+                'no_publication',
+                'removed_and_duplicated',
+                'postpone_next_meeting',
+                'accepted_but_modified',
+                'removed',
+                'item_validation_shortcuts',
+                'refused',
+                'patch_return_to_proposing_group_with_last_validation',
                 'return_to_proposing_group',
                 'return_to_proposing_group_with_last_validation',
                 'returned_to_advise',
@@ -40,49 +56,13 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
             "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
         )
 
-    def test_pm_WFA_no_proposal(self):
-        '''No sense...'''
-        pm_logger.info(
-            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
-        )
-
     def test_pm_WFA_pre_validation(self):
         '''No sense...'''
         pm_logger.info(
             "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
         )
 
-    def test_pm_WFA_items_come_validated(self):
-        '''No sense...'''
-        pm_logger.info(
-            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
-        )
-
     def test_pm_WFA_only_creator_may_delete(self):
-        '''No sense...'''
-        pm_logger.info(
-            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
-        )
-
-    def test_pm_WFA_no_global_observation(self):
-        '''No sense...'''
-        pm_logger.info(
-            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
-        )
-
-    def test_pm_WFA_everyone_reads_all(self):
-        '''No sense...'''
-        pm_logger.info(
-            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
-        )
-
-    def test_pm_WFA_creator_edits_unless_closed(self):
-        '''No sense...'''
-        pm_logger.info(
-            "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
-        )
-
-    def test_pm_WFA_add_published_state(self):
         '''No sense...'''
         pm_logger.info(
             "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
@@ -115,6 +95,14 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         pm_logger.info(
             "Bypassing , {0} not used in MeetingSeraing".format(self._testMethodName)
         )
+
+    def test_pm_Validate_workflowAdaptations_dependencies(self):
+        """Bypass as most WFA not used..."""
+        pass
+
+    def test_pm_WFA_no_validation(self):
+        '''Not used yet...'''
+        pass
 
     def _return_to_proposing_group_inactive(self):
         '''Tests while 'return_to_proposing_group' wfAdaptation is inactive.'''
@@ -155,7 +143,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.validateItem(item)
         # create a Meeting and add the item to it
         self.changeUser('pmManager')
-        self.create('Meeting', date=DateTime())
+        self.create('Meeting', date=dt.datetime.now())
         self.presentItem(item)
         # now that it is presented, the pmCreator1/pmReviewer1 can not edit it anymore
         for userId in ('pmCreator1', 'pmReviewer1'):
