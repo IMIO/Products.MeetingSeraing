@@ -7,14 +7,6 @@ product_globals = globals()
 
 PROJECTNAME = "MeetingSeraing"
 
-# Roles
-SERAINGROLES = {}
-SERAINGROLES["serviceheads"] = "MeetingServiceHead"
-SERAINGROLES["officemanagers"] = "MeetingOfficeManager"
-SERAINGROLES["divisionheads"] = "MeetingDivisionHead"
-# PMconfig.MEETINGROLES.update(SERAINGROLES)
-
-
 POWEREDITORS_GROUP_SUFFIX = "powereditors"
 EDITOR_USECASES = {
     "power_editors": "Editor",
@@ -99,7 +91,6 @@ SERAING_ITEM_WF_VALIDATION_LEVELS = (
      },
 )
 
-
 SERAINGMEETINGREVIEWERS = {
     "meetingitemseraing_workflow": OrderedDict(
         [
@@ -110,4 +101,3 @@ SERAINGMEETINGREVIEWERS = {
         ]
     )
 }
-# PMconfig.MEETINGREVIEWERS.update(SERAINGMEETINGREVIEWERS)

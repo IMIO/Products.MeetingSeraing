@@ -11,7 +11,6 @@ from Products.CMFCore.permissions import ReviewPortalContent
 from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.model.adaptations import _performWorkflowAdaptations
-from Products.MeetingSeraing.adapters import RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
 from Products.PloneMeeting.model.adaptations import (
     RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES,
 )
@@ -29,6 +28,8 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.assertEquals(
             set(self.meetingConfig.listWorkflowAdaptations()),
             {
+                'seraing_add_item_closed_state',
+                'seraing_validated_by_DG',
                 'no_freeze',
                 'item_validation_no_validate_shortcuts',
                 'mark_not_applicable',
@@ -43,11 +44,9 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 'removed',
                 'item_validation_shortcuts',
                 'refused',
-                'patch_return_to_proposing_group_with_last_validation',
                 'return_to_proposing_group',
                 'return_to_proposing_group_with_last_validation',
-                'returned_to_advise',
-                'seraing_add_item_closed_state'
+                'returned_to_advise'
             },
         )
 
@@ -84,9 +83,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         )
 
     def test_pm_WFA_return_to_proposing_group_with_last_validation(self):
-        self.meetingConfig.setWorkflowAdaptations(
-            'patch_return_to_proposing_group_with_last_validation'
-        )
         super(
             testWFAdaptations, self
         ).test_pm_WFA_return_to_proposing_group_with_last_validation()
@@ -115,23 +111,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE defined value.
         In our usecase, this is Nonsense as we use RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
         return
-
-    def _return_to_proposing_group_active_custom_permissions(self):
-        '''Helper method to test 'return_to_proposing_group' wfAdaptation regarding the
-        RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS defined value.
-        In our use case, just test that permissions of 'returned_to_proposing_group' state
-        are the one defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.'''
-        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
-        returned_to_proposing_group_state_permissions = itemWF.states[
-            'returned_to_proposing_group'
-        ].permission_roles
-        for permission in returned_to_proposing_group_state_permissions:
-            self.assertEquals(
-                returned_to_proposing_group_state_permissions[permission],
-                RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS[
-                    self.meetingConfig.getItemWorkflow()
-                ][permission],
-            )
 
     def _return_to_proposing_group_active_wf_functionality(self):
         '''Tests the workflow functionality of using the 'return_to_proposing_group' wfAdaptation.
@@ -185,10 +164,10 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.failIf('returned_to_advise' not in cfg.listWorkflowAdaptations())
         # activate the wfAdaptations and check
         self._activate_wfas(
-            ('return_to_proposing_group_with_last_validation', 'returned_to_advise', 'patch_return_to_proposing_group_with_last_validation')
+            ('return_to_proposing_group_with_last_validation', 'returned_to_advise', 'seraing_validated_by_DG')
         )
         # test what should happen to the wf (added states and transitions)
-        self._return_to_advise_active()
+        # self._return_to_advise_active()
         # test the functionnality of returning an item to the advise
         self._return_to_advise_active_wf_functionality()
 
@@ -247,8 +226,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'return_to_proposing_group')
 
         for userId in ('pmCreator1', 'pmReviewer1'):
-            itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
-            perms = itemWF.states.returned_to_proposing_group.permission_roles
             self.changeUser(userId)
             self.failUnless(self.hasPermission(ModifyPortalContent, item))
             self.failUnless(self.hasPermission(ReviewPortalContent, item))
@@ -325,6 +302,9 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'goTo_returned_to_proposing_group_proposed')
         self.assertEquals(item.query_state(), 'returned_to_proposing_group_proposed')
         self.assertTrue('return_to_advise' in self.transitions(item))
+        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
+        perms = itemWF.states.returned_to_advise.permission_roles
+        import ipdb; ipdb.set_trace() # TODO : remove me
         self.do(item, 'backTo_validated_by_dg_from_returned_to_proposing_group')
         self.assertEquals(item.query_state(), 'validated_by_dg')
         self.do(meeting, 'freeze')

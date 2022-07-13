@@ -82,6 +82,8 @@ from zope.interface import implements
 
 # disable most of wfAdaptations
 customWfAdaptations = (
+    "seraing_add_item_closed_state",
+    "seraing_validated_by_DG",
     'item_validation_shortcuts',
     'item_validation_no_validate_shortcuts',
     'only_creator_may_delete',
@@ -100,24 +102,10 @@ customWfAdaptations = (
     'pre_accepted',
     "return_to_proposing_group",
     "return_to_proposing_group_with_last_validation",
-    "returned_to_advise",
-    "patch_return_to_proposing_group_with_last_validation",
-    "seraing_add_item_closed_state"
+    "returned_to_advise"
     ""
 )
 MeetingConfig.wfAdaptations = MeetingConfig.wfAdaptations + customWfAdaptations
-
-# configure parameters for the returned_to_proposing_group wfAdaptation
-# we keep also 'itemfrozen' and 'itempublished' in case this should be activated for meeting-config-college...
-CUSTOM_RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES = (
-    "proposed_to_servicehead",
-    "proposed_to_officemanager",
-    "proposed_to_divisionhead",
-    "proposed",
-)
-adaptations.RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES = (
-    CUSTOM_RETURN_TO_PROPOSING_GROUP_VALIDATION_STATES
-)
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
     "backTo_presented_from_returned_to_proposing_group": [
@@ -166,162 +154,6 @@ adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_P
                                                          + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 
 
-RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
-    "meetingitemseraing_workflow":
-    # view permissions
-    {
-        "Access contents information": (
-            "Manager",
-            "MeetingManager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingObserverLocal",
-            "Reader",
-            "Editor",
-        ),
-        "View": (
-            "Manager",
-            "MeetingManager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingObserverLocal",
-            "Reader",
-            "Editor",
-        ),
-        "PloneMeeting: Read budget infos": (
-            "Manager",
-            "MeetingManager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingObserverLocal",
-            "Reader",
-            "Editor",
-        ),
-        "PloneMeeting: Read decision": (
-            "Manager",
-            "MeetingManager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingObserverLocal",
-            "Reader",
-            "Editor",
-        ),
-        "PloneMeeting: Read item observations": (
-            "Manager",
-            "MeetingManager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingObserverLocal",
-            "Reader",
-            "Editor",
-        ),
-        # edit permissions
-        "Modify portal content": (
-            "Editor",
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-        ),
-        "PloneMeeting: Write budget infos": (
-            "Editor",
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-            "MeetingBudgetImpactEditor",
-        ),
-        "PloneMeeting: Write decision": (
-            "Editor",
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-        ),
-        "Review portal content": (
-            "Editor",
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-            "Reviewer"
-        ),
-        "Add portal content": (
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-        ),
-        "PloneMeeting: Add annex": (
-            "Editor",
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-        ),
-        "PloneMeeting: Add annexDecision": (
-            "Contributor"
-            "Manager",
-            "MeetingMember",
-            "MeetingServiceHead",
-            "MeetingOfficeManager",
-            "MeetingDivisionHead",
-            "MeetingReviewer",
-            "MeetingManager",
-        ),
-        # MeetingManagers edit permissions
-        "PloneMeeting: Write marginal notes": ("Manager",),
-        "PloneMeeting: Write item MeetingManager reserved fields": (
-            "Manager",
-            "MeetingManager",
-        ),
-        "Delete objects": (
-            "Manager",
-            "MeetingManager",
-        ),
-    }
-}
-
-RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {
-    "meetingitemseraing_workflow": "meetingitemseraing_workflow.itemcreated"
-}
-adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = (
-    RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
-)
-
 RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
     "meetingitemseraing_workflow": {
         # edit permissions
@@ -331,13 +163,6 @@ RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
         )
     }
 }
-
-RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {
-    "meetingitemseraing_workflow": "meetingitemseraing_workflow.itemcreated"
-}
-adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE = (
-    RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE
-)
 
 
 class CustomSeraingMeeting(CustomMeeting):
@@ -869,6 +694,42 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         """Override pm method"""
         return ("event_item_delayed-service_heads", "event_add_advice-service_heads")
 
+    def get_item_corresponding_state_to_assign_local_roles(self, item_state):
+        '''See doc in interfaces.py.'''
+        cfg = self.getSelf()
+        corresponding_item_state = None
+        # XXX returned_to_proposing_group_xxx is special in MeetingSeraing
+        # returned_to_proposing_group_proposed is equivalent to proposed state
+        # (see patch_return_to_proposing_group_with_last_validation WFA in MeetingSeraing 4.1)
+        # BUT returned_to_proposing_group has no equivalent,
+        # everybody from the proposing group can edit
+        if item_state == 'returned_to_proposing_group_proposed':
+            corresponding_item_state = 'proposed'
+        # waiting_advices WFAdaptation
+        elif item_state.endswith('_waiting_advices'):
+            corresponding_item_state = item_state.split('_waiting_advices')[0]
+        return corresponding_item_state
+
+    def get_item_custom_suffix_roles(self, item_state):
+        suffix_roles = None
+        if item_state == 'returned_to_proposing_group':
+            SUFFIXES_THAT_MAY_EDIT_IN_RETURNED_TO_PROPOSING_GROUP = [
+                "creators", "serviceheads", "officemanagers", "divisionheads", "reviewers"
+            ]
+            EDIT_ROLES = ['Reader', 'Contributor', 'Editor', 'Reviewer']
+            suffix_roles = {'observers': ['Reader']}
+            for suffix in SUFFIXES_THAT_MAY_EDIT_IN_RETURNED_TO_PROPOSING_GROUP:
+                suffix_roles[suffix] = EDIT_ROLES
+        if item_state == 'returned_to_advise':
+            SUFFIXES_THAT_MAY_REVIEW_IN_RETURNED_TO_ADVISE = [
+                "creators", "serviceheads", "officemanagers", "divisionheads", "reviewers"
+            ]
+            REVIEW_ROLES = ['Reader', 'Reviewer']
+            suffix_roles = {'observers': ['Reader']}
+            for suffix in SUFFIXES_THAT_MAY_REVIEW_IN_RETURNED_TO_ADVISE:
+                suffix_roles[suffix] = REVIEW_ROLES
+        return True, suffix_roles
+
 
 class MeetingSeraingWorkflowActions(MeetingCommunesWorkflowActions):
     """Adapter that adapts a meeting item implementing IMeetingItem to the
@@ -1230,6 +1091,10 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
     ):
         """This function applies workflow changes as specified by the
         p_meetingConfig."""
+        wfTool = api.portal.get_tool("portal_workflow")
+        itemStates = itemWorkflow.states
+        itemTransitions = itemWorkflow.transitions
+
         if wfAdaptation == "seraing_add_item_closed_state":
             _addIsolatedState(
                 new_state_id='accepted_closed',
@@ -1258,108 +1123,82 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 back_transition_id='backToItemAcceptedButModified',
                 itemWorkflow=itemWorkflow,
                 base_state_id='accepted_but_modified', )
+        if wfAdaptation == "seraing_validated_by_DG":
+            # add state from itemfrozen? itempublished? presented? ...
+            # same origin as mandatory transition 'accept'
+            new_state = _addIsolatedState(
+                new_state_id='validated_by_dg',
+                origin_state_id='presented',
+                origin_transition_id='itemValidateByDG',
+                origin_transition_guard_expr_name='mayValidateByDG()',
+                back_transition_guard_expr_name="mayCorrect()",
+                back_transition_id='backToPresented',
+                itemWorkflow=itemWorkflow,
+                base_state_id='presented', )
+            new_state.transitions = new_state.transitions + ('itemfreeze', )
 
+            new_meeting_state = _addIsolatedState(
+                new_state_id='validated_by_dg',
+                origin_state_id='created',
+                origin_transition_id='validateByDG',
+                origin_transition_guard_expr_name='mayValidateByDG()',
+                back_transition_guard_expr_name="mayCorrect()",
+                back_transition_id='backToCreated',
+                itemWorkflow=meetingWorkflow,
+                base_state_id='created', )
 
-
+            new_meeting_state.transitions = new_state.transitions + ('freeze', )
         if wfAdaptation == "returned_to_advise":
-            wfTool = api.portal.get_tool("portal_workflow")
-            itemStates = itemWorkflow.states
-            itemTransitions = itemWorkflow.transitions
-            if (
-                "returned_to_advise" not in itemStates
-                and "returned_to_proposing_group" in itemStates
-            ):
-                if "returned_to_advise" not in itemStates:
-                    # add the 'returned_to_proposing_group' state and clone the
-                    # permissions from RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE
-                    # and apply permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
-                    # RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS contains custom permissions by workflow
-                    customPermissions = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.get(
-                        #meetingConfig.getItemWorkflow(), {}
-                        "meetingitemseraing_workflow", {}
-                    )
-                    itemStates.addState("returned_to_advise")
-                    newState = getattr(itemStates, "returned_to_advise")
-                    newState.permission_roles = deepcopy(customPermissions)
+            if "returned_to_proposing_group" not in itemStates:
+                raise ValueError("returned_to_proposing_group should be in itemStates for this WFA")
 
-                if "return_to_advise" not in itemTransitions:
-                    itemTransitions.addTransition("return_to_advise")
+            if "returned_to_advise" not in itemStates:
+                itemStates.addState("returned_to_advise")
+            returned_to_advise = getattr(itemStates, "returned_to_advise")
+            returned_to_advise.permission_roles = deepcopy(itemStates.returned_to_proposing_group.permission_roles)
 
-                transition = itemTransitions["return_to_advise"]
-                # use same guard from ReturnToProposingGroup
-                transition.setProperties(
-                    title="return_to_advise",
-                    new_state_id="returned_to_advise",
-                    trigger_type=1,
-                    script_name="",
-                    actbox_name="return_to_advise",
-                    actbox_url="",
-                    actbox_category="workflow",
-                    actbox_icon="%(portal_url)s/return_to_advise.png",
-                    props={
-                        "guard_expr": "python:here.wfConditions().mayReturnToProposingGroup()"
-                    },
+            if "return_to_advise" not in itemTransitions:
+                itemTransitions.addTransition("return_to_advise")
+
+            transition = itemTransitions["return_to_advise"]
+            # use same guard from ReturnToProposingGroup
+            transition.setProperties(
+                title="return_to_advise",
+                new_state_id="returned_to_advise",
+                trigger_type=1,
+                script_name="",
+                actbox_name="return_to_advise",
+                actbox_url="",
+                actbox_category="workflow",
+                actbox_icon="%(portal_url)s/return_to_advise.png",
+                props={
+                    "guard_expr": "python:here.wfConditions().mayReturnToProposingGroup()"
+                },
+            )
+            returned_to_advise.setProperties(
+                title="returned_to_advise",
+                description="",
+                transitions=(
+                    "backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed",
+                    "goTo_returned_to_proposing_group_proposed",
+                ),
+            )
+            return_to_advice_item_state = [
+                _getValidationReturnedStates(meetingConfig)[-1]
+            ] + [
+                "returned_to_proposing_group",
+                "presented",
+              #  "validated_by_dg",
+                "itemfrozen",
+            ]
+
+            for state_id in return_to_advice_item_state:
+                new_trx = tuple(
+                    list(itemStates[state_id].getTransitions()) + ["return_to_advise"]
                 )
-
-                returned_to_advise = itemStates["returned_to_advise"]
-                returned_to_advise.setProperties(
-                    title="returned_to_advise",
-                    description="",
-                    transitions=(
-                        "backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed",
-                        "goTo_returned_to_proposing_group_proposed",
-                    ),
-                )
-
-                return_to_advice_item_state = [
-                    _getValidationReturnedStates(meetingConfig)[-1]
-                ] + [
-                    "returned_to_proposing_group",
-                    "presented",
-                  #  "validated_by_dg",
-                    "itemfrozen",
-                ]
-
-                for state_id in return_to_advice_item_state:
-                    new_trx = tuple(
-                        list(itemStates[state_id].getTransitions()) + ["return_to_advise"]
-                    )
-                    itemStates[state_id].transitions = new_trx
-
-                # Initialize permission->roles mapping for new state "returned_to_advise",
-                returned_to_advise = itemStates["returned_to_advise"]
-                for permission, roles in RETURN_TO_ADVISE_CUSTOM_PERMISSIONS[
-                    "meetingitemseraing_workflow"
-                ].iteritems():
-                    returned_to_advise.setPermission(permission, 0, roles)
+                itemStates[state_id].transitions = new_trx
 
             logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
-            return True
-
-        if wfAdaptation == "patch_return_to_proposing_group_with_last_validation":
-            if 'returned_to_proposing_group' in itemWorkflow.states.keys():
-                returned_to_proposing_group = itemWorkflow.states.returned_to_proposing_group
-                returned_to_proposing_group.permission_roles = deepcopy(
-                    RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.get('meetingitemseraing_workflow'))
-            if (
-                "return_to_proposing_group_with_last_validation"
-                in meetingConfig.workflowAdaptations
-            ):
-                # TODO : remove this when PloneMeeting is in v4.2
-                returned_to_proposing_group_proposed = (
-                    itemWorkflow.states.returned_to_proposing_group_proposed
-                )
-                proposed = itemWorkflow.states.proposed
-                returned_to_proposing_group_proposed.permission_roles = deepcopy(
-                    proposed.permission_roles
-                )
-            logger.info(
-                WF_APPLIED
-                % (
-                    "patch_return_to_proposing_group_with_last_validation",
-                    meetingConfig.getId(),
-                )
-            )
             return True
         return False
 
