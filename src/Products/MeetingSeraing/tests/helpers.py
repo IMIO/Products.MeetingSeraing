@@ -27,6 +27,8 @@ from Products.MeetingCommunes.tests.helpers import MeetingCommunesTestingHelpers
 class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
     """Override some values of PloneMeetingTestingHelpers."""
 
+    TRANSITIONS_FOR_PROPOSING_ITEM_FIRST_LEVEL_1 = TRANSITIONS_FOR_PROPOSING_ITEM_FIRST_LEVEL_2 = (
+        'proposeToServiceHead',)
     TRANSITIONS_FOR_PROPOSING_ITEM_1 = TRANSITIONS_FOR_PROPOSING_ITEM_2 = (
         "proposeToServiceHead",
         "proposeToOfficeManager",
@@ -49,26 +51,13 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         "present",
     )
 
-    # TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_1 = TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_2 = (
-    # 'validateByDG', 'freeze',
-    # 'decide',)
-    # TRANSITIONS_FOR_FREEZING_MEETING_1 = TRANSITIONS_FOR_FREEZING_MEETING_2 = (
-    # 'validateByDG', 'freeze',)
-    # TRANSITIONS_FOR_PUBLISHING_MEETING_1 = TRANSITIONS_FOR_PUBLISHING_MEETING_2 = (
-    # 'validateByDG', 'freeze',)
-    # TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = (
-    # 'validateByDG', 'freeze', 'decide',)
-    # TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = (
-    # 'validateByDG', 'freeze', 'decide',
-    # 'close',)
-
-    TRANSITIONS_FOR_PUBLISHING_MEETING_1 = TRANSITIONS_FOR_PUBLISHING_MEETING_2 = ('freeze', 'publish', )
-    TRANSITIONS_FOR_FREEZING_MEETING_1 = TRANSITIONS_FOR_FREEZING_MEETING_2 = ('freeze', )
+    TRANSITIONS_FOR_PUBLISHING_MEETING_1 = TRANSITIONS_FOR_PUBLISHING_MEETING_2 = ('freeze', 'publish',)
+    TRANSITIONS_FOR_FREEZING_MEETING_1 = TRANSITIONS_FOR_FREEZING_MEETING_2 = ('freeze',)
     TRANSITIONS_FOR_DECIDING_MEETING_1 = TRANSITIONS_FOR_DECIDING_MEETING_2 = ('freeze', 'publish', 'decide')
     TRANSITIONS_FOR_CLOSING_MEETING_1 = TRANSITIONS_FOR_CLOSING_MEETING_2 = ('freeze',
                                                                              'publish',
                                                                              'decide',
-                                                                             'close', )
+                                                                             'close',)
     TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_1 = ('freeze', 'publish', 'decide')
     TRANSITIONS_FOR_ACCEPTING_ITEMS_MEETING_2 = ('freeze', 'publish', 'decide')
 
@@ -77,13 +66,13 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         "created": (
             "backToDecided",
             "backToFrozen",
-     #       "backToValidatedByDG",
+            #       "backToValidatedByDG",
             "backToCreated",
         ),
         # MeetingItem
         "itemcreated": (
             "backToItemFrozen",
-      #      "backToItemValidatedByDG",
+            #      "backToItemValidatedByDG",
             "backToPresented",
             "backToValidated",
             "backToProposed",
@@ -94,33 +83,38 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         ),
         "proposed": (
             "backToItemFrozen",
-     #       "backToItemValidatedByDG",
+            #       "backToItemValidatedByDG",
             "backToPresented",
             "backToValidated",
             "backToProposed",
         ),
         "validated": (
             "backToItemFrozen",
-      #      "backToItemValidatedByDG",
+            #      "backToItemValidatedByDG",
             "backToPresented",
             "backToValidated",
         ),
         "presented": (
             "backToItemFrozen",
-       #     "backToItemValidatedByDG",
+            #     "backToItemValidatedByDG",
             "backToPresented",
         ),
     }
-
-    WF_STATE_NAME_MAPPINGS = {
-        "itemcreated": "itemcreated",
-        "proposed": "proposed",
-        "validated": "validated",
-        "presented": "presented",
-        "itemfrozen": "itemfrozen",
+    WF_ITEM_STATE_NAME_MAPPINGS_1 = {
+        'itemcreated': 'itemcreated',
+        'proposed_first_level': 'proposed',
+        'proposed': 'proposed',
+        'prevalidated': 'proposed_to_servicehead',
+        'validated': 'validated',
+        'presented': 'presented',
+        'itemfrozen': 'itemfrozen',
     }
-
-    # in which state an item must be after a particular meeting transition?
-    ITEM_WF_STATE_AFTER_MEETING_TRANSITION = {
-        "close": "accepted_closed",
+    WF_ITEM_STATE_NAME_MAPPINGS_2 = {
+        'itemcreated': 'itemcreated',
+        'proposed_first_level': 'proposed',
+        'proposed': 'proposed',
+        'prevalidated': 'proposed_to_servicehead',
+        'validated': 'validated',
+        'presented': 'presented',
+        'itemfrozen': 'itemfrozen',
     }

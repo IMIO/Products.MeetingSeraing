@@ -67,7 +67,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.failIf(self.hasPermission('PloneMeeting: Add annex', item1))
         # pmManager creates a meeting
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date='2007/12/11 09:00:00')
+        meeting = self.create('Meeting', date=DateTime('2007/01/10').asdatetime())
         self.addAnnex(item1, relatedTo='item_decision')
         # pmCreator2 creates and proposes an item
         self.changeUser('pmCreator2')
@@ -109,12 +109,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.failUnless(len(meeting.getItems(listTypes='late')) == 1)
         self.do(meeting, 'decide')
         self.do(item1, 'accept')
-        self.assertEquals(item1.queryState(), 'accepted')
-        self.assertEquals(item2.queryState(), 'itemfrozen')
+        self.assertEquals(item1.query_state(), 'accepted')
+        self.assertEquals(item2.query_state(), 'itemfrozen')
         self.do(meeting, 'close')
-        self.assertEquals(item1.queryState(), 'accepted_closed')
+        self.assertEquals(item1.query_state(), 'accepted_closed')
         # every items without a decision are automatically accepted_closed
-        self.assertEquals(item2.queryState(), 'accepted_closed')
+        self.assertEquals(item2.query_state(), 'accepted_closed')
 
     def test_pm_WorkflowPermissions(self):
         """Bypass this test..."""
@@ -164,7 +164,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
                 {
                     'meeting_transition': 'close',
                     'item_action': EXECUTE_EXPR_VALUE,
-                    'tal_expression': 'python: item.queryState() in cfg.getItemDecidedStates() and '
+                    'tal_expression': 'python: item.query_state() in cfg.getItemDecidedStates() and '
                     'item.update_local_roles()',
                 },
                 {
@@ -178,7 +178,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         cfg.setPowerObservers(
             [
                 {
-                    'item_access_on': 'python: item.getMeeting().queryState() == "closed"',
+                    'item_access_on': 'python: item.getMeeting().query_state() == "closed"',
                     'item_states': ['accepted'],
                     'label': 'Power observers',
                     'meeting_access_on': '',
@@ -192,12 +192,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         item1.setDecision(self.decisionText)
         item2 = self.create('MeetingItem', decision=self.decisionText)
         item2.setDecision(self.decisionText)
-        meeting = self.create('Meeting', date=DateTime('2019/09/10'))
+        meeting = self.create('Meeting', date=DateTime('2019/09/10').asdatetime())
         self.presentItem(item1)
         self.presentItem(item2)
         self.decideMeeting(meeting)
         self.do(item1, 'accept')
-        self.assertEqual(item1.queryState(), 'accepted')
+        self.assertEqual(item1.query_state(), 'accepted')
         # power observer does not have access to item1/item2
         self.changeUser('powerobserver1')
         self.assertFalse(self.hasPermission(View, item1))
@@ -205,8 +205,8 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.changeUser('pmManager')
         self.closeMeeting(meeting)
         # items are accepted
-        self.assertEqual(item1.queryState(), 'accepted')
-        self.assertEqual(item2.queryState(), 'accepted')
+        self.assertEqual(item1.query_state(), 'accepted')
+        self.assertEqual(item2.query_state(), 'accepted')
         # and powerobserver has also access to item1 that was already accepted before meeting was closed
         self.assertTrue(self.hasPermission(View, item1))
         self.assertTrue(self.hasPermission(View, item2))
@@ -241,12 +241,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # create a meeting with items
         meeting = self._createMeetingWithItems()
         # for now, every items are 'presented'
-        for item in meeting.getItems():
-            self.assertEqual(item.queryState(), 'presented')
+        for item in meeting.get_items():
+            self.assertEqual(item.query_state(), 'presented')
         # freeze the meeting, nothing is done by the expression and the items are frozen
         self.freezeMeeting(meeting)
         for item in meeting.getItems():
-            self.assertEqual(item.queryState(), 'itemfrozen')
+            self.assertEqual(item.query_state(), 'itemfrozen')
 
         # now a valid config, append ('accepted') to item title when meeting is decided
         title_suffix = " (accepted)"
@@ -271,7 +271,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.decideMeeting(meeting)
         for item in meeting.getItems():
             self.assertTrue(title_suffix in item.Title())
-            self.assertEqual(item.queryState(), 'accepted')
+            self.assertEqual(item.query_state(), 'accepted')
 
 
 def test_suite():

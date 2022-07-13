@@ -6,6 +6,7 @@
 #
 
 from AccessControl import Unauthorized
+from DateTime import DateTime
 from OFS.ObjectManager import BeforeDeleteException
 from Products.CMFPlone.utils import safe_unicode
 from Products.MeetingCommunes.tests.testMeetingConfig import testMeetingConfig as mctmc
@@ -49,7 +50,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
 
     def _usersToRemoveFromGroupsForUpdatePersonalLabels(self):
         """ """
-        return ['pmDivisionHead1', 'pmOfficeManager1', 'pmReviewerLevel1', 'pmServiceHead1']
+        return ['pmDivisionHead1', 'pmOfficeManager1', 'pmServiceHead1']
 
     def test_pm_CanNotRemoveUsedMeetingConfig(self):
         '''While removing a MeetingConfig, it should raise if it is used somewhere...'''
@@ -69,7 +70,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
 
         # fails if a meeting exists
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date='2008/06/23 15:39:00')
+        meeting = self.create('Meeting', date=DateTime('2008/06/23 15:39:00').asdatetime())
         self.changeUser('admin')
         with self.assertRaises(BeforeDeleteException) as cm:
             self.tool.manage_delObjects([cfgId, ])

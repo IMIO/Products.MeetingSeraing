@@ -48,7 +48,7 @@ def update_item_schema(baseSchema):
             widget=RichWidget(
                 rows=15,
                 condition="python: here.portal_type in ('MeetingItemCouncil', 'MeetingItemZCouncil') \
-                and (here.portal_plonemeeting.isManager(here) or here.portal_plonemeeting.userIsAmong('powerobservers')\
+                and (here.showMeetingManagerReservedField('interventions') or here.portal_plonemeeting.userIsAmong('powerobservers')\
                 or here.portal_plonemeeting.userIsAmong('restrictedpowerobservers'))",
                 label='Interventions',
                 label_msgid='MeetingSeraing_label_interventions',
@@ -99,7 +99,7 @@ def update_item_schema(baseSchema):
             name='dgNote',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.portal_plonemeeting.isManager(here)",
+                condition="python: here.showMeetingManagerReservedField('meetingManagersNotes')",
                 label='dgnote',
                 label_msgid='MeetingSeraing_label_dgnote',
                 description='DG Note',

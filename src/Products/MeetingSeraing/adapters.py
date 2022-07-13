@@ -74,7 +74,7 @@ from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.model import adaptations
-from Products.PloneMeeting.model.adaptations import WF_APPLIED
+from Products.PloneMeeting.model.adaptations import WF_APPLIED, _addIsolatedState, _getValidationReturnedStates
 from Products.PloneMeeting.utils import sendMailIfRelevant
 from zope.i18n import translate
 from zope.interface import implements
@@ -102,6 +102,8 @@ customWfAdaptations = (
     "return_to_proposing_group_with_last_validation",
     "returned_to_advise",
     "patch_return_to_proposing_group_with_last_validation",
+    "seraing_add_item_closed_state"
+    ""
 )
 MeetingConfig.wfAdaptations = MeetingConfig.wfAdaptations + customWfAdaptations
 
@@ -124,6 +126,9 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
     "backTo_validated_by_dg_from_returned_to_proposing_group": [
         "validated_by_dg",
     ],
+    "backTo_itempublished_from_returned_to_proposing_group": {
+        "published"
+    },
     "backTo_itemfrozen_from_returned_to_proposing_group": [
         "frozen",
         "decided",
@@ -154,14 +159,12 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
 }
 adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
 
-RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
-    "presented",
+CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
     "validated_by_dg",
-    "itemfrozen",
 )
-adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
-    RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
-)
+adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES \
+                                                         + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+
 
 RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
     "meetingitemseraing_workflow":
@@ -229,6 +232,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
         ),
         # edit permissions
         "Modify portal content": (
+            "Editor",
             "Manager",
             "MeetingMember",
             "MeetingServiceHead",
@@ -238,6 +242,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
             "MeetingManager",
         ),
         "PloneMeeting: Write budget infos": (
+            "Editor",
             "Manager",
             "MeetingMember",
             "MeetingServiceHead",
@@ -248,6 +253,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
             "MeetingBudgetImpactEditor",
         ),
         "PloneMeeting: Write decision": (
+            "Editor",
             "Manager",
             "MeetingMember",
             "MeetingServiceHead",
@@ -257,6 +263,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
             "MeetingManager",
         ),
         "Review portal content": (
+            "Editor",
             "Manager",
             "MeetingMember",
             "MeetingServiceHead",
@@ -264,6 +271,7 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
             "MeetingDivisionHead",
             "MeetingReviewer",
             "MeetingManager",
+            "Reviewer"
         ),
         "Add portal content": (
             "Manager",
@@ -274,8 +282,18 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
             "MeetingReviewer",
             "MeetingManager",
         ),
-        "PloneMeeting: Add annex": ("Manager", "Editor"),
+        "PloneMeeting: Add annex": (
+            "Editor",
+            "Manager",
+            "MeetingMember",
+            "MeetingServiceHead",
+            "MeetingOfficeManager",
+            "MeetingDivisionHead",
+            "MeetingReviewer",
+            "MeetingManager",
+        ),
         "PloneMeeting: Add annexDecision": (
+            "Contributor"
             "Manager",
             "MeetingMember",
             "MeetingServiceHead",
@@ -296,10 +314,6 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {
         ),
     }
 }
-
-adaptations.RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = (
-    RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
-)
 
 RETURN_TO_PROPOSING_GROUP_CUSTOM_STATE_TO_CLONE = {
     "meetingitemseraing_workflow": "meetingitemseraing_workflow.itemcreated"
@@ -424,9 +438,9 @@ class CustomSeraingMeeting(CustomMeeting):
             if elt == "":
                 itemUids.remove(elt)
         try:
-            items = self.context.getItems(
+            items = self.context.get_items(
                 uids=itemUids,
-                listTypes=listTypes,
+                list_types=listTypes,
                 ordered=True,
                 unrestricted=unrestricted,
             )
@@ -949,15 +963,13 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         """After cloned item, we validate this item"""
         super(MeetingItemSeraingWorkflowActions, self).doDelay(stateChange)
         # make sure we get freshly cloned item in case we delay self.context several times...
-        clonedItem = [
-            item
-            for item in self.context.getBRefs("ItemPredecessor")
-            if item.query_state() == "itemcreated"
-        ][0]
+        clonedItem = self.context.get_successors()[0]
         wfTool = api.portal.get_tool("portal_workflow")
-        # make sure item may be validated
-        with api.env.adopt_roles(["Manager"]):
-            wfTool.doActionFor(clonedItem, "validate")
+
+        if clonedItem.query_state() != 'validated':
+            # make sure item may be validated
+            with api.env.adopt_roles(["Manager"]):
+                wfTool.doActionFor(clonedItem, "validate")
         # Send, if configured, a mail to the person who created the item
         sendMailIfRelevant(
             clonedItem,
@@ -1016,7 +1028,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
     def _latePresentedItem(self):
         """Presents an item into a frozen meeting."""
         wTool = getToolByName(self.context, "portal_workflow")
-        wTool.doActionFor(self.context, "itemValidateByDG")
+        #wTool.doActionFor(self.context, "itemValidateByDG")
         wTool.doActionFor(self.context, "itemfreeze")
 
 
@@ -1059,23 +1071,6 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
             )
         ):
             res = True
-        return res
-
-    security.declarePublic("mayValidate")
-
-    def mayValidate(self):
-        """
-        We must be reviewer
-        """
-        res = False
-        # The user must have the 'Review portal content permission and be reviewer or manager'
-        if _checkPermission(ReviewPortalContent, self.context):
-            res = True
-            member = self.context.portal_membership.getAuthenticatedMember()
-            if not member.has_role(
-                "MeetingReviewer", self.context
-            ) and not self.tool.isManager(self.cfg):
-                res = False
         return res
 
     security.declarePublic("mayValidateByDG")
@@ -1235,6 +1230,37 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
     ):
         """This function applies workflow changes as specified by the
         p_meetingConfig."""
+        if wfAdaptation == "seraing_add_item_closed_state":
+            _addIsolatedState(
+                new_state_id='accepted_closed',
+                origin_state_id='accepted',
+                origin_transition_id='accept_close',
+                origin_transition_guard_expr_name='mayClose()',
+                back_transition_guard_expr_name="mayCorrect()",
+                back_transition_id='backToItemAccepted',
+                itemWorkflow=itemWorkflow,
+                base_state_id='accepted', )
+            _addIsolatedState(
+                new_state_id='delayed_closed',
+                origin_state_id='delayed',
+                origin_transition_id='delay_close',
+                origin_transition_guard_expr_name='mayClose()',
+                back_transition_guard_expr_name="mayCorrect()",
+                back_transition_id='backToItemDelayed',
+                itemWorkflow=itemWorkflow,
+                base_state_id='delayed', )
+            _addIsolatedState(
+                new_state_id='accepted_but_modified_closed',
+                origin_state_id='accepted_but_modified',
+                origin_transition_id='accept_but_modify_close',
+                origin_transition_guard_expr_name='mayClose()',
+                back_transition_guard_expr_name="mayCorrect()",
+                back_transition_id='backToItemAcceptedButModified',
+                itemWorkflow=itemWorkflow,
+                base_state_id='accepted_but_modified', )
+
+
+
         if wfAdaptation == "returned_to_advise":
             wfTool = api.portal.get_tool("portal_workflow")
             itemStates = itemWorkflow.states
@@ -1249,76 +1275,12 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     # and apply permissions defined in RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS
                     # RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS contains custom permissions by workflow
                     customPermissions = RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.get(
-                        meetingConfig.getItemWorkflow(), {}
+                        #meetingConfig.getItemWorkflow(), {}
+                        "meetingitemseraing_workflow", {}
                     )
                     itemStates.addState("returned_to_advise")
                     newState = getattr(itemStates, "returned_to_advise")
-                    # clone the permissions of the given RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE if it exists
-                    cloned_permissions_with_meetingmanager = {}
-                    # state to clone contains the state to clone and the workflow_id where this state is
-                    stateToCloneInfos = (
-                        adaptations.RETURN_TO_PROPOSING_GROUP_STATE_TO_CLONE.get(
-                            meetingConfig.getItemWorkflow(), {}
-                        )
-                    )
-                    stateToCloneWFId = ""
-                    stateToCloneStateId = ""
-                    if stateToCloneInfos:
-                        # stateToCloneInfos is like 'meetingitem_workflow.itemcreated'
-                        stateToCloneWFId, stateToCloneStateId = stateToCloneInfos.split(
-                            "."
-                        )
-                    stateToCloneWF = getattr(wfTool, stateToCloneWFId, None)
-                    stateToClone = None
-                    if stateToCloneWF and hasattr(
-                        stateToCloneWF.states, stateToCloneStateId
-                    ):
-                        stateToClone = getattr(stateToCloneWF.states, stateToCloneStateId)
-                        # we must make sure the MeetingManagers still may access this item
-                        # so add MeetingManager role to every cloned permissions
-                        cloned_permissions = dict(stateToClone.permission_roles)
-                        # we need to use an intermediate dict because roles are stored as a tuple and we need a list...
-                        for permission in cloned_permissions:
-                            # the acquisition is defined like this : if permissions is a tuple, it is not acquired
-                            # if it is a list, it is acquired...  WTF???  So make sure we store the correct type...
-                            acquired = (
-                                isinstance(cloned_permissions[permission], list)
-                                and True
-                                or False
-                            )
-                            cloned_permissions_with_meetingmanager[permission] = list(
-                                cloned_permissions[permission]
-                            )
-                            if "MeetingManager" not in cloned_permissions[permission]:
-                                cloned_permissions_with_meetingmanager[permission].append(
-                                    "MeetingManager"
-                                )
-                            if not acquired:
-                                cloned_permissions_with_meetingmanager[
-                                    permission
-                                ] = tuple(
-                                    cloned_permissions_with_meetingmanager[permission]
-                                )
-
-                    # now apply custom permissions defined in customPermissions
-                    cloned_permissions_with_meetingmanager.update(customPermissions)
-
-                    # if we are cloning an existing state permissions, make sure DeleteObjects
-                    # is only be availble to ['Manager', 'MeetingManager']
-                    # if custom permissions are defined, keep what is defined in it
-                    if DeleteObjects not in customPermissions and stateToClone:
-                        del_obj_perm = stateToClone.getPermissionInfo(DeleteObjects)
-                        if del_obj_perm["acquired"]:
-                            cloned_permissions_with_meetingmanager[DeleteObjects] = [
-                                "Manager",
-                            ]
-                        else:
-                            cloned_permissions_with_meetingmanager[DeleteObjects] = (
-                                "Manager",
-                            )
-
-                    # finally, apply computed permissions, aka cloned + custom
-                    newState.permission_roles = cloned_permissions_with_meetingmanager
+                    newState.permission_roles = deepcopy(customPermissions)
 
                 if "return_to_advise" not in itemTransitions:
                     itemTransitions.addTransition("return_to_advise")
@@ -1350,11 +1312,11 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 )
 
                 return_to_advice_item_state = [
-                    adaptations.getValidationReturnedStates(meetingConfig)[-1]
+                    _getValidationReturnedStates(meetingConfig)[-1]
                 ] + [
                     "returned_to_proposing_group",
                     "presented",
-                    "validated_by_dg",
+                  #  "validated_by_dg",
                     "itemfrozen",
                 ]
 
@@ -1375,6 +1337,10 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             return True
 
         if wfAdaptation == "patch_return_to_proposing_group_with_last_validation":
+            if 'returned_to_proposing_group' in itemWorkflow.states.keys():
+                returned_to_proposing_group = itemWorkflow.states.returned_to_proposing_group
+                returned_to_proposing_group.permission_roles = deepcopy(
+                    RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS.get('meetingitemseraing_workflow'))
             if (
                 "return_to_proposing_group_with_last_validation"
                 in meetingConfig.workflowAdaptations

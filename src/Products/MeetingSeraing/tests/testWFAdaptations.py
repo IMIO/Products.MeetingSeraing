@@ -47,6 +47,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 'return_to_proposing_group',
                 'return_to_proposing_group_with_last_validation',
                 'returned_to_advise',
+                'seraing_add_item_closed_state'
             },
         )
 
@@ -175,7 +176,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         # when the creator send the item back to the meeting, it is in the right state depending
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
-        self.assertEquals(item.queryState(), 'presented')
+        self.assertEquals(item.query_state(), 'presented')
 
     def test_pm_WFA_return_to_advise(self):
         '''Test the workflowAdaptation 'return_to_advise'.'''
@@ -183,12 +184,9 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         cfg = self.meetingConfig
         self.failIf('returned_to_advise' not in cfg.listWorkflowAdaptations())
         # activate the wfAdaptations and check
-        cfg.setWorkflowAdaptations(
-            ('return_to_proposing_group_with_last_validation', 'returned_to_advise')
+        self._activate_wfas(
+            ('return_to_proposing_group_with_last_validation', 'returned_to_advise', 'patch_return_to_proposing_group_with_last_validation')
         )
-        logger = logging.getLogger('MeetingSeraing: testing')
-        _performWorkflowAdaptations(cfg, logger)
-        self.logger = logger
         # test what should happen to the wf (added states and transitions)
         self._return_to_advise_active()
         # test the functionnality of returning an item to the advise
@@ -229,7 +227,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.validateItem(item)
         # create a Meeting and add the item to it
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date=DateTime())
+        meeting = self.create('Meeting', date=DateTime("2022/07/12 12:00:00").asdatetime())
         self.presentItem(item)
         self.assertTrue('return_to_advise' in self.transitions(item))
         # now that it is presented, the pmCreator1/pmReviewer1 can not edit it anymore
@@ -249,6 +247,8 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'return_to_proposing_group')
 
         for userId in ('pmCreator1', 'pmReviewer1'):
+            itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
+            perms = itemWF.states.returned_to_proposing_group.permission_roles
             self.changeUser(userId)
             self.failUnless(self.hasPermission(ModifyPortalContent, item))
             self.failUnless(self.hasPermission(ReviewPortalContent, item))
@@ -294,7 +294,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'goTo_returned_to_proposing_group_proposed')
-        self.assertEquals(item.queryState(), 'returned_to_proposing_group_proposed')
+        self.assertEquals(item.query_state(), 'returned_to_proposing_group_proposed')
         self.assertTrue('return_to_advise' in self.transitions(item))
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
         self.do(meeting, 'validateByDG')
@@ -323,10 +323,10 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'goTo_returned_to_proposing_group_proposed')
-        self.assertEquals(item.queryState(), 'returned_to_proposing_group_proposed')
+        self.assertEquals(item.query_state(), 'returned_to_proposing_group_proposed')
         self.assertTrue('return_to_advise' in self.transitions(item))
         self.do(item, 'backTo_validated_by_dg_from_returned_to_proposing_group')
-        self.assertEquals(item.queryState(), 'validated_by_dg')
+        self.assertEquals(item.query_state(), 'validated_by_dg')
         self.do(meeting, 'freeze')
         self.assertTrue('return_to_advise' in self.transitions(item))
         # send the item back to the proposing group so the proposing group as an edit access to it
@@ -353,10 +353,10 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
         self.do(item, 'goTo_returned_to_proposing_group_proposed')
-        self.assertEquals(item.queryState(), 'returned_to_proposing_group_proposed')
+        self.assertEquals(item.query_state(), 'returned_to_proposing_group_proposed')
         self.assertTrue('return_to_advise' in self.transitions(item))
         self.do(item, 'backTo_itemfrozen_from_returned_to_proposing_group')
-        self.assertEquals(item.queryState(), 'itemfrozen')
+        self.assertEquals(item.query_state(), 'itemfrozen')
 
 
 def test_suite():

@@ -38,8 +38,10 @@ developers.serviceheads.append(pmReviewer1)
 developers.serviceheads.append(pmServiceHead1)
 developers.serviceheads.append(pmManager)
 developers.officemanagers.append(pmOfficeManager1)
+developers.officemanagers.append(pmReviewer1)
 developers.officemanagers.append(pmManager)
 developers.divisionheads.append(pmDivisionHead1)
+developers.divisionheads.append(pmReviewer1)
 developers.divisionheads.append(pmManager)
 
 # to serviceheads that is first reviewer level
@@ -66,8 +68,6 @@ collegeMeeting.transitionsForPresentingAnItem = (
     "validate",
     "present",
 )
-#collegeMeeting.itemWorkflow = "meetingitemseraing_workflow"
-#collegeMeeting.meetingWorkflow = "meetingseraing_workflow"
 collegeMeeting.itemConditionsInterface = (
     "Products.MeetingSeraing.interfaces.IMeetingItemSeraingCollegeWorkflowConditions"
 )
@@ -95,8 +95,6 @@ councilMeeting.transitionsForPresentingAnItem = (
     "validate",
     "present",
 )
-#councilMeeting.itemWorkflow = "meetingitemseraing_workflow"
-#councilMeeting.meetingWorkflow = "meetingseraing_workflow"
 councilMeeting.itemConditionsInterface = (
     "Products.MeetingSeraing.interfaces.IMeetingItemSeraingCouncilWorkflowConditions"
 )

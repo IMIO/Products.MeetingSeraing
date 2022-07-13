@@ -1,0 +1,1023 @@
+Running Products.MeetingSeraing.testing.MS_TESTING_PROFILE_FUNCTIONAL tests:
+  Set up plone.testing.zca.LayerCleanup in 0.000 seconds.
+  Set up plone.testing.z2.Startup in 0.064 seconds.
+  Set up plone.app.testing.layers.PloneFixture in 2.156 seconds.
+  Set up plone.app.testing.helpers.MS_TESTING_PROFILE in 47.771 seconds.
+  Set up Products.MeetingSeraing.testing.MS_TESTING_PROFILE_FUNCTIONAL in 0.000 seconds.
+2022-07-12 17:28:35,060 - PloneMeeting: testing - INFO - Executing [1/756] testAdvices:test_pm_AddAnnexToAdvice
+2022-07-12 17:28:35,937 - PloneMeeting: testing - INFO - Executing [2/756] testAdvices:test_pm_AddEditDeleteAdvices
+2022-07-12 17:28:36,716 - PloneMeeting: testing - INFO - Executing [3/756] testAdvices:test_pm_AdviceAddImagePermission
+2022-07-12 17:28:37,630 - PloneMeeting: testing - INFO - Executing [4/756] testAdvices:test_pm_AdviceAskedAutomaticallyWithGroupsInCharge
+2022-07-12 17:28:38,144 - PloneMeeting: testing - INFO - Executing [5/756] testAdvices:test_pm_AdviceAuthorDisplayedInAdviceInfos
+2022-07-12 17:28:38,933 - PloneMeeting: testing - INFO - Executing [6/756] testAdvices:test_pm_AdviceDelayNotReinitializedWhenGiven
+2022-07-12 17:28:39,814 - PloneMeeting: testing - INFO - Executing [7/756] testAdvices:test_pm_AdviceExternalImagesStoredLocally
+2022-07-12 17:28:40,847 - PloneMeeting: testing - INFO - Executing [8/756] testAdvices:test_pm_AdviceHistorizedIfGivenAndItemChanged
+2022-07-12 17:28:42,805 - PloneMeeting: testing - INFO - Executing [9/756] testAdvices:test_pm_AdviceHistorizedWithItemDataWhenAdviceGiven
+2022-07-12 17:28:43,950 - PloneMeeting: testing - INFO - Executing [10/756] testAdvices:test_pm_AdviceModificationDateKeptWhenAdviceHistorized
+2022-07-12 17:28:44,647 - PloneMeeting: testing - INFO - Executing [11/756] testAdvices:test_pm_AdviceProposingGroupComment
+2022-07-12 17:28:46,063 - PloneMeeting: testing - INFO - Executing [12/756] testAdvices:test_pm_AdvicesConfidentiality
+2022-07-12 17:28:47,475 - PloneMeeting: testing - INFO - Executing [13/756] testAdvices:test_pm_AdvicesIconsCaching
+2022-07-12 17:28:48,023 - PloneMeeting: testing - INFO - Executing [14/756] testAdvices:test_pm_AdvicesInfosOnItemTemplate
+2022-07-12 17:28:48,106 - PloneMeeting: testing - INFO - Executing [15/756] testAdvices:test_pm_AdvicesInvalidation
+2022-07-12 17:28:49,489 - PloneMeeting: testing - INFO - Executing [16/756] testAdvices:test_pm_AdviserNotAbleToAddAnnexToItem
+2022-07-12 17:28:50,136 - PloneMeeting: testing - INFO - Executing [17/756] testAdvices:test_pm_AutoAdviceAfterClone
+2022-07-12 17:28:50,729 - PloneMeeting: testing - INFO - Executing [18/756] testAdvices:test_pm_AutomaticAdvices
+2022-07-12 17:28:51,383 - PloneMeeting: testing - INFO - Executing [19/756] testAdvices:test_pm_AvailableDelaysView
+2022-07-12 17:28:52,054 - PloneMeeting: testing - INFO - Executing [20/756] testAdvices:test_pm_CanNotEditAnotherGroupAdvice
+2022-07-12 17:28:52,751 - PloneMeeting: testing - INFO - Executing [21/756] testAdvices:test_pm_CanNotGiveAdviceIfNotAsked
+2022-07-12 17:28:53,268 - PloneMeeting: testing - INFO - Executing [22/756] testAdvices:test_pm_ChangeAdviceAskedAgainView
+2022-07-12 17:28:54,743 - PloneMeeting: testing - INFO - Executing [23/756] testAdvices:test_pm_ChangeAdviceHiddenDuringRedactionView
+2022-07-12 17:28:56,004 - PloneMeeting: testing - INFO - Executing [24/756] testAdvices:test_pm_ChangeDelayView
+2022-07-12 17:28:56,714 - PloneMeeting: testing - INFO - Executing [25/756] testAdvices:test_pm_ComputeDelaysAsCalendarDays
+2022-07-12 17:28:57,268 - PloneMeeting: testing - INFO - Executing [26/756] testAdvices:test_pm_ComputeDelaysWorkingDaysAndHolidaysAndUnavailableEndDays
+2022-07-12 17:28:57,867 - PloneMeeting: testing - INFO - Executing [27/756] testAdvices:test_pm_ConfigAdviceStates
+2022-07-12 17:28:57,885 - PloneMeeting: testing - INFO - Executing [28/756] testAdvices:test_pm_DelayStartedStoppedOn
+2022-07-12 17:28:59,299 - PloneMeeting: testing - INFO - Executing [29/756] testAdvices:test_pm_DelayStartedStoppedOnWithKeepAccessToItemWhenAdviceIsGiven
+2022-07-12 17:29:00,554 - PloneMeeting: testing - INFO - Executing [30/756] testAdvices:test_pm_GetAdviceDataFor
+2022-07-12 17:29:01,062 - PloneMeeting: testing - INFO - Executing [31/756] testAdvices:test_pm_GetAdviceDataForAdviceHiddenDuringRedaction
+2022-07-12 17:29:01,849 - PloneMeeting: testing - INFO - Executing [32/756] testAdvices:test_pm_GetAdviceDataForInheritedAdvice
+2022-07-12 17:29:02,541 - PloneMeeting: testing - INFO - Executing [33/756] testAdvices:test_pm_GetAdviceObj
+2022-07-12 17:29:03,227 - PloneMeeting: testing - INFO - Executing [34/756] testAdvices:test_pm_GetAutomaticAdvisers
+2022-07-12 17:29:03,690 - PloneMeeting: testing - INFO - Executing [35/756] testAdvices:test_pm_GetInheritedAdviceInfo
+2022-07-12 17:29:04,477 - PloneMeeting: testing - INFO - Executing [36/756] testAdvices:test_pm_Get_advice_given_on
+2022-07-12 17:29:05,195 - PloneMeeting: testing - INFO - Executing [37/756] testAdvices:test_pm_GiveAdviceOnCreatedItem
+2022-07-12 17:29:05,737 - PloneMeeting: testing - INFO - Executing [38/756] testAdvices:test_pm_GivenDelayAwareAutomaticAdviceLeftEvenIfItemConditionChanged
+2022-07-12 17:29:06,385 - PloneMeeting: testing - INFO - Executing [39/756] testAdvices:test_pm_HistorizedAdviceIsNotDeletable
+2022-07-12 17:29:07,736 - PloneMeeting: testing - INFO - Executing [40/756] testAdvices:test_pm_IndexAdvisers
+2022-07-12 17:29:09,406 - PloneMeeting: testing - INFO - Executing [41/756] testAdvices:test_pm_IndexAdvisersCombinedIndex
+2022-07-12 17:29:10,305 - PloneMeeting: testing - INFO - Executing [42/756] testAdvices:test_pm_IndexAdvisersInheritedAdvice
+2022-07-12 17:29:11,078 - PloneMeeting: testing - INFO - Executing [43/756] testAdvices:test_pm_InheritedAdviceAddedAsPowerAdviserSentToOtherMCUsingDelayAwareAdvice
+2022-07-12 17:29:12,334 - PloneMeeting: testing - INFO - Executing [44/756] testAdvices:test_pm_InheritedAdviceAdvisersAccesses
+2022-07-12 17:29:13,101 - PloneMeeting: testing - INFO - Executing [45/756] testAdvices:test_pm_InheritedAdviceNotAskedAdvice
+2022-07-12 17:29:14,040 - PloneMeeting: testing - INFO - Executing [46/756] testAdvices:test_pm_InheritedAdviceUpdatedWhenInheritedAdviceChanged
+2022-07-12 17:29:15,250 - PloneMeeting: testing - INFO - Executing [47/756] testAdvices:test_pm_InheritedAdviceUpdatedWhenInheritedAdviceNoMoreAskedOnOriginalItem
+2022-07-12 17:29:16,661 - PloneMeeting: testing - INFO - Executing [48/756] testAdvices:test_pm_InheritedAdviceUpdatedWhenInheritedItemRemoved
+2022-07-12 17:29:18,293 - PloneMeeting: testing - INFO - Executing [49/756] testAdvices:test_pm_InheritedAdviceUpdatedWhenInheritedPowerAdviserAdviceRemoved
+2022-07-12 17:29:19,195 - PloneMeeting: testing - INFO - Executing [50/756] testAdvices:test_pm_InheritedAdviceViewerAccesses
+2022-07-12 17:29:20,309 - PloneMeeting: testing - INFO - Executing [51/756] testAdvices:test_pm_InheritedWithHideNotViewableLinkedItemsTo
+2022-07-12 17:29:21,506 - PloneMeeting: testing - INFO - Executing [52/756] testAdvices:test_pm_ItemModifiedWhenAdviceChanged
+2022-07-12 17:29:22,197 - PloneMeeting: testing - INFO - Executing [53/756] testAdvices:test_pm_KeepAccessToItemWhenAdviceIsGiven
+2022-07-12 17:29:23,391 - PloneMeeting: testing - INFO - Executing [54/756] testAdvices:test_pm_KeepAccessToItemWhenAdviceWasGiveable
+2022-07-12 17:29:24,343 - PloneMeeting: testing - INFO - Executing [55/756] testAdvices:test_pm_ManualVersioningEnabledForMeetingAdvicePortalTypes
+2022-07-12 17:29:24,361 - PloneMeeting: testing - INFO - Executing [56/756] testAdvices:test_pm_MayNotAddAdviceEditIfDelayExceeded
+2022-07-12 17:29:25,226 - PloneMeeting: testing - INFO - Executing [57/756] testAdvices:test_pm_MayTriggerGiveAdviceWhenItemIsBackToANotViewableState
+2022-07-12 17:29:25,941 - PloneMeeting: testing - INFO - Executing [58/756] testAdvices:test_pm_OrgDefinedItemAdviceStatesValuesOverridesMeetingConfigValues
+2022-07-12 17:29:26,529 - PloneMeeting: testing - INFO - Executing [59/756] testAdvices:test_pm_OrgDefinedItemAdviceStatesWorksTogetherWithMeetingConfigValues
+2022-07-12 17:29:26,546 - PloneMeeting: testing - INFO - Executing [60/756] testAdvices:test_pm_OrgDefinedKeepAccessToItemWhenAdviceOverridesMeetingConfigValues
+2022-07-12 17:29:27,761 - PloneMeeting: testing - INFO - Executing [61/756] testAdvices:test_pm_PowerAdvisers
+2022-07-12 17:29:28,427 - PloneMeeting: testing - INFO - Executing [62/756] testAdvices:test_pm_ReinitAdviceDelayView
+2022-07-12 17:29:28,966 - PloneMeeting: testing - INFO - Executing [63/756] testAdvices:test_pm_RemoveInheritedAdviceByAdviser
+2022-07-12 17:29:29,861 - PloneMeeting: testing - INFO - Executing [64/756] testAdvices:test_pm_RemoveInheritedAdviceByMeetingManager
+2022-07-12 17:29:32,489 - PloneMeeting: testing - INFO - Executing [65/756] testAdvices:test_pm_RowIdSetOnAdvices
+2022-07-12 17:29:33,382 - PloneMeeting: testing - INFO - Executing [66/756] testAdvices:test_pm_ShowAdvices
+2022-07-12 17:29:33,871 - PloneMeeting: testing - INFO - Executing [67/756] testAdvices:test_pm_ValidateOptionalAdvisersWithInheritedAdvices
+2022-07-12 17:29:34,964 - PloneMeeting: testing - INFO - Executing [68/756] testAdvices:test_pm_ViewItemToAdvice
+2022-07-12 17:29:36,870 - PloneMeeting: testing - INFO - Executing [69/756] testAnnexes:test_pm_Actions_panel_history_only_for_managers
+2022-07-12 17:29:37,478 - PloneMeeting: testing - INFO - Executing [70/756] testAnnexes:test_pm_AddingAnnexesDoesNotCreateWrongCatalogPaths
+2022-07-12 17:29:39,327 - PloneMeeting: testing - INFO - Executing [71/756] testAnnexes:test_pm_AdviceAnnexFormVocabularies
+2022-07-12 17:29:39,891 - PloneMeeting: testing - INFO - Executing [72/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForAdviserGroup
+2022-07-12 17:29:44,051 - PloneMeeting: testing - INFO - Executing [73/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForAdvisers
+2022-07-12 17:29:48,289 - PloneMeeting: testing - INFO - Executing [74/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForBudgetImpactEditors
+2022-07-12 17:29:51,962 - PloneMeeting: testing - INFO - Executing [75/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForCopyGroups
+2022-07-12 17:29:56,220 - PloneMeeting: testing - INFO - Executing [76/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForGroupsInCharge
+2022-07-12 17:30:00,345 - PloneMeeting: testing - INFO - Executing [77/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForPowerObservers
+2022-07-12 17:30:04,203 - PloneMeeting: testing - INFO - Executing [78/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForProposingGroupSuffixes
+2022-07-12 17:30:16,431 - PloneMeeting: testing - INFO - Executing [79/756] testAnnexes:test_pm_AdviceGetCategorizedElementsWithConfidentialityForRestrictedPowerObservers
+2022-07-12 17:30:20,165 - PloneMeeting: testing - INFO - Executing [80/756] testAnnexes:test_pm_AnnexOnlyConvertedAgainWhenNecessary
+2022-07-12 17:30:26,158 - PloneMeeting: testing - INFO - Executing [81/756] testAnnexes:test_pm_AnnexRestrictShownAndEditableAttributes
+2022-07-12 17:30:27,106 - PloneMeeting: testing - INFO - Executing [82/756] testAnnexes:test_pm_Annex_type_only_for_meeting_managers
+2022-07-12 17:30:28,058 - PloneMeeting: testing - INFO - Executing [83/756] testAnnexes:test_pm_AnnexesCategorizedChildsCaching
+2022-07-12 17:30:28,674 - PloneMeeting: testing - INFO - Executing [84/756] testAnnexes:test_pm_AnnexesConvertedDependingOnAnnexToPrintMode
+2022-07-12 17:30:29,742 - PloneMeeting: testing - INFO - Executing [85/756] testAnnexes:test_pm_AnnexesConvertedIfAutoConvertIsEnabled
+2022-07-12 17:30:30,871 - PloneMeeting: testing - INFO - Executing [86/756] testAnnexes:test_pm_AnnexesConvertedIsPreviewable
+2022-07-12 17:30:31,785 - PloneMeeting: testing - INFO - Executing [87/756] testAnnexes:test_pm_AnnexesCreationDateKeptWhenItemDuplicated
+2022-07-12 17:30:32,482 - PloneMeeting: testing - INFO - Executing [88/756] testAnnexes:test_pm_AnnexesDeletableByItemEditor
+2022-07-12 17:30:33,641 - PloneMeeting: testing - INFO - Executing [89/756] testAnnexes:test_pm_AnnexesTitleFoundInItemSearchableText
+2022-07-12 17:30:36,999 - PloneMeeting: testing - INFO - Executing [90/756] testAnnexes:test_pm_AnnexesTitleFoundInMeetingSearchableText
+2022-07-12 17:30:38,029 - PloneMeeting: testing - INFO - Executing [91/756] testAnnexes:test_pm_CategorizedAnnexesShowMethods
+2022-07-12 17:30:38,807 - PloneMeeting: testing - INFO - Executing [92/756] testAnnexes:test_pm_ChangeAnnexPosition
+2022-07-12 17:30:40,300 - PloneMeeting: testing - INFO - Executing [93/756] testAnnexes:test_pm_ConfidentialAnnexesCategorizedChildsCaching
+2022-07-12 17:30:41,067 - PloneMeeting: testing - INFO - Executing [94/756] testAnnexes:test_pm_ConfidentialAnnexesWhenItemDuplicated
+2022-07-12 17:30:42,464 - PloneMeeting: testing - INFO - Executing [95/756] testAnnexes:test_pm_DecisionAnnexesDeletableByOwner
+2022-07-12 17:30:44,087 - PloneMeeting: testing - INFO - Executing [96/756] testAnnexes:test_pm_Get_annexes_to_print
+2022-07-12 17:30:48,779 - PloneMeeting: testing - INFO - Executing [97/756] testAnnexes:test_pm_ItemAnnexFormVocabularies
+2022-07-12 17:30:49,355 - PloneMeeting: testing - INFO - Executing [98/756] testAnnexes:test_pm_ItemAnnexesContentNotInAnnexSearchableText
+2022-07-12 17:30:50,166 - PloneMeeting: testing - INFO - Executing [99/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForAdvisers
+2022-07-12 17:30:53,655 - PloneMeeting: testing - INFO - Executing [100/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForBudgetImpactEditors
+2022-07-12 17:30:56,841 - PloneMeeting: testing - INFO - Executing [101/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForCopyGroups
+2022-07-12 17:31:00,534 - PloneMeeting: testing - INFO - Executing [102/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForGroupsInCharge
+2022-07-12 17:31:04,090 - PloneMeeting: testing - INFO - Executing [103/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForPowerObservers
+2022-07-12 17:31:07,275 - PloneMeeting: testing - INFO - Executing [104/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForProposingGroupSuffixes
+2022-07-12 17:31:18,565 - PloneMeeting: testing - INFO - Executing [105/756] testAnnexes:test_pm_ItemGetCategorizedElementsWithConfidentialityForRestrictedPowerObservers
+2022-07-12 17:31:21,742 - PloneMeeting: testing - INFO - Executing [106/756] testAnnexes:test_pm_MayChangeAnnexConfidentiality
+2022-07-12 17:31:22,302 - PloneMeeting: testing - INFO - Executing [107/756] testAnnexes:test_pm_MeetingAnnexFormVocabularies
+2022-07-12 17:31:23,215 - PloneMeeting: testing - INFO - Executing [108/756] testAnnexes:test_pm_MeetingAnnexesContentNotInAnnexSearchableText
+2022-07-12 17:31:24,353 - PloneMeeting: testing - INFO - Executing [109/756] testAnnexes:test_pm_MeetingGetCategorizedElementsWithConfidentialityForPowerObservers
+2022-07-12 17:31:27,887 - PloneMeeting: testing - INFO - Executing [110/756] testAnnexes:test_pm_MeetingGetCategorizedElementsWithConfidentialityForProposingGroupProfiles
+2022-07-12 17:31:53,886 - PloneMeeting: testing - INFO - Executing [111/756] testAnnexes:test_pm_MeetingGetCategorizedElementsWithConfidentialityForRestrictedPowerObservers
+2022-07-12 17:31:57,530 - PloneMeeting: testing - INFO - Executing [112/756] testAnnexes:test_pm_Other_mc_correspondences_vocabulary
+2022-07-12 17:31:57,555 - PloneMeeting: testing - INFO - Executing [113/756] testAnnexes:test_pm_ParentModificationDateUpdatedWhenAnnexChanged
+2022-07-12 17:31:59,222 - PloneMeeting: testing - INFO - Executing [114/756] testAnnexes:test_pm_QuickUploadForm
+2022-07-12 17:32:00,240 - PloneMeeting: testing - INFO - Executing [115/756] testAnnexes:test_pm_SwitchingConfidentialityUsingActionView
+2022-07-12 17:32:00,871 - PloneMeeting: testing - INFO - Executing [116/756] testAnnexes:test_pm_UpdateCategorizedElements
+2022-07-12 17:32:01,480 - PloneMeeting: testing - INFO - Executing [117/756] testChangeItemOrderView:test_pm_ChangeItemOrderIllegalMove
+2022-07-12 17:32:03,427 - PloneMeeting: testing - INFO - Executing [118/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveAtGivenNumber
+2022-07-12 17:32:05,219 - PloneMeeting: testing - INFO - Executing [119/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveIntegerToInteger
+2022-07-12 17:32:07,133 - PloneMeeting: testing - INFO - Executing [120/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveIntegerToSubnumber
+2022-07-12 17:32:08,962 - PloneMeeting: testing - INFO - Executing [121/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveOutFromSubnumber
+2022-07-12 17:32:10,911 - PloneMeeting: testing - INFO - Executing [122/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveSubnumberToInteger
+2022-07-12 17:32:12,739 - PloneMeeting: testing - INFO - Executing [123/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveSubnumberToSubnumber
+2022-07-12 17:32:14,675 - PloneMeeting: testing - INFO - Executing [124/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveToLastPosition
+2022-07-12 17:32:16,493 - PloneMeeting: testing - INFO - Executing [125/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveUpDown
+2022-07-12 17:32:18,284 - PloneMeeting: testing - INFO - Executing [126/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveUpDownWithSubnumbers
+2022-07-12 17:32:20,236 - PloneMeeting: testing - INFO - Executing [127/756] testChangeItemOrderView:test_pm_ChangeItemOrderMoveUpToFirstPositionWithSubnumbers
+2022-07-12 17:32:22,036 - PloneMeeting: testing - INFO - Executing [128/756] testChangeItemOrderView:test_pm_ChangeItemOrderSetup
+2022-07-12 17:32:23,990 - PloneMeeting: testing - INFO - Executing [129/756] testChangeItemOrderView:test_pm_MayChangeItemOrder
+2022-07-12 17:32:26,093 - PloneMeeting: testing - INFO - Executing [130/756] testChangeItemOrderView:test_pm_MoveLateItemDoNotChangeNormalItems
+2022-07-12 17:32:28,703 - PloneMeeting: testing - INFO - Executing [131/756] testChangeItemOrderView:test_pm_ReorderItemsWithSubnumbers
+2022-07-12 17:32:30,497 - PloneMeeting: testing - INFO - Executing [132/756] testColumns:test_pm_AnnexActionsColumnShowArrows
+2022-07-12 17:32:31,966 - PloneMeeting: testing - INFO - Executing [133/756] testColumns:test_pm_ItemCategoryColumn
+2022-07-12 17:32:32,436 - PloneMeeting: testing - INFO - Executing [134/756] testColumns:test_pm_ItemLinkedMeetingColumnWhenMeetingNotViewable
+2022-07-12 17:32:33,475 - PloneMeeting: testing - INFO - Executing [135/756] testColumns:test_pm_ItemNumberColumn
+2022-07-12 17:32:34,377 - PloneMeeting: testing - INFO - Executing [136/756] testColumns:test_pm_ItemPrettyLinkColumnWhenNotPrivacyViewable
+2022-07-12 17:32:35,630 - PloneMeeting: testing - INFO - Executing [137/756] testColumns:test_pm_MeetingPrettyLinkColumnWithStaticInfos
+2022-07-12 17:32:36,522 - PloneMeeting: testing - INFO - Executing [138/756] testColumns:test_pm_ReviewStateTitleColumn
+2022-07-12 17:32:36,998 - PloneMeeting: testing - INFO - Executing [139/756] testCustomMeetingItem:test_GetUsedFinanceGroupIds
+2022-07-12 17:32:37,581 - PloneMeeting: testing - INFO - Executing [140/756] testCustomMeetingItem:test_onDuplicated
+2022-07-12 17:32:39,413 - PloneMeeting: testing - INFO - Executing [141/756] testCustomMeetingItem:test_powerEditor
+
+
+Failure in test test_powerEditor (Products.MeetingSeraing.tests.testCustomMeetingItem.testCustomMeetingItem)
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/unittest/case.py", line 367, in run
+    testMethod()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testCustomMeetingItem.py", line 96, in test_powerEditor
+    self.failIf(self.hasPermission('Modify portal content', item))
+  File "/usr/lib64/python2.7/unittest/case.py", line 651, in deprecated_func
+    return original_func(*args, **kwargs)
+  File "/usr/lib64/python2.7/unittest/case.py", line 454, in assertFalse
+    raise self.failureException(msg)
+AssertionError: 1 is not false
+
+2022-07-12 17:32:39,910 - PloneMeeting: testing - INFO - Executing [142/756] testCustomWorkflows:test_CloseMeeting
+2022-07-12 17:32:42,620 - PloneMeeting: testing - INFO - Executing [143/756] testCustomWorkflows:test_FreezeMeeting
+2022-07-12 17:32:43,942 - PloneMeeting: testing - INFO - Executing [144/756] testCustomWorkflows:test_getOJByCategoryDoReturnSmth
+2022-07-12 17:32:44,992 - PloneMeeting: testing - INFO - Executing [145/756] testFaceted:test_pm_AdviceTypesVocabulary
+2022-07-12 17:32:45,648 - PloneMeeting: testing - INFO - Executing [146/756] testFaceted:test_pm_AdviceTypesVocabularyMCAware
+2022-07-12 17:32:46,212 - PloneMeeting: testing - INFO - Executing [147/756] testFaceted:test_pm_AskedAdvicesVocabulary
+2022-07-12 17:32:47,520 - PloneMeeting: testing - INFO - Executing [148/756] testFaceted:test_pm_AskedAdvicesVocabularyMCAware
+2022-07-12 17:32:48,123 - PloneMeeting: testing - INFO - Executing [149/756] testFaceted:test_pm_AskedAdvicesVocabularyWithWrongContext
+2022-07-12 17:32:49,133 - PloneMeeting: testing - INFO - Executing [150/756] testFaceted:test_pm_CreatorsForFacetedVocabulary
+2022-07-12 17:32:50,317 - PloneMeeting: testing - INFO - Executing [151/756] testFaceted:test_pm_CreatorsVocabulary
+2022-07-12 17:32:51,012 - PloneMeeting: testing - INFO - Executing [152/756] testFaceted:test_pm_DisabledCollectionsAreIgnored
+2022-07-12 17:32:51,565 - PloneMeeting: testing - INFO - Executing [153/756] testFaceted:test_pm_GroupsInChargeVocabulary
+2022-07-12 17:32:52,413 - PloneMeeting: testing - INFO - Executing [154/756] testFaceted:test_pm_ItemCategoriesVocabulary
+2022-07-12 17:32:52,886 - PloneMeeting: testing - INFO - Executing [155/756] testFaceted:test_pm_ItemCategoriesVocabularyMCAware
+2022-07-12 17:32:53,472 - PloneMeeting: testing - INFO - Executing [156/756] testFaceted:test_pm_ItemClassifiersVocabulary
+2022-07-12 17:32:53,905 - PloneMeeting: testing - INFO - Executing [157/756] testFaceted:test_pm_MeetingDatesVocabulary
+2022-07-12 17:32:54,860 - PloneMeeting: testing - INFO - Executing [158/756] testFaceted:test_pm_MeetingDatesVocabularyMCAware
+2022-07-12 17:32:56,772 - PloneMeeting: testing - INFO - Executing [159/756] testFaceted:test_pm_PMConditionAwareCollectionVocabulary
+2022-07-12 17:32:57,688 - PloneMeeting: testing - INFO - Executing [160/756] testFaceted:test_pm_ProposingGroupsForFacetedVocabulary
+2022-07-12 17:32:58,368 - PloneMeeting: testing - INFO - Executing [161/756] testFaceted:test_pm_ProposingGroupsVocabularies
+2022-07-12 17:32:58,912 - PloneMeeting: testing - INFO - Executing [162/756] testFaceted:test_pm_RedirectToNextMeeting
+2022-07-12 17:33:00,585 - PloneMeeting: testing - INFO - Executing [163/756] testFaceted:test_pm_RedirectToNextMeetingWhenMeetingNotViewable
+2022-07-12 17:33:02,092 - PloneMeeting: testing - INFO - Executing [164/756] testFaceted:test_pm_RedirectedToDefaultSearchPMFolderOnlyIfNecessary
+2022-07-12 17:33:04,397 - PloneMeeting: testing - INFO - Executing [165/756] testFaceted:test_pm_RedirectedToOwnPMFolderIfOnAnotherUserPMFolder
+2022-07-12 17:33:05,430 - PloneMeeting: testing - INFO - Executing [166/756] testFaceted:test_pm_SearchableTextQueryOnSpecialCharacters
+2022-07-12 17:33:05,983 - PloneMeeting: testing - INFO - Executing [167/756] testMeetingType:test_pm_Assembly_constraint
+2022-07-12 17:33:06,003 - PloneMeeting: testing - INFO - Executing [168/756] testMeetingType:test_pm_AvailableItems
+2022-07-12 17:33:09,737 - PloneMeeting: testing - INFO - Executing [169/756] testMeetingType:test_pm_AvailableItemsShownInformations
+2022-07-12 17:33:10,858 - PloneMeeting: testing - INFO - Executing [170/756] testMeetingType:test_pm_ChangingMeetingDateUpdateLinkedItemsMeetingDateMetadata
+2022-07-12 17:33:12,017 - PloneMeeting: testing - INFO - Executing [171/756] testMeetingType:test_pm_DeadlineFieldsInit
+2022-07-12 17:33:13,116 - PloneMeeting: testing - INFO - Executing [172/756] testMeetingType:test_pm_DefaultTextValuesFromConfig
+2022-07-12 17:33:14,123 - PloneMeeting: testing - INFO - Executing [173/756] testMeetingType:test_pm_DeletingMeetingUpdateItemsPreferredMeeting
+2022-07-12 17:33:15,166 - PloneMeeting: testing - INFO - Executing [174/756] testMeetingType:test_pm_FirstItemNumberSetOnClose
+2022-07-12 17:33:17,443 - PloneMeeting: testing - INFO - Executing [175/756] testMeetingType:test_pm_GetFirstItemNumberIgnoresSubnumbers
+2022-07-12 17:33:22,184 - PloneMeeting: testing - INFO - Executing [176/756] testMeetingType:test_pm_GetItemByNumber
+2022-07-12 17:33:24,258 - PloneMeeting: testing - INFO - Executing [177/756] testMeetingType:test_pm_GetItemInsertOrderByCategory
+2022-07-12 17:33:25,517 - PloneMeeting: testing - INFO - Executing [178/756] testMeetingType:test_pm_GetItemInsertOrderByOrderedAssociatedOrganizations
+2022-07-12 17:33:26,540 - PloneMeeting: testing - INFO - Executing [179/756] testMeetingType:test_pm_GetItemInsertOrderByOrderedGroupsInCharge
+2022-07-12 17:33:27,576 - PloneMeeting: testing - INFO - Executing [180/756] testMeetingType:test_pm_GetItemInsertOrderByProposingGroup
+2022-07-12 17:33:28,649 - PloneMeeting: testing - INFO - Executing [181/756] testMeetingType:test_pm_GetItemsWithTheObjectsTrue
+2022-07-12 17:33:30,578 - PloneMeeting: testing - INFO - Executing [182/756] testMeetingType:test_pm_GetPreviousMeeting
+2022-07-12 17:33:32,952 - PloneMeeting: testing - INFO - Executing [183/756] testMeetingType:test_pm_Get_committee_items
+2022-07-12 17:33:34,247 - PloneMeeting: testing - INFO - Executing [184/756] testMeetingType:test_pm_Get_items
+2022-07-12 17:33:36,191 - PloneMeeting: testing - INFO - Executing [185/756] testMeetingType:test_pm_Get_next_meeting
+2022-07-12 17:33:37,536 - PloneMeeting: testing - INFO - Executing [186/756] testMeetingType:test_pm_Get_pretty_link
+2022-07-12 17:33:38,433 - PloneMeeting: testing - INFO - Executing [187/756] testMeetingType:test_pm_Get_states_before
+2022-07-12 17:33:40,500 - PloneMeeting: testing - INFO - Executing [188/756] testMeetingType:test_pm_ImgSelectBox
+2022-07-12 17:33:41,245 - PloneMeeting: testing - INFO - Executing [189/756] testMeetingType:test_pm_InsertItem
+2022-07-12 17:33:44,584 - PloneMeeting: testing - INFO - Executing [190/756] testMeetingType:test_pm_InsertItemAllGroups
+2022-07-12 17:33:46,370 - PloneMeeting: testing - INFO - Executing [191/756] testMeetingType:test_pm_InsertItemByCategoriesThenProposingGroups
+2022-07-12 17:33:48,454 - PloneMeeting: testing - INFO - Executing [192/756] testMeetingType:test_pm_InsertItemCategories
+2022-07-12 17:33:50,374 - PloneMeeting: testing - INFO - Executing [193/756] testMeetingType:test_pm_InsertItemClassifiers
+2022-07-12 17:33:51,894 - PloneMeeting: testing - INFO - Executing [194/756] testMeetingType:test_pm_InsertItemForceNormal
+2022-07-12 17:33:52,797 - PloneMeeting: testing - INFO - Executing [195/756] testMeetingType:test_pm_InsertItemInToDiscussThenProposingGroup
+2022-07-12 17:33:54,863 - PloneMeeting: testing - INFO - Executing [196/756] testMeetingType:test_pm_InsertItemOnAllAssociatedGroups
+2022-07-12 17:33:58,315 - PloneMeeting: testing - INFO - Executing [197/756] testMeetingType:test_pm_InsertItemOnAllCommittees
+2022-07-12 17:33:59,982 - PloneMeeting: testing - INFO - Executing [198/756] testMeetingType:test_pm_InsertItemOnAllGroupsWithDisabledGroup
+2022-07-12 17:34:02,209 - PloneMeeting: testing - INFO - Executing [199/756] testMeetingType:test_pm_InsertItemOnCategoriesThenOnToOtherMCToCloneTo
+2022-07-12 17:34:04,237 - PloneMeeting: testing - INFO - Executing [200/756] testMeetingType:test_pm_InsertItemOnCategoriesWithDisabledCategory
+2022-07-12 17:34:06,085 - PloneMeeting: testing - INFO - Executing [201/756] testMeetingType:test_pm_InsertItemOnGroupsInCharge
+2022-07-12 17:34:15,039 - PloneMeeting: testing - INFO - Executing [202/756] testMeetingType:test_pm_InsertItemOnItemCreator
+2022-07-12 17:34:17,817 - PloneMeeting: testing - INFO - Executing [203/756] testMeetingType:test_pm_InsertItemOnItemDecisionFirstWords
+2022-07-12 17:34:19,714 - PloneMeeting: testing - INFO - Executing [204/756] testMeetingType:test_pm_InsertItemOnItemTitle
+2022-07-12 17:34:23,038 - PloneMeeting: testing - INFO - Executing [205/756] testMeetingType:test_pm_InsertItemOnListTypeThenProposingGroup
+2022-07-12 17:34:25,416 - PloneMeeting: testing - INFO - Executing [206/756] testMeetingType:test_pm_InsertItemOnListTypes
+2022-07-12 17:34:28,068 - PloneMeeting: testing - INFO - Executing [207/756] testMeetingType:test_pm_InsertItemOnPollType
+2022-07-12 17:34:31,191 - PloneMeeting: testing - INFO - Executing [208/756] testMeetingType:test_pm_InsertItemOnPrivacyThenCategories
+2022-07-12 17:34:33,968 - PloneMeeting: testing - INFO - Executing [209/756] testMeetingType:test_pm_InsertItemOnPrivacyThenCategoriesWithDisabledCategory
+2022-07-12 17:34:35,605 - PloneMeeting: testing - INFO - Executing [210/756] testMeetingType:test_pm_InsertItemOnPrivacyThenProposingGroups
+2022-07-12 17:34:38,864 - PloneMeeting: testing - INFO - Executing [211/756] testMeetingType:test_pm_InsertItemOnPrivacyThenProposingGroupsWithDisabledGroup
+2022-07-12 17:34:40,777 - PloneMeeting: testing - INFO - Executing [212/756] testMeetingType:test_pm_InsertItemOnPrivacyUsingHeading
+2022-07-12 17:34:44,270 - PloneMeeting: testing - INFO - Executing [213/756] testMeetingType:test_pm_InsertItemOnProposingGroupsWithDisabledGroup
+2022-07-12 17:34:46,336 - PloneMeeting: testing - INFO - Executing [214/756] testMeetingType:test_pm_InsertItemOnSeveralGroupsInCharge
+2022-07-12 17:34:49,737 - PloneMeeting: testing - INFO - Executing [215/756] testMeetingType:test_pm_InsertItemOnSeveralMethods
+2022-07-12 17:34:53,676 - PloneMeeting: testing - INFO - Executing [216/756] testMeetingType:test_pm_InsertItemOnToDiscuss
+2022-07-12 17:34:56,202 - PloneMeeting: testing - INFO - Executing [217/756] testMeetingType:test_pm_InsertItemOnToOtherMCToCloneTo
+2022-07-12 17:34:58,207 - PloneMeeting: testing - INFO - Executing [218/756] testMeetingType:test_pm_InsertItemWithSubNumbers
+2022-07-12 17:35:00,911 - PloneMeeting: testing - INFO - Executing [219/756] testMeetingType:test_pm_ItemReferenceInMeetingUpdatedWhenNecessary
+2022-07-12 17:35:02,464 - PloneMeeting: testing - INFO - Executing [220/756] testMeetingType:test_pm_LateItemsAreAvailableForLateMeetingAndFutureLateMeetings
+2022-07-12 17:35:04,266 - PloneMeeting: testing - INFO - Executing [221/756] testMeetingType:test_pm_MeetingActionsPanelCaching
+2022-07-12 17:35:05,198 - PloneMeeting: testing - INFO - Executing [222/756] testMeetingType:test_pm_MeetingActionsPanelTransitionToConfirm
+2022-07-12 17:35:06,098 - PloneMeeting: testing - INFO - Executing [223/756] testMeetingType:test_pm_MeetingAddEditAndView
+2022-07-12 17:35:07,898 - PloneMeeting: testing - INFO - Executing [224/756] testMeetingType:test_pm_MeetingAddImagePermission
+2022-07-12 17:35:09,289 - PloneMeeting: testing - INFO - Executing [225/756] testMeetingType:test_pm_MeetingCommitteesHelpers
+2022-07-12 17:35:10,276 - PloneMeeting: testing - INFO - Executing [226/756] testMeetingType:test_pm_MeetingExternalImagesStoredLocally
+2022-07-12 17:35:12,140 - PloneMeeting: testing - INFO - Executing [227/756] testMeetingType:test_pm_MeetingFacetedView
+2022-07-12 17:35:13,036 - PloneMeeting: testing - INFO - Executing [228/756] testMeetingType:test_pm_MeetingInsertingMethodsHelpMsgView
+2022-07-12 17:35:13,960 - PloneMeeting: testing - INFO - Executing [229/756] testMeetingType:test_pm_MeetingLocalRolesUpdatedEvent
+2022-07-12 17:35:15,059 - PloneMeeting: testing - INFO - Executing [230/756] testMeetingType:test_pm_MeetingManagerReservedFields
+2022-07-12 17:35:16,055 - PloneMeeting: testing - INFO - Executing [231/756] testMeetingType:test_pm_MeetingNumbers
+2022-07-12 17:35:19,535 - PloneMeeting: testing - INFO - Executing [232/756] testMeetingType:test_pm_MeetingSearchable
+2022-07-12 17:35:20,490 - PloneMeeting: testing - INFO - Executing [233/756] testMeetingType:test_pm_MeetingStrikedAssembly
+2022-07-12 17:35:21,611 - PloneMeeting: testing - INFO - Executing [234/756] testMeetingType:test_pm_NormalAndLateItem
+2022-07-12 17:35:22,592 - PloneMeeting: testing - INFO - Executing [235/756] testMeetingType:test_pm_Number_of_items
+2022-07-12 17:35:24,830 - PloneMeeting: testing - INFO - Executing [236/756] testMeetingType:test_pm_PresentItemToMeetingFromAvailableItems
+2022-07-12 17:35:26,575 - PloneMeeting: testing - INFO - Executing [237/756] testMeetingType:test_pm_PresentItemToPublishedMeeting
+2022-07-12 17:35:27,714 - PloneMeeting: testing - INFO - Executing [238/756] testMeetingType:test_pm_PresentItemWhenNoPublishedMeeting
+2022-07-12 17:35:30,308 - PloneMeeting: testing - INFO - Executing [239/756] testMeetingType:test_pm_PresentItemWhenNoPublishedMeetingAndNextMeetingInFutureDoesNotAcceptItems
+2022-07-12 17:35:31,863 - PloneMeeting: testing - INFO - Executing [240/756] testMeetingType:test_pm_PresentItemWhenNoPublishedMeetingAndNextMeetingInFutureIsFrozen
+2022-07-12 17:35:33,378 - PloneMeeting: testing - INFO - Executing [241/756] testMeetingType:test_pm_PresentSeveralItems
+2022-07-12 17:35:35,512 - PloneMeeting: testing - INFO - Executing [242/756] testMeetingType:test_pm_PresentSeveralItemsWithAutoSendToOtherMCUntilPresented
+2022-07-12 17:35:37,180 - PloneMeeting: testing - INFO - Executing [243/756] testMeetingType:test_pm_PrintAssembly_committee_id
+2022-07-12 17:35:38,111 - PloneMeeting: testing - INFO - Executing [244/756] testMeetingType:test_pm_RemoveItemWithSubnumbers
+2022-07-12 17:35:40,126 - PloneMeeting: testing - INFO - Executing [245/756] testMeetingType:test_pm_RemoveItemWithSubnumbersRemovedItemBeforeSubnumbers
+2022-07-12 17:35:41,944 - PloneMeeting: testing - INFO - Executing [246/756] testMeetingType:test_pm_RemoveOrDeleteLinkedItem
+2022-07-12 17:35:43,895 - PloneMeeting: testing - INFO - Executing [247/756] testMeetingType:test_pm_RemoveSeveralItems
+2022-07-12 17:35:47,512 - PloneMeeting: testing - INFO - Executing [248/756] testMeetingType:test_pm_RemoveWholeMeeting
+2022-07-12 17:35:49,605 - PloneMeeting: testing - INFO - Executing [249/756] testMeetingType:test_pm_RemovedMeetingWithItemUsingAnImage
+2022-07-12 17:35:50,646 - PloneMeeting: testing - INFO - Executing [250/756] testMeetingType:test_pm_Show_available_items
+2022-07-12 17:35:52,234 - PloneMeeting: testing - INFO - Executing [251/756] testMeetingType:test_pm_TitleUpdatedOnEdit
+2022-07-12 17:35:53,179 - PloneMeeting: testing - INFO - Executing [252/756] testMeetingType:test_pm_Update_first_item_number
+2022-07-12 17:35:56,410 - PloneMeeting: testing - INFO - Executing [253/756] testMeetingType:test_pm_Validate_attendees_invariant
+2022-07-12 17:35:57,342 - PloneMeeting: testing - INFO - Executing [254/756] testMeetingType:test_pm_Validate_dates_invariant
+2022-07-12 17:35:58,260 - PloneMeeting: testing - INFO - Executing [255/756] testMeetingType:test_pm_Votes_observations
+2022-07-12 17:35:59,573 - PloneMeeting: testing - INFO - Executing [256/756] testMeetingType:test_pm_Warn_assembly
+2022-07-12 17:36:00,478 - PloneMeeting: testing - INFO - Executing [257/756] testMeetingType:test_pm_print_signatures_by_position_committee_id
+2022-07-12 17:36:01,399 - PloneMeeting: testing - INFO - Executing [258/756] testMeetingCategory:test_pm_CanNotRemoveLinkedCategory
+2022-07-12 17:36:02,352 - PloneMeeting: testing - INFO - Executing [259/756] testMeetingCategory:test_pm_CanNotRemoveLinkedClassifier
+2022-07-12 17:36:03,317 - PloneMeeting: testing - INFO - Executing [260/756] testMeetingCategory:test_pm_CategoryContainerModifiedOnAnyAction
+2022-07-12 17:36:03,415 - PloneMeeting: testing - INFO - Executing [261/756] testMeetingCategory:test_pm_Create_category
+2022-07-12 17:36:03,496 - PloneMeeting: testing - INFO - Executing [262/756] testMeetingCategory:test_pm_ListCategoriesOfOtherMCs
+2022-07-12 17:36:03,515 - PloneMeeting: testing - INFO - Executing [263/756] testMeetingCategory:test_pm_validate_category_mapping_when_cloning_to_other_mc
+2022-07-12 17:36:03,535 - PloneMeeting: testing - INFO - Executing [264/756] testMeetingConfig:test_pm_AddingExistingSearchDoesNotBreak
+2022-07-12 17:36:03,554 - PloneMeeting: testing - INFO - Executing [265/756] testMeetingConfig:test_pm_CanNotDeactivateConfigUsedInAnotherConfig
+2022-07-12 17:36:03,658 - PloneMeeting: testing - INFO - Executing [266/756] testMeetingConfig:test_pm_CanNotRemoveUsedMeetingConfig
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'budgetimpacteditor'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'cadranel'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmAdviser1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmCreator1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmCreator1b'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmCreator2'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmDivisionHead1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmObserver1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmObserver2'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmOfficeManager1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmReviewer1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmReviewer2'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmReviewerLevel2'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'pmServiceHead1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'powerEditor1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'powerobserver1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'powerobserver2'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'restrictedpowerobserver1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'restrictedpowerobserver2'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'siteadmin'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'templatemanager1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'test_user_1_'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'voter1'
+2022-07-12 17:36:06,970 - PloneMeeting: testing - INFO - test_pm_CanNotRemoveUsedMeetingConfig: no 'mymeetings' folder for user 'voter2'
+2022-07-12 17:36:06,993 - PloneMeeting: testing - INFO - Executing [267/756] testMeetingConfig:test_pm_ConfigEditAndView
+2022-07-12 17:36:09,145 - PloneMeeting: testing - INFO - Executing [268/756] testMeetingConfig:test_pm_ConfigFolderModifiedOnConfigFolderReorder
+2022-07-12 17:36:09,186 - PloneMeeting: testing - INFO - Executing [269/756] testMeetingConfig:test_pm_ConfigLinkedGroupsRemovedWhenConfigDeleted
+2022-07-12 17:36:13,784 - PloneMeeting: testing - INFO - Executing [270/756] testMeetingConfig:test_pm_ConfigModifiedWhenConfigElementAddedModifiedRemoved
+2022-07-12 17:36:14,542 - PloneMeeting: testing - INFO - Executing [271/756] testMeetingConfig:test_pm_ConfigModifiedWhenFTWLabelManaged
+2022-07-12 17:36:14,931 - PloneMeeting: testing - INFO - Executing [272/756] testMeetingConfig:test_pm_ConfigModifiedWhenFacetedChanged
+2022-07-12 17:36:14,976 - PloneMeeting: testing - INFO - Executing [273/756] testMeetingConfig:test_pm_ConfigRelatedPloneGroupsLocalRoles
+2022-07-12 17:36:19,360 - PloneMeeting: testing - INFO - Executing [274/756] testMeetingConfig:test_pm_GetCategories
+2022-07-12 17:36:19,379 - PloneMeeting: testing - INFO - Executing [275/756] testMeetingConfig:test_pm_GetRecurringItems
+2022-07-12 17:36:19,446 - PloneMeeting: testing - INFO - Executing [276/756] testMeetingConfig:test_pm_ItemIconColor
+2022-07-12 17:36:20,213 - PloneMeeting: testing - INFO - Executing [277/756] testMeetingConfig:test_pm_ItemInConfigIsNotPastableToAnotherMC
+2022-07-12 17:36:20,588 - PloneMeeting: testing - INFO - Executing [278/756] testMeetingConfig:test_pm_ItemInConfigProvidesIConfigElementNotOtherItems
+2022-07-12 17:36:21,613 - PloneMeeting: testing - INFO - Executing [279/756] testMeetingConfig:test_pm_LinkedGroupsCreatedCorrectly
+2022-07-12 17:36:22,045 - PloneMeeting: testing - INFO - Executing [280/756] testMeetingConfig:test_pm_LinkedPloneGroupsTitleWhenUsingConfigGroups
+2022-07-12 17:36:22,353 - PloneMeeting: testing - INFO - Executing [281/756] testMeetingConfig:test_pm_ListSelectableAdvisers
+2022-07-12 17:36:22,424 - PloneMeeting: testing - INFO - Executing [282/756] testMeetingConfig:test_pm_MaxShownListings
+2022-07-12 17:36:22,442 - PloneMeeting: testing - INFO - Executing [283/756] testMeetingConfig:test_pm_MeetingManagersMayEditHarmlessConfigFields
+2022-07-12 17:36:22,465 - PloneMeeting: testing - INFO - Executing [284/756] testMeetingConfig:test_pm_NewDashboardCollectionColumns
+2022-07-12 17:36:23,066 - PloneMeeting: testing - INFO - Executing [285/756] testMeetingConfig:test_pm_RemoveAnnexesPreviewsOnMeetingClosure
+2022-07-12 17:36:27,765 - PloneMeeting: testing - INFO - Executing [286/756] testMeetingConfig:test_pm_Show_meeting_manager_reserved_field
+2022-07-12 17:36:27,786 - PloneMeeting: testing - INFO - Executing [287/756] testMeetingConfig:test_pm_SynchSearches
+2022-07-12 17:36:28,219 - PloneMeeting: testing - INFO - Executing [288/756] testMeetingConfig:test_pm_UpdateAnnexConfidentiality
+2022-07-12 17:36:28,805 - PloneMeeting: testing - INFO - Executing [289/756] testMeetingConfig:test_pm_UpdateLinkedPloneGroupsTitle
+2022-07-12 17:36:28,974 - PloneMeeting: testing - INFO - Executing [290/756] testMeetingConfig:test_pm_UpdatePersonalLabels
+2022-07-12 17:36:29,631 - PloneMeeting: testing - INFO - Executing [291/756] testMeetingConfig:test_pm_UsedLabelCanNotBeRemoved
+2022-07-12 17:36:30,138 - PloneMeeting: testing - INFO - Executing [292/756] testMeetingConfig:test_pm_Validate_committees_not_removable_when_used
+2022-07-12 17:36:31,119 - PloneMeeting: testing - INFO - Executing [293/756] testMeetingConfig:test_pm_Validate_committees_orderedCommitteeContacts
+2022-07-12 17:36:31,137 - PloneMeeting: testing - INFO - Executing [294/756] testMeetingConfig:test_pm_Validate_committees_values
+2022-07-12 17:36:31,314 - PloneMeeting: testing - INFO - Executing [295/756] testMeetingConfig:test_pm_Validate_customAdvisersAvailableOn
+2022-07-12 17:36:31,792 - PloneMeeting: testing - INFO - Executing [296/756] testMeetingConfig:test_pm_Validate_customAdvisersCanNotChangeUsedConfig
+2022-07-12 17:36:32,279 - PloneMeeting: testing - INFO - Executing [297/756] testMeetingConfig:test_pm_Validate_customAdvisersDateColumns
+2022-07-12 17:36:32,303 - PloneMeeting: testing - INFO - Executing [298/756] testMeetingConfig:test_pm_Validate_customAdvisersDelayAwareConfigRemovableIfNotUsed
+2022-07-12 17:36:32,787 - PloneMeeting: testing - INFO - Executing [299/756] testMeetingConfig:test_pm_Validate_customAdvisersDelayColumn
+2022-07-12 17:36:32,810 - PloneMeeting: testing - INFO - Executing [300/756] testMeetingConfig:test_pm_Validate_customAdvisersEnoughData
+2022-07-12 17:36:32,834 - PloneMeeting: testing - INFO - Executing [301/756] testMeetingConfig:test_pm_Validate_customAdvisersIsLinkedToPreviousRowDelayAware
+2022-07-12 17:36:32,858 - PloneMeeting: testing - INFO - Executing [302/756] testMeetingConfig:test_pm_Validate_customAdvisersIsLinkedToPreviousRowIsUsed
+2022-07-12 17:36:33,550 - PloneMeeting: testing - INFO - Executing [303/756] testMeetingConfig:test_pm_Validate_customAdvisersSameRowIdForDifferentRows
+2022-07-12 17:36:33,572 - PloneMeeting: testing - INFO - Executing [304/756] testMeetingConfig:test_pm_Validate_defaultPollType
+2022-07-12 17:36:33,591 - PloneMeeting: testing - INFO - Executing [305/756] testMeetingConfig:test_pm_Validate_firstLinkedVoteUsedVoteValues
+2022-07-12 17:36:33,608 - PloneMeeting: testing - INFO - Executing [306/756] testMeetingConfig:test_pm_Validate_insertingMethodsOnAddItem
+2022-07-12 17:36:33,626 - PloneMeeting: testing - INFO - Executing [307/756] testMeetingConfig:test_pm_Validate_itemWFValidationLevels_data_format
+2022-07-12 17:36:33,646 - PloneMeeting: testing - INFO - Executing [308/756] testMeetingConfig:test_pm_Validate_itemWFValidationLevels_removed_depending_used_state_item
+2022-07-12 17:36:33,646 - PloneMeeting: testing - INFO - Bypassing test_pm_Validate_itemWFValidationLevels_removed_depending_used_state_item because WFAdaptation waiting_advices is not available!
+2022-07-12 17:36:33,663 - PloneMeeting: testing - INFO - Executing [309/756] testMeetingConfig:test_pm_Validate_itemWFValidationLevels_removed_used_state_in_config
+2022-07-12 17:36:34,274 - PloneMeeting: testing - INFO - Executing [310/756] testMeetingConfig:test_pm_Validate_itemWFValidationLevels_removed_used_state_item
+2022-07-12 17:36:35,648 - PloneMeeting: testing - INFO - Executing [311/756] testMeetingConfig:test_pm_Validate_listTypes
+2022-07-12 17:36:36,154 - PloneMeeting: testing - INFO - Executing [312/756] testMeetingConfig:test_pm_Validate_mailItemEvents
+2022-07-12 17:36:36,172 - PloneMeeting: testing - INFO - Executing [313/756] testMeetingConfig:test_pm_Validate_meetingConfigsToCloneTo
+2022-07-12 17:36:36,191 - PloneMeeting: testing - INFO - Executing [314/756] testMeetingConfig:test_pm_Validate_nextLinkedVotesUsedVoteValues
+2022-07-12 17:36:36,208 - PloneMeeting: testing - INFO - Executing [315/756] testMeetingConfig:test_pm_Validate_onMeetingTransitionItemActionToExecute
+2022-07-12 17:36:36,225 - PloneMeeting: testing - INFO - Executing [316/756] testMeetingConfig:test_pm_Validate_powerObservers
+2022-07-12 17:36:36,256 - PloneMeeting: testing - INFO - Executing [317/756] testMeetingConfig:test_pm_Validate_shortName
+2022-07-12 17:36:36,339 - PloneMeeting: testing - INFO - Executing [318/756] testMeetingConfig:test_pm_Validate_transitionsForPresentingAnItem
+2022-07-12 17:36:36,356 - PloneMeeting: testing - INFO - Executing [319/756] testMeetingConfig:test_pm_Validate_usedMeetingAttributes
+2022-07-12 17:36:36,376 - PloneMeeting: testing - INFO - Executing [320/756] testMeetingConfig:test_pm_WorkflowsForGeneratedTypes
+2022-07-12 17:36:36,393 - PloneMeeting: testing - INFO - Executing [321/756] testMeetingConfig:test_pm_searchItemsToPrevalidate
+2022-07-12 17:36:36,393 - PloneMeeting: testing - INFO - Bypassing , test_pm_searchItemsToPrevalidate not used in MeetingSeraing
+2022-07-12 17:36:36,412 - PloneMeeting: testing - INFO - Executing [322/756] testMeetingConfig:test_pm_searchReviewableItems
+2022-07-12 17:36:36,412 - PloneMeeting: testing - INFO - Bypassing , test_pm_searchReviewableItems not used in MeetingSeraing
+2022-07-12 17:36:36,580 - PloneMeeting: testing - INFO - Executing [323/756] testMeetingConfig:test_pm_update_cfgs
+2022-07-12 17:36:41,841 - PloneMeeting: testing - INFO - Executing [324/756] testMeetingItem:test_pm_AddAutoCopyGroups
+2022-07-12 17:36:42,879 - PloneMeeting: testing - INFO - Executing [325/756] testMeetingItem:test_pm_AddAutoCopyGroupsIsCreated
+2022-07-12 17:36:43,500 - PloneMeeting: testing - INFO - Executing [326/756] testMeetingItem:test_pm_AddAutoCopyGroupsWrongExpressionDoesNotBreak
+2022-07-12 17:36:44,236 - PloneMeeting: testing - INFO - Executing [327/756] testMeetingItem:test_pm_AnnexToPrintBehaviourWhenCloned
+2022-07-12 17:36:45,810 - PloneMeeting: testing - INFO - No decision annexes found on duplicated item clonedItem
+2022-07-12 17:36:45,949 - PloneMeeting: testing - INFO - No decision annexes found on duplicated item clonedItem2
+2022-07-12 17:36:46,739 - PloneMeeting: testing - INFO - Executing [328/756] testMeetingItem:test_pm_AssociatedGroupsVocabulary
+2022-07-12 17:36:47,252 - PloneMeeting: testing - INFO - Executing [329/756] testMeetingItem:test_pm_AutoCommitteeWhenItemSentToAnotherMC
+2022-07-12 17:36:48,051 - PloneMeeting: testing - INFO - Executing [330/756] testMeetingItem:test_pm_BudgetImpactEditorsGroups
+2022-07-12 17:36:48,572 - PloneMeeting: testing - INFO - Executing [331/756] testMeetingItem:test_pm_CloneItemDisabledCategory
+2022-07-12 17:36:49,201 - PloneMeeting: testing - INFO - Executing [332/756] testMeetingItem:test_pm_CloneItemRemovesAnnotations
+2022-07-12 17:36:54,711 - PloneMeeting: testing - INFO - Executing [333/756] testMeetingItem:test_pm_CloneItemWithAdvices
+2022-07-12 17:36:55,750 - PloneMeeting: testing - INFO - Executing [334/756] testMeetingItem:test_pm_CloneItemWithFTWLabels
+2022-07-12 17:36:56,503 - PloneMeeting: testing - INFO - Executing [335/756] testMeetingItem:test_pm_CloneItemWithInheritAdvices
+2022-07-12 17:36:57,760 - PloneMeeting: testing - INFO - Executing [336/756] testMeetingItem:test_pm_CloneItemWithSetCurrentAsPredecessor
+2022-07-12 17:36:58,400 - PloneMeeting: testing - INFO - Executing [337/756] testMeetingItem:test_pm_CommitteesSelectedAutomatically
+2022-07-12 17:36:59,915 - PloneMeeting: testing - INFO - Executing [338/756] testMeetingItem:test_pm_CommitteesSupplements
+2022-07-12 17:37:00,376 - PloneMeeting: testing - INFO - Executing [339/756] testMeetingItem:test_pm_CommitteesUsingGroups
+2022-07-12 17:37:01,146 - PloneMeeting: testing - INFO - Executing [340/756] testMeetingItem:test_pm_Completeness
+2022-07-12 17:37:01,768 - PloneMeeting: testing - INFO - Executing [341/756] testMeetingItem:test_pm_CopiedFieldsCopyGroupsWhenDuplicated
+2022-07-12 17:37:02,372 - PloneMeeting: testing - INFO - Executing [342/756] testMeetingItem:test_pm_CopiedFieldsOptionalAdvisersWhenDuplicated
+2022-07-12 17:37:02,932 - PloneMeeting: testing - INFO - Executing [343/756] testMeetingItem:test_pm_CopiedFieldsOtherMeetingConfigsClonableToWhenDuplicated
+2022-07-12 17:37:03,565 - PloneMeeting: testing - INFO - Executing [344/756] testMeetingItem:test_pm_CopiedFieldsWhenDuplicated
+2022-07-12 17:37:04,191 - PloneMeeting: testing - INFO - Executing [345/756] testMeetingItem:test_pm_CopiedFieldsWhenDuplicatedAsItemTemplate
+2022-07-12 17:37:04,909 - PloneMeeting: testing - INFO - Executing [346/756] testMeetingItem:test_pm_CopiedFieldsWhenDuplicatedAsRecurringItem
+2022-07-12 17:37:05,679 - PloneMeeting: testing - INFO - Executing [347/756] testMeetingItem:test_pm_CopiedFieldsWhenSentToOtherMC
+2022-07-12 17:37:06,926 - PloneMeeting: testing - INFO - Executing [348/756] testMeetingItem:test_pm_CopiedFieldsWhenSentToOtherMCCopyGroups
+2022-07-12 17:37:07,772 - PloneMeeting: testing - INFO - Executing [349/756] testMeetingItem:test_pm_CopyGroups
+2022-07-12 17:37:09,022 - PloneMeeting: testing - INFO - Executing [350/756] testMeetingItem:test_pm_CopyGroupsVocabulary
+2022-07-12 17:37:09,922 - PloneMeeting: testing - INFO - Executing [351/756] testMeetingItem:test_pm_CustomInsertingMethodRaisesNotImplementedErrorIfNotImplemented
+2022-07-12 17:37:10,415 - PloneMeeting: testing - INFO - Executing [352/756] testMeetingItem:test_pm_DataChangesHistory
+2022-07-12 17:37:11,014 - PloneMeeting: testing - INFO - Executing [353/756] testMeetingItem:test_pm_DefaultItemTemplateNotMovable
+2022-07-12 17:37:11,145 - PloneMeeting: testing - INFO - Executing [354/756] testMeetingItem:test_pm_DefaultItemTemplateNotRemovable
+2022-07-12 17:37:11,173 - PloneMeeting: testing - INFO - Executing [355/756] testMeetingItem:test_pm_DisplayOtherMeetingConfigsClonableTo
+2022-07-12 17:37:16,430 - PloneMeeting: testing - INFO - Executing [356/756] testMeetingItem:test_pm_DownOrUpWorkflowAgain
+2022-07-12 17:37:17,519 - PloneMeeting: testing - INFO - Executing [357/756] testMeetingItem:test_pm_DuplicatedItemDoesNotKeepDecisionAnnexes
+2022-07-12 17:37:18,284 - PloneMeeting: testing - INFO - Executing [358/756] testMeetingItem:test_pm_Emergency
+2022-07-12 17:37:18,833 - PloneMeeting: testing - INFO - Executing [359/756] testMeetingItem:test_pm_EmptyLinesAreHighlighted
+2022-07-12 17:37:19,373 - PloneMeeting: testing - INFO - Executing [360/756] testMeetingItem:test_pm_GetAllCopyGroups
+2022-07-12 17:37:19,943 - PloneMeeting: testing - INFO - Executing [361/756] testMeetingItem:test_pm_GetAssociatedGroups
+2022-07-12 17:37:20,399 - PloneMeeting: testing - INFO - Executing [362/756] testMeetingItem:test_pm_GetCategory
+2022-07-12 17:37:20,851 - PloneMeeting: testing - INFO - Executing [363/756] testMeetingItem:test_pm_GetCertifiedSignatures
+2022-07-12 17:37:21,475 - PloneMeeting: testing - INFO - Executing [364/756] testMeetingItem:test_pm_GetCertifiedSignaturesFromGroupInCharge
+2022-07-12 17:37:21,939 - PloneMeeting: testing - INFO - Executing [365/756] testMeetingItem:test_pm_GetCertifiedSignaturesWithHeldPosition
+2022-07-12 17:37:22,399 - PloneMeeting: testing - INFO - Executing [366/756] testMeetingItem:test_pm_GetClassifier
+2022-07-12 17:37:22,868 - PloneMeeting: testing - INFO - Executing [367/756] testMeetingItem:test_pm_GetItemNumber
+2022-07-12 17:37:27,016 - PloneMeeting: testing - INFO - Executing [368/756] testMeetingItem:test_pm_GetLinkCachingInvalidatedWhenItemSentToAnotherMC
+2022-07-12 17:37:27,878 - PloneMeeting: testing - INFO - Executing [369/756] testMeetingItem:test_pm_GetLinkCachingInvalidatedWhenOnAvailableItemsOfMeetingView
+2022-07-12 17:37:28,909 - PloneMeeting: testing - INFO - Executing [370/756] testMeetingItem:test_pm_GetLinkCachingInvalidatedWhenPredecessorFromOtherMCIsModified
+2022-07-12 17:37:29,812 - PloneMeeting: testing - INFO - Executing [371/756] testMeetingItem:test_pm_GetLinkCachingIsCorrectWithTakenOverByIcon
+2022-07-12 17:37:30,277 - PloneMeeting: testing - INFO - Executing [372/756] testMeetingItem:test_pm_GetLinkIsCached
+2022-07-12 17:37:30,771 - PloneMeeting: testing - INFO - Executing [373/756] testMeetingItem:test_pm_GetMeetingsAcceptingItems
+2022-07-12 17:37:33,377 - PloneMeeting: testing - INFO - Executing [374/756] testMeetingItem:test_pm_GetMeetingsAcceptingItemsWithPublishDecisionsWFAdaptation
+2022-07-12 17:37:33,394 - PloneMeeting: testing - INFO - Executing [375/756] testMeetingItem:test_pm_GetSucessor
+2022-07-12 17:37:34,195 - PloneMeeting: testing - INFO - Executing [376/756] testMeetingItem:test_pm_GroupsInChargeFromCategory
+2022-07-12 17:37:34,718 - PloneMeeting: testing - INFO - Executing [377/756] testMeetingItem:test_pm_GroupsInChargeFromProposingGroup
+2022-07-12 17:37:35,553 - PloneMeeting: testing - INFO - Executing [378/756] testMeetingItem:test_pm_GroupsInChargeLocalRoles
+2022-07-12 17:37:36,229 - PloneMeeting: testing - INFO - Executing [379/756] testMeetingItem:test_pm_HideCssClasses
+2022-07-12 17:37:37,336 - PloneMeeting: testing - INFO - Executing [380/756] testMeetingItem:test_pm_HideNotViewableLinkedItemsTo
+2022-07-12 17:37:38,023 - PloneMeeting: testing - INFO - Executing [381/756] testMeetingItem:test_pm_HistorizedTakenOverBy
+2022-07-12 17:37:38,040 - PloneMeeting: testing - INFO - Executing [382/756] testMeetingItem:test_pm_HistoryCommentViewability
+2022-07-12 17:37:38,556 - PloneMeeting: testing - INFO - Executing [383/756] testMeetingItem:test_pm_IsLateFor
+2022-07-12 17:37:40,130 - PloneMeeting: testing - INFO - Executing [384/756] testMeetingItem:test_pm_IsLateForEveryFutureLateMeetings
+2022-07-12 17:37:42,254 - PloneMeeting: testing - INFO - Executing [385/756] testMeetingItem:test_pm_IsPrivacyViewable
+2022-07-12 17:37:44,234 - PloneMeeting: testing - INFO - Executing [386/756] testMeetingItem:test_pm_IsPrivacyViewableViewAccessTakePrecedenceOverPowerObserversRestrictions
+2022-07-12 17:37:44,766 - PloneMeeting: testing - INFO - Executing [387/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenItemModified
+2022-07-12 17:37:45,276 - PloneMeeting: testing - INFO - Executing [388/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenItemStateChanged
+2022-07-12 17:37:45,794 - PloneMeeting: testing - INFO - Executing [389/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenItemTurnsToNoMorePresentable
+2022-07-12 17:37:48,214 - PloneMeeting: testing - INFO - Executing [390/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenItemTurnsToPresentable
+2022-07-12 17:37:50,398 - PloneMeeting: testing - INFO - Executing [391/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenLinkedMeetingIsEdited
+2022-07-12 17:37:52,834 - PloneMeeting: testing - INFO - Executing [392/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenMeetingConfigEdited
+2022-07-12 17:37:53,492 - PloneMeeting: testing - INFO - Executing [393/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenUserChanged
+2022-07-12 17:37:54,044 - PloneMeeting: testing - INFO - Executing [394/756] testMeetingItem:test_pm_ItemActionsPanelCachingInvalidatedWhenUserGroupsChanged
+2022-07-12 17:37:54,678 - PloneMeeting: testing - INFO - Executing [395/756] testMeetingItem:test_pm_ItemActionsPanelCachingProfiles
+2022-07-12 17:37:56,216 - PloneMeeting: testing - INFO - Executing [396/756] testMeetingItem:test_pm_ItemAddImagePermission
+2022-07-12 17:37:57,399 - PloneMeeting: testing - INFO - Executing [397/756] testMeetingItem:test_pm_ItemCreatedOnlyUsingTemplate
+2022-07-12 17:37:57,929 - PloneMeeting: testing - INFO - Executing [398/756] testMeetingItem:test_pm_ItemCreatedWithoutCategoryCanNotBePresentedToAMeeting
+2022-07-12 17:37:58,900 - PloneMeeting: testing - INFO - Executing [399/756] testMeetingItem:test_pm_ItemDuplicateForm
+2022-07-12 17:38:00,752 - PloneMeeting: testing - INFO - Executing [400/756] testMeetingItem:test_pm_ItemDuplicateFormAnnexesDisabledIfNotPermissionToAddAnnex
+2022-07-12 17:38:01,447 - PloneMeeting: testing - INFO - Executing [401/756] testMeetingItem:test_pm_ItemDuplicateFormKeepProposingGroupIfRelevant
+2022-07-12 17:38:02,078 - PloneMeeting: testing - INFO - Executing [402/756] testMeetingItem:test_pm_ItemDuplicateFormOnlyKeepRelevantAnnexes
+2022-07-12 17:38:03,270 - PloneMeeting: testing - INFO - Executing [403/756] testMeetingItem:test_pm_ItemEditAndView
+2022-07-12 17:38:05,762 - PloneMeeting: testing - INFO - Executing [404/756] testMeetingItem:test_pm_ItemExternalImagesStoredLocally
+2022-07-12 17:38:07,403 - PloneMeeting: testing - INFO - Executing [405/756] testMeetingItem:test_pm_ItemInternalImagesStoredLocallyWhenItemDuplicated
+2022-07-12 17:38:08,713 - PloneMeeting: testing - INFO - Executing [406/756] testMeetingItem:test_pm_ItemInternalNotesEditableBy
+2022-07-12 17:38:15,698 - PloneMeeting: testing - INFO - Executing [407/756] testMeetingItem:test_pm_ItemIsSigned
+2022-07-12 17:38:17,304 - PloneMeeting: testing - INFO - Executing [408/756] testMeetingItem:test_pm_ItemLocalRolesUpdatedEvent
+2022-07-12 17:38:17,832 - PloneMeeting: testing - INFO - Executing [409/756] testMeetingItem:test_pm_ItemNotDeletableWhenContainingGivenAdvices
+2022-07-12 17:38:18,571 - PloneMeeting: testing - INFO - Executing [410/756] testMeetingItem:test_pm_ItemOrderedGroupsInChargeVocabulary
+2022-07-12 17:38:19,082 - PloneMeeting: testing - INFO - Executing [411/756] testMeetingItem:test_pm_ItemPredecessorLifecycle
+2022-07-12 17:38:19,836 - PloneMeeting: testing - INFO - Executing [412/756] testMeetingItem:test_pm_ItemPredecessorMoved
+2022-07-12 17:38:20,499 - PloneMeeting: testing - INFO - Executing [413/756] testMeetingItem:test_pm_ItemProposingGroupsVocabulary
+2022-07-12 17:38:20,989 - PloneMeeting: testing - INFO - Executing [414/756] testMeetingItem:test_pm_ItemProposingGroupsVocabularyCaching
+2022-07-12 17:38:21,468 - PloneMeeting: testing - INFO - Executing [415/756] testMeetingItem:test_pm_ItemProposingGroupsVocabularyKeepConfigSorting
+2022-07-12 17:38:22,268 - PloneMeeting: testing - INFO - Executing [416/756] testMeetingItem:test_pm_ItemProposingGroupsWithGroupsInChargeVocabulary
+2022-07-12 17:38:23,024 - PloneMeeting: testing - INFO - Executing [417/756] testMeetingItem:test_pm_ItemReferenceAdaptedWhenItemInsertedOrRemovedOrDeletedFromMeeting
+2022-07-12 17:38:24,533 - PloneMeeting: testing - INFO - Executing [418/756] testMeetingItem:test_pm_ItemReferenceFoundInItemSearchableText
+2022-07-12 17:38:25,957 - PloneMeeting: testing - INFO - Executing [419/756] testMeetingItem:test_pm_ItemReferenceOfItemsOutsideMeeting
+2022-07-12 17:38:25,958 - PloneMeeting: testing - INFO - Bypassing test_pm_ItemReferenceOfItemsOutsideMeeting because WFAdaptation accepted_out_of_meeting is not available!
+2022-07-12 17:38:25,974 - PloneMeeting: testing - INFO - Executing [420/756] testMeetingItem:test_pm_ItemReferenceSetWhenItemHasFrozenMeeting
+2022-07-12 17:38:26,801 - PloneMeeting: testing - INFO - Executing [421/756] testMeetingItem:test_pm_ItemReferenceUpdateWhenItemPositionChangedOnMeeting
+2022-07-12 17:38:28,157 - PloneMeeting: testing - INFO - Executing [422/756] testMeetingItem:test_pm_ItemReferenceUpdateWhenSeveralItemsPresentedOrRemovedAtOnce
+2022-07-12 17:38:29,348 - PloneMeeting: testing - INFO - Executing [423/756] testMeetingItem:test_pm_ItemReferenceUpdateWhenSpecificItemFieldsModified
+2022-07-12 17:38:30,345 - PloneMeeting: testing - INFO - Executing [424/756] testMeetingItem:test_pm_ItemReferenceUpdateWhenSpecificMeetingFieldsModified
+2022-07-12 17:38:31,609 - PloneMeeting: testing - INFO - Executing [425/756] testMeetingItem:test_pm_ItemRenamedExceptedDefaultItemTemplate
+2022-07-12 17:38:32,306 - PloneMeeting: testing - INFO - Executing [426/756] testMeetingItem:test_pm_ItemRenamedUpdatesCategorizedElements
+2022-07-12 17:38:32,912 - PloneMeeting: testing - INFO - Executing [427/756] testMeetingItem:test_pm_ItemRenamedWhenDuplicated
+2022-07-12 17:38:33,635 - PloneMeeting: testing - INFO - Executing [428/756] testMeetingItem:test_pm_ItemRenamedWhileInInitialState
+2022-07-12 17:38:34,479 - PloneMeeting: testing - INFO - Executing [429/756] testMeetingItem:test_pm_ItemStrikedAssembly
+2022-07-12 17:38:36,027 - PloneMeeting: testing - INFO - Executing [430/756] testMeetingItem:test_pm_ItemWFValidationLevels_with_extra_suffixes
+2022-07-12 17:38:36,686 - PloneMeeting: testing - INFO - Executing [431/756] testMeetingItem:test_pm_KeepTakenOverBy
+2022-07-12 17:38:37,272 - PloneMeeting: testing - INFO - Executing [432/756] testMeetingItem:test_pm_ListCategoriesContainsDisabledStoredValue
+2022-07-12 17:38:37,867 - PloneMeeting: testing - INFO - Executing [433/756] testMeetingItem:test_pm_ListCategoriesKeepConfigSorting
+2022-07-12 17:38:38,366 - PloneMeeting: testing - INFO - Executing [434/756] testMeetingItem:test_pm_ListCategoriesNaturalSorting
+2022-07-12 17:38:39,318 - PloneMeeting: testing - INFO - Executing [435/756] testMeetingItem:test_pm_ListClassifiersKeepConfigSorting
+2022-07-12 17:38:39,819 - PloneMeeting: testing - INFO - Executing [436/756] testMeetingItem:test_pm_ListMeetingsAcceptingItems
+2022-07-12 17:38:42,767 - PloneMeeting: testing - INFO - Executing [437/756] testMeetingItem:test_pm_ManageItemAssemblyAndSignatures
+2022-07-12 17:38:46,251 - PloneMeeting: testing - INFO - Executing [438/756] testMeetingItem:test_pm_ManuallyLinkedItems
+2022-07-12 17:38:46,914 - PloneMeeting: testing - INFO - Executing [439/756] testMeetingItem:test_pm_ManuallyLinkedItemsCanUpdateEvenWithNotViewableItems
+2022-07-12 17:38:47,750 - PloneMeeting: testing - INFO - Executing [440/756] testMeetingItem:test_pm_ManuallyLinkedItemsChangesPersisted
+2022-07-12 17:38:48,289 - PloneMeeting: testing - INFO - Executing [441/756] testMeetingItem:test_pm_ManuallyLinkedItemsDuplicatedAndKeepLinkWhenSomeLinkedItemsWereDeleted
+2022-07-12 17:38:48,965 - PloneMeeting: testing - INFO - Executing [442/756] testMeetingItem:test_pm_ManuallyLinkedItemsSortedByMeetingDate
+2022-07-12 17:38:51,393 - PloneMeeting: testing - INFO - Executing [443/756] testMeetingItem:test_pm_MayQuickEditItemAssemblyAndSignatures
+2022-07-12 17:38:53,627 - PloneMeeting: testing - INFO - Executing [444/756] testMeetingItem:test_pm_MayTakeOverDecidedItem
+2022-07-12 17:38:55,330 - PloneMeeting: testing - INFO - Executing [445/756] testMeetingItem:test_pm_OnTransitionFieldTransforms
+2022-07-12 17:38:57,807 - PloneMeeting: testing - INFO - Executing [446/756] testMeetingItem:test_pm_OnTransitionFieldTransformsUseLastCommentFromHistory
+2022-07-12 17:39:00,015 - PloneMeeting: testing - INFO - Executing [447/756] testMeetingItem:test_pm_OptionalAdvisersDelayAwareAdvisers
+2022-07-12 17:39:00,515 - PloneMeeting: testing - INFO - Executing [448/756] testMeetingItem:test_pm_OptionalAdvisersVocabulary
+2022-07-12 17:39:01,540 - PloneMeeting: testing - INFO - Executing [449/756] testMeetingItem:test_pm_PowerObserverMayViewItemWhenMeetingNotViewable
+2022-07-12 17:39:03,051 - PloneMeeting: testing - INFO - Executing [450/756] testMeetingItem:test_pm_PowerObserversAccessOn
+2022-07-12 17:39:04,148 - PloneMeeting: testing - INFO - Executing [451/756] testMeetingItem:test_pm_PowerObserversConfigLocalRoles
+2022-07-12 17:39:04,165 - PloneMeeting: testing - INFO - Executing [452/756] testMeetingItem:test_pm_PowerObserversGroups
+2022-07-12 17:39:07,677 - PloneMeeting: testing - INFO - Executing [453/756] testMeetingItem:test_pm_PowerObserversLocalRoles
+2022-07-12 17:39:08,826 - PloneMeeting: testing - INFO - Executing [454/756] testMeetingItem:test_pm_Preferred_meeting_dateIndex
+2022-07-12 17:39:09,604 - PloneMeeting: testing - INFO - Executing [455/756] testMeetingItem:test_pm_PreviousReviewStateIndex
+2022-07-12 17:39:10,317 - PloneMeeting: testing - INFO - Executing [456/756] testMeetingItem:test_pm_PrintAssembly
+2022-07-12 17:39:11,527 - PloneMeeting: testing - INFO - Executing [457/756] testMeetingItem:test_pm_SelectableCategories
+2022-07-12 17:39:11,654 - PloneMeeting: testing - INFO - Executing [458/756] testMeetingItem:test_pm_SendItemToOtherMCActions
+2022-07-12 17:39:11,968 - PloneMeeting: testing - INFO - Executing [459/756] testMeetingItem:test_pm_SendItemToOtherMCAnnexContentCategoryIsIndexed
+2022-07-12 17:39:14,418 - PloneMeeting: testing - INFO - Executing [460/756] testMeetingItem:test_pm_SendItemToOtherMCAutoReplacedFields
+2022-07-12 17:39:15,290 - PloneMeeting: testing - INFO - Executing [461/756] testMeetingItem:test_pm_SendItemToOtherMCAutoWhenValidated
+2022-07-12 17:39:16,134 - PloneMeeting: testing - INFO - Executing [462/756] testMeetingItem:test_pm_SendItemToOtherMCDefaultFunctionnality
+2022-07-12 17:39:18,789 - PloneMeeting: testing - INFO - Executing [463/756] testMeetingItem:test_pm_SendItemToOtherMCKeepAdvices
+2022-07-12 17:39:21,100 - PloneMeeting: testing - INFO - Executing [464/756] testMeetingItem:test_pm_SendItemToOtherMCKeepAdvicesWithKeptAdvices
+2022-07-12 17:39:23,292 - PloneMeeting: testing - INFO - Executing [465/756] testMeetingItem:test_pm_SendItemToOtherMCKeepAdvicesWithKeptAdvicesRowIdAdviceNotMismatched
+2022-07-12 17:39:25,461 - PloneMeeting: testing - INFO - Executing [466/756] testMeetingItem:test_pm_SendItemToOtherMCKeptFields
+2022-07-12 17:39:26,777 - PloneMeeting: testing - INFO - Executing [467/756] testMeetingItem:test_pm_SendItemToOtherMCManually
+2022-07-12 17:39:27,702 - PloneMeeting: testing - INFO - Executing [468/756] testMeetingItem:test_pm_SendItemToOtherMCRespectWFInitialState
+2022-07-12 17:39:29,471 - PloneMeeting: testing - INFO - Executing [469/756] testMeetingItem:test_pm_SendItemToOtherMCTransitionsTriggeredOnlyWhenAutomaticOrHasMeeting
+2022-07-12 17:39:31,940 - PloneMeeting: testing - INFO - Executing [470/756] testMeetingItem:test_pm_SendItemToOtherMCTransitionsTriggeredUntilPresented
+2022-07-12 17:39:34,157 - PloneMeeting: testing - INFO - Executing [471/756] testMeetingItem:test_pm_SendItemToOtherMCTriggeredTransitionsAreUnrestricted
+2022-07-12 17:39:35,498 - PloneMeeting: testing - INFO - Executing [472/756] testMeetingItem:test_pm_SendItemToOtherMCUsingEmergency
+2022-07-12 17:39:38,901 - PloneMeeting: testing - INFO - Executing [473/756] testMeetingItem:test_pm_SendItemToOtherMCUsingEmergencyInitializePreferredMeeting
+2022-07-12 17:39:41,001 - PloneMeeting: testing - INFO - Executing [474/756] testMeetingItem:test_pm_SendItemToOtherMCUsingPrivacy
+2022-07-12 17:39:42,101 - PloneMeeting: testing - INFO - Executing [475/756] testMeetingItem:test_pm_SendItemToOtherMCWithAdvices
+2022-07-12 17:39:44,269 - PloneMeeting: testing - INFO - Executing [476/756] testMeetingItem:test_pm_SendItemToOtherMCWithAnnexes
+2022-07-12 17:39:46,702 - PloneMeeting: testing - INFO - Executing [477/756] testMeetingItem:test_pm_SendItemToOtherMCWithMappedCategories
+2022-07-12 17:39:48,621 - PloneMeeting: testing - INFO - Executing [478/756] testMeetingItem:test_pm_SendItemToOtherMCWithTriggeredTransitions
+2022-07-12 17:39:57,792 - PloneMeeting: testing - INFO - Executing [479/756] testMeetingItem:test_pm_SendItemToOtherMCWithoutDefinedAnnexType
+2022-07-12 17:40:00,604 - PloneMeeting: testing - INFO - Executing [480/756] testMeetingItem:test_pm_SentToInfosIndex
+2022-07-12 17:40:03,792 - PloneMeeting: testing - INFO - Executing [481/756] testMeetingItem:test_pm_ShowObservations
+2022-07-12 17:40:04,344 - PloneMeeting: testing - INFO - Executing [482/756] testMeetingItem:test_pm_Show_groups_in_charge
+2022-07-12 17:40:04,899 - PloneMeeting: testing - INFO - Executing [483/756] testMeetingItem:test_pm_TakenOverBy
+2022-07-12 17:40:05,528 - PloneMeeting: testing - INFO - Executing [484/756] testMeetingItem:test_pm_ToDiscussFieldBehaviourWhenCloned
+2022-07-12 17:40:07,823 - PloneMeeting: testing - INFO - Executing [485/756] testMeetingItem:test_pm_UpdateAdvices
+2022-07-12 17:40:08,457 - PloneMeeting: testing - INFO - Executing [486/756] testMeetingItem:test_pm_Validate_category
+2022-07-12 17:40:09,278 - PloneMeeting: testing - INFO - Executing [487/756] testMeetingItem:test_pm_Validate_committees
+2022-07-12 17:40:09,821 - PloneMeeting: testing - INFO - Executing [488/756] testMeetingItem:test_pm_Validate_itemAssembly
+2022-07-12 17:40:10,388 - PloneMeeting: testing - INFO - Executing [489/756] testMeetingItem:test_pm_Validate_item_assembly
+2022-07-12 17:40:10,409 - PloneMeeting: testing - INFO - Executing [490/756] testMeetingItem:test_pm_Validate_optionalAdvisersCanNotSelectAdviserWhenInherited
+2022-07-12 17:40:11,312 - PloneMeeting: testing - INFO - Executing [491/756] testMeetingItem:test_pm_Validate_optionalAdvisersCanNotSelectSameGroupAdvisers
+2022-07-12 17:40:11,893 - PloneMeeting: testing - INFO - Executing [492/756] testMeetingItem:test_pm_Validate_proposingGroup
+2022-07-12 17:40:12,435 - PloneMeeting: testing - INFO - Executing [493/756] testMeetingItem:test_pm_WFHistoryAndDAtaChangesHistoryAreSeparated
+2022-07-12 17:40:13,024 - PloneMeeting: testing - INFO - Executing [494/756] testMeetingItem:test_pm__sendAdviceToGiveMailIfRelevant
+2022-07-12 17:40:13,626 - PloneMeeting: testing - INFO - Executing [495/756] testMeetingItem:test_pm__sendCopyGroupsMailIfRelevant
+2022-07-12 17:40:13,645 - PloneMeeting: testing - INFO - Executing [496/756] testMeetingItem:test_pm__send_history_aware_mail_if_relevant
+2022-07-12 17:40:13,645 - PloneMeeting: testing - INFO - Bypassing test_pm__send_history_aware_mail_if_relevant because WFAdaptation presented_item_back_to_itemcreated is not available!
+2022-07-12 17:40:13,664 - PloneMeeting: testing - INFO - Executing [497/756] testMeetingItem:test_pm__send_proposing_group_suffix_if_relevant
+2022-07-12 17:40:13,665 - PloneMeeting: testing - INFO - Bypassing test_pm__send_proposing_group_suffix_if_relevant because WFAdaptation presented_item_back_to_itemcreated is not available!
+2022-07-12 17:40:13,685 - PloneMeeting: testing - INFO - Executing [498/756] testMeetingItem:test_pm__update_meeting_link
+2022-07-12 17:40:15,168 - PloneMeeting: testing - INFO - Executing [499/756] testPortlets:test_pm_FromPortletTodo
+2022-07-12 17:40:15,863 - PloneMeeting: testing - INFO - Executing [500/756] testPortlets:test_pm_PortletPMAvailableTemplates
+2022-07-12 17:40:16,754 - PloneMeeting: testing - INFO - Executing [501/756] testPortlets:test_pm_PortletPMRestrictCreateItemFromEmptyTemplate
+2022-07-12 17:40:17,525 - PloneMeeting: testing - INFO - Executing [502/756] testPortlets:test_pm_PortletTodoCaching
+2022-07-12 17:40:18,517 - PloneMeeting: testing - INFO - Executing [503/756] testSearches:test_pm_CompoundCriterionAdapterItemsWithNegativePreviousIndex
+2022-07-12 17:40:19,093 - PloneMeeting: testing - INFO - Executing [504/756] testSearches:test_pm_DashboardCollectionsAreEditable
+2022-07-12 17:40:23,584 - PloneMeeting: testing - INFO - Executing [505/756] testSearches:test_pm_DefaultSelectedSearch
+2022-07-12 17:40:23,601 - PloneMeeting: testing - INFO - Executing [506/756] testSearches:test_pm_EverySearchesUseDifferentCachedMethod
+2022-07-12 17:40:23,618 - PloneMeeting: testing - INFO - Executing [507/756] testSearches:test_pm_SearchAdvisedItems
+2022-07-12 17:40:24,628 - PloneMeeting: testing - INFO - Executing [508/756] testSearches:test_pm_SearchAdvisedItemsWithDelay
+2022-07-12 17:40:25,359 - PloneMeeting: testing - INFO - Executing [509/756] testSearches:test_pm_SearchAllItemsToValidateOfEveryReviewerGroups
+2022-07-12 17:40:25,360 - PloneMeeting: testing - INFO - Bypassing test test_pm_SearchAllItemsToValidateOfEveryReviewerGroups because it needs the 'return_to_proposing_group_with_all_validations' wfAdaptation.
+2022-07-12 17:40:25,377 - PloneMeeting: testing - INFO - Executing [510/756] testSearches:test_pm_SearchAllItemsToValidateOfHighestHierarchicLevel
+2022-07-12 17:40:25,395 - PloneMeeting: testing - INFO - Executing [511/756] testSearches:test_pm_SearchItemsInCopy
+2022-07-12 17:40:25,913 - PloneMeeting: testing - INFO - Executing [512/756] testSearches:test_pm_SearchItemsInCopyWithAutoCopyGroups
+2022-07-12 17:40:26,417 - PloneMeeting: testing - INFO - Executing [513/756] testSearches:test_pm_SearchItemsOfMyGroups
+2022-07-12 17:40:26,448 - PloneMeeting: testing - INFO - Executing [514/756] testSearches:test_pm_SearchItemsToAdviceAdapter
+2022-07-12 17:40:27,518 - PloneMeeting: testing - INFO - Executing [515/756] testSearches:test_pm_SearchItemsToAdviceWithoutHiddenDuringRedactionAdapter
+2022-07-12 17:40:27,536 - PloneMeeting: testing - INFO - Executing [516/756] testSearches:test_pm_SearchItemsToCorrect
+2022-07-12 17:40:29,363 - PloneMeeting: testing - INFO - Executing [517/756] testSearches:test_pm_SearchItemsToCorrectToValidateOfEveryReviewerGroups
+2022-07-12 17:40:29,363 - PloneMeeting: testing - INFO - Bypassing , test_pm_SearchItemsToCorrectToValidateOfEveryReviewerGroups not used in MeetingSeraing
+2022-07-12 17:40:29,381 - PloneMeeting: testing - INFO - Executing [518/756] testSearches:test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel
+2022-07-12 17:40:29,381 - PloneMeeting: testing - INFO - Bypassing , test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel not used in MeetingSeraing
+2022-07-12 17:40:29,398 - PloneMeeting: testing - INFO - Executing [519/756] testSearches:test_pm_SearchItemsToValidateOfEveryReviewerLevelsAndLowerLevels
+2022-07-12 17:40:29,398 - PloneMeeting: testing - INFO - Test 'test_pm_SearchItemsToValidateOfEveryReviewerLevelsAndLowerLevels' was bypassed.
+2022-07-12 17:40:29,415 - PloneMeeting: testing - INFO - Executing [520/756] testSearches:test_pm_SearchItemsToValidateOfHighestHierarchicLevel
+2022-07-12 17:40:29,415 - PloneMeeting: testing - INFO - Bypassing , test_pm_SearchItemsToValidateOfHighestHierarchicLevel not used in MeetingSeraing
+2022-07-12 17:40:29,433 - PloneMeeting: testing - INFO - Executing [521/756] testSearches:test_pm_SearchItemsToValidateOfHighestHierarchicLevelReturnsEveryLevels
+2022-07-12 17:40:29,433 - PloneMeeting: testing - INFO - Bypassing , test_pm_SearchItemsToValidateOfHighestHierarchicLevelReturnsEveryLevels not used in MeetingSeraing
+2022-07-12 17:40:29,449 - PloneMeeting: testing - INFO - Executing [522/756] testSearches:test_pm_SearchItemsToValidateOfMyReviewerGroups
+
+
+Failure in test test_pm_SearchItemsToValidateOfMyReviewerGroups (Products.MeetingSeraing.tests.testSearches.testSearches)
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/unittest/case.py", line 367, in run
+    testMethod()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/tests/testSearches.py", line 731, in test_pm_SearchItemsToValidateOfMyReviewerGroups
+    self.assertFalse(self.tool.userIsAmong([reviewers.keys()[1]]))
+  File "/usr/lib64/python2.7/unittest/case.py", line 454, in assertFalse
+    raise self.failureException(msg)
+AssertionError: True is not false
+
+2022-07-12 17:40:29,467 - PloneMeeting: testing - INFO - Executing [523/756] testSearches:test_pm_SearchLastDecisions
+2022-07-12 17:40:30,932 - PloneMeeting: testing - INFO - Executing [524/756] testSearches:test_pm_SearchMyItemsTakenOver
+2022-07-12 17:40:31,492 - PloneMeeting: testing - INFO - Executing [525/756] testSearches:test_pm_SearchMyItemsToAdviceAdapter
+2022-07-12 17:40:32,223 - PloneMeeting: testing - INFO - Executing [526/756] testSearches:test_pm_SearchUnreadItems
+2022-07-12 17:40:32,689 - PloneMeeting: testing - INFO - Executing [527/756] testSetup:test_pm_DevPackages
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Number of dev packages: 39
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingCommunes/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/appy
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.helpers/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/Products.CPUtils/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/plonetheme.imioapps/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/plonemeeting.restapi/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.zamqp.pm/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.pyutils
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.migrator/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.dashboard/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.pm.ws/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.pm.locales/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.annex/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/ftw.labels
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.messagesviewlet/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.js.fancytree
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.contact.plonegroup/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.behavior.talcondition/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/plone.restapi/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.restapi/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.zamqp.core/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.dms.scanbehavior/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.actionspanel/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.js.iframeresizer/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.eeafaceted.dashboard/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.eeafaceted.batchactions/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.iconifiedcategory/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.eeafaceted.z3ctable/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.contact.core/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.history/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/imio.prettylink/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.eeafaceted.collectionwidget/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.documentgenerator/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.compoundcriterion/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.js.tooltipster/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.excelexport/src
+2022-07-12 17:40:32,690 - PloneMeeting: testing - INFO - Dev package: /home/duchenean/Projects/iMio/seraing_pm42/src/collective.contact.widget/src
+2022-07-12 17:40:32,707 - PloneMeeting: testing - INFO - Executing [528/756] testSetup:test_pm_EnsureSolrActivated
+2022-07-12 17:40:32,707 - PloneMeeting: testing - INFO - HAS_SOLR False
+2022-07-12 17:40:33,181 - PloneMeeting: testing - INFO - HAS_SOLR is False so there is nothing more to check
+2022-07-12 17:40:33,200 - PloneMeeting: testing - INFO - Executing [529/756] testSetup:test_pm_FactoryTypes
+2022-07-12 17:40:33,218 - PloneMeeting: testing - INFO - Executing [530/756] testSetup:test_pm_InstallAvailableProfiles
+2022-07-12 17:40:33,220 - PloneMeeting: testing - INFO - Applying import_data of profile 'Products.MeetingSeraing:seraing'
+The following test left new threads behind:
+test_pm_InstallAvailableProfiles (Products.MeetingSeraing.tests.testSetup.testSetup)
+New thread(s): [<QueueProcessorThread(Thread-5, started daemon 140545737619008)>]
+2022-07-12 17:41:05,635 - PloneMeeting: testing - INFO - Executing [531/756] testSetup:test_pm_ToolAttributesAreOnlySetOnFirstImportData
+The following test left new threads behind:
+test_pm_ToolAttributesAreOnlySetOnFirstImportData (Products.MeetingSeraing.tests.testSetup.testSetup)
+New thread(s): [<QueueProcessorThread(Thread-7, started daemon 140545737619008)>]
+2022-07-12 17:41:19,186 - PloneMeeting: testing - INFO - Executing [532/756] testSetup:test_pm_TypesNotSearched
+2022-07-12 17:41:23,539 - PloneMeeting: testing - INFO - Executing [533/756] testSetup:test_pm_WorkflowsRemovedOnReinstall
+2022-07-12 17:41:23,591 - PloneMeeting: testing - INFO - test_pm_WorkflowsRemovedOnReinstall: item workflow not updated using profile_name profile-Products.MeetingSeraing:default for MeetingConfig meeting-config-college?
+2022-07-12 17:41:23,591 - PloneMeeting: testing - INFO - test_pm_WorkflowsRemovedOnReinstall: meeting workflow not updated using profile_name profile-Products.MeetingSeraing:default for MeetingConfig meeting-config-college?
+2022-07-12 17:41:23,591 - PloneMeeting: testing - INFO - test_pm_WorkflowsRemovedOnReinstall: item workflow not updated using profile_name profile-Products.MeetingSeraing:default for MeetingConfig meeting-config-council?
+2022-07-12 17:41:23,591 - PloneMeeting: testing - INFO - test_pm_WorkflowsRemovedOnReinstall: meeting workflow not updated using profile_name profile-Products.MeetingSeraing:default for MeetingConfig meeting-config-council?
+2022-07-12 17:41:23,609 - PloneMeeting: testing - INFO - Executing [534/756] testToolPloneMeeting:test_pm_CloneItemDefaultFunctionnality
+2022-07-12 17:41:24,712 - PloneMeeting: testing - INFO - Executing [535/756] testToolPloneMeeting:test_pm_CloneItemKeepProposingGroup
+2022-07-12 17:41:25,655 - PloneMeeting: testing - INFO - Executing [536/756] testToolPloneMeeting:test_pm_CloneItemKeepProposingGroupWithGroupInCharge
+2022-07-12 17:41:26,574 - PloneMeeting: testing - INFO - Executing [537/756] testToolPloneMeeting:test_pm_CloneItemWithAnnexes
+2022-07-12 17:41:27,966 - PloneMeeting: testing - INFO - Executing [538/756] testToolPloneMeeting:test_pm_CloneItemWithContentNotRemovableByPermission
+2022-07-12 17:41:28,662 - PloneMeeting: testing - INFO - Executing [539/756] testToolPloneMeeting:test_pm_CloneItemWithUnexistingNewOwnerId
+2022-07-12 17:41:29,551 - PloneMeeting: testing - INFO - Executing [540/756] testToolPloneMeeting:test_pm_Format_date
+2022-07-12 17:41:30,437 - PloneMeeting: testing - INFO - Executing [541/756] testToolPloneMeeting:test_pm_GetDefaultMeetingConfig
+2022-07-12 17:41:30,585 - PloneMeeting: testing - INFO - Executing [542/756] testToolPloneMeeting:test_pm_GetMeetingConfig
+2022-07-12 17:41:31,773 - PloneMeeting: testing - INFO - Executing [543/756] testToolPloneMeeting:test_pm_Get_plone_groups_for_user
+2022-07-12 17:41:31,806 - PloneMeeting: testing - INFO - Executing [544/756] testToolPloneMeeting:test_pm_Get_selectable_orgs
+2022-07-12 17:41:31,829 - PloneMeeting: testing - INFO - Executing [545/756] testToolPloneMeeting:test_pm_Group_is_not_empty
+2022-07-12 17:41:31,861 - PloneMeeting: testing - INFO - Executing [546/756] testToolPloneMeeting:test_pm_InvalidateAllCache
+2022-07-12 17:41:33,180 - PloneMeeting: testing - INFO - Executing [547/756] testToolPloneMeeting:test_pm_IsPowerObserverForCfg
+2022-07-12 17:41:33,199 - PloneMeeting: testing - INFO - Executing [548/756] testToolPloneMeeting:test_pm_PasteItem
+2022-07-12 17:41:34,213 - PloneMeeting: testing - INFO - Executing [549/756] testToolPloneMeeting:test_pm_PasteItemWorkflowHistory
+2022-07-12 17:41:35,033 - PloneMeeting: testing - INFO - Executing [550/756] testToolPloneMeeting:test_pm_RemoveAnnexesPreviews
+2022-07-12 17:41:39,233 - PloneMeeting: testing - INFO - Executing [551/756] testToolPloneMeeting:test_pm_SetupProcessForCreationFlag
+2022-07-12 17:41:39,263 - PloneMeeting: testing - INFO - Executing [552/756] testToolPloneMeeting:test_pm_ShowHolidaysWarning
+2022-07-12 17:41:39,282 - PloneMeeting: testing - INFO - Executing [553/756] testToolPloneMeeting:test_pm_ShowPloneMeetingTab
+2022-07-12 17:41:39,396 - PloneMeeting: testing - INFO - Executing [554/756] testToolPloneMeeting:test_pm_ShowPloneMeetingTabCfgUsingGroups
+2022-07-12 17:41:39,421 - PloneMeeting: testing - INFO - Executing [555/756] testToolPloneMeeting:test_pm_ToolAccessibleByUsersWithoutGroups
+2022-07-12 17:41:39,541 - PloneMeeting: testing - INFO - Executing [556/756] testToolPloneMeeting:test_pm_ToolView
+2022-07-12 17:41:41,293 - PloneMeeting: testing - INFO - Executing [557/756] testToolPloneMeeting:test_pm_UpdateBudgetImpactEditors
+2022-07-12 17:41:41,911 - PloneMeeting: testing - INFO - Executing [558/756] testToolPloneMeeting:test_pm_UpdateContentCategoryAfterSentToOtherMeetingConfig
+2022-07-12 17:41:42,999 - PloneMeeting: testing - INFO - Executing [559/756] testToolPloneMeeting:test_pm_UpdateContentCategoryAfterSentToOtherMeetingConfigCrossingAnnexType
+2022-07-12 17:41:44,381 - PloneMeeting: testing - INFO - Executing [560/756] testToolPloneMeeting:test_pm_UpdateContentCategoryAfterSentToOtherMeetingConfigRemovesElementsWithoutTypeCorrespondence
+2022-07-12 17:41:45,987 - PloneMeeting: testing - INFO - Executing [561/756] testToolPloneMeeting:test_pm_UpdateCopyGroups
+2022-07-12 17:41:46,612 - PloneMeeting: testing - INFO - Executing [562/756] testToolPloneMeeting:test_pm_UpdatePowerObservers
+2022-07-12 17:41:47,743 - PloneMeeting: testing - INFO - Executing [563/756] testToolPloneMeeting:test_pm_UserIsAmong
+2022-07-12 17:41:47,824 - PloneMeeting: testing - INFO - Executing [564/756] testToolPloneMeeting:test_pm_UserIsAmongCfgUsingGroups
+2022-07-12 17:41:47,842 - PloneMeeting: testing - INFO - Executing [565/756] testToolPloneMeeting:test_pm_Validate_configGroups
+2022-07-12 17:41:47,859 - PloneMeeting: testing - INFO - Executing [566/756] testToolPloneMeeting:test_pm_VerifyTestFiles
+2022-07-12 17:41:47,877 - PloneMeeting: testing - INFO - Executing [567/756] testToolPloneMeeting:test_pm__users_groups_value
+2022-07-12 17:41:47,931 - PloneMeeting: testing - INFO - Executing [568/756] testToolPloneMeeting:test_pm_get_labels
+2022-07-12 17:41:48,386 - PloneMeeting: testing - INFO - Executing [569/756] testToolPloneMeeting:test_pm_get_orgs_for_user
+2022-07-12 17:41:48,474 - PloneMeeting: testing - INFO - Executing [570/756] testToolPloneMeeting:test_pm_user_is_in_org
+2022-07-12 17:41:48,493 - PloneMeeting: testing - INFO - Executing [571/756] testToolPloneMeeting:test_pm_validate_holidays
+2022-07-12 17:41:49,046 - PloneMeeting: testing - INFO - Executing [572/756] testUtils:test_pm_GetMemberInfo
+2022-07-12 17:41:49,065 - PloneMeeting: testing - INFO - Executing [573/756] testUtils:test_pm_SendMailIfRelevant
+2022-07-12 17:41:49,794 - PloneMeeting: testing - INFO - Executing [574/756] testUtils:test_pm_SendMailIfRelevantIsGroupIds
+2022-07-12 17:41:50,348 - PloneMeeting: testing - INFO - Executing [575/756] testUtils:test_pm_SendMailIfRelevantIsPermission
+2022-07-12 17:41:50,945 - PloneMeeting: testing - INFO - Executing [576/756] testUtils:test_pm_SendMailIfRelevantIsUserIds
+2022-07-12 17:41:51,506 - PloneMeeting: testing - INFO - Executing [577/756] testUtils:test_pm_Set_dx_value
+2022-07-12 17:41:52,336 - PloneMeeting: testing - INFO - Executing [578/756] testUtils:test_pm_Set_field_from_ajax
+2022-07-12 17:41:53,690 - PloneMeeting: testing - INFO - Executing [579/756] testUtils:test_pm_TransformAllRichTextFields
+2022-07-12 17:41:55,373 - PloneMeeting: testing - INFO - Executing [580/756] testUtils:test_pm_Validate_item_assembly_value
+2022-07-12 17:41:55,392 - PloneMeeting: testing - INFO - Executing [581/756] testUtils:test_pm_duplicate_portal_type
+2022-07-12 17:41:55,413 - PloneMeeting: testing - INFO - Executing [582/756] testUtils:test_pm_escape
+2022-07-12 17:41:55,432 - PloneMeeting: testing - INFO - Executing [583/756] testUtils:test_pm_org_id_to_uid
+2022-07-12 17:41:55,451 - PloneMeeting: testing - INFO - Executing [584/756] testValidators:test_pm_IsValidCertifiedSignaturesValidatorFailIfUsingDuplicatedEntries
+2022-07-12 17:41:55,468 - PloneMeeting: testing - INFO - Executing [585/756] testValidators:test_pm_IsValidCertifiedSignaturesValidatorFailsIfBothDatesNotProvided
+2022-07-12 17:41:55,486 - PloneMeeting: testing - INFO - Executing [586/756] testValidators:test_pm_IsValidCertifiedSignaturesValidatorFailsIfNotOrdered
+2022-07-12 17:41:55,502 - PloneMeeting: testing - INFO - Executing [587/756] testValidators:test_pm_IsValidCertifiedSignaturesValidatorFailsIfWrongDateFormat
+2022-07-12 17:41:55,519 - PloneMeeting: testing - INFO - Executing [588/756] testValidators:test_pm_IsValidCertifiedSignaturesValidatorWorking
+2022-07-12 17:41:55,538 - PloneMeeting: testing - INFO - Executing [589/756] testValidators:test_pm_PloneGroupSettingsFunctionsValidator
+2022-07-12 17:41:56,741 - PloneMeeting: testing - INFO - Executing [590/756] testValidators:test_pm_PloneGroupSettingsOrganizationsValidator
+2022-07-12 17:41:56,762 - PloneMeeting: testing - INFO - Executing [591/756] testViews:test_pm_ChangeListTypeView
+2022-07-12 17:41:57,912 - PloneMeeting: testing - INFO - Executing [592/756] testViews:test_pm_CreateItemFromTemplate
+2022-07-12 17:41:58,457 - PloneMeeting: testing - INFO - Executing [593/756] testViews:test_pm_CreateItemFromTemplateInSubfolderWithSpecialChars
+2022-07-12 17:41:59,036 - PloneMeeting: testing - INFO - Executing [594/756] testViews:test_pm_CreateItemFromTemplateIsPrivacyViewable
+2022-07-12 17:41:59,512 - PloneMeeting: testing - INFO - Executing [595/756] testViews:test_pm_CreateItemFromTemplateKeepsProposingGroup
+2022-07-12 17:42:00,152 - PloneMeeting: testing - INFO - Executing [596/756] testViews:test_pm_DeleteAnnexesActionForm
+2022-07-12 17:42:02,491 - PloneMeeting: testing - INFO - Executing [597/756] testViews:test_pm_DisplayGroupUsersView
+2022-07-12 17:42:02,596 - PloneMeeting: testing - INFO - Executing [598/756] testViews:test_pm_DisplayGroupUsersViewAllPloneGroups
+2022-07-12 17:42:03,070 - PloneMeeting: testing - INFO - Executing [599/756] testViews:test_pm_DisplayGroupUsersViewGroupsInGroups
+2022-07-12 17:42:03,115 - PloneMeeting: testing - INFO - Executing [600/756] testViews:test_pm_DocumentGenerationContext
+2022-07-12 17:42:03,860 - PloneMeeting: testing - INFO - Executing [601/756] testViews:test_pm_DownloadAnnexesActionForm
+2022-07-12 17:42:04,457 - PloneMeeting: testing - INFO - Executing [602/756] testViews:test_pm_ETags
+2022-07-12 17:42:06,789 - PloneMeeting: testing - INFO - Executing [603/756] testViews:test_pm_FTWLabels
+2022-07-12 17:42:08,236 - PloneMeeting: testing - INFO - Executing [604/756] testViews:test_pm_Get_contact_infos
+2022-07-12 17:42:08,891 - PloneMeeting: testing - INFO - Executing [605/756] testViews:test_pm_Get_meeting_assembly_stats
+2022-07-12 17:42:10,886 - PloneMeeting: testing - INFO - Executing [606/756] testViews:test_pm_ItemMoreInfos
+2022-07-12 17:42:11,344 - PloneMeeting: testing - INFO - Executing [607/756] testViews:test_pm_ItemMoreInfosItemsVisibleFields
+2022-07-12 17:42:11,805 - PloneMeeting: testing - INFO - Executing [608/756] testViews:test_pm_ItemMoreInfosNotViewableItem
+2022-07-12 17:42:12,816 - PloneMeeting: testing - INFO - Executing [609/756] testViews:test_pm_ItemMoreInfosNotViewableItemTALExpr
+2022-07-12 17:42:13,343 - PloneMeeting: testing - INFO - Executing [610/756] testViews:test_pm_ItemTemplateDeletedIfFirstEditCancelled
+2022-07-12 17:42:13,946 - PloneMeeting: testing - INFO - Executing [611/756] testViews:test_pm_ItemTemplateView
+2022-07-12 17:42:14,853 - PloneMeeting: testing - INFO - Executing [612/756] testViews:test_pm_ItemTemplates
+2022-07-12 17:42:16,551 - PloneMeeting: testing - INFO - Executing [613/756] testViews:test_pm_ItemTemplatesCaching
+2022-07-12 17:42:17,485 - PloneMeeting: testing - INFO - Executing [614/756] testViews:test_pm_ItemTemplatesWithSubFolders
+2022-07-12 17:42:19,028 - PloneMeeting: testing - INFO - Executing [615/756] testViews:test_pm_ItemTemplatesWithSubFoldersContainedInEmptyFolders
+2022-07-12 17:42:19,889 - PloneMeeting: testing - INFO - Executing [616/756] testViews:test_pm_JSVariables
+2022-07-12 17:42:19,906 - PloneMeeting: testing - INFO - Executing [617/756] testViews:test_pm_MeetingReorderItems
+2022-07-12 17:42:21,907 - PloneMeeting: testing - INFO - Executing [618/756] testViews:test_pm_MeetingStoreItemsPodTemplateAsAnnexBatchActionForm_handleApply
+2022-07-12 17:42:26,854 - PloneMeeting: testing - INFO - Executing [619/756] testViews:test_pm_MeetingStoreItemsPodTemplateAsAnnexBatchActionForm_may_store
+2022-07-12 17:42:27,761 - PloneMeeting: testing - INFO - Executing [620/756] testViews:test_pm_MeetingUpdateItemReferences
+2022-07-12 17:42:28,558 - PloneMeeting: testing - INFO - Executing [621/756] testViews:test_pm_PMTransitionBatchActionFormOnlyForMeetingManagersOnMeeting
+2022-07-12 17:42:29,489 - PloneMeeting: testing - INFO - Executing [622/756] testViews:test_pm_PMTransitionBatchActionFormOnlyForOperationalRoles
+2022-07-12 17:42:30,152 - PloneMeeting: testing - INFO - Executing [623/756] testViews:test_pm_PrintXhtmlAddCSSClass
+2022-07-12 17:42:30,848 - PloneMeeting: testing - INFO - Executing [624/756] testViews:test_pm_PrintXhtmlAnonymize
+2022-07-12 17:42:31,554 - PloneMeeting: testing - INFO - Executing [625/756] testViews:test_pm_PrintXhtmlClean
+2022-07-12 17:42:32,454 - PloneMeeting: testing - INFO - Executing [626/756] testViews:test_pm_PrintXhtmlContents
+2022-07-12 17:42:33,163 - PloneMeeting: testing - INFO - Executing [627/756] testViews:test_pm_PrintXhtmlImageSrcToData
+2022-07-12 17:42:33,991 - PloneMeeting: testing - INFO - Executing [628/756] testViews:test_pm_PrintXhtmlImageSrcToPaths
+2022-07-12 17:42:34,810 - PloneMeeting: testing - INFO - Executing [629/756] testViews:test_pm_PrintXhtmlSeparator
+2022-07-12 17:42:35,521 - PloneMeeting: testing - INFO - Executing [630/756] testViews:test_pm_PrintXhtmlUseSafeHTML
+2022-07-12 17:42:36,230 - PloneMeeting: testing - INFO - Executing [631/756] testViews:test_pm_Print_preferred_meeting_date
+2022-07-12 17:42:37,380 - PloneMeeting: testing - INFO - Executing [632/756] testViews:test_pm_Print_scan_id_barcode
+2022-07-12 17:42:37,858 - PloneMeeting: testing - INFO - Executing [633/756] testViews:test_pm_RichTextWidget
+2022-07-12 17:42:38,493 - PloneMeeting: testing - INFO - Executing [634/756] testViews:test_pm_SelectedTabs
+2022-07-12 17:42:39,452 - PloneMeeting: testing - INFO - Executing [635/756] testViews:test_pm_SendPodTemplateToMailingList
+2022-07-12 17:42:40,633 - PloneMeeting: testing - INFO - Executing [636/756] testViews:test_pm_SendPodTemplateToMailingListRecipient
+2022-07-12 17:42:41,110 - PloneMeeting: testing - INFO - Executing [637/756] testViews:test_pm_StorePodTemplateAsAnnex
+2022-07-12 17:42:42,566 - PloneMeeting: testing - INFO - Executing [638/756] testViews:test_pm_StorePodTemplateAsAnnexEmptyFile
+2022-07-12 17:42:43,315 - PloneMeeting: testing - INFO - Executing [639/756] testViews:test_pm_StorePodTemplateAsAnnexTitle
+2022-07-12 17:42:44,255 - PloneMeeting: testing - INFO - Executing [640/756] testViews:test_pm_StorePodTemplateAsAnnexWrongConfig
+2022-07-12 17:42:44,903 - PloneMeeting: testing - INFO - Executing [641/756] testViews:test_pm_TopLevelTabs
+2022-07-12 17:42:45,574 - PloneMeeting: testing - INFO - Executing [642/756] testViews:test_pm_TopLevelTabsMCInsertedBeforeCustomTabs
+2022-07-12 17:42:46,411 - PloneMeeting: testing - INFO - Executing [643/756] testViews:test_pm_UpdateDelayAwareAdvices
+2022-07-12 17:42:47,528 - PloneMeeting: testing - INFO - Executing [644/756] testViews:test_pm_UpdateDelayAwareAdvicesComputeQuery
+2022-07-12 17:42:47,546 - PloneMeeting: testing - INFO - Executing [645/756] testViews:test_pm_UpdateDelayAwareAdvicesUpdateAllAdvices
+2022-07-12 17:42:48,173 - PloneMeeting: testing - INFO - Executing [646/756] testViews:test_pm_UpdateItemsToReindex
+2022-07-12 17:42:49,085 - PloneMeeting: testing - INFO - Executing [647/756] testViews:test_pm_UpdateLocalRolesBatchActionForm
+2022-07-12 17:42:50,373 - PloneMeeting: testing - INFO - Executing [648/756] testViews:test_pm_content_document_generation_link_viewlet
+2022-07-12 17:42:51,427 - PloneMeeting: testing - INFO - Executing [649/756] testViews:test_pm_dashboard_document_generation_link_viewlet
+2022-07-12 17:42:52,230 - PloneMeeting: testing - INFO - Executing [650/756] testViews:test_pm_dashboard_document_generation_link_viewlet_on_contacts
+2022-07-12 17:42:52,255 - PloneMeeting: testing - INFO - Executing [651/756] testViews:test_pm_ftw_labels_labeling_update_protected
+2022-07-12 17:42:52,770 - PloneMeeting: testing - INFO - Executing [652/756] testViews:test_pm_ftw_labels_viewlet_available
+2022-07-12 17:42:53,242 - PloneMeeting: testing - INFO - Executing [653/756] testViews:test_pm_ftw_labels_viewlet_can_edit
+2022-07-12 17:42:54,726 - PloneMeeting: testing - INFO - Executing [654/756] testViews:test_pm_get_all_items_dghv
+2022-07-12 17:42:56,516 - PloneMeeting: testing - INFO - Executing [655/756] testViews:test_pm_get_all_items_dghv_with_advice
+2022-07-12 17:42:58,953 - PloneMeeting: testing - INFO - Executing [656/756] testViews:test_pm_goto_object
+2022-07-12 17:43:00,201 - PloneMeeting: testing - INFO - Executing [657/756] testViews:test_pm_goto_object_meeting
+2022-07-12 17:43:01,512 - PloneMeeting: testing - INFO - Executing [658/756] testViews:test_pm_print_advices_infos
+2022-07-12 17:43:02,434 - PloneMeeting: testing - INFO - Executing [659/756] testViews:test_pm_print_meeting_date
+2022-07-12 17:43:03,728 - PloneMeeting: testing - INFO - Executing [660/756] testViews:test_pm_print_signatures_by_position
+2022-07-12 17:43:04,616 - PloneMeeting: testing - INFO - Executing [661/756] testViews:test_pm_print_value
+2022-07-12 17:43:05,976 - PloneMeeting: testing - INFO - Executing [662/756] testViews:test_pm_show_history
+2022-07-12 17:43:07,196 - PloneMeeting: testing - INFO - Executing [663/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_added_no_decide
+2022-07-12 17:43:08,486 - PloneMeeting: testing - INFO - Executing [664/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_added_no_freeze
+2022-07-12 17:43:09,937 - PloneMeeting: testing - INFO - Executing [665/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_added_no_publication
+2022-07-12 17:43:11,246 - PloneMeeting: testing - INFO - Executing [666/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_conflicts
+2022-07-12 17:43:11,268 - PloneMeeting: testing - INFO - Executing [667/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_dependencies
+2022-07-12 17:43:11,285 - PloneMeeting: testing - INFO - Executing [668/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_item_validation_levels_dependency
+2022-07-12 17:43:11,766 - PloneMeeting: testing - INFO - Executing [669/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_presented_item_back_to_validation_state
+2022-07-12 17:43:11,936 - PloneMeeting: testing - INFO - Executing [670/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_accepted_out_of_meeting
+2022-07-12 17:43:11,954 - PloneMeeting: testing - INFO - Executing [671/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_hide_decisions_when_under_writing
+2022-07-12 17:43:11,955 - PloneMeeting: testing - INFO - Bypassing "test_pm_Validate_workflowAdaptations_removed_hide_decisions_when_under_writing" because WFAdaptation "hide_decisions_when_under_writing" is not available!
+2022-07-12 17:43:11,971 - PloneMeeting: testing - INFO - Executing [672/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_mark_not_applicable
+2022-07-12 17:43:13,569 - PloneMeeting: testing - INFO - Executing [673/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_postpone_next_meeting
+2022-07-12 17:43:15,293 - PloneMeeting: testing - INFO - Executing [674/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_refused
+2022-07-12 17:43:16,729 - PloneMeeting: testing - INFO - Executing [675/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_removed
+2022-07-12 17:43:18,319 - PloneMeeting: testing - INFO - Executing [676/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_return_to_proposing_group
+2022-07-12 17:43:19,843 - PloneMeeting: testing - INFO - Executing [677/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_return_to_proposing_group_with_all_validations
+2022-07-12 17:43:19,843 - PloneMeeting: testing - INFO - Bypassing "test_pm_Validate_workflowAdaptations_removed_return_to_proposing_group_with_all_validations" because WFAdaptation "return_to_proposing_group_with_all_validations" is not available!
+2022-07-12 17:43:19,859 - PloneMeeting: testing - INFO - Executing [678/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_return_to_proposing_group_with_last_validation
+2022-07-12 17:43:21,402 - PloneMeeting: testing - INFO - Executing [679/756] testWFAdaptations:test_pm_Validate_workflowAdaptations_removed_waiting_advices
+2022-07-12 17:43:21,403 - PloneMeeting: testing - INFO - Bypassing "test_pm_Validate_workflowAdaptations_removed_waiting_advices" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:43:21,419 - PloneMeeting: testing - INFO - Executing [680/756] testWFAdaptations:test_pm_WFA_MeetingManagerCorrectClosedMeeting
+2022-07-12 17:43:21,420 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_MeetingManagerCorrectClosedMeeting" because WFAdaptation "meetingmanager_correct_closed_meeting" is not available!
+2022-07-12 17:43:21,436 - PloneMeeting: testing - INFO - Executing [681/756] testWFAdaptations:test_pm_WFA_accepted_out_of_meeting
+2022-07-12 17:43:21,436 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_accepted_out_of_meeting" because WFAdaptation "accepted_out_of_meeting" is not available!
+2022-07-12 17:43:21,454 - PloneMeeting: testing - INFO - Executing [682/756] testWFAdaptations:test_pm_WFA_accepted_out_of_meeting_emergency
+2022-07-12 17:43:21,454 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_accepted_out_of_meeting_emergency" because WFAdaptation "accepted_out_of_meeting_emergency" is not available!
+2022-07-12 17:43:21,471 - PloneMeeting: testing - INFO - Executing [683/756] testWFAdaptations:test_pm_WFA_appliedOnMeetingConfigEdit
+2022-07-12 17:43:22,081 - PloneMeeting: testing - INFO - Executing [684/756] testWFAdaptations:test_pm_WFA_availableWFAdaptations
+2022-07-12 17:43:22,098 - PloneMeeting: testing - INFO - Executing [685/756] testWFAdaptations:test_pm_WFA_decide_item_when_back_to_meeting_from_returned_to_proposing_group
+2022-07-12 17:43:22,098 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_decide_item_when_back_to_meeting_from_returned_to_proposing_group" because WFAdaptation "decide_item_when_back_to_meeting_from_returned_to_proposing_group" is not available!
+2022-07-12 17:43:22,116 - PloneMeeting: testing - INFO - Executing [686/756] testWFAdaptations:test_pm_WFA_hide_decisions_when_under_writing
+2022-07-12 17:43:22,116 - PloneMeeting: testing - INFO - Bypassing , test_pm_WFA_hide_decisions_when_under_writing not used in MeetingSeraing
+2022-07-12 17:43:22,132 - PloneMeeting: testing - INFO - Executing [687/756] testWFAdaptations:test_pm_WFA_item_validation_no_validate_shortcuts
+2022-07-12 17:43:24,203 - PloneMeeting: testing - INFO - Executing [688/756] testWFAdaptations:test_pm_WFA_item_validation_shortcuts
+2022-07-12 17:43:26,043 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_item_validation_shortcuts" because WFAdaptation "reviewers_take_back_validated_item" is not available!
+2022-07-12 17:43:26,064 - PloneMeeting: testing - INFO - Executing [689/756] testWFAdaptations:test_pm_WFA_mark_not_applicable
+2022-07-12 17:43:27,522 - PloneMeeting: testing - INFO - Executing [690/756] testWFAdaptations:test_pm_WFA_mayBeAppliedAsMeetingManager
+2022-07-12 17:43:27,832 - PloneMeeting: testing - INFO - Executing [691/756] testWFAdaptations:test_pm_WFA_mayBeRemovedOnMeetingConfigEdit
+2022-07-12 17:43:28,589 - PloneMeeting: testing - INFO - Executing [692/756] testWFAdaptations:test_pm_WFA_no_decide
+2022-07-12 17:43:33,108 - PloneMeeting: testing - INFO - Executing [693/756] testWFAdaptations:test_pm_WFA_no_freeze
+2022-07-12 17:43:37,418 - PloneMeeting: testing - INFO - Executing [694/756] testWFAdaptations:test_pm_WFA_no_publication
+2022-07-12 17:43:37,419 - PloneMeeting: testing - INFO - Bypassing , test_pm_WFA_no_publication not used in MeetingSeraing
+2022-07-12 17:43:37,435 - PloneMeeting: testing - INFO - Executing [695/756] testWFAdaptations:test_pm_WFA_no_publication_and_no_decide_and_no_freeze_and_pre_accepted
+2022-07-12 17:43:38,698 - PloneMeeting: testing - INFO - Executing [696/756] testWFAdaptations:test_pm_WFA_no_publication_and_pre_accepted
+2022-07-12 17:43:39,008 - PloneMeeting: testing - INFO - Executing [697/756] testWFAdaptations:test_pm_WFA_no_validation
+2022-07-12 17:43:39,024 - PloneMeeting: testing - INFO - Executing [698/756] testWFAdaptations:test_pm_WFA_only_creator_may_delete
+2022-07-12 17:43:39,024 - PloneMeeting: testing - INFO - Bypassing , test_pm_WFA_only_creator_may_delete not used in MeetingSeraing
+2022-07-12 17:43:39,042 - PloneMeeting: testing - INFO - Executing [699/756] testWFAdaptations:test_pm_WFA_postpone_next_meeting
+2022-07-12 17:43:40,501 - PloneMeeting: testing - INFO - Executing [700/756] testWFAdaptations:test_pm_WFA_postpone_next_meeting_advices_inherited
+2022-07-12 17:43:41,939 - PloneMeeting: testing - INFO - Executing [701/756] testWFAdaptations:test_pm_WFA_postpone_next_meeting_back_transition
+2022-07-12 17:43:42,705 - PloneMeeting: testing - INFO - Executing [702/756] testWFAdaptations:test_pm_WFA_postpone_next_meeting_duplicated_and_validated_advices_inherited
+2022-07-12 17:43:45,145 - PloneMeeting: testing - INFO - Executing [703/756] testWFAdaptations:test_pm_WFA_pre_accepted
+2022-07-12 17:43:49,731 - PloneMeeting: testing - INFO - Executing [704/756] testWFAdaptations:test_pm_WFA_pre_validation
+2022-07-12 17:43:49,731 - PloneMeeting: testing - INFO - Bypassing , test_pm_WFA_pre_validation not used in MeetingSeraing
+2022-07-12 17:43:49,748 - PloneMeeting: testing - INFO - Executing [705/756] testWFAdaptations:test_pm_WFA_presented_item_back_to_itemcreated
+2022-07-12 17:43:49,748 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_presented_item_back_to_itemcreated" because WFAdaptation "presented_item_back_to_itemcreated" is not available!
+2022-07-12 17:43:49,764 - PloneMeeting: testing - INFO - Executing [706/756] testWFAdaptations:test_pm_WFA_presented_item_back_to_prevalidated
+2022-07-12 17:43:49,917 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_presented_item_back_to_prevalidated" because WFAdaptation "presented_item_back_to_prevalidated" is not available!
+2022-07-12 17:43:49,935 - PloneMeeting: testing - INFO - Executing [707/756] testWFAdaptations:test_pm_WFA_presented_item_back_to_proposed
+2022-07-12 17:43:49,936 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_presented_item_back_to_proposed" because WFAdaptation "presented_item_back_to_proposed" is not available!
+2022-07-12 17:43:49,953 - PloneMeeting: testing - INFO - Executing [708/756] testWFAdaptations:test_pm_WFA_presented_item_back_to_transitions_do_not_affect_remove_several_items
+2022-07-12 17:43:49,953 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_presented_item_back_to_transitions_do_not_affect_remove_several_items" because WFAdaptation "presented_item_back_to_itemcreated" is not available!
+2022-07-12 17:43:49,970 - PloneMeeting: testing - INFO - Executing [709/756] testWFAdaptations:test_pm_WFA_refused
+2022-07-12 17:43:51,433 - PloneMeeting: testing - INFO - Executing [710/756] testWFAdaptations:test_pm_WFA_removed
+2022-07-12 17:43:52,888 - PloneMeeting: testing - INFO - Executing [711/756] testWFAdaptations:test_pm_WFA_removed_and_duplicated
+2022-07-12 17:43:54,490 - PloneMeeting: testing - INFO - Executing [712/756] testWFAdaptations:test_pm_WFA_return_to_advise
+
+
+Error in test test_pm_WFA_return_to_advise (Products.MeetingSeraing.tests.testWFAdaptations.testWFAdaptations)
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/unittest/case.py", line 367, in run
+    testMethod()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testWFAdaptations.py", line 193, in test_pm_WFA_return_to_advise
+    self._return_to_advise_active_wf_functionality()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testWFAdaptations.py", line 230, in _return_to_advise_active_wf_functionality
+    meeting = self.create('Meeting', date=DateTime().asdatetime())
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/tests/PloneMeetingTestCase.py", line 333, in create
+    obj = getattr(folder, folder.invokeFactory(contentType, **attrs))
+  File "/home/duchenean/.buildout/eggs/Products.ATContentTypes-2.1.19-py2.7.egg/Products/ATContentTypes/lib/constraintypes.py", line 284, in invokeFactory
+    return pt.constructContent(*args, **kw)
+  File "/home/duchenean/.buildout/eggs/Products.CMFCore-2.2.10-py2.7.egg/Products/CMFCore/TypesTool.py", line 833, in constructContent
+    ob = info.constructInstance(container, id, *args, **kw)
+  File "/home/duchenean/.buildout/eggs/Products.CMFCore-2.2.10-py2.7.egg/Products/CMFCore/TypesTool.py", line 311, in constructInstance
+    return self._constructInstance(container, id, *args, **kw)
+  File "/home/duchenean/.buildout/eggs/Products.CMFCore-2.2.10-py2.7.egg/Products/CMFCore/TypesTool.py", line 569, in _constructInstance
+    rval = container._setObject(id, obj)
+  File "/home/duchenean/.buildout/eggs/Products.BTreeFolder2-2.13.3-py2.7.egg/Products/BTreeFolder2/BTreeFolder2.py", line 455, in _setObject
+    notify(ObjectAddedEvent(ob, self, id))
+  File "/home/duchenean/.buildout/eggs/zope.event-3.5.2-py2.7.egg/zope/event/__init__.py", line 31, in notify
+    subscriber(event)
+  File "/home/duchenean/.buildout/eggs/zope.component-3.9.5-py2.7.egg/zope/component/event.py", line 24, in dispatch
+    zope.component.subscribers(event, None)
+  File "/home/duchenean/.buildout/eggs/zope.component-3.9.5-py2.7.egg/zope/component/_api.py", line 136, in subscribers
+    return sitemanager.subscribers(objects, interface)
+  File "/home/duchenean/.buildout/eggs/zope.component-3.9.5-py2.7.egg/zope/component/registry.py", line 321, in subscribers
+    return self.adapters.subscribers(objects, provided)
+  File "/home/duchenean/.buildout/eggs/zope.interface-3.6.7-py2.7-linux-x86_64.egg/zope/interface/adapter.py", line 585, in subscribers
+    subscription(*objects)
+  File "/home/duchenean/.buildout/eggs/zope.component-3.9.5-py2.7.egg/zope/component/event.py", line 32, in objectEventNotify
+    zope.component.subscribers((event.object, event), None)
+  File "/home/duchenean/.buildout/eggs/zope.component-3.9.5-py2.7.egg/zope/component/_api.py", line 136, in subscribers
+    return sitemanager.subscribers(objects, interface)
+  File "/home/duchenean/.buildout/eggs/zope.component-3.9.5-py2.7.egg/zope/component/registry.py", line 321, in subscribers
+    return self.adapters.subscribers(objects, provided)
+  File "/home/duchenean/.buildout/eggs/zope.interface-3.6.7-py2.7-linux-x86_64.egg/zope/interface/adapter.py", line 585, in subscribers
+    subscription(*objects)
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/events.py", line 1071, in onMeetingAdded
+    meeting.add_recurring_items_if_relevant('_init_')
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/content/meeting.py", line 2147, in add_recurring_items_if_relevant
+    self.add_recurring_items(rec_items)
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/content/meeting.py", line 2169, in add_recurring_items
+    item_attrs={'preferredMeeting': meeting_uid}))
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/MeetingItem.py", line 7148, in clone
+    field.getMutator(newItem)(attr_value)
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/MeetingItem.py", line 2959, in setPreferredMeeting
+    self._update_preferred_meeting(value)
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/MeetingItem.py", line 3194, in _update_preferred_meeting
+    meeting_brain = uuidToCatalogBrain(preferred_meeting_uid, unrestricted=True)
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/imio.helpers/src/imio/helpers/content.py", line 394, in uuidToCatalogBrain
+    res = res[0]
+  File "/home/duchenean/.buildout/eggs/Products.ZCatalog-3.1.3-py2.7.egg/Products/ZCatalog/Lazy.py", line 190, in __getitem__
+    value = data[index] = self._func(self._seq[index])
+  File "/home/duchenean/.buildout/eggs/Products.ZCatalog-3.1.3-py2.7.egg/Products/ZCatalog/Catalog.py", line 132, in __getitem__
+    return self.instantiate((key, self.data[key]),
+SystemError: error return without exception set
+
+2022-07-12 17:43:55,588 - PloneMeeting: testing - INFO - Executing [713/756] testWFAdaptations:test_pm_WFA_return_to_proposing_group
+
+
+Failure in test test_pm_WFA_return_to_proposing_group (Products.MeetingSeraing.tests.testWFAdaptations.testWFAdaptations)
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/unittest/case.py", line 367, in run
+    testMethod()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.PloneMeeting/src/Products/PloneMeeting/tests/testWFAdaptations.py", line 1326, in test_pm_WFA_return_to_proposing_group
+    self._return_to_proposing_group_active_wf_functionality()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testWFAdaptations.py", line 174, in _return_to_proposing_group_active_wf_functionality
+    in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)]
+  File "/usr/lib64/python2.7/unittest/case.py", line 651, in deprecated_func
+    return original_func(*args, **kwargs)
+  File "/usr/lib64/python2.7/unittest/case.py", line 460, in assertTrue
+    raise self.failureException(msg)
+AssertionError: False is not true
+
+2022-07-12 17:43:57,511 - PloneMeeting: testing - INFO - Executing [714/756] testWFAdaptations:test_pm_WFA_return_to_proposing_group_with_all_validations
+2022-07-12 17:43:57,512 - PloneMeeting: testing - INFO - Bypassing , test_pm_WFA_return_to_proposing_group_with_all_validations not used in MeetingSeraing
+2022-07-12 17:43:57,528 - PloneMeeting: testing - INFO - Executing [715/756] testWFAdaptations:test_pm_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing
+2022-07-12 17:43:57,528 - PloneMeeting: testing - INFO - Bypassing , test_pm_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing not used in MeetingSeraing
+2022-07-12 17:43:57,545 - PloneMeeting: testing - INFO - Executing [716/756] testWFAdaptations:test_pm_WFA_return_to_proposing_group_with_last_validation
+2022-07-12 17:43:59,435 - PloneMeeting: testing - INFO - Executing [717/756] testWFAdaptations:test_pm_WFA_reviewers_take_back_validated_item
+2022-07-12 17:43:59,436 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_reviewers_take_back_validated_item" because WFAdaptation "reviewers_take_back_validated_item" is not available!
+2022-07-12 17:43:59,452 - PloneMeeting: testing - INFO - Executing [718/756] testWFAdaptations:test_pm_WFA_sameWorkflowForSeveralMeetingConfigs
+2022-07-12 17:44:00,458 - PloneMeeting: testing - INFO - Executing [719/756] testWFAdaptations:test_pm_WFA_transfered
+2022-07-12 17:44:00,458 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_transfered" because WFAdaptation "transfered" is not available!
+2022-07-12 17:44:00,475 - PloneMeeting: testing - INFO - Executing [720/756] testWFAdaptations:test_pm_WFA_waiting_advices
+2022-07-12 17:44:00,475 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,493 - PloneMeeting: testing - INFO - Executing [721/756] testWFAdaptations:test_pm_WFA_waiting_advices_adviser_may_validate
+2022-07-12 17:44:00,493 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_adviser_may_validate" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,510 - PloneMeeting: testing - INFO - Executing [722/756] testWFAdaptations:test_pm_WFA_waiting_advices_adviser_send_back
+2022-07-12 17:44:00,510 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_adviser_send_back" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,526 - PloneMeeting: testing - INFO - Executing [723/756] testWFAdaptations:test_pm_WFA_waiting_advices_crossed_states
+2022-07-12 17:44:00,526 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_crossed_states" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,544 - PloneMeeting: testing - INFO - Executing [724/756] testWFAdaptations:test_pm_WFA_waiting_advices_from_before_last_val_level
+2022-07-12 17:44:00,544 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_from_before_last_val_level" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,561 - PloneMeeting: testing - INFO - Executing [725/756] testWFAdaptations:test_pm_WFA_waiting_advices_from_every_val_levels
+2022-07-12 17:44:00,561 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_from_every_val_levels" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,578 - PloneMeeting: testing - INFO - Executing [726/756] testWFAdaptations:test_pm_WFA_waiting_advices_from_last_and_before_last_val_level
+2022-07-12 17:44:00,578 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_from_last_and_before_last_val_level" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,596 - PloneMeeting: testing - INFO - Executing [727/756] testWFAdaptations:test_pm_WFA_waiting_advices_from_last_val_level
+2022-07-12 17:44:00,596 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_from_last_val_level" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,612 - PloneMeeting: testing - INFO - Executing [728/756] testWFAdaptations:test_pm_WFA_waiting_advices_given_advices_required_to_validate
+2022-07-12 17:44:00,612 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_given_advices_required_to_validate" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,629 - PloneMeeting: testing - INFO - Executing [729/756] testWFAdaptations:test_pm_WFA_waiting_advices_may_edit
+2022-07-12 17:44:00,629 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_may_edit" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,647 - PloneMeeting: testing - INFO - Executing [730/756] testWFAdaptations:test_pm_WFA_waiting_advices_several_states
+2022-07-12 17:44:00,647 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_several_states" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,663 - PloneMeeting: testing - INFO - Executing [731/756] testWFAdaptations:test_pm_WFA_waiting_advices_unknown_state
+2022-07-12 17:44:00,663 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_unknown_state" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,680 - PloneMeeting: testing - INFO - Executing [732/756] testWFAdaptations:test_pm_WFA_waiting_advices_with_prevalidation
+2022-07-12 17:44:00,680 - PloneMeeting: testing - INFO - Bypassing "test_pm_WFA_waiting_advices_with_prevalidation" because WFAdaptation "waiting_advices" is not available!
+2022-07-12 17:44:00,697 - PloneMeeting: testing - INFO - Executing [733/756] testWorkflows:test_pm_CreateItem
+2022-07-12 17:44:02,002 - PloneMeeting: testing - INFO - Executing [734/756] testWorkflows:test_pm_InactiveRecurringItemsAreNotInserted
+2022-07-12 17:44:04,263 - PloneMeeting: testing - INFO - Executing [735/756] testWorkflows:test_pm_ItemMarginalNotes
+2022-07-12 17:44:05,710 - PloneMeeting: testing - INFO - Executing [736/756] testWorkflows:test_pm_ItemPreferredMeetingStates
+2022-07-12 17:44:08,666 - PloneMeeting: testing - INFO - Executing [737/756] testWorkflows:test_pm_MeetingExecuteActionOnLinkedItemsCaseTALExpression
+
+
+Error in test test_pm_MeetingExecuteActionOnLinkedItemsCaseTALExpression (Products.MeetingSeraing.tests.testWorkflows.testWorkflows)
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/unittest/case.py", line 367, in run
+    testMethod()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testWorkflows.py", line 248, in test_pm_MeetingExecuteActionOnLinkedItemsCaseTALExpression
+    for item in meeting.getItems():
+AttributeError: getItems
+
+2022-07-12 17:44:10,557 - PloneMeeting: testing - INFO - Executing [738/756] testWorkflows:test_pm_MeetingExecuteActionOnLinkedItemsCaseTransition
+2022-07-12 17:44:14,265 - PloneMeeting: testing - INFO - Executing [739/756] testWorkflows:test_pm_MeetingExecuteActionOnLinkedItemsGiveAccessToAcceptedItemsOfAMeetingToPowerAdvisers
+2022-07-12 17:44:15,612 - PloneMeeting: testing - INFO - Executing [740/756] testWorkflows:test_pm_MeetingNotClosableIfItemStillReturnedToProposingGroup
+2022-07-12 17:44:17,122 - PloneMeeting: testing - INFO - Executing [741/756] testWorkflows:test_pm_NoDefinedRecurringItems
+2022-07-12 17:44:17,735 - PloneMeeting: testing - INFO - Executing [742/756] testWorkflows:test_pm_RecurringItemAddAnnexPermission
+2022-07-12 17:44:18,614 - PloneMeeting: testing - INFO - Executing [743/756] testWorkflows:test_pm_RecurringItems
+2022-07-12 17:44:18,614 - PloneMeeting: testing - INFO - Bypassing , test_pm_RecurringItems not used in MeetingSeraing
+2022-07-12 17:44:18,631 - PloneMeeting: testing - INFO - Executing [744/756] testWorkflows:test_pm_RecurringItemsBypassSecurity
+2022-07-12 17:44:19,590 - PloneMeeting: testing - INFO - Executing [745/756] testWorkflows:test_pm_RecurringItemsRespectSortingMethodOnAddItemPrivacy
+2022-07-12 17:44:21,475 - PloneMeeting: testing - INFO - Executing [746/756] testWorkflows:test_pm_RecurringItemsWithCategoryWithUnavailableUsingGroups
+2022-07-12 17:44:23,573 - PloneMeeting: testing - INFO - Executing [747/756] testWorkflows:test_pm_RecurringItemsWithEmptySuffixInItemValidationLevels
+2022-07-12 17:44:25,296 - PloneMeeting: testing - INFO - Executing [748/756] testWorkflows:test_pm_RecurringItemsWithWrongTransitionsForPresentingAnItem
+2022-07-12 17:44:27,403 - PloneMeeting: testing - INFO - Executing [749/756] testWorkflows:test_pm_RemoveContainer
+2022-07-12 17:44:28,994 - PloneMeeting: testing - INFO - Executing [750/756] testWorkflows:test_pm_RemoveObjects
+2022-07-12 17:44:30,336 - PloneMeeting: testing - INFO - Executing [751/756] testWorkflows:test_pm_RequiredDataToPresentItemCategoryOrGroupsInCharge
+2022-07-12 17:44:31,318 - PloneMeeting: testing - INFO - Executing [752/756] testWorkflows:test_pm_RequiredDataToPresentItemClassifier
+2022-07-12 17:44:32,284 - PloneMeeting: testing - INFO - Executing [753/756] testWorkflows:test_pm_RequiredDataToPresentItemProposingGroupWithGroupInCharge
+2022-07-12 17:44:33,421 - PloneMeeting: testing - INFO - Executing [754/756] testWorkflows:test_pm_WholeDecisionProcess
+
+
+Failure in test test_pm_WholeDecisionProcess (Products.MeetingSeraing.tests.testWorkflows.testWorkflows)
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/unittest/case.py", line 367, in run
+    testMethod()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testWorkflows.py", line 26, in test_pm_WholeDecisionProcess
+    self._testWholeDecisionProcessCollege()
+  File "/home/duchenean/Projects/iMio/seraing_pm42/src/Products.MeetingSeraing/src/Products/MeetingSeraing/tests/testWorkflows.py", line 37, in _testWholeDecisionProcessCollege
+    self.assertRaises(Unauthorized, self.addAnnex, item1, relatedTo='item_decision')
+  File "/usr/lib64/python2.7/unittest/case.py", line 511, in assertRaises
+    callableObj(*args, **kwargs)
+  File "/usr/lib64/python2.7/unittest/case.py", line 154, in __exit__
+    "{0} not raised".format(exc_name))
+AssertionError: Unauthorized not raised
+
+2022-07-12 17:44:34,140 - PloneMeeting: testing - INFO - Executing [755/756] testWorkflows:test_pm_WorkflowPermissions
+2022-07-12 17:44:34,140 - PloneMeeting: testing - INFO - Bypassing , test_pm_WorkflowPermissions not used in MeetingSeraing
+2022-07-12 17:44:34,160 - PloneMeeting: testing - INFO - Executing [756/756] testWorkflows:test_pm_WriteItemMeetingManagerReservedFieldsPermission
+  Ran 756 tests with 4 failures and 2 errors in 15 minutes 59.561 seconds.
+Tearing down left over layers:
+  Tear down Products.MeetingSeraing.testing.MS_TESTING_PROFILE_FUNCTIONAL in 0.000 seconds.
+  Tear down plone.app.testing.helpers.MS_TESTING_PROFILE in 0.005 seconds.
+  Tear down plone.app.testing.layers.PloneFixture in 0.022 seconds.
+  Tear down plone.testing.z2.Startup in 0.002 seconds.
+  Tear down plone.testing.zca.LayerCleanup in 0.004 seconds.

@@ -39,6 +39,8 @@ class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpe
 
     layer = MS_TESTING_PROFILE_FUNCTIONAL
 
+    subproductIgnoredTestFiles = ['test_robot.py', 'testPerformances.py', 'testContacts.py', 'testVotes.py']
+
     def _do_transition_with_request(self, obj, transition, comment=''):
         # Since the KeepTakenOverBy use the request to check if the item is transitioning
         # we have to mock the request with the transition in it
@@ -46,6 +48,32 @@ class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpe
         if transition in self.transitions(obj):
             self.do(obj, transition, comment)
         obj.REQUEST.form = {}
+
+    def _setup_seraing_closed_states(self, meetingConfig):
+        self._activate_wfas(
+            ("seraing_add_item_closed_state",), cfg=meetingConfig, keep_existing=True
+        )
+
+        meetingConfig.setOnMeetingTransitionItemActionToExecute(
+            meetingConfig.getOnMeetingTransitionItemActionToExecute() + (
+                 {'meeting_transition': 'close',
+                  'item_action': 'itemfreeze',
+                  'tal_expression': ''},
+                 {'meeting_transition': 'close',
+                  'item_action': 'accept',
+                  'tal_expression': ''},
+                 {'meeting_transition': 'close',
+                  'item_action': 'accept_close',
+                  'tal_expression': ''},
+                 {'meeting_transition': 'close',
+                  'item_action': 'accept_but_modify_close',
+                  'tal_expression': ''},
+                 {'meeting_transition': 'close',
+                  'item_action': 'delay_close',
+                  'tal_expression': ''},
+            )
+        )
+
 
     def setUp(self):
         MeetingCommunesTestCase.setUp(self)

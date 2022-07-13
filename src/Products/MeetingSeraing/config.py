@@ -83,7 +83,7 @@ SERAING_ITEM_WF_VALIDATION_LEVELS = (
      'leading_transition_title': 'proposeToDivisionHead',
      'back_transition': 'backToProposedToDivisionHead',
      'back_transition_title': 'backToProposedToDivisionHead',
-     'suffix': 'reviewers',
+     'suffix': 'divisionheads',
      'enabled': '1',
      'extra_suffixes': [],
      },
