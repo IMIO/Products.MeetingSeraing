@@ -31,6 +31,13 @@
       destination="4.1"
       handler="Products.MeetingSeraing.migrations.migrate_to_4_1.migrate"
       profile="Products.MeetingSeraing:default" />
-   
+
+  <genericsetup:upgradeStep
+      title="Go to MeetingSeraing 4.2"
+      description=""
+      source="4.1"
+      destination="4200"
+      handler="Products.MeetingSeraing.migrations.migrate_to_4200.migrate"
+      profile="Products.MeetingSeraing:default" />
   <!-- ##/code-section profiles.zcml-bottom -->
 </configure>
