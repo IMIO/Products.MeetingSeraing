@@ -50,7 +50,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
 
     def _usersToRemoveFromGroupsForUpdatePersonalLabels(self):
         """ """
-        return ['pmDivisionHead1', 'pmOfficeManager1', 'pmServiceHead1']
+        return ['pmDivisionHead1', 'pmOfficeManager1', 'pmServiceHead1', 'pmReviewerLevel1']
 
     def test_pm_CanNotRemoveUsedMeetingConfig(self):
         '''While removing a MeetingConfig, it should raise if it is used somewhere...'''

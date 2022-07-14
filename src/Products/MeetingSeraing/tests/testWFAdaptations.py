@@ -25,29 +25,29 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
 
     def test_pm_WFA_availableWFAdaptations(self):
         '''Most of wfAdaptations makes no sense, just make sure most are disabled.'''
-        self.assertEquals(
-            set(self.meetingConfig.listWorkflowAdaptations()),
+        self.assertSetEqual(
+            set(self.meetingConfig.listWorkflowAdaptations().keys()),
             {
-                'seraing_add_item_closed_state',
-                'seraing_validated_by_DG',
-                'no_freeze',
+                'item_validation_shortcuts',
                 'item_validation_no_validate_shortcuts',
-                'mark_not_applicable',
-                'no_decide',
                 'only_creator_may_delete',
+                'no_freeze',
+                'no_publication',
+                'no_decide',
+                'accepted_but_modified',
+                'postpone_next_meeting',
+                'mark_not_applicable',
+                'removed',
+                'removed_and_duplicated',
+                'refused',
                 'delayed',
                 'pre_accepted',
-                'no_publication',
-                'removed_and_duplicated',
-                'postpone_next_meeting',
-                'accepted_but_modified',
-                'removed',
-                'item_validation_shortcuts',
-                'refused',
-                'return_to_proposing_group',
-                'return_to_proposing_group_with_last_validation',
-                'returned_to_advise'
-            },
+                "seraing_add_item_closed_state",
+                "seraing_validated_by_DG",
+                "return_to_proposing_group",
+                "return_to_proposing_group_with_last_validation",
+                "returned_to_advise"
+            }
         )
 
     def test_pm_WFA_no_publication(self):
@@ -69,7 +69,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         )
 
     def test_pm_WFA_return_to_proposing_group_with_hide_decisions_when_under_writing(
-        self,
+            self,
     ):
         '''No sense...'''
         pm_logger.info(
@@ -302,9 +302,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.do(item, 'goTo_returned_to_proposing_group_proposed')
         self.assertEquals(item.query_state(), 'returned_to_proposing_group_proposed')
         self.assertTrue('return_to_advise' in self.transitions(item))
-        itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
-        perms = itemWF.states.returned_to_advise.permission_roles
-        import ipdb; ipdb.set_trace() # TODO : remove me
         self.do(item, 'backTo_validated_by_dg_from_returned_to_proposing_group')
         self.assertEquals(item.query_state(), 'validated_by_dg')
         self.do(meeting, 'freeze')

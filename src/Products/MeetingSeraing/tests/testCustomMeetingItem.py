@@ -90,6 +90,7 @@ class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):
         The power editor can modified frozen items
         """
         # create an item and a meeting and check locals roles
+        self._setup_seraing_validated_by_DG(self.meetingConfig)
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
         self.changeUser('powerEditor1')

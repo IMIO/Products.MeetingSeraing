@@ -70,6 +70,20 @@ class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpe
             )
         )
 
+    def _setup_seraing_validated_by_DG(self, meetingConfig):
+        self._activate_wfas(
+            ("seraing_validated_by_DG",), cfg=meetingConfig, keep_existing=True
+        )
+        meetingConfig.setOnMeetingTransitionItemActionToExecute(
+            (
+                {'meeting_transition': 'validateByDG',
+                 'item_action': 'itemValidateByDG',
+                 'tal_expression': ''},
+                {'meeting_transition': 'freeze',
+                 'item_action': 'itemValidateByDG',
+                 'tal_expression': ''},
+            ) + meetingConfig.getOnMeetingTransitionItemActionToExecute()
+        )
 
     def setUp(self):
         MeetingCommunesTestCase.setUp(self)

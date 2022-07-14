@@ -34,14 +34,16 @@ pmManager = deepcopy(pm_import_data.pmManager)
 # Groups
 
 developers = data.orgs[0]
-developers.serviceheads.append(pmReviewer1)
+#developers.serviceheads.append(pmReviewer1)
 developers.serviceheads.append(pmServiceHead1)
+developers.serviceheads.append(pmReviewerLevel1)
 developers.serviceheads.append(pmManager)
 developers.officemanagers.append(pmOfficeManager1)
-developers.officemanagers.append(pmReviewer1)
+developers.officemanagers.append(pmReviewerLevel2)
+#developers.officemanagers.append(pmReviewer1)
 developers.officemanagers.append(pmManager)
 developers.divisionheads.append(pmDivisionHead1)
-developers.divisionheads.append(pmReviewer1)
+#developers.divisionheads.append(pmReviewer1)
 developers.divisionheads.append(pmManager)
 
 # to serviceheads that is first reviewer level

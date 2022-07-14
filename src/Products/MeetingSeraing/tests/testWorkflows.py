@@ -30,10 +30,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         creation of some items, and ends by closing a meeting.'''
         # pmCreator1 creates an item with 1 annex and proposes it
         self._activate_wfas((
+            'no_publication',
             'return_to_proposing_group_with_last_validation',
-            'returned_to_advise', 'seraing_validated_by_DG',
-            'no_publication'
+            'returned_to_advise'
         ))
+        self._setup_seraing_closed_states(self.meetingConfig)
+        self._setup_seraing_validated_by_DG(self.meetingConfig)
         self.changeUser('pmCreator1')
         item1 = self.create('MeetingItem', title='The first item')
         annex1 = self.addAnnex(item1)

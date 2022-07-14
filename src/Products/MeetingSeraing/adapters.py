@@ -32,7 +32,6 @@ from copy import deepcopy
 from DateTime import DateTime
 from plone import api
 from Products.Archetypes.atapi import DisplayList
-from Products.CMFCore.permissions import DeleteObjects
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.permissions import ReviewPortalContent
 from Products.CMFCore.utils import _checkPermission
@@ -64,7 +63,6 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowCon
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
-from Products.PloneMeeting.config import PMMessageFactory as _
 from Products.PloneMeeting.interfaces import IMeetingConfigCustom
 from Products.PloneMeeting.interfaces import IMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingItem
@@ -82,8 +80,6 @@ from zope.interface import implements
 
 # disable most of wfAdaptations
 customWfAdaptations = (
-    "seraing_add_item_closed_state",
-    "seraing_validated_by_DG",
     'item_validation_shortcuts',
     'item_validation_no_validate_shortcuts',
     'only_creator_may_delete',
@@ -100,12 +96,13 @@ customWfAdaptations = (
     'refused',
     'delayed',
     'pre_accepted',
+    "seraing_add_item_closed_state",
+    "seraing_validated_by_DG",
     "return_to_proposing_group",
     "return_to_proposing_group_with_last_validation",
     "returned_to_advise"
-    ""
 )
-MeetingConfig.wfAdaptations = MeetingConfig.wfAdaptations + customWfAdaptations
+MeetingConfig.wfAdaptations = customWfAdaptations
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
     "backTo_presented_from_returned_to_proposing_group": [
@@ -153,17 +150,7 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES \
                                                          + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 
-
-RETURN_TO_ADVISE_CUSTOM_PERMISSIONS = {
-    "meetingitemseraing_workflow": {
-        # edit permissions
-        "Modify portal content": (
-            "Manager",
-            "MeetingManager",
-        )
-    }
-}
-
+POWEREDITORS_EDITABLE_STATES = ("validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted")
 
 class CustomSeraingMeeting(CustomMeeting):
     """Adapter that adapts a meeting implementing IMeeting to the
@@ -586,9 +573,10 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         # Then, add local roles for powereditors.
         cfg = item.portal_plonemeeting.getMeetingConfig(item)
         powerEditorsGroupId = "%s_%s" % (cfg.getId(), POWEREDITORS_GROUP_SUFFIX)
-        item.manage_addLocalRoles(
-            powerEditorsGroupId, (EDITOR_USECASES["power_editors"],)
-        )
+        if item.query_state() in POWEREDITORS_EDITABLE_STATES:
+            item.manage_addLocalRoles(
+                powerEditorsGroupId, (EDITOR_USECASES["power_editors"],)
+            )
 
     def getExtraFieldsToCopyWhenCloning(
         self, cloned_to_same_mc, cloned_from_item_template
@@ -1105,24 +1093,26 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 back_transition_id='backToItemAccepted',
                 itemWorkflow=itemWorkflow,
                 base_state_id='accepted', )
-            _addIsolatedState(
-                new_state_id='delayed_closed',
-                origin_state_id='delayed',
-                origin_transition_id='delay_close',
-                origin_transition_guard_expr_name='mayClose()',
-                back_transition_guard_expr_name="mayCorrect()",
-                back_transition_id='backToItemDelayed',
-                itemWorkflow=itemWorkflow,
-                base_state_id='delayed', )
-            _addIsolatedState(
-                new_state_id='accepted_but_modified_closed',
-                origin_state_id='accepted_but_modified',
-                origin_transition_id='accept_but_modify_close',
-                origin_transition_guard_expr_name='mayClose()',
-                back_transition_guard_expr_name="mayCorrect()",
-                back_transition_id='backToItemAcceptedButModified',
-                itemWorkflow=itemWorkflow,
-                base_state_id='accepted_but_modified', )
+            if "delayed" in itemStates:
+                _addIsolatedState(
+                    new_state_id='delayed_closed',
+                    origin_state_id='delayed',
+                    origin_transition_id='delay_close',
+                    origin_transition_guard_expr_name='mayClose()',
+                    back_transition_guard_expr_name="mayCorrect()",
+                    back_transition_id='backToItemDelayed',
+                    itemWorkflow=itemWorkflow,
+                    base_state_id='delayed', )
+            if "accepted_but_modified" in itemStates:
+                _addIsolatedState(
+                    new_state_id='accepted_but_modified_closed',
+                    origin_state_id='accepted_but_modified',
+                    origin_transition_id='accept_but_modify_close',
+                    origin_transition_guard_expr_name='mayClose()',
+                    back_transition_guard_expr_name="mayCorrect()",
+                    back_transition_id='backToItemAcceptedButModified',
+                    itemWorkflow=itemWorkflow,
+                    base_state_id='accepted_but_modified', )
         if wfAdaptation == "seraing_validated_by_DG":
             # add state from itemfrozen? itempublished? presented? ...
             # same origin as mandatory transition 'accept'
