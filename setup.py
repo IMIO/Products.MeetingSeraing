@@ -1,10 +1,8 @@
 from setuptools import find_packages
 from setuptools import setup
 
-import os
 
-
-version = '4.1.dev'
+version = '4.1.7.dev0'
 
 setup(name='Products.MeetingSeraing',
       version=version,
@@ -18,7 +16,7 @@ setup(name='Products.MeetingSeraing',
         "Programming Language :: Python :: 2.7",
       ],
       keywords='',
-      author='André Nuyens',
+      author='Andre Nuyens',
       author_email='andre.nuyens@imio.be',
       url='http://www.imio.be/produits/gestion-des-deliberations',
       license='GPL',

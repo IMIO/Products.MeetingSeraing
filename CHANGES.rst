@@ -1,7 +1,63 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.1 (unreleased)
+4.1.7 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+4.1.6 (2022-04-01)
+------------------
+
+- Fixed typo getMeetingStatesAcceptingItem -> getMeetingStatesAcceptingItems.
+  [aduchene]
+- Fixed wrong permissions in `patch_return_to_proposing_group_with_last_validation`.
+  [aduchene]
+
+
+4.1.5 (2022-03-09)
+------------------
+
+- Fixed issue with mayPresent.
+  [aduchene]
+- SUP-18390: Fixed incorrect permissions in return_to_proposing_group_with_last_validation WFA
+  [aduchene]
+
+
+4.1.4 (2021-04-07)
+------------------
+
+- SUP-16268: refactored takenOverBy feature. Now takenOverBy is kept between transitions except for those defined in `MeetingConfig.transitionsReinitializingTakenOverBy`.
+  [aduchene]
+
+
+4.1.3 (2020-12-18)
+------------------
+
+- Renamed `testSearches.test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel`
+  to `testSearches.test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel`
+  as it was renamed in `Products.PloneMeeting` and we bypass it this way.
+  [gbastien]
+- Changed setTakenOverBy as it should not reinit itself
+  when transitionning from itemfrozen to accepted. SUP-15933
+  [aduchene]
+
+4.1.2 (2020-10-22)
+------------------
+
+- Updated sections label to commissions label. SUP-15177
+  [aduchene]
+
+
+4.1.1 (2020-10-12)
+------------------
+
+- Fixed MANIFEST.in
+  [aduchene]
+
+
+4.1 (2020-10-12)
 ----------------
 - Compatible for PloneMeeting 4.1
 - Added two new mail's notification:

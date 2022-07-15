@@ -39,6 +39,14 @@ class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpe
 
     layer = MS_TESTING_PROFILE_FUNCTIONAL
 
+    def _do_transition_with_request(self, obj, transition, comment=''):
+        # Since the KeepTakenOverBy use the request to check if the item is transitioning
+        # we have to mock the request with the transition in it
+        obj.REQUEST.form = {"transition": transition}
+        if transition in self.transitions(obj):
+            self.do(obj, transition, comment)
+        obj.REQUEST.form = {}
+
     def setUp(self):
         MeetingCommunesTestCase.setUp(self)
         self.meetingConfig = getattr(self.tool, 'meeting-config-college')

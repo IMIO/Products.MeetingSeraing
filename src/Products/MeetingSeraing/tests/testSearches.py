@@ -2,42 +2,28 @@
 #
 # File: testMeetingConfig.py
 #
-# Copyright (c) 2015 by Imio.be
-#
 # GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
 #
 
 from collective.compoundcriterion.interfaces import ICompoundCriterionFilter
 from Products.MeetingCommunes.tests.testSearches import testSearches as mcts
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 from zope.component import getAdapter
 
 
 class testSearches(MeetingSeraingTestCase, mcts):
     """Test searches."""
 
-    def test_pm_SearchItemsToCorrectToValidateHighestHierarchicLevel(self):
+    def test_pm_SearchItemsToCorrectToValidateOfHighestHierarchicLevel(self):
         '''Not used yet...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_SearchItemsToCorrectToValidateOfEveryReviewerGroups(self):
         '''Not used yet...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_SearchMyItemsTakenOver(self):
         '''Test the 'search-my-items-taken-over' method.  This should return
@@ -47,6 +33,7 @@ class testSearches(MeetingSeraingTestCase, mcts):
         cfg = self.meetingConfig
         cfg.setUseCopies(True)
         cfg.setItemCopyGroupsStates((self._stateMappingFor('proposed'), 'validated', ))
+        cfg.setTransitionsReinitializingTakenOverBy(["validate"])
 
         itemTypeName = cfg.getItemTypeName()
 
@@ -71,9 +58,14 @@ class testSearches(MeetingSeraingTestCase, mcts):
         item.reindexObject(idxs=['getTakenOverBy', ])
         # now it is returned
         self.failUnless(collection.results())
-        self.proposeItem(item)
-        self.assertTrue(self.member.getId() in item.takenOverByInfos.values())
+        for transition in self.TRANSITIONS_FOR_PROPOSING_ITEM_1:
+            self._do_transition_with_request(item, transition)
+        self.assertEqual(self.member.getId(), item.getTakenOverBy())
         self.failUnless(collection.results())
+        for transition in self.TRANSITIONS_FOR_VALIDATING_ITEM_1:
+            self._do_transition_with_request(item, transition)
+        self.failIf(collection.results())
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

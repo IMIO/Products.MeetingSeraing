@@ -289,8 +289,8 @@ msgstr ""
 msgid "icon_help_validated_by_dg"
 msgstr ""
 
-#. Default: "Sections"
-msgid "MeetingSeraing_label_sections"
+#. Default: "Commissions"
+msgid "MeetingSeraing_label_commissions"
 msgstr ""
 
 #. Default: "Description" 

@@ -2,24 +2,7 @@
 #
 # File: testMeetingConfig.py
 #
-# Copyright (c) 2007-2013 by Imio.be
-#
 # GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
 #
 
 from AccessControl import Unauthorized
@@ -37,11 +20,13 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
 
     def test_pm_searchItemsToPrevalidate(self):
         '''No sense...'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_searchReviewableItems(self):
         '''Test the searchReviewableItems search.'''
-        pass
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
 
     def test_pm_ConfigLinkedGroupsRemovedWhenConfigDeleted(self, ):
         """When the MeetingConfig is deleted, created groups are removed too :

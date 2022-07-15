@@ -23,10 +23,12 @@
 # 02110-1301, USA.
 #
 # ------------------------------------------------------------------------------
+
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
 from appy.gen import No
+from copy import deepcopy
 from DateTime import DateTime
 from plone import api
 from Products.Archetypes.atapi import DisplayList
@@ -76,7 +78,7 @@ from zope.interface import implements
 
 # disable most of wfAdaptations
 customWfAdaptations = ('return_to_proposing_group', 'return_to_proposing_group_with_last_validation',
-                       'returned_to_advise')
+                       'returned_to_advise', 'patch_return_to_proposing_group_with_last_validation')
 MeetingConfig.wfAdaptations = customWfAdaptations
 originalPerformWorkflowAdaptations = adaptations.performWorkflowAdaptations
 
@@ -152,9 +154,11 @@ RETURN_TO_PROPOSING_GROUP_CUSTOM_PERMISSIONS = {'meetingitemseraing_workflow':
                                                           'MeetingOfficeManager',
                                                           'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
                                                      'Review portal content':
-                                                         ('Manager', 'MeetingMember', 'MeetingServiceHead',
+                                                         ('Manager', 'MeetingMember',
+                                                          'MeetingServiceHead',
                                                           'MeetingOfficeManager',
-                                                          'MeetingDivisionHead', 'MeetingReviewer', 'MeetingManager',),
+                                                          'MeetingDivisionHead', 'MeetingReviewer',
+                                                          'MeetingManager',),
                                                      'Add portal content':
                                                          ('Manager', 'MeetingMember', 'MeetingServiceHead',
                                                           'MeetingOfficeManager',
@@ -433,15 +437,15 @@ class CustomSeraingMeeting(CustomMeeting):
         """Vocabulary for column 'name_section' of Meeting.sections."""
         if self.portal_type == 'MeetingCouncil':
             res = [('oj', "Collège d'arrêt de l'OJ"),
-                   ('tec', "Section du développement territorial, économique et du commerce"),
-                   ('fin', "Section des finances et des marchés publics"),
-                   ('env', "Section de la propreté, de l'environnement, du développement durable et des travaux"),
-                   ('ag', "Section de l'administration générale"),
-                   ('ens', "Section de l'enseignement"),
-                   ('as', "Section des affaires sociales"),
-                   ('prev', "Section de la prévention de la citoyenneté et de la jeunesse"),
-                   ('cul', "Section de la culture et des sports"),
-                   ('ec', "Section de l'état civil")]
+                   ('tec', "Commission du développement territorial et économique"),
+                   ('fin', "Commission des travaux, des marchés publics et des finances"),
+                   ('env', "Commission de la jeunesse, de la citoyenneté et du bien-être animal"),
+                   ('ag', "Commission de l'administration générale, du budget et des grands projets"),
+                   ('ens', "Commission de l'enseignement et de l'enfance"),
+                   ('as', "Commission des affaires sociales"),
+                   ('prev', "Commission de la prévention, du tourisme, du logement et des nouvelles technologies"),
+                   ('cul', "Commission de la culture et des sports"),
+                   ('ec', "Commission de la population et de l'état civil")]
         else:
             res = [('oj', "Collège d'arrêt de l'OJ"), ]
         return DisplayList(tuple(res))
@@ -526,44 +530,26 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
     security.declarePublic('setTakenOverBy')
 
     def setTakenOverBy(self, value, **kwargs):
-        # call original method
-        if not self._at_creation_flag:
-            # save takenOverBy to takenOverByInfos for current review_state
-            # or check for a wf_state in kwargs
-            tool = api.portal.get_tool('portal_plonemeeting')
-            cfg = tool.getMeetingConfig(self)
-            if 'wf_state' in kwargs:
-                wf_state = kwargs['wf_state']
+        def _is_transitioning():
+            return self.REQUEST and hasattr(self.REQUEST, "form") and "transition" in self.REQUEST.form
+
+        def _get_current_transition():
+            if not _is_transitioning():
+                return None
+            return self.REQUEST.form['transition']
+
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(self)
+        if _is_transitioning():
+            if _get_current_transition() in cfg.getTransitionsReinitializingTakenOverBy():
+                # If transition should reinitialize TakenOverBy
+                self.getField('takenOverBy').set(self, "", **kwargs)
             else:
-                wf_state = "%s__wfstate__%s" % (cfg.getItemWorkflow(), self.queryState())
-            if value:
-                self.takenOverByInfos[wf_state] = value
-                # xxx for Seraing, in some states, we would keep the "Taken over" for some next states
-                wf_states_service = ['itemcreated', 'proposed_to_servicehead', 'proposed_to_officemanager',
-                                     'proposed_to_divisionhead', 'proposed']
-                wf_state_gs = ['validated', 'presented', 'validated_by_dg', 'itemfrozen']
-                wf_state_close = ['accepted', 'accepted_but_closed', 'accepted_but_modified',
-                                  'accepted_but_modified_but_closed', 'delayed', 'delayed_closed']
-                wf_states_to_use = []
-                cpt = 0
-                if self.queryState() in wf_states_service:
-                    wf_states_to_use = wf_states_service
-                elif self.queryState() in wf_state_gs:
-                    wf_states_to_use = wf_state_gs
-                elif self.queryState() in wf_state_close:
-                    wf_states_to_use
-                for wf_state_service in wf_states_to_use:
-                    if self.queryState() == wf_state_service:
-                        break
-                    cpt += 1
-                wf_states = wf_states_to_use[cpt:]
-                # add for next states the taken over info
-                for wf_state in wf_states:
-                    wf_state = "%s__wfstate__%s" % (cfg.getItemWorkflow(), wf_state)
-                    self.takenOverByInfos[wf_state] = value
-            elif not value and wf_state in self.takenOverByInfos:
-                del self.takenOverByInfos[wf_state]
-        self.getField('takenOverBy').set(self, value, **kwargs)
+                # Else keep the old value when transitioning
+                self.getField('takenOverBy').set(self, self.getTakenOverBy(), **kwargs)
+        else:
+            # If it's not transitioning set the value
+            self.getField('takenOverBy').set(self, value, **kwargs)
 
     MeetingItem.setTakenOverBy = setTakenOverBy
 
@@ -609,7 +595,7 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
     def onEdit(self, isCreated):  # noqa
         self.context.createPowerEditorsGroup()
 
-    def getMeetingStatesAcceptingItem(self):
+    def getMeetingStatesAcceptingItems(self):
         """See doc in interfaces.py."""
         return ('created', 'validated_by_dg', 'frozen', 'decided')
 
@@ -853,30 +839,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         return self._check_review_and_required()
 
-    security.declarePublic('mayPresent')
-
-    def mayPresent(self):
-        # only MeetingManagers may present an item, the 'Review portal content'
-        # permission is not enough as MeetingReviewer may have the 'Review portal content'
-        # when using the 'reviewers_take_back_validated_item' wfAdaptation
-        tool = api.portal.get_tool('portal_plonemeeting')
-        if not _checkPermission(ReviewPortalContent, self.context) or \
-           not tool.isManager(self.context):
-            return False
-        # We may present the item if Plone currently publishes a meeting.
-        # Indeed, an item may only be presented within a meeting.
-        # if we are not on a meeting, try to get the next meeting accepting items
-        if not self._publishedObjectIsMeeting():
-            meeting = self.context.getMeetingToInsertIntoWhenNoCurrentMeetingObject()
-            return bool(meeting)
-
-        # here we are sure that we have a meeting that will accept the item
-        # Verify if all automatic advices have been given on this item.
-        res = True  # for now...
-        if self.context.enforceAdviceMandatoriness() and \
-           not self.context.mandatoryAdvicesAreOk():
-            res = No(_('mandatory_advice_ko'))
-        return res
+    security.declarePublic('mayBackToMeeting')
 
     def mayBackToMeeting(self, transitionName):
         """Specific guard for the 'return_to_proposing_group' wfAdaptation.
@@ -1050,6 +1013,19 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     returned_to_advise.setPermission(permission, 0, roles)
 
             logger.info(WF_APPLIED % ("returned_to_advise", meetingConfig.getId()))
+            return True
+
+        if wfAdaptation == "patch_return_to_proposing_group_with_last_validation":
+            if "return_to_proposing_group_with_last_validation" in meetingConfig.workflowAdaptations:
+                # TODO : remove this when PloneMeeting is in v4.2
+                returned_to_proposing_group_proposed = itemWorkflow.states.returned_to_proposing_group_proposed
+                proposed = itemWorkflow.states.proposed
+                returned_to_proposing_group_proposed.permission_roles = deepcopy(
+                    proposed.permission_roles
+                )
+            logger.info(WF_APPLIED % (
+                "patch_return_to_proposing_group_with_last_validation", meetingConfig.getId())
+            )
             return True
         return False
 

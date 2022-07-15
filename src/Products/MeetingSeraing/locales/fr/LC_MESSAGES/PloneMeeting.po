@@ -97,9 +97,9 @@ msgstr "Avant-séance"
 msgid "MeetingSeraing_label_pvNote"
 msgstr "Note de pv"
 
-#. Default: "Sections"
-msgid "MeetingSeraing_label_sections"
-msgstr "Sections"
+#. Default: "Commissions"
+msgid "MeetingSeraing_label_commissions"
+msgstr "Commissions"
 
 #. Default: "Personal Note for DG on Meeting"
 msgid "MeetingSeraing_msgid_meeting_notes"
@@ -333,3 +333,7 @@ msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas 
 #. Default: "Return to advise"
 msgid "wa_returned_to_advise"
 msgstr "Renoyer pour avis"
+
+
+msgid "MeetingSeraing_label_transitions_reinitializing_taken_over_by"
+msgstr "Transitions qui réinitialisent la prise en charge"

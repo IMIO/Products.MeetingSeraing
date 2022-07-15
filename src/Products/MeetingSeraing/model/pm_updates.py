@@ -23,6 +23,8 @@
 # 02110-1301, USA.
 #
 # ------------------------------------------------------------------------------
+from Products.Archetypes.Field import LinesField
+from Products.Archetypes.Widget import InAndOutWidget
 from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import RichWidget
 from Products.Archetypes.atapi import Schema
@@ -32,7 +34,9 @@ from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
 from Products.PloneMeeting.config import registerClasses
 from Products.PloneMeeting.Meeting import Meeting
+from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
+from Products.PloneMeeting.config import WriteRiskyConfig
 
 
 def update_item_schema(baseSchema):
@@ -126,16 +130,16 @@ def update_meeting_schema(baseSchema):
         DataGridField(
             name='sections',
             widget=DataGridField._properties['widget'](
-                description="Sections",
-                description_msgid="sections_descr",
+                description="Commissions",
+                description_msgid="commissions_descr",
                 condition="python: here.portal_type in ('MeetingCouncil', 'MeetingZCouncil')",
-                columns={'name_section': SelectColumn("Sections name", vocabulary="listSections",
-                                                      col_description="Select the section name."),
-                         'date_section': Column("Section date",
+                columns={'name_section': SelectColumn("Commission name", vocabulary="listSections",
+                                                      col_description="Select the commission name."),
+                         'date_section': Column("Commission date",
                                                 col_description="Enter valid from date, "
                                                                 "use following format : DD/MM/YYYY."), },
-                label='Sections',
-                label_msgid='MeetingSeraing_label_sections',
+                label='Commissions',
+                label_msgid='MeetingSeraing_label_commissions',
                 i18n_domain='PloneMeeting',
             ),
             allow_oddeven=True,
@@ -153,6 +157,27 @@ def update_meeting_schema(baseSchema):
 
 
 Meeting.schema = update_meeting_schema(Meeting.schema)
+
+
+def update_meetingconfig_schema(baseSchema):
+    specificSchema = Schema((
+    LinesField(
+        name='transitionsReinitializingTakenOverBy',
+        default=[],
+        widget=InAndOutWidget(
+            label='TransitionsReinitializingTakenOverBy',
+            label_msgid='MeetingSeraing_label_transitions_reinitializing_taken_over_by',
+            i18n_domain='PloneMeeting',
+        ),
+        write_permission=WriteRiskyConfig,
+        vocabulary='listEveryItemTransitions',
+    ),
+    ),)
+    completeSchema = baseSchema + specificSchema.copy()
+    return completeSchema
+
+
+MeetingConfig.schema = update_meetingconfig_schema(MeetingConfig.schema)
 
 
 # Classes have already been registered, but we register them again here
