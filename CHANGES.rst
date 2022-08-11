@@ -1,5 +1,5 @@
 Products.MeetingSeraing Changelog
-====================================
+=================================
 
 4.2.0a1 (2022-08-11)
 --------------------
@@ -9,7 +9,7 @@ Products.MeetingSeraing Changelog
 - meetingseraing_workflow and meetingitemseraing_workflow are now deprecated.
   Use PloneMeeting's default WF with itemWFValidationLevels set accordingly.
   [aduchene]
-- Add two new WFA to have feature parity between old *seraing_workflow and PloneMeeting's default WF.
+- Add two new WFA to have feature parity between old seraing_workflow and PloneMeeting's default WF.
   [aduchene]
 - Adapted PowerEditors feature to use local roles correctly.
   [aduchene]
