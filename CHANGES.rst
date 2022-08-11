@@ -1,8 +1,8 @@
 Products.MeetingSeraing Changelog
 ====================================
 
-4.2.0a1.dev0 (unreleased)
-------------------
+4.2.0a1 (2022-08-11)
+--------------------
 
 - Compatible for PloneMeeting 4.2.
   [aduchene]
