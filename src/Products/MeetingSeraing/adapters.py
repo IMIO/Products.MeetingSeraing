@@ -1079,7 +1079,6 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
     ):
         """This function applies workflow changes as specified by the
         p_meetingConfig."""
-        wfTool = api.portal.get_tool("portal_workflow")
         itemStates = itemWorkflow.states
         itemTransitions = itemWorkflow.transitions
 
@@ -1126,6 +1125,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 itemWorkflow=itemWorkflow,
                 base_state_id='presented', )
             new_state.transitions = new_state.transitions + ('itemfreeze', )
+            itemWorkflow.states['presented'].transitions = ('backToValidated', 'itemValidateByDG')
 
             new_meeting_state = _addIsolatedState(
                 new_state_id='validated_by_dg',
@@ -1136,8 +1136,9 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 back_transition_id='backToCreated',
                 itemWorkflow=meetingWorkflow,
                 base_state_id='created', )
+            new_meeting_state.transitions = new_meeting_state.transitions + ('freeze', )
+            meetingWorkflow.states['created'].transitions = ('validateByDG',)
 
-            new_meeting_state.transitions = new_state.transitions + ('freeze', )
         if wfAdaptation == "returned_to_advise":
             if "returned_to_proposing_group" not in itemStates:
                 raise ValueError("returned_to_proposing_group should be in itemStates for this WFA")

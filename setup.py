@@ -1,8 +1,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
-
-version = '4.2.0.dev0'
+version = '4.2.0a1.dev0'
 
 setup(
     name='Products.MeetingSeraing',
@@ -26,13 +25,22 @@ setup(
     namespace_packages=['Products'],
     include_package_data=True,
     zip_safe=False,
-    extras_require=dict(test=['Products.PloneMeeting[test]'], templates=['Genshi']),
+    extras_require=dict(
+        test=['unittest2',
+              'zope.testing',
+              'plone.testing',
+              'plone.app.testing',
+              'plone.app.robotframework',
+              'Products.CMFPlacefulWorkflow',
+              'zope.testing',
+              'Products.PloneTestCase',
+              'Products.PloneMeeting[test]'],
+        templates=['Genshi', ]),
     install_requires=[
         'setuptools',
-        'appy',
         'Products.CMFPlone',
         'Pillow',
         'Products.PloneMeeting',
-    ],
+        'Products.MeetingCommunes'],
     entry_points={},
 )
