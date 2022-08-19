@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a2 (unreleased)
+4.2.0a2 (2022-08-19)
 --------------------
 
 - Fixed issues with back transitions for WFA seraing_validated_by_DG.
