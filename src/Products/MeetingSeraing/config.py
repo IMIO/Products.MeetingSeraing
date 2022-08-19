@@ -8,9 +8,6 @@ product_globals = globals()
 PROJECTNAME = "MeetingSeraing"
 
 POWEREDITORS_GROUP_SUFFIX = "powereditors"
-EDITOR_USECASES = {
-    "power_editors": "Editor",
-}
 
 # group suffixes
 PMconfig.EXTRA_GROUP_SUFFIXES = [

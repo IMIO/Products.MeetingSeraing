@@ -74,6 +74,13 @@ class Migrate_To_4200(MCMigrate_To_4200):
         if not stored_itemWFValidationLevels:
             cfg.setItemWFValidationLevels(SERAING_ITEM_WF_VALIDATION_LEVELS)
 
+        # returned_to_advise has been renamed to seraing_returned_to_advise
+        if 'returned_to_advise' in cfg.getWorkflowAdaptations():
+            cfg.setWorkflowAdaptations(tuple(
+                wfa for wfa in cfg.getWorkflowAdaptations() if wfa != "returned_to_advise"
+            ) + ("seraing_returned_to_advise",))
+
+
         if 'patch_return_to_proposing_group_with_last_validation' in cfg.getWorkflowAdaptations():
             workflowAdaptations = list(cfg.getWorkflowAdaptations())
             workflowAdaptations.remove('patch_return_to_proposing_group_with_last_validation')

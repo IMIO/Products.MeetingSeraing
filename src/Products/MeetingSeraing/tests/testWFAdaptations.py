@@ -161,10 +161,10 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         '''Test the workflowAdaptation 'return_to_advise'.'''
         # ease override by subproducts
         cfg = self.meetingConfig
-        self.failIf('returned_to_advise' not in cfg.listWorkflowAdaptations())
+        self.failIf('seraing_returned_to_advise' not in cfg.listWorkflowAdaptations())
         # activate the wfAdaptations and check
         self._activate_wfas(
-            ('return_to_proposing_group_with_last_validation', 'returned_to_advise', 'seraing_validated_by_DG')
+            ('return_to_proposing_group_with_last_validation', 'seraing_returned_to_advise', 'seraing_validated_by_DG')
         )
         # test what should happen to the wf (added states and transitions)
         # self._return_to_advise_active()

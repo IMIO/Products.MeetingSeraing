@@ -440,6 +440,13 @@
           </div>
         </div>
     </tal:defines>
+    <tal:comment replace="nothing">Marginal notes</tal:comment>
+    <tal:comment replace="nothing">XXX Seraing display marginalNotes at the top if filled</tal:comment>
+    <div class="marginal-notes-filled" tal:condition="python: context.marginalNotes">
+        <tal:field define="fieldName python: 'marginalNotes'; ajaxEdit python:True">
+            <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+        </tal:field>
+    </div>
 
     <tal:comment replace="nothing">Description</tal:comment>
     <tal:field define="fieldName python: 'description'; ajaxEdit python:True">
@@ -621,7 +628,8 @@
     </tal:field>
 
     <tal:comment replace="nothing">Marginal notes</tal:comment>
-    <tal:field define="fieldName python: 'marginalNotes'; ajaxEdit python:True">
+    <tal:comment replace="nothing">XXX Seraing display marginalNotes at the bottom if empty</tal:comment>
+    <tal:field tal:condition="python: not context.marginalNotes" define="fieldName python: 'marginalNotes'; ajaxEdit python:True">
        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
     </tal:field>
 

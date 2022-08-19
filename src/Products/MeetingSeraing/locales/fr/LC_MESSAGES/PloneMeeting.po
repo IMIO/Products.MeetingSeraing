@@ -330,10 +330,22 @@ msgstr "chefs de service"
 msgid "signatures_length_error"
 msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas être surchargée (si la signature définie dans la configuration de séance dans le champ 'Signatures certifiées' doit être utilisée), renseignez un tiret (-)."
 
-#. Default: "Return to advise"
-msgid "wa_returned_to_advise"
-msgstr "Renoyer pour avis"
+#. Default: "Return to advise (MeetingSeraing)"
+msgid "wa_seraing_returned_to_advise"
+msgstr "Renvoyer pour avis (MeetingSeraing)"
 
+#. Default: "Closed and decided states (MeetingSeraing)"
+msgid "wa_seraing_add_item_closed_state"
+msgstr "États décidés et clôturés (MeetingSeraing)"
 
+#. Default: "Validated by DG (MeetingSeraing)"
+msgid "wa_seraing_validated_by_DG"
+msgstr "État validé par DG (MeetingSeraing)"
+
+#. Default: "Power editors (MeetingSeraing)"
+msgid "wa_seraing_powereditors"
+msgstr "Super éditeurs (MeetingSeraing)"
+
+#. Default: "Transitions reinitializing taken over by"
 msgid "MeetingSeraing_label_transitions_reinitializing_taken_over_by"
 msgstr "Transitions qui réinitialisent la prise en charge"

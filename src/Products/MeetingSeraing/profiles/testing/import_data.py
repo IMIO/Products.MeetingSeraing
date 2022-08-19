@@ -8,6 +8,7 @@ from Products.PloneMeeting.profiles import PloneGroupDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
 from Products.PloneMeeting.profiles.testing import import_data as pm_import_data
 from Products.MeetingSeraing.config import SERAING_ITEM_WF_VALIDATION_LEVELS
+from Products.PloneMeeting.profiles.testing.import_data import cfg1_powerobservers, cfg2_powerobservers
 
 data = deepcopy(mc_import_data.data)
 
@@ -16,12 +17,16 @@ pmServiceHead1 = UserDescriptor("pmServiceHead1", [])
 pmOfficeManager1 = UserDescriptor("pmOfficeManager1", [])
 pmDivisionHead1 = UserDescriptor("pmDivisionHead1", [])
 
-plonemeeting_assembly_powereditors = PloneGroupDescriptor(
-    "meeting-config-college_powereditors", "meeting-config-council_powereditors", []
+collegePowerEditors = PloneGroupDescriptor(
+    "meeting-config-college_powereditors", "meeting-config-college_powereditors", []
+)
+collegePowerObservers = PloneGroupDescriptor(
+    "meeting-config-college_powerobservers", "meeting-config-college_powerobservers", []
 )
 powerEditor1 = UserDescriptor("powerEditor1", [])
 powerEditor1.ploneGroups = [
-    plonemeeting_assembly_powereditors,
+    collegePowerEditors,
+    collegePowerObservers,
 ]
 
 # Inherited users

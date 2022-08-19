@@ -4,8 +4,20 @@ Products.MeetingSeraing Changelog
 4.2.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Fixed issues with back transitions for WFA seraing_validated_by_DG.
+  [aduchene]
+- Add missing WFA translations.
+  [aduchene]
+- Refactored PowerEditors feature. Now it's a WFA's and PowerEditors may store item podtemplate as annex (SUP-16787).
+  [aduchene]
+- marginalNotes are now highlighted and displayed at the top when completed (SUP-16802).
+  [aduchene]
+- Renamed `returned_to_advise` to `seraing_returned_to_advise`.
+  [aduchene]
+- Improved demo import_data to ease testing.
+  [aduchene]
+- Add missing icons back.
+  [aduchene]
 
 4.2.0a1 (2022-08-11)
 --------------------
