@@ -130,6 +130,8 @@ class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):
         cfg.podtemplates.itemTemplate.store_as_annex = annex_type_uid
         cfg.setMeetingItemTemplatesToStoreAsAnnex('itemTemplate__output_format__odt')
         cfg.powerObservers[0]['item_states'] = ['itemcreated', 'itemfrozen', 'presented', 'accepted', 'delayed']
+        self._addPrincipalToGroup('powerEditor1', self.cfg1_id+"_powerobservers")
+        self._addPrincipalToGroup('powerEditor1', self.cfg2_id+"_powerobservers")
         # create meeting with items
         self.changeUser('pmManager')
         meeting = self._createMeetingWithItems()

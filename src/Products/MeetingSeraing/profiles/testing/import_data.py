@@ -20,13 +20,9 @@ pmDivisionHead1 = UserDescriptor("pmDivisionHead1", [])
 collegePowerEditors = PloneGroupDescriptor(
     "meeting-config-college_powereditors", "meeting-config-college_powereditors", []
 )
-collegePowerObservers = PloneGroupDescriptor(
-    "meeting-config-college_powerobservers", "meeting-config-college_powerobservers", []
-)
 powerEditor1 = UserDescriptor("powerEditor1", [])
 powerEditor1.ploneGroups = [
     collegePowerEditors,
-    collegePowerObservers,
 ]
 
 # Inherited users

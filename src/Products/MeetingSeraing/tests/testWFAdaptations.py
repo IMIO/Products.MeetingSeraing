@@ -44,9 +44,10 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 'pre_accepted',
                 "seraing_add_item_closed_state",
                 "seraing_validated_by_DG",
+                "seraing_powereditors",
                 "return_to_proposing_group",
                 "return_to_proposing_group_with_last_validation",
-                "returned_to_advise"
+                "seraing_returned_to_advise"
             }
         )
 
@@ -183,12 +184,12 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES defined value.'''
         # make sure the 'return_to_proposing_group' state does not exist in the item WF
         itemWF = self.wfTool.getWorkflowsFor(self.meetingConfig.getItemTypeName())[0]
-        self.failUnless('returned_to_advise' in itemWF.states)
+        self.failUnless('seraing_returned_to_advise' in itemWF.states)
         # check from witch state we can go to 'returned_to_item', it corresponds
         # to model.adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
         from_states = set()
         for state in itemWF.states.values():
-            if 'returned_to_advise' in state.transitions:
+            if 'seraing_returned_to_advise' in state.transitions:
                 from_states.add(state.id)
         # at least every states in from_states were defined in RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
         self.failIf(

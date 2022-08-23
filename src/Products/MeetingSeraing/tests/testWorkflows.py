@@ -32,7 +32,8 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self._activate_wfas((
             'no_publication',
             'return_to_proposing_group_with_last_validation',
-            'returned_to_advise'
+            'seraing_validated_by_DG',
+            'seraing_returned_to_advise'
         ))
         self._setup_seraing_closed_states(self.meetingConfig)
         self._setup_seraing_validated_by_DG(self.meetingConfig)

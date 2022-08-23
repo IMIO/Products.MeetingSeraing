@@ -4,8 +4,10 @@ Products.MeetingSeraing Changelog
 4.2.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Fixed a bug when an item was late (`_latePresentedItem`).
+  [aduchene]
+- Fixed broken tests as PowerEditors is now a WFA.
+  [aduchene]
 
 4.2.0a2 (2022-08-19)
 --------------------

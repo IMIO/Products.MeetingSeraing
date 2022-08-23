@@ -880,7 +880,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
     def _latePresentedItem(self):
         """Presents an item into a frozen meeting."""
         wTool = getToolByName(self.context, "portal_workflow")
-        # wTool.doActionFor(self.context, "itemValidateByDG")
+        wTool.doActionFor(self.context, "itemValidateByDG")
         wTool.doActionFor(self.context, "itemfreeze")
 
 
