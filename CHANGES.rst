@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a3 (unreleased)
+4.2.0a3 (2022-08-23)
 --------------------
 
 - Fixed a bug when an item was late (`_latePresentedItem`).
