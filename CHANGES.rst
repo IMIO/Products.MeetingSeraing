@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a4 (unreleased)
+4.2.0a4 (2022-08-30)
 --------------------
 
 - Power editors may now add a barcode to annexes.
