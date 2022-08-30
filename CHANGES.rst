@@ -4,7 +4,10 @@ Products.MeetingSeraing Changelog
 4.2.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Power editors may now add a barcode to annexes.
+  [aduchene]
+- Fixed an issue where power editors saw 'store podtemplate as annex' in the wrong states.
+  [aduchene]
 
 
 4.2.0a3 (2022-08-23)

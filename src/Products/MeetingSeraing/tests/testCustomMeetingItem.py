@@ -25,12 +25,13 @@ from datetime import datetime
 
 from AccessControl import Unauthorized
 from DateTime import DateTime
+from Products.CMFCore.permissions import ModifyPortalContent
 from Products.MeetingCommunes.tests.testCustomMeetingItem import (
     testCustomMeetingItem as mctcmi,
 )
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.config import ITEM_SCAN_ID_NAME
-from Products.PloneMeeting.utils import get_annexes
+from Products.PloneMeeting.utils import get_annexes, cleanMemoize
 from Products.statusmessages.interfaces import IStatusMessage
 from imio.zamqp.pm.tests.base import DEFAULT_SCAN_ID
 from zope.annotation import IAnnotations
@@ -120,18 +121,18 @@ class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):
            MeetingConfig.meetingItemTemplatesToStoreAsAnnex as an annex
            for every selected items."""
 
-        self._activate_wfas(
-            "seraing_powereditors",
-            keep_existing=True
-        )
-        cfg = self.meetingConfig
         # define correct config
+        cfg = self.meetingConfig
         annex_type_uid = cfg.annexes_types.item_decision_annexes.get('decision-annex').UID()
         cfg.podtemplates.itemTemplate.store_as_annex = annex_type_uid
         cfg.setMeetingItemTemplatesToStoreAsAnnex('itemTemplate__output_format__odt')
         cfg.powerObservers[0]['item_states'] = ['itemcreated', 'itemfrozen', 'presented', 'accepted', 'delayed']
         self._addPrincipalToGroup('powerEditor1', self.cfg1_id+"_powerobservers")
         self._addPrincipalToGroup('powerEditor1', self.cfg2_id+"_powerobservers")
+        self._activate_wfas(
+            "seraing_powereditors",
+            keep_existing=True
+        )
         # create meeting with items
         self.changeUser('pmManager')
         meeting = self._createMeetingWithItems()
@@ -197,10 +198,11 @@ class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):
 
     def test_PowerEditorMayStorePodTemplateAsAnnex(self):
         """Power editor may store a Pod template as an annex."""
-
         # define correct config
         cfg = self.meetingConfig
         cfg.powerObservers[0]['item_states'] = ['itemcreated', 'itemfrozen', 'presented', 'accepted', 'delayed']
+        self._addPrincipalToGroup('powerEditor1', self.cfg1_id+"_powerobservers")
+        self._addPrincipalToGroup('powerEditor1', self.cfg2_id+"_powerobservers")
         self._activate_wfas(
             "seraing_powereditors",
             keep_existing=True
@@ -228,14 +230,13 @@ class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):
         # now we have an annex
         annex = get_annexes(item)[0]
         self.assertEqual(annex.used_pod_template_id, pod_template.getId())
-        # we can not store an annex using a POD template several times, we get a status message
         messages = IStatusMessage(self.request).show()
-        self.assertEqual(len(messages), 3)
+        self.assertEqual(messages[-1].message, "The annex was stored.")
+        # we can not store an annex using a POD template several times, we get a status message
         view()
         # no extra annex
         self.assertEqual(get_annexes(item), [annex])
         messages = IStatusMessage(self.request).show()
-        self.assertEqual(len(messages), 4)
         last_msg = messages[-1].message
         can_not_store_several_times_msg = translate(
             u'store_podtemplate_as_annex_can_not_store_several_times',
@@ -251,6 +252,57 @@ class testCustomMeetingItem(MeetingSeraingTestCase, mctcmi):
         annex = get_annexes(item)[0]
         self.assertEqual(annex.scan_id, DEFAULT_SCAN_ID)
 
+    def test_PowerEditorMayAddBarcodeOnAnnexes(self):
+        """Power editor may add barcodes on annexes."""
+        self.portal.portal_plonemeeting.setEnableScanDocs(True)
+        cfg = self.meetingConfig
+        cfg.powerObservers[0]['item_states'] = ['itemcreated', 'itemfrozen', 'presented', 'accepted', 'delayed']
+        self._addPrincipalToGroup('powerEditor1', self.cfg1_id+"_powerobservers")
+        self._addPrincipalToGroup('powerEditor1', self.cfg2_id+"_powerobservers")
+        self._activate_wfas(
+            "seraing_powereditors",
+            keep_existing=True
+        )
+        self.changeUser('pmManager')
+        item = self.create('MeetingItem')
+        annex_txt = self.addAnnex(item)
+        annex_pdf = self.addAnnex(item, annexFile=self.annexFilePDF)
+        view = annex_pdf.restrictedTraverse('@@insert-barcode')
+
+        # as normal user, able to edit but not able to insert barcode
+        self.changeUser('pmCreator1')
+        self.assertTrue(self.member.has_permission(ModifyPortalContent, view.context))
+        self.assertFalse(view.may_insert_barcode())
+
+        # now as MeetingManager
+        self.changeUser('pmManager')
+        view.context.manage_setLocalRoles(self.member.getId(), ('MeetingManager', 'Editor'))
+        # clean borg.localroles
+        cleanMemoize(self.portal, prefixes=['borg.localrole.workspace.checkLocalRolesAllowed'])
+        self.assertTrue(self.member.has_permission(ModifyPortalContent, view.context))
+        self.assertTrue(view.may_insert_barcode())
+
+        # now as powerEditor
+        annex_pdf = self.addAnnex(item, annexFile=self.annexFilePDF)
+        view = annex_pdf.restrictedTraverse('@@insert-barcode')
+        self.changeUser('powerEditor1')
+        view.context.manage_setLocalRoles(self.member.getId(), ('Contributor', 'Editor'))
+        # clean borg.localroles
+        cleanMemoize(self.portal, prefixes=['borg.localrole.workspace.checkLocalRolesAllowed'])
+        # item is in itemcreated state, powerEditor1 cannot add barcode at this point
+        self.assertFalse(view.may_insert_barcode())
+
+        self.changeUser('pmManager')
+        meeting = self.create('Meeting', date=datetime(2022, 8, 19))
+        self.presentItem(item)
+        self.freezeMeeting(meeting)
+        self.changeUser('powerEditor1')
+        view.context.manage_setLocalRoles(self.member.getId(), ('Contributor', 'Editor'))
+        view = annex_pdf.restrictedTraverse('@@insert-barcode')
+        # clean borg.localroles
+        cleanMemoize(self.portal, prefixes=['borg.localrole.workspace.checkLocalRolesAllowed'])
+        # item is in frozen state, powerEditor1 can add barcode at this point
+        self.assertTrue(view.may_insert_barcode())
 
 def test_suite():
     from unittest import TestSuite, makeSuite

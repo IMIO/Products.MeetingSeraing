@@ -27,9 +27,6 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
-from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
-from Products.PloneMeeting.browser.views import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
-from Products.PloneMeeting.config import AddAnnex
 from appy.gen import No
 from copy import deepcopy
 from DateTime import DateTime
@@ -49,13 +46,9 @@ from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
 from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowActions
-from Products.MeetingSeraing.interfaces import (
-    IMeetingItemSeraingCollegeWorkflowConditions,
-)
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowActions
-from Products.MeetingSeraing.interfaces import (
-    IMeetingItemSeraingCouncilWorkflowConditions,
-)
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowActions
@@ -65,6 +58,9 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowCon
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
+from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
+from Products.PloneMeeting.browser.views import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
+from Products.PloneMeeting.config import AddAnnex
 from Products.PloneMeeting.interfaces import IMeetingConfigCustom
 from Products.PloneMeeting.interfaces import IMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingItem
@@ -74,10 +70,12 @@ from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.model import adaptations
-from Products.PloneMeeting.model.adaptations import WF_APPLIED, _addIsolatedState, _getValidationReturnedStates
+from Products.PloneMeeting.model.adaptations import _addIsolatedState
+from Products.PloneMeeting.model.adaptations import WF_APPLIED
 from Products.PloneMeeting.utils import sendMailIfRelevant
 from zope.i18n import translate
 from zope.interface import implements
+
 
 # disable most of wfAdaptations
 customWfAdaptations = (
@@ -582,6 +580,10 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
             item.manage_addLocalRoles(
                 powerEditorsGroupId, ("Editor", "Contributor")
             )
+
+    def powerEditorEditable(self):
+        tool = api.portal.get_tool('portal_plonemeeting')
+        return tool.userIsAmong(["powereditors"]) and self.context.query_state() in POWEREDITORS_EDITABLE_STATES
 
     def getExtraFieldsToCopyWhenCloning(
             self, cloned_to_same_mc, cloned_from_item_template
@@ -1232,7 +1234,6 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
 
         return False
 
-
 # ------------------------------------------------------------------------------
 InitializeClass(CustomSeraingMeetingItem)
 InitializeClass(CustomSeraingMeeting)
@@ -1378,7 +1379,7 @@ def may_store_podtemplate_as_annex(self, pod_template):
         return False
     tool = api.portal.get_tool('portal_plonemeeting')
     cfg = tool.getMeetingConfig(self.context)
-    return tool.isManager(cfg) or tool.userIsAmong(["powereditors"])
+    return tool.isManager(cfg) or self.context.adapted().powerEditorEditable()
 
 
 PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_annex
@@ -1388,7 +1389,8 @@ def store_podtemplate_as_annex_batch_action_available(self):
     tool = api.portal.get_tool('portal_plonemeeting')
     """ """
     if self.cfg.getMeetingItemTemplatesToStoreAsAnnex() and \
-            _checkPermission(ModifyPortalContent, self.context) or tool.userIsAmong(["powereditors"]):
+            _checkPermission(ModifyPortalContent, self.context) or tool.userIsAmong(["powereditors"]) \
+            and self.context.query_state() not in ['created', 'closed']:
         return True
 
 
