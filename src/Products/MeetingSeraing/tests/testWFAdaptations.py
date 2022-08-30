@@ -11,9 +11,7 @@ from Products.CMFCore.permissions import ReviewPortalContent
 from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.model.adaptations import _performWorkflowAdaptations
-from Products.PloneMeeting.model.adaptations import (
-    RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES,
-)
+from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 
 import datetime as dt

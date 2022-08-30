@@ -22,12 +22,12 @@
 # 02110-1301, USA.
 #
 
-import datetime as dt
-import logging
-
 from DateTime import DateTime
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.model.adaptations import _performWorkflowAdaptations
+
+import datetime as dt
+import logging
 
 
 class testCustomWorkflows(MeetingSeraingTestCase):

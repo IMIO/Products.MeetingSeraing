@@ -2,8 +2,8 @@
 
 from DateTime import DateTime
 from plone import api
-from Products.MeetingSeraing.config import SERAING_ITEM_WF_VALIDATION_LEVELS
 from Products.MeetingCommunes.migrations.migrate_to_4200 import Migrate_To_4200 as MCMigrate_To_4200
+from Products.MeetingSeraing.config import SERAING_ITEM_WF_VALIDATION_LEVELS
 
 import logging
 

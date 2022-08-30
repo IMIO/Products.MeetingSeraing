@@ -3,6 +3,7 @@
 from collections import OrderedDict
 from Products.PloneMeeting import config as PMconfig
 
+
 product_globals = globals()
 
 PROJECTNAME = "MeetingSeraing"

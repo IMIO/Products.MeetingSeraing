@@ -23,20 +23,20 @@
 # 02110-1301, USA.
 #
 # ------------------------------------------------------------------------------
-from Products.Archetypes.Field import LinesField
-from Products.Archetypes.Widget import InAndOutWidget
 from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import RichWidget
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import TextField
+from Products.Archetypes.Field import LinesField
+from Products.Archetypes.Widget import InAndOutWidget
 from Products.DataGridField import DataGridField
 from Products.DataGridField.Column import Column
 from Products.DataGridField.SelectColumn import SelectColumn
 from Products.PloneMeeting.config import registerClasses
+from Products.PloneMeeting.config import WriteRiskyConfig
 from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
-from Products.PloneMeeting.config import WriteRiskyConfig
 
 
 def update_item_schema(baseSchema):

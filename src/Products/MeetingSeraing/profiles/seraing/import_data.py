@@ -2,11 +2,12 @@
 
 from copy import deepcopy
 from Products.MeetingCommunes.profiles.examples_fr import import_data as mc_import_data
-
-from Products.PloneMeeting.profiles import PloneGroupDescriptor, PodTemplateDescriptor
+from Products.MeetingSeraing.config import SERAING_ITEM_WF_VALIDATION_LEVELS
+from Products.PloneMeeting.profiles import PloneGroupDescriptor
+from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
 from Products.PloneMeeting.profiles.testing import import_data as pm_import_data
-from Products.MeetingSeraing.config import SERAING_ITEM_WF_VALIDATION_LEVELS
+
 
 data = deepcopy(mc_import_data.data)
 
@@ -158,4 +159,3 @@ data.usersOutsideGroups += [
     pmOfficeManager1,
     pmDivisionHead1,
 ]
-

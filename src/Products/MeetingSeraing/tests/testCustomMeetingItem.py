@@ -21,19 +21,17 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
 #
-from datetime import datetime
-
 from AccessControl import Unauthorized
+from datetime import datetime
 from DateTime import DateTime
+from imio.zamqp.pm.tests.base import DEFAULT_SCAN_ID
 from Products.CMFCore.permissions import ModifyPortalContent
-from Products.MeetingCommunes.tests.testCustomMeetingItem import (
-    testCustomMeetingItem as mctcmi,
-)
+from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.config import ITEM_SCAN_ID_NAME
-from Products.PloneMeeting.utils import get_annexes, cleanMemoize
+from Products.PloneMeeting.utils import cleanMemoize
+from Products.PloneMeeting.utils import get_annexes
 from Products.statusmessages.interfaces import IStatusMessage
-from imio.zamqp.pm.tests.base import DEFAULT_SCAN_ID
 from zope.annotation import IAnnotations
 from zope.i18n import translate
 

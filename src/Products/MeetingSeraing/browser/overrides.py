@@ -6,10 +6,10 @@
 #
 # GNU General Public License (GPL)
 #
+from imio.zamqp.pm.browser.views import InsertBarcodeView
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import _checkPermission
 from Products.PloneMeeting.config import BARCODE_INSERTED_ATTR_ID
-from imio.zamqp.pm.browser.views import InsertBarcodeView
 
 
 class SeraingInsertBarcodeView(InsertBarcodeView):
