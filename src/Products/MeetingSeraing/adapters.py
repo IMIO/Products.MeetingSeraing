@@ -27,6 +27,7 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
+from Products.CMFCore.WorkflowCore import WorkflowException
 from appy.gen import No
 from copy import deepcopy
 from DateTime import DateTime
@@ -885,8 +886,12 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
     def _latePresentedItem(self):
         """Presents an item into a frozen meeting."""
         wTool = getToolByName(self.context, "portal_workflow")
-        wTool.doActionFor(self.context, "itemValidateByDG")
-        wTool.doActionFor(self.context, "itemfreeze")
+        try:
+            wTool.doActionFor(self.context, "itemValidateByDG")
+            wTool.doActionFor(self.context, "itemfreeze")
+            wTool.doActionFor(self.context, 'itempublish')
+        except WorkflowException:
+            pass  # States 'itempublish' or 'itemValidateByDG' may not exist.
 
 
 class MeetingItemSeraingCollegeWorkflowActions(MeetingItemSeraingWorkflowActions):
