@@ -4,7 +4,12 @@ Products.MeetingSeraing Changelog
 4.2.0a5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Power editors may edit presented state.
+  [aduchene]
+- Power editors may edit marginalNotes when item is in closed state.
+  [aduchene]
+- Removed `ecolesanit.py`.
+  [aduchene]
 
 
 4.2.0a4 (2022-08-30)

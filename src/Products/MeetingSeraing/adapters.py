@@ -27,6 +27,9 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
+from Products.PloneMeeting.config import WriteItemMeetingManagerFields
+from Products.PloneMeeting.config import WriteMarginalNotes
+from Products.PloneMeeting.config import WriteInternalNotes
 from appy.gen import No
 from copy import deepcopy
 from DateTime import DateTime
@@ -151,7 +154,7 @@ adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_P
                                                          + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 
 POWEREDITORS_EDITABLE_STATES = (
-"validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted"
+"presented","validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted"
 )
 
 
@@ -1179,6 +1182,15 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
                     state.permission_roles[AddAnnex] = state.permission_roles[AddAnnex] + ("Editor",)
+                    state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[AddAnnex] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[AddAnnex] + ("Editor",)
+                    state.permission_roles[WriteInternalNotes] = state.permission_roles[AddAnnex] + ("Editor",)
+            for state_id in ("accepted_closed", "delayed_closed", "accepted_but_modified_closed"):
+                # We also have to add closed state variants to WriteMarginalNotes for powereditors
+                if state_id in itemWorkflow.states:
+                    state = itemWorkflow.states[state_id]
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[AddAnnex] + ("Editor",)
+
         if wfAdaptation == "seraing_returned_to_advise":
             if "returned_to_proposing_group" not in itemStates:
                 raise ValueError("returned_to_proposing_group should be in itemStates for this WFA")
@@ -1379,7 +1391,8 @@ def may_store_podtemplate_as_annex(self, pod_template):
         return False
     tool = api.portal.get_tool('portal_plonemeeting')
     cfg = tool.getMeetingConfig(self.context)
-    return tool.isManager(cfg) or self.context.adapted().powerEditorEditable()
+    powereditor_editable = tool.userIsAmong(["powereditors"]) and self.context.query_state() in POWEREDITORS_EDITABLE_STATES
+    return tool.isManager(cfg) or powereditor_editable
 
 
 PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_annex
@@ -1388,9 +1401,9 @@ PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_an
 def store_podtemplate_as_annex_batch_action_available(self):
     tool = api.portal.get_tool('portal_plonemeeting')
     """ """
+    powereditor_editable = tool.userIsAmong(["powereditors"]) and self.context.query_state() != 'created'
     if self.cfg.getMeetingItemTemplatesToStoreAsAnnex() and \
-            _checkPermission(ModifyPortalContent, self.context) or tool.userIsAmong(["powereditors"]) \
-            and self.context.query_state() not in ['created', 'closed']:
+            _checkPermission(ModifyPortalContent, self.context) or powereditor_editable:
         return True
 
 
