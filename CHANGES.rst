@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a5 (unreleased)
+4.2.0a5 (2022-09-02)
 --------------------
 
 - Power editors may edit presented state.
