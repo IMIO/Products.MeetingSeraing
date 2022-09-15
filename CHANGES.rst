@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a6 (unreleased)
+4.2.0a6 (2022-09-15)
 --------------------
 
 - Power editors may now add decision_annexe on closed item states.
