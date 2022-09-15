@@ -1198,14 +1198,14 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
                     state.permission_roles[AddAnnex] = state.permission_roles[AddAnnex] + ("Editor",)
-                    state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[AddAnnex] + ("Editor",)
-                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[AddAnnex] + ("Editor",)
-                    state.permission_roles[WriteInternalNotes] = state.permission_roles[AddAnnex] + ("Editor",)
+                    state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + ("Editor",)
+                    state.permission_roles[WriteInternalNotes] = state.permission_roles[WriteInternalNotes] + ("Editor",)
             for state_id in ("accepted_closed", "delayed_closed", "accepted_but_modified_closed"):
                 # We also have to add closed state variants to WriteMarginalNotes for powereditors
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
-                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[AddAnnex] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + ("Editor",)
 
         if wfAdaptation == "seraing_returned_to_advise":
             if "returned_to_proposing_group" not in itemStates:
