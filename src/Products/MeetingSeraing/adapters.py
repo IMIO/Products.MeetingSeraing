@@ -897,12 +897,12 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
     def _latePresentedItem(self):
         """Presents an item into a frozen meeting."""
         wTool = getToolByName(self.context, "portal_workflow")
-        try:
-            wTool.doActionFor(self.context, "itemValidateByDG")
-            wTool.doActionFor(self.context, "itemfreeze")
-            wTool.doActionFor(self.context, 'itempublish')
-        except WorkflowException:
-            pass  # States 'itempublish' or 'itemValidateByDG' may not exist.
+        transitions = ["itemValidateByDG", "itemfreeze", "itempublish"]
+        for t in transitions:
+            try:
+                wTool.doActionFor(self.context, t)
+            except WorkflowException:
+                pass  # States 'itempublish' or 'itemValidateByDG' may not exist.
 
 
 class MeetingItemSeraingCollegeWorkflowActions(MeetingItemSeraingWorkflowActions):
@@ -1407,8 +1407,7 @@ def may_store_podtemplate_as_annex(self, pod_template):
         return False
     tool = api.portal.get_tool('portal_plonemeeting')
     cfg = tool.getMeetingConfig(self.context)
-    powereditor_editable = tool.userIsAmong(["powereditors"]) and self.context.query_state() in POWEREDITORS_EDITABLE_STATES
-    return tool.isManager(cfg) or powereditor_editable
+    return tool.isManager(cfg) or self.context.adapted().powerEditorEditable()
 
 
 PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_annex
