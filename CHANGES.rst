@@ -4,7 +4,11 @@ Products.MeetingSeraing Changelog
 4.2.0a6 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Power editors may now add decision_annexe on closed item states.
+  [aduchene]
+- Refactored `POWEREDITORS_EDITABLE_STATES` to `POWEREDITORS_LOCALROLE_STATES`
+  to have a mapping of local roles to apply at a given state.
+  [aduchene]
 
 
 4.2.0a5 (2022-09-02)

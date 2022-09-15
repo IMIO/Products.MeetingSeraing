@@ -154,9 +154,15 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES \
                                                          + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 
-POWEREDITORS_EDITABLE_STATES = (
-"presented","validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted"
-)
+POWEREDITORS_LOCALROLE_STATES = {
+    "Contributor": (
+        "presented", "validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted",
+        "accepted_closed", "accepted_but_modified_closed", "delayed_closed"
+    ),
+    "Editor": (
+        "presented", "validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted"
+    )
+}
 
 
 class CustomSeraingMeeting(CustomMeeting):
@@ -580,14 +586,19 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         # Then, add local roles for powereditors.
         cfg = item.portal_plonemeeting.getMeetingConfig(item)
         powerEditorsGroupId = "%s_%s" % (cfg.getId(), POWEREDITORS_GROUP_SUFFIX)
-        if item.query_state() in POWEREDITORS_EDITABLE_STATES:
+        powereditor_roles = []
+        for role, states in POWEREDITORS_LOCALROLE_STATES:
+            if item.query_state() in states:
+                powereditor_roles.append(role)
+        if powereditor_roles:
             item.manage_addLocalRoles(
-                powerEditorsGroupId, ("Editor", "Contributor")
+                powerEditorsGroupId, tuple(powereditor_roles)
             )
 
     def powerEditorEditable(self):
         tool = api.portal.get_tool('portal_plonemeeting')
-        return tool.userIsAmong(["powereditors"]) and self.context.query_state() in POWEREDITORS_EDITABLE_STATES
+        return tool.userIsAmong(["powereditors"]) \
+            and self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Editor"]
 
     def getExtraFieldsToCopyWhenCloning(
             self, cloned_to_same_mc, cloned_from_item_template
@@ -1183,7 +1194,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         if wfAdaptation == "seraing_powereditors":
             # change permission for PloneMeeting: add annex for states in which
             # powereditors may edit
-            for state_id in POWEREDITORS_EDITABLE_STATES:
+            for state_id in POWEREDITORS_LOCALROLE_STATES["Editor"]:
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
                     state.permission_roles[AddAnnex] = state.permission_roles[AddAnnex] + ("Editor",)
