@@ -4,8 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.0a7 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Fixed WFA `seraing_powereditors` as wrong permission_roles was applied.
+  [aduchene]
 
 4.2.0a6 (2022-09-15)
 --------------------
