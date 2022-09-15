@@ -587,7 +587,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         cfg = item.portal_plonemeeting.getMeetingConfig(item)
         powerEditorsGroupId = "%s_%s" % (cfg.getId(), POWEREDITORS_GROUP_SUFFIX)
         powereditor_roles = []
-        for role, states in POWEREDITORS_LOCALROLE_STATES:
+        for role, states in POWEREDITORS_LOCALROLE_STATES.items():
             if item.query_state() in states:
                 powereditor_roles.append(role)
         if powereditor_roles:
