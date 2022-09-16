@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a8 (unreleased)
+4.2.0a8 (2022-09-16)
 --------------------
 
 - Take into account batch action transition when setting takenOverBy.
