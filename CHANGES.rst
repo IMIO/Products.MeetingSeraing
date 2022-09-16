@@ -4,8 +4,10 @@ Products.MeetingSeraing Changelog
 4.2.0a8 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Take into account batch action transition when setting takenOverBy.
+  [aduchene]
+- Fixed WFA `seraing_powereditors` as wrong permission_roles was applied (again).
+  [aduchene]
 
 4.2.0a7 (2022-09-15)
 --------------------

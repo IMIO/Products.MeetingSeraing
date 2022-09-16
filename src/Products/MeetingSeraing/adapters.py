@@ -621,22 +621,23 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
     security.declarePublic("setTakenOverBy")
 
     def setTakenOverBy(self, value, **kwargs):
-        def _is_transitioning():
-            return (
-                    self.REQUEST
-                    and hasattr(self.REQUEST, "form")
-                    and "transition" in self.REQUEST.form
-            )
-
-        def _get_current_transition():
-            if not _is_transitioning():
-                return None
-            return self.REQUEST.form["transition"]
-
         tool = api.portal.get_tool("portal_plonemeeting")
         cfg = tool.getMeetingConfig(self)
-        if _is_transitioning():
-            if _get_current_transition() in cfg.getTransitionsReinitializingTakenOverBy():
+
+        has_form = self.REQUEST and hasattr(self.REQUEST, "form")
+        is_transitioning = has_form and ("transition" in self.REQUEST.form or "form.widgets.transition" in self.REQUEST.form)
+
+        if is_transitioning:
+            current_transition = None
+            if "transition" in self.REQUEST.form:  # simple action
+                current_transition = self.REQUEST.form["transition"]
+            elif "form.widgets.transition" in self.REQUEST.form:  # batch action
+                if isinstance(self.REQUEST.form["form.widgets.transition"], list):
+                    current_transition = self.REQUEST.form["form.widgets.transition"][0]
+                else:
+                    current_transition = self.REQUEST.form["form.widgets.transition"]
+
+            if current_transition in cfg.getTransitionsReinitializingTakenOverBy():
                 # If transition should reinitialize TakenOverBy
                 self.getField("takenOverBy").set(self, "", **kwargs)
             else:
@@ -1198,9 +1199,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
                     state.permission_roles[AddAnnex] = state.permission_roles[AddAnnex] + ("Editor",)
-                    state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("Editor",)
                     state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + ("Editor",)
-                    state.permission_roles[WriteInternalNotes] = state.permission_roles[WriteInternalNotes] + ("Editor",)
             for state_id in ("accepted_closed", "delayed_closed", "accepted_but_modified_closed"):
                 # We also have to add closed state variants to WriteMarginalNotes for powereditors
                 if state_id in itemWorkflow.states:
