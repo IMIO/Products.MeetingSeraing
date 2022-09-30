@@ -163,7 +163,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
             domain='PloneMeeting',
             context=self.request,
         )
-        self.assertEqual(messages[-2].message, expectedMessage)
+        self.assertEqual(messages[-3].message, expectedMessage)
 
         # now test when cloning locally, even if annexes types are not enabled
         # it works, this is the expected behavior, backward compatibility when an annex type
