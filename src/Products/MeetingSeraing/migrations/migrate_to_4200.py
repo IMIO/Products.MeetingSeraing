@@ -88,8 +88,8 @@ class Migrate_To_4200(MCMigrate_To_4200):
                 tuple(workflowAdaptations)
             )
 
-        if 'seraing_add_item_closed_state' not in cfg.getWorkflowAdaptations():
-            cfg.setWorkflowAdaptations(tuple(("seraing_add_item_closed_state",) + cfg.getWorkflowAdaptations()))
+        if 'seraing_add_item_closed_states' not in cfg.getWorkflowAdaptations():
+            cfg.setWorkflowAdaptations(tuple(("seraing_add_item_closed_states",) + cfg.getWorkflowAdaptations()))
         if 'seraing_validated_by_DG' not in cfg.getWorkflowAdaptations():
             cfg.setWorkflowAdaptations(tuple(("seraing_validated_by_DG",) + cfg.getWorkflowAdaptations()))
 

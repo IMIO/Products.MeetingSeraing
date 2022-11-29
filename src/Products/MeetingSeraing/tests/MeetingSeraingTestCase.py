@@ -47,7 +47,7 @@ class MeetingSeraingTestCase(MeetingCommunesTestCase, MeetingSeraingTestingHelpe
 
     def _setup_seraing_closed_states(self, meetingConfig):
         self._activate_wfas(
-            ("seraing_add_item_closed_state",), cfg=meetingConfig, keep_existing=True
+            ("seraing_add_item_closed_states",), cfg=meetingConfig, keep_existing=True
         )
 
         meetingConfig.setOnMeetingTransitionItemActionToExecute(

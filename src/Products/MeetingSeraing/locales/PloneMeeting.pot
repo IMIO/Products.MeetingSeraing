@@ -262,7 +262,7 @@ msgid "wa_seraing_returned_to_advise"
 msgstr ""
 
 #. Default: "Closed and decided states (MeetingSeraing)"
-msgid "wa_seraing_add_item_closed_state"
+msgid "wa_seraing_add_item_closed_states"
 msgstr ""
 
 #. Default: "Validated by DG (MeetingSeraing)"

@@ -40,7 +40,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 'refused',
                 'delayed',
                 'pre_accepted',
-                "seraing_add_item_closed_state",
+                "seraing_add_item_closed_states",
                 "seraing_validated_by_DG",
                 "seraing_powereditors",
                 "return_to_proposing_group",

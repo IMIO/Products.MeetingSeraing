@@ -30,6 +30,7 @@ from zope.i18n import translate
 def onItemLocalRolesUpdated(item, event):
     """Called after localRoles have been updated on the item."""
     item.adapted().updatePowerEditorsLocalRoles()
+    item.adapted().updateMeetingManagersLocalRoles()
 
 
 def onItemDuplicated(original, event):

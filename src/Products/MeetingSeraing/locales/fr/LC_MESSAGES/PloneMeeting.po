@@ -335,7 +335,7 @@ msgid "wa_seraing_returned_to_advise"
 msgstr "Renvoyer pour avis (MeetingSeraing)"
 
 #. Default: "Closed and decided states (MeetingSeraing)"
-msgid "wa_seraing_add_item_closed_state"
+msgid "wa_seraing_add_item_closed_states"
 msgstr "États décidés et clôturés (MeetingSeraing)"
 
 #. Default: "Validated by DG (MeetingSeraing)"

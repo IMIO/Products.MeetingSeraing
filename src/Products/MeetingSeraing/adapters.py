@@ -61,7 +61,7 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
 from Products.PloneMeeting.browser.views import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
-from Products.PloneMeeting.config import AddAnnex
+from Products.PloneMeeting.config import AddAnnex, MEETINGMANAGERS_GROUP_SUFFIX
 from Products.PloneMeeting.config import WriteInternalNotes
 from Products.PloneMeeting.config import WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import WriteMarginalNotes
@@ -99,7 +99,7 @@ customWfAdaptations = (
     'refused',
     'delayed',
     'pre_accepted',
-    "seraing_add_item_closed_state",
+    "seraing_add_item_closed_states",
     "seraing_validated_by_DG",
     "seraing_powereditors",
     "return_to_proposing_group",
@@ -595,6 +595,21 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
                 powerEditorsGroupId, tuple(powereditor_roles)
             )
 
+    def updateMeetingManagersLocalRoles(self):
+        """Apply MeetingManagers local roles when seraing_add_item_closed_states is used.
+        MeetingManagers may indeed edit items in 'accepted', 'delayed', 'accepted_but_modified' states
+        """
+        item = self.getSelf()
+        cfg = item.portal_plonemeeting.getMeetingConfig(item)
+        if 'seraing_add_item_closed_states' in cfg.getWorkflowAdaptations() and \
+            item.query_state() in ['accepted', 'delayed', 'accepted_but_modified']:
+            mmanagers_group_id = "{0}_{1}".format(cfg.getId(),
+                                                  MEETINGMANAGERS_GROUP_SUFFIX)
+            item.manage_addLocalRoles(
+                mmanagers_group_id, ('Reader', 'Reviewer', 'Editor', 'Contributor')
+            )
+
+
     def powerEditorEditable(self):
         tool = api.portal.get_tool('portal_plonemeeting')
         return tool.userIsAmong(["powereditors"]) \
@@ -705,7 +720,6 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
 
     def get_item_corresponding_state_to_assign_local_roles(self, item_state):
         '''See doc in interfaces.py.'''
-        cfg = self.getSelf()
         corresponding_item_state = None
         # XXX returned_to_proposing_group_xxx is special in MeetingSeraing
         # returned_to_proposing_group_proposed is equivalent to proposed state
@@ -719,7 +733,7 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
             corresponding_item_state = item_state.split('_waiting_advices')[0]
         return corresponding_item_state
 
-    def get_item_custom_suffix_roles(self, item_state):
+    def get_item_custom_suffix_roles(self, item, item_state):
         suffix_roles = None
         if item_state == 'returned_to_proposing_group':
             SUFFIXES_THAT_MAY_EDIT_IN_RETURNED_TO_PROPOSING_GROUP = [
@@ -738,6 +752,38 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
             for suffix in SUFFIXES_THAT_MAY_REVIEW_IN_RETURNED_TO_ADVISE:
                 suffix_roles[suffix] = REVIEW_ROLES
         return True, suffix_roles
+
+    def getItemDecidedStates(self):
+        """
+        Specific for MeetingSeraing. 'accepted', 'accepted_but_modified', 'delayed' are not
+        decided states when seraing_add_item_closed_states is enabled.
+        """
+        cfg = self.getSelf()
+        item_decided_states = [
+            'accepted_out_of_meeting',
+            'accepted_out_of_meeting_emergency',
+            'delayed',
+            'marked_not_applicable',
+            'postponed_next_meeting',
+            'refused',
+            'removed',
+            'transfered']
+
+        if 'seraing_add_item_closed_states' not in cfg.getWorkflowAdaptations():
+            item_decided_states += ['accepted', 'accepted_but_modified', 'delayed']
+
+        item_decided_states += self.adapted().extra_item_decided_states()
+        return item_decided_states
+
+    # We need to monkey patch this. Otherwise, it will not work
+    MeetingConfig.getItemDecidedStates = getItemDecidedStates
+
+    def extra_item_decided_states(self):
+        return [
+            'accepted_closed',
+            'delayed_closed',
+            'accepted_but_modified_closed'
+        ]
 
 
 class MeetingSeraingWorkflowActions(MeetingCommunesWorkflowActions):
@@ -1107,7 +1153,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         itemStates = itemWorkflow.states
         itemTransitions = itemWorkflow.transitions
 
-        if wfAdaptation == "seraing_add_item_closed_state":
+        if wfAdaptation == "seraing_add_item_closed_states":
             _addIsolatedState(
                 new_state_id='accepted_closed',
                 origin_state_id='accepted',
