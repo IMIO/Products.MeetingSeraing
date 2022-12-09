@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0a9 (unreleased)
+4.2.0a9 (2022-12-09)
 --------------------
 
 - Fixed an issue where MeetingManager may edit closed state variants.
