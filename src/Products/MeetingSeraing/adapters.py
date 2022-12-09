@@ -401,49 +401,8 @@ class CustomSeraingMeeting(CustomMeeting):
 
     security.declarePublic("getOJByCategory")
 
-    def getOJByCategory(
-            self,
-            itemUids=[],
-            listTypes=["normal"],
-            ignore_review_states=[],
-            by_proposing_group=False,
-            group_prefixes={},
-            privacy="*",
-            oralQuestion="both",
-            toDiscuss="both",
-            categories=[],
-            excludedCategories=[],
-            groupIds=[],
-            excludedGroupIds=[],
-            firstNumber=1,
-            renumber=False,
-            includeEmptyCategories=False,
-            includeEmptyGroups=False,
-            isToPrintInMeeting="both",
-            forceCategOrderFromConfig=False,
-            unrestricted=False,
-    ):
-        lists = self.context.getPrintableItemsByCategory(
-            itemUids,
-            listTypes,
-            ignore_review_states,
-            by_proposing_group,
-            group_prefixes,
-            privacy,
-            oralQuestion,
-            toDiscuss,
-            categories,
-            excludedCategories,
-            groupIds,
-            excludedGroupIds,
-            firstNumber,
-            renumber,
-            includeEmptyCategories,
-            includeEmptyGroups,
-            isToPrintInMeeting,
-            forceCategOrderFromConfig,
-            unrestricted,
-        )
+    def getOJByCategory(self, **kwargs):
+        lists = self.context.getPrintableItemsByCategory(**kwargs)
         res = []
         for sub_list in lists:
             # we use by categories, first element of each obj is a category

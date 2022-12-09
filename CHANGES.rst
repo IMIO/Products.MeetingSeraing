@@ -4,13 +4,14 @@ Products.MeetingSeraing Changelog
 4.2.0a9 (unreleased)
 --------------------
 
-- Fixed an issue where MeetingManager could edit closed state variants.
+- Fixed an issue where MeetingManager may edit closed state variants.
   [aduchene]
 - Apply correct local roles for MeetingManager when seraing_add_item_closed_states is enabled.
   [aduchene]
 - Renamed `seraing_add_item_closed_state` to `seraing_add_item_closed_states`.
   [aduchene]
-
+- Migrate sections to committees.
+  [aduchene]
 
 4.2.0a8 (2022-09-16)
 --------------------

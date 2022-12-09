@@ -117,3 +117,11 @@ div#archetypes-fieldname-echevinServices {
 #content .marginal-notes-filled a:hover {
     color: #9a0202 !important;
 }
+
+#row-form-widgets-committees > .table_widget_label {
+    display: none;
+}
+
+#form-widgets-committees .datagridwidget-cell {
+    border: 0 !important;
+}

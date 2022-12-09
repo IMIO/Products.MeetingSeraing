@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 
 from DateTime import DateTime
 from plone import api
@@ -12,6 +13,46 @@ logger = logging.getLogger('MeetingSeraing')
 
 
 class Migrate_To_4200(MCMigrate_To_4200):
+
+    def _hook_custom_meeting_to_dx(self, old, new):
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(new)
+        new_committees = []
+        for section in old.sections:
+            label = old.adapted().listSections().getValue(section['name_section'])
+            if not any(c['label'] == label for c in cfg.getCommittees()):
+                cfg.setCommittees(
+                    cfg.getCommittees() +
+                    ({
+                         'acronym': '',
+                         'auto_from': [],
+                         'default_assembly': '',
+                         'default_attendees': [],
+                         'default_place': '',
+                         'default_signatories': [],
+                         'default_signatures': '',
+                         'enabled': '1',
+                         'label': label,
+                         'supplements': '0',
+                         'using_groups': []
+                     },))
+
+            row_id = [c['row_id'] for c in cfg.getCommittees() if c['label'] == label][0]
+            try:
+                date = datetime.strptime(section['date_section'], "%d/%m/%Y")
+            except ValueError:
+                date = datetime.fromtimestamp(0)
+            new_committees.append({
+                'assembly': None,
+                'attendees': [],
+                'committee_observations': None,
+                'convocation_date': None,
+                'date': date,
+                'place': u'',
+                'row_id': row_id,
+                'signatories': [],
+                'signatures': None})
+        new.committees = new_committees
 
     def _fixUsedWFs(self):
         """meetingseraing_workflow/meetingitemseraing_workflow do not exist anymore,
