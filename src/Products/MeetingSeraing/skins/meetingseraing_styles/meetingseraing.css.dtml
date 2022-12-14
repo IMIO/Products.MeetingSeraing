@@ -107,7 +107,7 @@ div#archetypes-fieldname-echevinServices {
 }
 
 #content .marginal-notes-filled legend {
-    border-width: 1px 0 0 0;
+    border-width: 1px 0 0 1px;
 }
 
 .marginal-notes-filled #hook_marginalNotes_toggle {

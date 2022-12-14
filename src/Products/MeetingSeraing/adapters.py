@@ -76,7 +76,7 @@ from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.model import adaptations
 from Products.PloneMeeting.model.adaptations import _addIsolatedState
 from Products.PloneMeeting.model.adaptations import WF_APPLIED
-from Products.PloneMeeting.utils import sendMailIfRelevant
+from Products.PloneMeeting.utils import sendMailIfRelevant, cmp
 from zope.i18n import translate
 from zope.interface import implements
 
@@ -157,10 +157,14 @@ adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_P
 POWEREDITORS_LOCALROLE_STATES = {
     "Contributor": (
         "presented", "validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted",
-        "accepted_closed", "accepted_but_modified_closed", "delayed_closed"
+        "accepted_closed", "accepted_but_modified_closed", "delayed_closed", "returned_to_proposing_group",
+        "returned_to_proposing_group_proposed", "returned_to_advise"
     ),
     "Editor": (
         "presented", "validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted"
+    ),
+    "MeetingManager": (
+        "accepted_closed", "accepted_but_modified_closed", "delayed_closed"
     )
 }
 
@@ -193,10 +197,10 @@ class CustomSeraingMeeting(CustomMeeting):
     def getPrintableItemsByCategory(
             self,
             itemUids=[],
-            listTypes=["normal"],
+            list_types=["normal"],
             ignore_review_states=[],
             by_proposing_group=False,
-            group_proposing_group=False,
+            group_proposing_group=True,
             group_prefixes={},
             privacy="*",
             oralQuestion="both",
@@ -213,7 +217,7 @@ class CustomSeraingMeeting(CustomMeeting):
             forceCategOrderFromConfig=False,
             unrestricted=False,
     ):
-        """Returns a list of (late or normal or both) items (depending on p_listTypes)
+        """Returns a list of (late or normal or both) items (depending on p_list_types)
         ordered by category. Items being in a state whose name is in
         p_ignore_review_state will not be included in the result.
         If p_by_proposing_group is True, items are grouped by proposing group
@@ -238,7 +242,7 @@ class CustomSeraingMeeting(CustomMeeting):
         # - at position 0: the category object (MeetingCategory or MeetingGroup)
         # - at position 1 to n: the items in this category
         # If by_proposing_group is True, the structure is more complex.
-        # listTypes is a list that can be filled with 'normal' and/or 'late'
+        # list_types is a list that can be filled with 'normal' and/or 'late'
         # oralQuestion can be 'both' or False or True
         # toDiscuss can be 'both' or 'False' or 'True'
         # privacy can be '*' or 'public' or 'secret'
@@ -265,7 +269,7 @@ class CustomSeraingMeeting(CustomMeeting):
         try:
             items = self.context.get_items(
                 uids=itemUids,
-                list_types=listTypes,
+                list_types=list_types,
                 ordered=True,
                 unrestricted=unrestricted,
             )
@@ -322,7 +326,7 @@ class CustomSeraingMeeting(CustomMeeting):
                     self._insertItemInCategory(
                         res[-1], item, by_proposing_group, group_prefixes, groups
                     )
-        if forceCategOrderFromConfig or cmp(listTypes.sort(), ["late", "normal"]) == 0:
+        if forceCategOrderFromConfig or cmp(list_types.sort(), ["late", "normal"]) == 0:
             res.sort(cmp=_comp)
         if includeEmptyCategories:
             meetingConfig = tool.getMeetingConfig(self.context)
@@ -568,7 +572,6 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
                 mmanagers_group_id, ('Reader', 'Reviewer', 'Editor', 'Contributor')
             )
 
-
     def powerEditorEditable(self):
         tool = api.portal.get_tool('portal_plonemeeting')
         return tool.userIsAmong(["powereditors"]) \
@@ -692,7 +695,8 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
             corresponding_item_state = item_state.split('_waiting_advices')[0]
         return corresponding_item_state
 
-    def get_item_custom_suffix_roles(self, item, item_state):
+    def get_item_custom_suffix_roles(self, *args):
+        item_state = args[-1]
         suffix_roles = None
         if item_state == 'returned_to_proposing_group':
             SUFFIXES_THAT_MAY_EDIT_IN_RETURNED_TO_PROPOSING_GROUP = [
@@ -1404,25 +1408,30 @@ class MSItemPrettyLinkAdapter(ItemPrettyLinkAdapter):
         return icons
 
 
-# Power editors may store podtemplate as annex
 def may_store_podtemplate_as_annex(self, pod_template):
-    """By default only (Meeting)Managers are able to store a generated document as annex."""
+    """By default only (Meeting)Managers are able to store a generated document as annex.
+    In MeetingSeraing, Power editors may store podtemplate as annex but only in states in which they are Contributor
+    """
     if not pod_template.store_as_annex:
         return False
     tool = api.portal.get_tool('portal_plonemeeting')
     cfg = tool.getMeetingConfig(self.context)
-    return tool.isManager(cfg) or self.context.adapted().powerEditorEditable()
+    return tool.isManager(cfg) or self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Contributor"]
 
 
 PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_annex
 
 
 def store_podtemplate_as_annex_batch_action_available(self):
+    """
+    In MeetingSeraing, Power editors may store podtemplate as annex with a batch action but
+    only in meeting states between created and closed
+    """
     tool = api.portal.get_tool('portal_plonemeeting')
-    """ """
-    powereditor_editable = tool.userIsAmong(["powereditors"]) and self.context.query_state() != 'created'
+    powereditor_batch_action_available = tool.userIsAmong(["powereditors"]) and \
+                                         self.context.query_state() not in ('created', 'closed')
     if self.cfg.getMeetingItemTemplatesToStoreAsAnnex() and \
-            _checkPermission(ModifyPortalContent, self.context) or powereditor_editable:
+            _checkPermission(ModifyPortalContent, self.context) or powereditor_batch_action_available:
         return True
 
 

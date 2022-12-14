@@ -232,7 +232,7 @@
             </div>
             <tal:comment replace="nothing">XXX Seraing added printing item in meeting</tal:comment>
             <div class="discreet">
-                <span i18n:translate="PloneMeeting_label_item_print_in_meeting"></span>
+                <span class="item_attribute_label" i18n:translate="PloneMeeting_label_item_print_in_meeting"></span>
                 <span metal:use-macro="python: here.widget('isToPrintInMeeting', mode='view')" />
             </div>
             <tal:comment replace="nothing">Send to authority?</tal:comment>
@@ -503,6 +503,11 @@
     <tal:comment replace="nothing">DecisionEnd</tal:comment>
     <tal:field define="fieldName python: 'decisionEnd'; ajaxEdit python:True">
        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+    </tal:field>
+
+    <tal:comment replace="nothing">XXX Interventions</tal:comment>
+    <tal:field define="fieldName python: 'interventions'; ajaxEdit python:True">
+        <metal:f use-macro="context/@@pm-macros/macros/viewContentField"/>
     </tal:field>
 
     <tal:comment replace="nothing">Other meetingConfigs clonable to</tal:comment>

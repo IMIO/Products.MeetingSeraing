@@ -42,14 +42,13 @@ from Products.PloneMeeting.MeetingItem import MeetingItem
 def update_item_schema(baseSchema):
 
     specificSchema = Schema((
-        # specific field for council added for MeetingManagers to transcribe interventions
+        # added for MeetingManagers to transcribe interventions
         TextField(
             name='interventions',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.portal_type in ('MeetingItemCouncil', 'MeetingItemZCouncil') \
-                and (here.showMeetingManagerReservedField('interventions') or here.portal_plonemeeting.userIsAmong('powerobservers')\
-                or here.portal_plonemeeting.userIsAmong('restrictedpowerobservers'))",
+                condition="python: here.showMeetingManagerReservedField('interventions') or here.portal_plonemeeting.userIsAmong('powerobservers')\
+                or here.portal_plonemeeting.userIsAmong('restrictedpowerobservers')",
                 label='Interventions',
                 label_msgid='MeetingSeraing_label_interventions',
                 description='Transcription of interventions',
@@ -122,41 +121,6 @@ def update_item_schema(baseSchema):
 
 
 MeetingItem.schema = update_item_schema(MeetingItem.schema)
-
-
-def update_meeting_schema(baseSchema):
-    specificSchema = Schema((
-
-        DataGridField(
-            name='sections',
-            widget=DataGridField._properties['widget'](
-                description="Commissions",
-                description_msgid="commissions_descr",
-                condition="python: here.portal_type in ('MeetingCouncil', 'MeetingZCouncil')",
-                columns={'name_section': SelectColumn("Commission name", vocabulary="listSections",
-                                                      col_description="Select the commission name."),
-                         'date_section': Column("Commission date",
-                                                col_description="Enter valid from date, "
-                                                                "use following format : DD/MM/YYYY."), },
-                label='Commissions',
-                label_msgid='MeetingSeraing_label_commissions',
-                i18n_domain='PloneMeeting',
-            ),
-            allow_oddeven=True,
-            write_permission="Modify portal content",
-            columns=('name_section', 'date_section'),
-            allow_empty_rows=False,
-        ),
-    ),)
-
-    completeSchema = baseSchema + specificSchema.copy()
-
-    baseSchema['notes'].widget.description_msgid = "MeetingSeraing_descr_meeting_notes"
-    baseSchema['notes'].widget.label_msgid = "MeetingSeraing_msgid_meeting_notes"
-    return completeSchema
-
-
-Meeting.schema = update_meeting_schema(Meeting.schema)
 
 
 def update_meetingconfig_schema(baseSchema):

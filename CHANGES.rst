@@ -4,8 +4,12 @@ Products.MeetingSeraing Changelog
 4.2.0b1 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Removed unnecessary files.
+  [aduchene]
+- Power editors are Contributor on return_to* states and changed may_store_podtemplate_as_annex accordingly.
+  [aduchene]
+- Restore interventions field in meetingitem_view.
+  [aduchene]
 
 4.2.0a9 (2022-12-09)
 --------------------
