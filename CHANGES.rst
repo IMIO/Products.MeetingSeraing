@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0b2 (unreleased)
+4.2.0b2 (2022-12-14)
 --------------------
 
 - Fixed condition on interventions field.
