@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0b1 (unreleased)
+4.2.0b1 (2022-12-14)
 --------------------
 
 - Removed unnecessary files.
