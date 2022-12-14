@@ -47,8 +47,8 @@ def update_item_schema(baseSchema):
             name='interventions',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.showMeetingManagerReservedField('interventions') or here.portal_plonemeeting.userIsAmong('powerobservers')\
-                or here.portal_plonemeeting.userIsAmong('restrictedpowerobservers')",
+                condition="python: here.showMeetingManagerReservedField('interventions') or "
+                          "here.portal_plonemeeting.userIsAmong(['powerobservers','restrictedpowerobservers'])",
                 label='Interventions',
                 label_msgid='MeetingSeraing_label_interventions',
                 description='Transcription of interventions',
