@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
-
 from DateTime import DateTime
+from datetime import datetime
 from plone import api
 from Products.MeetingCommunes.migrations.migrate_to_4200 import Migrate_To_4200 as MCMigrate_To_4200
 from Products.MeetingSeraing.config import SERAING_ITEM_WF_VALIDATION_LEVELS

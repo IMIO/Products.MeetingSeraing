@@ -27,7 +27,6 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
-from Products.CMFCore.WorkflowCore import WorkflowException
 from appy.gen import No
 from copy import deepcopy
 from DateTime import DateTime
@@ -37,6 +36,7 @@ from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.permissions import ReviewPortalContent
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.MeetingCommunes.adapters import CustomMeeting
 from Products.MeetingCommunes.adapters import CustomMeetingConfig
 from Products.MeetingCommunes.adapters import CustomMeetingItem
@@ -61,7 +61,8 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
 from Products.PloneMeeting.browser.views import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
-from Products.PloneMeeting.config import AddAnnex, MEETINGMANAGERS_GROUP_SUFFIX
+from Products.PloneMeeting.config import AddAnnex
+from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
 from Products.PloneMeeting.config import WriteInternalNotes
 from Products.PloneMeeting.config import WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import WriteMarginalNotes
@@ -76,7 +77,8 @@ from Products.PloneMeeting.MeetingItem import MeetingItem
 from Products.PloneMeeting.model import adaptations
 from Products.PloneMeeting.model.adaptations import _addIsolatedState
 from Products.PloneMeeting.model.adaptations import WF_APPLIED
-from Products.PloneMeeting.utils import sendMailIfRelevant, cmp
+from Products.PloneMeeting.utils import cmp
+from Products.PloneMeeting.utils import sendMailIfRelevant
 from zope.i18n import translate
 from zope.interface import implements
 
