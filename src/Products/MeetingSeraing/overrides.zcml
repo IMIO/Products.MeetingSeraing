@@ -2,8 +2,16 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone">
-<!-- IPrettyLink for MeetingItem -->
+    <!-- IPrettyLink for MeetingItem -->
     <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
              factory=".adapters.MSItemPrettyLinkAdapter"
              provides="imio.prettylink.interfaces.IPrettyLink" />
+
+    <!-- Override @@insert-barcode for IAnnex -->
+    <browser:view
+      for="imio.annex.content.annex.IAnnex"
+      name="insert-barcode"
+      class=".browser.overrides.SeraingInsertBarcodeView"
+      permission="zope2.View"
+    />
 </configure>

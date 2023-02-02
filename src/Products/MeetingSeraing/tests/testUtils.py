@@ -22,8 +22,11 @@
 # 02110-1301, USA.
 #
 
+from Products.CMFCore.permissions import ModifyPortalContent
+from Products.CMFCore.permissions import View
 from Products.MeetingCommunes.tests.testUtils import testUtils as mctu
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.PloneMeeting.utils import sendMailIfRelevant
 
 
 class testUtils(MeetingSeraingTestCase, mctu):

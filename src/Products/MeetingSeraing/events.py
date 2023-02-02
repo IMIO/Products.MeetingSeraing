@@ -30,20 +30,22 @@ from zope.i18n import translate
 def onItemLocalRolesUpdated(item, event):
     """Called after localRoles have been updated on the item."""
     item.adapted().updatePowerEditorsLocalRoles()
+    item.adapted().updateMeetingManagersLocalRoles()
 
 
 def onItemDuplicated(original, event):
-    """After item's cloning, we removed decision annexe.
-    """
+    """After item's cloning, we removed decision annexe."""
     newItem = event.newItem
     annexes = get_annexes(newItem)
     for annex in annexes:
         if getattr(annex, 'scan_id', None):
             unrestrictedRemoveGivenObject(annex)
-            msg = translate('annex_not_kept_because_using_scan_id',
-                            mapping={'annexTitle': safe_unicode(annex.Title())},
-                            domain='PloneMeeting',
-                            context=newItem.REQUEST)
+            msg = translate(
+                'annex_not_kept_because_using_scan_id',
+                mapping={'annexTitle': safe_unicode(annex.Title())},
+                domain='PloneMeeting',
+                context=newItem.REQUEST,
+            )
             api.portal.show_message(msg, request=newItem.REQUEST, type='warning')
     # xxx Seraing clear some fields linked to meeting
     newRawDescri = _removeTypistNote(newItem.getRawDescription())
@@ -53,8 +55,9 @@ def onItemDuplicated(original, event):
 
 
 def _removeTypistNote(field):
-    """ Remove typist's note find with highlight-purple class"""
+    """Remove typist's note find with highlight-purple class"""
     import re
+
     return re.sub('<span class="highlight-purple">.*?</span>', '', field)
 
 
@@ -71,7 +74,7 @@ def onAdviceAdded(advice, event):
         advice._updateAdviceRowId()
 
     item = advice.getParentNode()
-    item.updateLocalRoles()
+    item.update_local_roles()
 
     _addManagedPermissions(advice)
 
@@ -92,7 +95,9 @@ def onAdviceAdded(advice, event):
 
     # Send mail if relevant
     sendMailIfRelevant(item, 'adviceEdited', 'MeetingMember', isRole=True)
-    sendMailIfRelevant(item, 'event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
+    sendMailIfRelevant(
+        item, 'event_add_advice-service_heads', 'MeetingServiceHead', isRole=True
+    )
 
 
 def onAdviceModified(advice, event):
@@ -104,7 +109,7 @@ def onAdviceModified(advice, event):
     advice._updateAdviceRowId()
 
     item = advice.getParentNode()
-    item.updateLocalRoles()
+    item.update_local_roles()
 
     # make sure external images used in RichText fields are stored locally
     storeImagesLocallyDexterity(advice)
@@ -115,4 +120,6 @@ def onAdviceModified(advice, event):
 
     # update item
     _advice_update_item(item)
-    sendMailIfRelevant(item, 'event_add_advice-service_heads', 'MeetingServiceHead', isRole=True)
+    sendMailIfRelevant(
+        item, 'event_add_advice-service_heads', 'MeetingServiceHead', isRole=True
+    )

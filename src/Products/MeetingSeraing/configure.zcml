@@ -24,11 +24,11 @@
            factory="Products.MeetingSeraing.adapters.MeetingItemSeraingCollegeWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingItemSeraingCollegeWorkflowConditions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingSeraing.adapters.MeetingSeraingCollegeWorkflowActions"
            provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCollegeWorkflowActions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingSeraing.adapters.MeetingSeraingCollegeWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCollegeWorkflowConditions"/>
 
@@ -40,17 +40,17 @@
            factory="Products.MeetingSeraing.adapters.MeetingItemSeraingCouncilWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingItemSeraingCouncilWorkflowConditions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingSeraing.adapters.MeetingSeraingCouncilWorkflowActions"
            provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCouncilWorkflowActions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingSeraing.adapters.MeetingSeraingCouncilWorkflowConditions"
            provides="Products.MeetingSeraing.interfaces.IMeetingSeraingCouncilWorkflowConditions"/>
 
   <configure package="Products.MeetingCommunes">
 
-      <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+      <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
                factory="Products.MeetingSeraing.adapters.CustomSeraingMeeting"
                provides="Products.PloneMeeting.interfaces.IMeetingCustom"/>
 

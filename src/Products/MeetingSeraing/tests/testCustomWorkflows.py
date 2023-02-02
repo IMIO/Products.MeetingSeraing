@@ -24,6 +24,10 @@
 
 from DateTime import DateTime
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
+from Products.PloneMeeting.model.adaptations import _performWorkflowAdaptations
+
+import datetime as dt
+import logging
 
 
 class testCustomWorkflows(MeetingSeraingTestCase):
@@ -39,7 +43,7 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         # First, define recurring items in the meeting config
         self.changeUser('pmManager')
         # create a meeting
-        meeting = self.create('Meeting', date='2007/12/11 09:00:00')
+        meeting = self.create('Meeting', date=DateTime('2007/12/11 09:00:00').asdatetime())
         # create 2 items and present it to the meeting
         item1 = self.create('MeetingItem', title='The first item')
         self.presentItem(item1)
@@ -65,11 +69,11 @@ class testCustomWorkflows(MeetingSeraingTestCase):
            When we close a meeting, every items are set to accepted if they are still
            not decided...
         """
+        self._setup_seraing_closed_states(self.meetingConfig)
         # First, define recurring items in the meeting config
         self.changeUser('pmManager')
         # create a meeting (with 7 items)
-        meetingDate = DateTime().strftime('%y/%m/%d %H:%M:00')
-        meeting = self.create('Meeting', date=meetingDate)
+        meeting = self.create('Meeting', date=dt.datetime.now())
         item1 = self.create('MeetingItem')  # id=o2
         item1.setProposingGroup(self.vendors_uid)
         item1.setAssociatedGroups((self.developers_uid,))
@@ -118,8 +122,7 @@ class testCustomWorkflows(MeetingSeraingTestCase):
 
     def test_getOJByCategoryDoReturnSmth(self):
         self.changeUser('pmManager')
-        meetingDate = DateTime().strftime('%y/%m/%d %H:%M:00')
-        meeting = self.create('Meeting', date=meetingDate)
+        meeting = self.create('Meeting', date=dt.datetime.now())
         item = self.create('MeetingItem')
         item.setProposingGroup(self.vendors_uid)
         self.presentItem(item)

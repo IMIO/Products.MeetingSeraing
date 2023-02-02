@@ -37,26 +37,38 @@ from zope.i18n import translate
 
 class testMeetingItem(MeetingSeraingTestCase, mctmi):
     """
-        Tests the MeetingItem class methods.
+    Tests the MeetingItem class methods.
     """
 
     def test_pm_PowerObserversLocalRoles(self):
         """Check that powerobservers local roles are set correctly...
-           Test alternatively item or meeting that is accessible to and not..."""
+        Test alternatively item or meeting that is accessible to and not..."""
         # we will check that (restricted) power observers local roles are set correctly.
         # - powerobservers may access itemcreated, validated and presented items (and created meetings),
         #   not restricted power observers;
         # - frozen items/meetings are accessible by both;
-        self._setPowerObserverStates(states=(
-            'itemcreated', 'validated', 'presented', 'itemfrozen', 'accepted', 'delayed'))
-        self._setPowerObserverStates(field_name='meeting_states',
-                                     states=('created', 'frozen', 'decided', 'closed'))
-        self._setPowerObserverStates(observer_type='restrictedpowerobservers',
-                                     states=('itemfrozen', 'accepted'))
+        self._setPowerObserverStates(
+            states=(
+                'itemcreated',
+                'validated',
+                'presented',
+                'itemfrozen',
+                'accepted',
+                'delayed',
+            )
+        )
+        self._setPowerObserverStates(
+            field_name='meeting_states', states=('created', 'frozen', 'decided', 'closed')
+        )
+        self._setPowerObserverStates(
+            observer_type='restrictedpowerobservers', states=('itemfrozen', 'accepted')
+        )
 
-        self._setPowerObserverStates(field_name='meeting_states',
-                                     observer_type='restrictedpowerobservers',
-                                     states=('frozen', 'decided', 'closed'))
+        self._setPowerObserverStates(
+            field_name='meeting_states',
+            observer_type='restrictedpowerobservers',
+            states=('frozen', 'decided', 'closed'),
+        )
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
         item.setDecision("<p>Decision</p>")
@@ -79,7 +91,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertTrue(self.hasPermission(View, item))
         # present the item, only viewable to powerob, including created meeting
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date='2015/01/01')
+        meeting = self.create('Meeting', date=DateTime('2015/01/01').asdatetime())
         self.presentItem(item)
         self.changeUser('restrictedpowerobserver1')
         self.assertFalse(self.hasPermission(View, item))
@@ -91,7 +103,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.changeUser('pmManager')
         self.freezeMeeting(meeting)
         self.changeUser('powerobserver1')
-        self.assertTrue(item.queryState() == 'itemfrozen')
+        self.assertTrue(item.query_state() == 'itemfrozen')
         self.changeUser('restrictedpowerobserver1')
         self.assertTrue(self.hasPermission(View, item))
         self.assertTrue(self.hasPermission(View, meeting))
@@ -111,15 +123,20 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
 
     def test_pm_SendItemToOtherMCWithoutDefinedAnnexType(self):
         """When cloning an item to another meetingConfig or to the same meetingConfig,
-           if we have annexes on the original item and destination meetingConfig (that could be same
-           as original item or another) does not have annex types defined,
-           it does not fail but annexes are not kept and a portal message is displayed."""
+        if we have annexes on the original item and destination meetingConfig (that could be same
+        as original item or another) does not have annex types defined,
+        it does not fail but annexes are not kept and a portal message is displayed."""
         cfg = self.meetingConfig
         cfg2 = self.meetingConfig2
         # first test when sending to another meetingConfig
         # remove every annexTypes from meetingConfig2
         self.changeUser('admin')
-        self._removeConfigObjectsFor(cfg2, folders=['annexes_types/item_annexes', ])
+        self._removeConfigObjectsFor(
+            cfg2,
+            folders=[
+                'annexes_types/item_annexes',
+            ],
+        )
         self.assertTrue(not cfg2.annexes_types.item_annexes.objectValues())
         # a portal message will be added, for now there is no message
         messages = IStatusMessage(self.request).show()
@@ -130,7 +147,9 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         newItem = data['newItem']
         # original item had annexes
         self.assertEqual(len(get_annexes(originalItem, portal_types=['annex'])), 2)
-        self.assertEqual(len(get_annexes(originalItem, portal_types=['annexDecision'])), 2)
+        self.assertEqual(
+            len(get_annexes(originalItem, portal_types=['annexDecision'])), 2
+        )
         # but new item is missing the normal annexes because
         # no annexType for normal annexes are defined in the cfg2
         self.assertEqual(len(get_annexes(newItem, portal_types=['annex'])), 0)
@@ -138,18 +157,22 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertEqual(len(get_annexes(newItem, portal_types=['annexDecision'])), 2)
         # moreover a message was added
         messages = IStatusMessage(self.request).show()
-        expectedMessage = translate("annex_not_kept_because_no_available_annex_type_warning",
-                                    mapping={'annexTitle': data['annex2'].Title()},
-                                    domain='PloneMeeting',
-                                    context=self.request)
-        self.assertEqual(messages[-2].message, expectedMessage)
+        expectedMessage = translate(
+            "annex_not_kept_because_no_available_annex_type_warning",
+            mapping={'annexTitle': data['annex2'].Title()},
+            domain='PloneMeeting',
+            context=self.request,
+        )
+        self.assertEqual(messages[-3].message, expectedMessage)
 
         # now test when cloning locally, even if annexes types are not enabled
         # it works, this is the expected behavior, backward compatibility when an annex type
         # is no more enabled but no more able to create new annexes with this annex type
         self.changeUser('admin')
-        for at in (cfg.annexes_types.item_annexes.objectValues() +
-                   cfg.annexes_types.item_decision_annexes.objectValues()):
+        for at in (
+            cfg.annexes_types.item_annexes.objectValues()
+            + cfg.annexes_types.item_decision_annexes.objectValues()
+        ):
             at.enabled = False
         # no available annex types, try to clone newItem now
         self.changeUser('pmManager')
@@ -163,21 +186,21 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
 
     def _extraNeutralFields(self):
         """This method is made to be overrided by subplugins that added
-           neutral fields to the MeetingItem schema."""
+        neutral fields to the MeetingItem schema."""
         return ['pvNote', 'dgNote', 'interventions']
 
     def test_pm_AnnexToPrintBehaviourWhenCloned(self):
         """When cloning an item with annexes, to the same or another MeetingConfig, the 'toPrint' field
-           is kept depending on MeetingConfig.keepOriginalToPrintOfClonedItems.
-           If it is True, the original value is kept, if it is False, it will use the
-           MeetingConfig.annexToPrintDefault value."""
+        is kept depending on MeetingConfig.keepOriginalToPrintOfClonedItems.
+        If it is True, the original value is kept, if it is False, it will use the
+        MeetingConfig.annexToPrintDefault value."""
         cfg = self.meetingConfig
         cfg2 = self.meetingConfig2
         cfg2Id = cfg2.getId()
         cfg.setKeepOriginalToPrintOfClonedItems(False)
         cfg2.setKeepOriginalToPrintOfClonedItems(False)
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date=DateTime('2016/02/02'))
+        meeting = self.create('Meeting', date=DateTime('2016/02/02').asdatetime())
         item = self.create('MeetingItem')
         annex = self.addAnnex(item)
         annex_config = get_config_root(annex)
@@ -191,7 +214,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.presentItem(item)
         self.decideMeeting(meeting)
         self.do(item, 'accept')
-        self.assertEquals(item.queryState(), 'accepted')
+        self.assertEquals(item.query_state(), 'accepted')
         annexDec = self.addAnnex(item, relatedTo='item_decision')
         annexDec_config = get_config_root(annexDec)
         annexDec_group = get_group(annexDec_config, annexDec)
@@ -260,8 +283,12 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         clonedToCfg2AgainAnnex = annexes and annexes[0]
         annexesDec = get_annexes(clonedToCfg2Again, portal_types=['annexDecision'])
         if not annexesDec:
-            pm_logger.info('No decision annexes found on duplicated item clonedToCfg2Again')
-        self.assertTrue(clonedToCfg2AgainAnnex and clonedToCfg2AgainAnnex.to_print or True)
+            pm_logger.info(
+                'No decision annexes found on duplicated item clonedToCfg2Again'
+            )
+        self.assertTrue(
+            clonedToCfg2AgainAnnex and clonedToCfg2AgainAnnex.to_print or True
+        )
 
     def test_pm_HistorizedTakenOverBy(self):
         '''Not applicable for MeetingSeraing. See below.'''
@@ -315,7 +342,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         item1 = self.create('MeetingItem', decision=self.decisionText)
         item2 = self.create('MeetingItem', decision=self.decisionText)
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date=DateTime('2020/06/11'))
+        meeting = self.create('Meeting', date=DateTime('2020/06/11').asdatetime())
         self.presentItem(item1)
         self.presentItem(item2)
         self.changeUser('pmCreator1')
@@ -330,9 +357,12 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.assertFalse(item1.adapted().mayTakeOver())
         self.assertFalse(item2.adapted().mayTakeOver())
 
+    def test_pm__sendCopyGroupsMailIfRelevant(self):
+        """Bypass, not used."""
 
 def test_suite():
     from unittest import TestSuite, makeSuite
+
     suite = TestSuite()
     # launch only tests prefixed by 'test_mc_' to avoid launching the tests coming from pmtmi
     suite.addTest(makeSuite(testMeetingItem, prefix='test_pm_'))

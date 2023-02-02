@@ -25,6 +25,16 @@ class testSearches(MeetingSeraingTestCase, mcts):
         pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
             self._testMethodName))
 
+    def test_pm_SearchItemsToValidateOfHighestHierarchicLevelReturnsEveryLevels(self):
+        '''Not used yet...'''
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
+
+    def test_pm_SearchItemsToValidateOfHighestHierarchicLevel(self):
+        '''Not used yet...'''
+        pm_logger.info("Bypassing , {0} not used in MeetingSeraing".format(
+            self._testMethodName))
+
     def test_pm_SearchMyItemsTakenOver(self):
         '''Test the 'search-my-items-taken-over' method.  This should return
            a list of items a user has taken over.'''

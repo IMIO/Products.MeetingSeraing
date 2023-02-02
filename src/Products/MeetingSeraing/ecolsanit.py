@@ -6,8 +6,8 @@
 
 VERSION = '1.00'
 
-from os.path import join as pjoin
 from os.path import dirname
+from os.path import join as pjoin
 
 import sys
 

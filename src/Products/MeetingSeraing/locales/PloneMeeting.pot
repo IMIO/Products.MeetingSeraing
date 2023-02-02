@@ -257,8 +257,20 @@ msgstr ""
 msgid "PloneMeeting_label_detailedDescription"
 msgstr ""
 
-#. Default: "Return to advise"
-msgid "wa_returned_to_advise"
+#. Default: "Return to advise (MeetingSeraing)"
+msgid "wa_seraing_returned_to_advise"
+msgstr ""
+
+#. Default: "Closed and decided states (MeetingSeraing)"
+msgid "wa_seraing_add_item_closed_states"
+msgstr ""
+
+#. Default: "Validated by DG (MeetingSeraing)"
+msgid "wa_seraing_validated_by_DG"
+msgstr ""
+
+#. Default: "Power editors (MeetingSeraing)"
+msgid "wa_seraing_powereditors"
 msgstr ""
 
 #. Default: "Late"

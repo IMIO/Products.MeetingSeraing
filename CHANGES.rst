@@ -1,11 +1,124 @@
 Products.MeetingSeraing Changelog
-====================================
+=================================
 
-4.1.7 (unreleased)
-------------------
+4.2.0b3 (unreleased)
+--------------------
 
 - Nothing changed yet.
 
+
+4.2.0b2 (2022-12-14)
+--------------------
+
+- Fixed condition on interventions field.
+  [aduchene]
+
+4.2.0b1 (2022-12-14)
+--------------------
+
+- Removed unnecessary files.
+  [aduchene]
+- Power editors are Contributor on return_to* states and changed may_store_podtemplate_as_annex accordingly.
+  [aduchene]
+- Restore interventions field in meetingitem_view.
+  [aduchene]
+
+4.2.0a9 (2022-12-09)
+--------------------
+
+- Fixed an issue where MeetingManager may edit closed state variants.
+  [aduchene]
+- Apply correct local roles for MeetingManager when seraing_add_item_closed_states is enabled.
+  [aduchene]
+- Renamed `seraing_add_item_closed_state` to `seraing_add_item_closed_states`.
+  [aduchene]
+- Migrate sections to committees.
+  [aduchene]
+
+4.2.0a8 (2022-09-16)
+--------------------
+
+- Take into account batch action transition when setting takenOverBy.
+  [aduchene]
+- Fixed WFA `seraing_powereditors` as wrong permission_roles was applied (again).
+  [aduchene]
+
+4.2.0a7 (2022-09-15)
+--------------------
+
+- Fixed WFA `seraing_powereditors` as wrong permission_roles was applied.
+  [aduchene]
+
+4.2.0a6 (2022-09-15)
+--------------------
+
+- Power editors may now add decision_annexe on closed item states.
+  [aduchene]
+- Refactored `POWEREDITORS_EDITABLE_STATES` to `POWEREDITORS_LOCALROLE_STATES`
+  to have a mapping of local roles to apply at a given state.
+  [aduchene]
+
+
+4.2.0a5 (2022-09-02)
+--------------------
+
+- Power editors may edit presented state.
+  [aduchene]
+- Power editors may edit marginalNotes when item is in closed state.
+  [aduchene]
+- Removed `ecolesanit.py`.
+  [aduchene]
+
+
+4.2.0a4 (2022-08-30)
+--------------------
+
+- Power editors may now add a barcode to annexes.
+  [aduchene]
+- Fixed an issue where power editors saw 'store podtemplate as annex' in the wrong states.
+  [aduchene]
+
+
+4.2.0a3 (2022-08-23)
+--------------------
+
+- Fixed a bug when an item was late (`_latePresentedItem`).
+  [aduchene]
+- Fixed broken tests as PowerEditors is now a WFA.
+  [aduchene]
+
+4.2.0a2 (2022-08-19)
+--------------------
+
+- Fixed issues with back transitions for WFA seraing_validated_by_DG.
+  [aduchene]
+- Add missing WFA translations.
+  [aduchene]
+- Refactored PowerEditors feature. Now it's a WFA's and PowerEditors may store item podtemplate as annex (SUP-16787).
+  [aduchene]
+- marginalNotes are now highlighted and displayed at the top when completed (SUP-16802).
+  [aduchene]
+- Renamed `returned_to_advise` to `seraing_returned_to_advise`.
+  [aduchene]
+- Improved demo import_data to ease testing.
+  [aduchene]
+- Add missing icons back.
+  [aduchene]
+
+4.2.0a1 (2022-08-11)
+--------------------
+
+- Compatible for PloneMeeting 4.2.
+  [aduchene]
+- meetingseraing_workflow and meetingitemseraing_workflow are now deprecated.
+  Use PloneMeeting's default WF with itemWFValidationLevels set accordingly.
+  [aduchene]
+- Add two new WFA to have feature parity between old seraing_workflow and PloneMeeting's default WF.
+  [aduchene]
+- Adapted PowerEditors feature to use local roles correctly.
+  [aduchene]
+- Fixed broken tests.
+  [aduchene]
 
 4.1.6 (2022-04-01)
 ------------------
