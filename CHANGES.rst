@@ -4,8 +4,9 @@ Products.MeetingSeraing Changelog
 4.2.0b3 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Updated `meetingitem_view` regarding changes in `PloneMeeting`
+  (votesResult after motivation or after decision).
+  [gbastien]
 
 4.2.0b2 (2022-12-14)
 --------------------
