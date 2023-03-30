@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0b3 (unreleased)
+4.2.0b3 (2023-03-30)
 --------------------
 
 - Updated `meetingitem_view` regarding changes in `PloneMeeting`
