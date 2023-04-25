@@ -134,7 +134,7 @@ def update_meetingconfig_schema(baseSchema):
             i18n_domain='PloneMeeting',
         ),
         write_permission=WriteRiskyConfig,
-        vocabulary='listEveryItemTransitions',
+        vocabulary='listItemTransitions',
     ),
     ),)
     completeSchema = baseSchema + specificSchema.copy()
