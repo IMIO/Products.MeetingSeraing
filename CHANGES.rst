@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0b4 (unreleased)
+4.2.0b4 (2023-04-26)
 --------------------
 
 - Remove mayBackToMeeting as it is now useless.
