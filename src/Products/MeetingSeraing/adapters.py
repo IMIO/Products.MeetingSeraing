@@ -1002,6 +1002,48 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         return _checkPermission(ReviewPortalContent, self.context)
 
+    security.declarePublic("mayBackToMeeting")
+
+    def mayBackToMeeting(self, transitionName):
+        """Specific guard for the 'return_to_proposing_group' wfAdaptation.
+           As we have only one guard_expr for potentially several transitions departing
+           from the 'returned_to_proposing_group' state, we receive the p_transitionName."""
+        if not _checkPermission(ReviewPortalContent, self.context) and not \
+           self.tool.isManager(self.cfg):
+            return
+        # when using validation states, may return when in last validation state
+        if 'return_to_proposing_group' not in self.cfg.getWorkflowAdaptations():
+            current_validation_state = 'itemcreated' \
+                if self.review_state == 'returned_to_proposing_group' \
+                else self.review_state.replace('returned_to_proposing_group_', '')
+            last_val_state = self._getLastValidationState()
+            # we are in last validation state, or we are in state 'returned_to_proposing_group'
+            # and there is no last validation state, aka it is "itemcreated"
+            if current_validation_state != last_val_state:
+                return
+        # get the linked meeting
+        meeting = self.context.getMeeting()
+        meetingState = meeting.query_state()
+        # use RETURN_TO_PROPOSING_GROUP_MAPPINGS to know in wich meetingStates
+        # the given p_transitionName can be triggered
+        authorizedMeetingStates = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS[transitionName]
+        if meetingState in authorizedMeetingStates:
+            return True
+        # if we did not return True, then return a No(...) message specifying that
+        # it can no more be returned to the meeting because the meeting is in some
+        # specific states (like 'closed' for example)
+        if meetingState in CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS['NO_MORE_RETURNABLE_STATES']:
+            # avoid to display No(...) message for each transition having the 'mayBackToMeeting'
+            # guard expr, just return the No(...) msg for the first transitionName checking this...
+            if 'may_not_back_to_meeting_warned_by' not in self.context.REQUEST:
+                self.context.REQUEST.set('may_not_back_to_meeting_warned_by', transitionName)
+            if self.context.REQUEST.get('may_not_back_to_meeting_warned_by') == transitionName:
+                return No(_('can_not_return_to_meeting_because_of_meeting_state',
+                            mapping={'meetingState': translate(
+                                meetingState,
+                                domain='plone',
+                                context=self.context.REQUEST)}))
+        return False
     security.declarePublic("mayClose")
 
     def mayClose(self):

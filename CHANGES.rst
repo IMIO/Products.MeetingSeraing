@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.0b5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Restore mayBackToMeeting and adapt it to use CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS.
+  [aduchene]
 
 
 4.2.0b4 (2023-04-26)
