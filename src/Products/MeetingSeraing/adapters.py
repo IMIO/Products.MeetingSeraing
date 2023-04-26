@@ -1002,60 +1002,6 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         return _checkPermission(ReviewPortalContent, self.context)
 
-    security.declarePublic("mayBackToMeeting")
-
-    def mayBackToMeeting(self, transitionName):
-        """Specific guard for the 'return_to_proposing_group' wfAdaptation.
-        As we have only one guard_expr for potentially several transitions departing
-        from the 'returned_to_proposing_group' state, we receive the p_transitionName."""
-        tool = getToolByName(self.context, "portal_plonemeeting")
-        if not _checkPermission(
-                ReviewPortalContent, self.context
-        ) and not self.tool.isManager(self.cfg):
-            return
-        # get the linked meeting
-        meeting = self.context.getMeeting()
-        meetingState = meeting.query_state()
-        # use RETURN_TO_PROPOSING_GROUP_MAPPINGS to know in wich meetingStates
-        # the given p_transitionName can be triggered
-        authorizedMeetingStates = adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS[
-            transitionName
-        ]
-        if meetingState in authorizedMeetingStates:
-            return True
-        # if we did not return True, then return a No(...) message specifying that
-        # it can no more be returned to the meeting because the meeting is in some
-        # specifig states (like 'closed' for example)
-        if (
-                meetingState
-                in adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS["NO_MORE_RETURNABLE_STATES"]
-        ):
-            # avoid to display No(...) message for each transition having the 'mayBackToMeeting'
-            # guard expr, just return the No(...) msg for the first transitionName checking this...
-            if "may_not_back_to_meeting_warned_by" not in self.context.REQUEST:
-                self.context.REQUEST.set(
-                    "may_not_back_to_meeting_warned_by", transitionName
-                )
-            if (
-                    self.context.REQUEST.get("may_not_back_to_meeting_warned_by")
-                    == transitionName
-            ):
-                return No(
-                    translate(
-                        "can_not_return_to_meeting_because_of_meeting_state",
-                        mapping={
-                            "meetingState": translate(
-                                meetingState,
-                                domain="plone",
-                                context=self.context.REQUEST,
-                            ),
-                        },
-                        domain="PloneMeeting",
-                        context=self.context.REQUEST,
-                    )
-                )
-        return False
-
     security.declarePublic("mayClose")
 
     def mayClose(self):
