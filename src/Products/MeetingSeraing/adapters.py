@@ -106,6 +106,7 @@ customWfAdaptations = (
     "seraing_powereditors",
     "return_to_proposing_group",
     "return_to_proposing_group_with_last_validation",
+    "seraing_return_to_proposing_group_with_last_validation_patch",
     "seraing_returned_to_advise"
 )
 MeetingConfig.wfAdaptations = customWfAdaptations
@@ -1258,6 +1259,34 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             logger.info(WF_APPLIED % ("seraing_returned_to_advise", meetingConfig.getId()))
             return True
 
+        if wfAdaptation == "seraing_return_to_proposing_group_with_last_validation_patch":
+            if "returned_to_proposing_group_proposed" not in itemStates:
+                raise ValueError("return_to_proposing_group_with_last_validation should be in itemStates for this WFA")
+
+            transition_id = 'goTo_%s' % ("returned_to_proposing_group_proposed")
+            transition = itemTransitions[transition_id]
+            image_url = '%(portal_url)s/{0}.png'.format(transition_id)
+            # Make sure shortcuts are handled
+            transition.setProperties(
+                title=transition_id,
+                new_state_id="returned_to_proposing_group_proposed",
+                trigger_type=1,
+                script_name="",
+                actbox_name=transition_id,
+                actbox_url="",
+                actbox_category="workflow",
+                actbox_icon=image_url,
+                props={
+                    "guard_expr":
+                        "python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
+                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
+                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
+                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')"
+                },
+            )
+
+            logger.info(WF_APPLIED % ("seraing_return_to_proposing_group_with_last_validation_patch", meetingConfig.getId()))
+            return True
         return False
 
 # ------------------------------------------------------------------------------
