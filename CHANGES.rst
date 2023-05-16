@@ -1,11 +1,33 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0b3 (unreleased)
+4.2.0b6 (unreleased)
 --------------------
 
 - Nothing changed yet.
 
+
+4.2.0b5 (2023-04-26)
+--------------------
+
+- Restore mayBackToMeeting and adapt it to use CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS.
+  [aduchene]
+
+
+4.2.0b4 (2023-04-26)
+--------------------
+
+- Remove mayBackToMeeting as it is now useless.
+  [aduchene]
+
+4.2.0b3 (2023-03-30)
+--------------------
+
+- Updated `meetingitem_view` regarding changes in `PloneMeeting`
+  (votesResult after motivation or after decision).
+  [gbastien]
+- Adapted code regarding removal of `MeetingConfig.useGroupsAsCategories`.
+  [gbastien]
 
 4.2.0b2 (2022-12-14)
 --------------------
