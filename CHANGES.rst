@@ -8,6 +8,10 @@ Products.MeetingSeraing Changelog
   [gbastien]
 - Fixed translation of `Data that will be used on new item` on `meetingitem_view.pt`.
   [gbastien]
+- `MeetingItemWorkflowActions._latePresentedItem` was renamed to
+  `MeetingItemWorkflowActions._latePresentedItemTransitions` and only needs to
+  return a tuple of transitions to trigger on the item.
+  [gbastien]
 
 4.2.0b5 (2023-04-26)
 --------------------

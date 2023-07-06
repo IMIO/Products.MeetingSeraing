@@ -118,9 +118,9 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
     "backTo_validated_by_dg_from_returned_to_proposing_group": [
         "validated_by_dg",
     ],
-    "backTo_itempublished_from_returned_to_proposing_group": {
-        "published"
-    },
+    "backTo_itempublished_from_returned_to_proposing_group": [
+        "published",
+    ],
     "backTo_itemfrozen_from_returned_to_proposing_group": [
         "frozen",
         "decided",
@@ -905,17 +905,11 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
     def doReturn_to_advise(self, stateChange):
         pass
 
-    security.declarePrivate("_freezePresentedItem")
+    security.declarePrivate("_latePresentedItemTransitions")
 
-    def _latePresentedItem(self):
-        """Presents an item into a frozen meeting."""
-        wTool = getToolByName(self.context, "portal_workflow")
-        transitions = ["itemValidateByDG", "itemfreeze", "itempublish"]
-        for t in transitions:
-            try:
-                wTool.doActionFor(self.context, t)
-            except WorkflowException:
-                pass  # States 'itempublish' or 'itemValidateByDG' may not exist.
+    def _latePresentedItemTransitions(self):
+        """List of transitions to trigger on an item presented into a frozen meeting."""
+        return ("itemValidateByDG", "itemfreeze", "itempublish")
 
 
 class MeetingItemSeraingCollegeWorkflowActions(MeetingItemSeraingWorkflowActions):
@@ -1242,10 +1236,9 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 ),
             )
             return_to_advice_item_state = [
-                                              "presented",
-                                              "validated_by_dg",
-                                              "itemfrozen",
-                                          ]
+                "presented",
+                "validated_by_dg",
+                "itemfrozen", ]
             if "returned_to_proposing_group_proposed" in itemStates:
                 return_to_advice_item_state.append("returned_to_proposing_group_proposed")
             if "returned_to_proposing_group" in itemStates:

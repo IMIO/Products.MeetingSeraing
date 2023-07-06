@@ -113,18 +113,22 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.do(item2, 'validate')
         self.changeUser('pmManager')
         self.do(item2, 'present')
+        # item was automatically frozen
+        # tested to check that transition "itemValidateByDG" was triggered
+        # on item when it was frozen
+        self.assertEqual(item2.query_state(), 'itemfrozen')
         self.addAnnex(item2)
         # So now we should have 3 normal item (2 recurring + 1) and one late item in the meeting
         self.failUnless(len(meeting.get_items()) == 4)
         self.failUnless(len(meeting.get_items(list_types='late')) == 1)
         self.do(meeting, 'decide')
         self.do(item1, 'accept')
-        self.assertEquals(item1.query_state(), 'accepted')
-        self.assertEquals(item2.query_state(), 'itemfrozen')
+        self.assertEqual(item1.query_state(), 'accepted')
+        self.assertEqual(item2.query_state(), 'itemfrozen')
         self.do(meeting, 'close')
-        self.assertEquals(item1.query_state(), 'accepted_closed')
+        self.assertEqual(item1.query_state(), 'accepted_closed')
         # every items without a decision are automatically accepted_closed
-        self.assertEquals(item2.query_state(), 'accepted_closed')
+        self.assertEqual(item2.query_state(), 'accepted_closed')
 
     def test_pm_WorkflowPermissions(self):
         """Bypass this test..."""
