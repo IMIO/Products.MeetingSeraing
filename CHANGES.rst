@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.0b6 (unreleased)
+4.2.0 (unreleased)
 --------------------
 
 - `MeetingConfig.listEveryItemTransitions` was renamed to `MeetingConfig.listItemTransitions`.
