@@ -41,7 +41,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
         # this created 6 groups
         created_groups = [groupId for groupId in self.portal.portal_groups.listGroupIds()
                           if groupId.startswith(newCfgId)]
-        self.assertEquals(len(created_groups), 6)
+        self.assertEqual(len(created_groups), 6)
         # remove the MeetingConfig, groups are removed as well
         self.tool.restrictedTraverse('@@delete_givenuid')(newCfg.UID())
         self.assertFalse(newCfgId in self.tool.objectIds())
@@ -78,7 +78,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
             translate('can_not_delete_meetingconfig_meeting',
                       domain="plone",
                       context=self.request)
-        self.assertEquals(cm.exception.message, can_not_delete_meetingconfig_meeting)
+        self.assertEqual(cm.exception.message, can_not_delete_meetingconfig_meeting)
         self.portal.restrictedTraverse('@@delete_givenuid')(meeting.UID())
 
         # fails if an item exists
@@ -91,7 +91,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
             translate('can_not_delete_meetingconfig_meetingitem',
                       domain="plone",
                       context=self.request)
-        self.assertEquals(cm.exception.message, can_not_delete_meetingconfig_meetingitem)
+        self.assertEqual(cm.exception.message, can_not_delete_meetingconfig_meetingitem)
         self.portal.restrictedTraverse('@@delete_givenuid')(item.UID())
 
         # fails if another element than searches_xxx folder exists in the pmFolders
@@ -106,7 +106,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
             translate('can_not_delete_meetingconfig_meetingfolder',
                       domain="plone",
                       context=self.request)
-        self.assertEquals(cm.exception.message, can_not_delete_meetingconfig_meetingfolder)
+        self.assertEqual(cm.exception.message, can_not_delete_meetingconfig_meetingfolder)
         self.portal.restrictedTraverse('@@delete_givenuid')(afile.UID())
 
         # fails if used in another MeetingConfig (meetingConfigsToCloneTo)
@@ -117,7 +117,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
                       mapping={'other_config_title': cfg2.Title()},
                       domain="plone",
                       context=self.request)
-        self.assertEquals(cm.exception.message, can_not_delete_meetingconfig_meetingconfig)
+        self.assertEqual(cm.exception.message, can_not_delete_meetingconfig_meetingconfig)
         cfg2.setMeetingConfigsToCloneTo(())
 
         # fails if an annex_type is used by another MeetingConfig annex_type in other_mc_correspondences
@@ -131,7 +131,7 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
                       mapping={'other_config_title': safe_unicode(cfg.Title())},
                       domain="plone",
                       context=self.request)
-        self.assertEquals(cm.exception.message, can_not_delete_meetingconfig_annex_types)
+        self.assertEqual(cm.exception.message, can_not_delete_meetingconfig_annex_types)
         annex_types = _itemAnnexTypes(cfg)
         for annex_type in annex_types:
             annex_type.other_mc_correspondences = set()

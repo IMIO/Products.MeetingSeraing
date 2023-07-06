@@ -1,33 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# File: testWorkflows.py
-#
-# Copyright (c) 2007-2012 by CommunesPlone.org
-#
 # GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
 #
 
 from DateTime import DateTime
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.model.adaptations import _performWorkflowAdaptations
 
 import datetime as dt
-import logging
 
 
 class testCustomWorkflows(MeetingSeraingTestCase):
@@ -51,18 +30,18 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         self.presentItem(item2)
         wftool = self.portal.portal_workflow
         # every presented items are in the 'presented' state
-        self.assertEquals('presented', wftool.getInfoFor(item1, 'review_state'))
-        self.assertEquals('presented', wftool.getInfoFor(item2, 'review_state'))
+        self.assertEqual('presented', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEqual('presented', wftool.getInfoFor(item2, 'review_state'))
         # every items must be in the 'itemfrozen' state if we freeze the meeting
         self.freezeMeeting(meeting)
-        self.assertEquals('itemfrozen', wftool.getInfoFor(item1, 'review_state'))
-        self.assertEquals('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
+        self.assertEqual('itemfrozen', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEqual('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
         # when an item is 'itemfrozen' it will stay itemfrozen if nothing
         # is defined in the meetingConfig.onMeetingTransitionItemTransitionToTrigger
         self.meetingConfig.setOnMeetingTransitionItemActionToExecute([])
         self.backToState(meeting, 'created')
-        self.assertEquals('itemfrozen', wftool.getInfoFor(item1, 'review_state'))
-        self.assertEquals('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
+        self.assertEqual('itemfrozen', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEqual('itemfrozen', wftool.getInfoFor(item2, 'review_state'))
 
     def test_CloseMeeting(self):
         """
@@ -108,17 +87,17 @@ class testCustomWorkflows(MeetingSeraingTestCase):
         # every items must be in the 'decided' state if we close the meeting
         wftool = self.portal.portal_workflow
         # itemfrozen change into accepted
-        self.assertEquals('accepted_closed', wftool.getInfoFor(item1, 'review_state'))
+        self.assertEqual('accepted_closed', wftool.getInfoFor(item1, 'review_state'))
         # delayed rest delayed (it's already a 'decide' state)
-        self.assertEquals('delayed_closed', wftool.getInfoFor(item2, 'review_state'))
+        self.assertEqual('delayed_closed', wftool.getInfoFor(item2, 'review_state'))
         # pre_accepted change into accepted
-        self.assertEquals('accepted_closed', wftool.getInfoFor(item3, 'review_state'))
+        self.assertEqual('accepted_closed', wftool.getInfoFor(item3, 'review_state'))
         # accepted_but_modified rest accepted_but_modified (it's already a 'decide' state)
-        self.assertEquals('accepted_but_modified_closed', wftool.getInfoFor(item4, 'review_state'))
+        self.assertEqual('accepted_but_modified_closed', wftool.getInfoFor(item4, 'review_state'))
         # accepted rest accepted (it's already a 'decide' state)
-        self.assertEquals('accepted_closed', wftool.getInfoFor(item6, 'review_state'))
+        self.assertEqual('accepted_closed', wftool.getInfoFor(item6, 'review_state'))
         # presented change into accepted
-        self.assertEquals('accepted_closed', wftool.getInfoFor(item7, 'review_state'))
+        self.assertEqual('accepted_closed', wftool.getInfoFor(item7, 'review_state'))
 
     def test_getOJByCategoryDoReturnSmth(self):
         self.changeUser('pmManager')

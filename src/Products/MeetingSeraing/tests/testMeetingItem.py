@@ -214,7 +214,7 @@ class testMeetingItem(MeetingSeraingTestCase, mctmi):
         self.presentItem(item)
         self.decideMeeting(meeting)
         self.do(item, 'accept')
-        self.assertEquals(item.query_state(), 'accepted')
+        self.assertEqual(item.query_state(), 'accepted')
         annexDec = self.addAnnex(item, relatedTo='item_decision')
         annexDec_config = get_config_root(annexDec)
         annexDec_group = get_group(annexDec_config, annexDec)
