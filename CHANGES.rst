@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed bad import.
+  [aduchene]
 
 
 4.2.0 (2023-07-06)

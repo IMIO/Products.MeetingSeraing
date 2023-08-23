@@ -60,7 +60,7 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
-from Products.PloneMeeting.browser.views import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
+from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
 from Products.PloneMeeting.config import AddAnnex
 from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
 from Products.PloneMeeting.config import WriteInternalNotes
