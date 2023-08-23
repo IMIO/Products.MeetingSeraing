@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.1 (unreleased)
+4.2.1 (2023-08-23)
 ------------------
 
 - Fixed bad import.
