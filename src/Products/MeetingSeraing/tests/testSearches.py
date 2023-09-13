@@ -41,11 +41,9 @@ class testSearches(MeetingSeraingTestCase, mcts):
         self.changeUser('admin')
         # specify that copyGroups can see the item when it is proposed
         cfg = self.meetingConfig
-        cfg.setUseCopies(True)
+        self._enableField('copyGroups')
         cfg.setItemCopyGroupsStates((self._stateMappingFor('proposed'), 'validated', ))
         cfg.setTransitionsReinitializingTakenOverBy(["validate"])
-
-        itemTypeName = cfg.getItemTypeName()
 
         # first test the generated query
         adapter = getAdapter(cfg,
@@ -54,7 +52,7 @@ class testSearches(MeetingSeraingTestCase, mcts):
         # query is correct
         self.changeUser('pmManager')
         self.assertEqual(adapter.query,
-                         {'portal_type': {'query': itemTypeName},
+                         {'portal_type': {'query': cfg.getItemTypeName()},
                           'getTakenOverBy': {'query': 'pmManager'}})
 
         # now do the query

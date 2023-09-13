@@ -4,8 +4,11 @@ Products.MeetingSeraing Changelog
 4.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Adapted code as field `MeetingConfig.useCopies` was removed.
+  [gbastien]
+- Keep WFA `meeting_remove_global_access` that is required to use functionnality
+  `MeetingConfig.usingGroups`.
+  [gbastien]
 
 4.2.1 (2023-08-23)
 ------------------

@@ -1,28 +1,7 @@
 # -*- coding: utf-8 -*-
-# ------------------------------------------------------------------------------
-#
-# File: adapters.py
-#
-# Copyright (c) 2013 by Imio.be
 #
 # GNU General Public License (GPL)
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
-# ------------------------------------------------------------------------------
 
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
@@ -36,7 +15,6 @@ from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.permissions import ReviewPortalContent
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.MeetingCommunes.adapters import CustomMeeting
 from Products.MeetingCommunes.adapters import CustomMeetingConfig
 from Products.MeetingCommunes.adapters import CustomMeetingItem
@@ -62,9 +40,8 @@ from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
 from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
 from Products.PloneMeeting.config import AddAnnex
+from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
-from Products.PloneMeeting.config import WriteInternalNotes
-from Products.PloneMeeting.config import WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import WriteMarginalNotes
 from Products.PloneMeeting.interfaces import IMeetingConfigCustom
 from Products.PloneMeeting.interfaces import IMeetingCustom
@@ -107,7 +84,8 @@ customWfAdaptations = (
     "return_to_proposing_group",
     "return_to_proposing_group_with_last_validation",
     "seraing_return_to_proposing_group_with_last_validation_patch",
-    "seraing_returned_to_advise"
+    "seraing_returned_to_advise",
+    MEETING_REMOVE_MOG_WFA
 )
 MeetingConfig.wfAdaptations = customWfAdaptations
 
