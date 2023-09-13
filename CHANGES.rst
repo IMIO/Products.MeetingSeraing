@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- `update_item_references` is now usable by powereditors.
+  [aduchene]
 
 
 4.2.1 (2023-08-23)
