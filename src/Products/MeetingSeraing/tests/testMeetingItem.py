@@ -1,25 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: testMeetingItem.py
-#
-# Copyright (c) 2007-2012 by CommunesPlone.org
-#
 # GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
 #
 
 from collective.iconifiedcategory.utils import get_config_root
@@ -30,159 +11,12 @@ from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mc
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 from Products.PloneMeeting.utils import get_annexes
-from Products.statusmessages.interfaces import IStatusMessage
-from zope.annotation.interfaces import IAnnotations
-from zope.i18n import translate
 
 
 class testMeetingItem(MeetingSeraingTestCase, mctmi):
     """
     Tests the MeetingItem class methods.
     """
-
-    def test_pm_PowerObserversLocalRoles(self):
-        """Check that powerobservers local roles are set correctly...
-        Test alternatively item or meeting that is accessible to and not..."""
-        # we will check that (restricted) power observers local roles are set correctly.
-        # - powerobservers may access itemcreated, validated and presented items (and created meetings),
-        #   not restricted power observers;
-        # - frozen items/meetings are accessible by both;
-        self._setPowerObserverStates(
-            states=(
-                'itemcreated',
-                'validated',
-                'presented',
-                'itemfrozen',
-                'accepted',
-                'delayed',
-            )
-        )
-        self._setPowerObserverStates(
-            field_name='meeting_states', states=('created', 'frozen', 'decided', 'closed')
-        )
-        self._setPowerObserverStates(
-            observer_type='restrictedpowerobservers', states=('itemfrozen', 'accepted')
-        )
-
-        self._setPowerObserverStates(
-            field_name='meeting_states',
-            observer_type='restrictedpowerobservers',
-            states=('frozen', 'decided', 'closed'),
-        )
-        self.changeUser('pmManager')
-        item = self.create('MeetingItem')
-        item.setDecision("<p>Decision</p>")
-        # itemcreated item is accessible by powerob, not restrictedpowerob
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(self.hasPermission(View, item))
-        self.changeUser('powerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        # propose the item, it is no more visible to any powerob
-        self.proposeItem(item)
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(self.hasPermission(View, item))
-        self.changeUser('powerobserver1')
-        self.assertFalse(self.hasPermission(View, item))
-        # validate the item, only accessible to powerob
-        self.validateItem(item)
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(self.hasPermission(View, item))
-        self.changeUser('powerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        # present the item, only viewable to powerob, including created meeting
-        self.changeUser('pmManager')
-        meeting = self.create('Meeting', date=DateTime('2015/01/01').asdatetime())
-        self.presentItem(item)
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(self.hasPermission(View, item))
-        self.assertFalse(self.hasPermission(View, meeting))
-        self.changeUser('powerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        self.assertTrue(self.hasPermission(View, meeting))
-        # frozen items/meetings are accessible by both powerobs
-        self.changeUser('pmManager')
-        self.freezeMeeting(meeting)
-        self.changeUser('powerobserver1')
-        self.assertTrue(item.query_state() == 'itemfrozen')
-        self.changeUser('restrictedpowerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        self.assertTrue(self.hasPermission(View, meeting))
-        self.changeUser('powerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        self.assertTrue(self.hasPermission(View, meeting))
-        # decide the meeting the item, meeting accessible to both
-        self.changeUser('pmManager')
-        self.decideMeeting(meeting)
-        self.do(item, 'accept')
-        self.changeUser('restrictedpowerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        self.assertTrue(self.hasPermission(View, meeting))
-        self.changeUser('powerobserver1')
-        self.assertTrue(self.hasPermission(View, item))
-        self.assertTrue(self.hasPermission(View, meeting))
-
-    def test_pm_SendItemToOtherMCWithoutDefinedAnnexType(self):
-        """When cloning an item to another meetingConfig or to the same meetingConfig,
-        if we have annexes on the original item and destination meetingConfig (that could be same
-        as original item or another) does not have annex types defined,
-        it does not fail but annexes are not kept and a portal message is displayed."""
-        cfg = self.meetingConfig
-        cfg2 = self.meetingConfig2
-        # first test when sending to another meetingConfig
-        # remove every annexTypes from meetingConfig2
-        self.changeUser('admin')
-        self._removeConfigObjectsFor(
-            cfg2,
-            folders=[
-                'annexes_types/item_annexes',
-            ],
-        )
-        self.assertTrue(not cfg2.annexes_types.item_annexes.objectValues())
-        # a portal message will be added, for now there is no message
-        messages = IStatusMessage(self.request).show()
-        self.assertTrue(not messages)
-        # now create an item, add an annex and clone it to the other meetingConfig
-        data = self._setupSendItemToOtherMC(with_annexes=True)
-        originalItem = data['originalItem']
-        newItem = data['newItem']
-        # original item had annexes
-        self.assertEqual(len(get_annexes(originalItem, portal_types=['annex'])), 2)
-        self.assertEqual(
-            len(get_annexes(originalItem, portal_types=['annexDecision'])), 2
-        )
-        # but new item is missing the normal annexes because
-        # no annexType for normal annexes are defined in the cfg2
-        self.assertEqual(len(get_annexes(newItem, portal_types=['annex'])), 0)
-        # XXX Seraing, decision's annexe are keep (but in their config, these annexes was send in simply annexes
-        self.assertEqual(len(get_annexes(newItem, portal_types=['annexDecision'])), 2)
-        # moreover a message was added
-        messages = IStatusMessage(self.request).show()
-        expectedMessage = translate(
-            "annex_not_kept_because_no_available_annex_type_warning",
-            mapping={'annexTitle': data['annex2'].Title()},
-            domain='PloneMeeting',
-            context=self.request,
-        )
-        self.assertEqual(messages[-3].message, expectedMessage)
-
-        # now test when cloning locally, even if annexes types are not enabled
-        # it works, this is the expected behavior, backward compatibility when an annex type
-        # is no more enabled but no more able to create new annexes with this annex type
-        self.changeUser('admin')
-        for at in (
-            cfg.annexes_types.item_annexes.objectValues()
-            + cfg.annexes_types.item_decision_annexes.objectValues()
-        ):
-            at.enabled = False
-        # no available annex types, try to clone newItem now
-        self.changeUser('pmManager')
-        # clean status message so we check that a new one is added
-        del IAnnotations(self.request)['statusmessages']
-        clonedItem = originalItem.clone(copyAnnexes=True)
-        # annexes were kept
-        self.assertEqual(len(get_annexes(clonedItem, portal_types=['annex'])), 2)
-        # for Seraing, item had not annexes decisions
-        self.assertEqual(len(get_annexes(clonedItem, portal_types=['annexDecision'])), 0)
 
     def _extraNeutralFields(self):
         """This method is made to be overrided by subplugins that added
