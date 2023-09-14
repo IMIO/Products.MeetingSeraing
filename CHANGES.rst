@@ -9,6 +9,8 @@ Products.MeetingSeraing Changelog
 - Keep WFA `meeting_remove_global_access` that is required to use functionnality
   `MeetingConfig.usingGroups`.
   [gbastien]
+- MeetingManager may now edit MeetingManager fields in 'accepted', 'accepted_but_modified', 'delayed' states.
+  [aduchene]
 
 4.2.1 (2023-08-23)
 ------------------

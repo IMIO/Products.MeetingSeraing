@@ -39,7 +39,7 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
 from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
 from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
-from Products.PloneMeeting.config import AddAnnex
+from Products.PloneMeeting.config import AddAnnex, WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
 from Products.PloneMeeting.config import WriteMarginalNotes
@@ -550,7 +550,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
             mmanagers_group_id = "{0}_{1}".format(cfg.getId(),
                                                   MEETINGMANAGERS_GROUP_SUFFIX)
             item.manage_addLocalRoles(
-                mmanagers_group_id, ('Reader', 'Reviewer', 'Editor', 'Contributor')
+                mmanagers_group_id, ('Reader', 'Reviewer', 'Editor', 'Contributor', 'MeetingManager')
             )
 
     def powerEditorEditable(self):
@@ -1080,6 +1080,8 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         itemTransitions = itemWorkflow.transitions
 
         if wfAdaptation == "seraing_add_item_closed_states":
+            state = itemWorkflow.states["accepted"]
+            state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("MeetingManager",)
             _addIsolatedState(
                 new_state_id='accepted_closed',
                 origin_state_id='accepted',
@@ -1090,6 +1092,8 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 itemWorkflow=itemWorkflow,
                 base_state_id='accepted', )
             if "delayed" in itemStates:
+                state = itemWorkflow.states["delayed"]
+                state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("MeetingManager",)
                 _addIsolatedState(
                     new_state_id='delayed_closed',
                     origin_state_id='delayed',
@@ -1100,6 +1104,8 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     itemWorkflow=itemWorkflow,
                     base_state_id='delayed', )
             if "accepted_but_modified" in itemStates:
+                state = itemWorkflow.states["accepted_but_modified"]
+                state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("MeetingManager",)
                 _addIsolatedState(
                     new_state_id='accepted_but_modified_closed',
                     origin_state_id='accepted_but_modified',
