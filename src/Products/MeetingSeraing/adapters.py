@@ -37,7 +37,7 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowAct
 from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
-from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter
+from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter, MeetingItemContentDeletableAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
 from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
 from Products.PloneMeeting.config import AddAnnex, WriteItemMeetingManagerFields
@@ -619,6 +619,19 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
 
     MeetingItem.setTakenOverBy = setTakenOverBy
 
+class CustomSeraingMeetingItemContentDeletableAdapter(MeetingItemContentDeletableAdapter):
+    """
+      Manage the mayDelete for MeetingItem.
+      Specific for MeetingSeraing: MeetingManager may delete the item in every
+      not decided states despite the WFA 'only_creator_may_delete'
+    """
+    def mayDelete(self, **kwargs):
+        '''See docstring in interfaces.py.'''
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(self.context)
+        if tool.isManager(cfg) and self.context.query_state() not in cfg.getItemDecidedStates() + ['accepted', 'accepted_but_modified', 'delayed']:
+            return True
+        return super(CustomSeraingMeetingItemContentDeletableAdapter, self).mayDelete()
 
 class CustomSeraingMeetingConfig(CustomMeetingConfig):
     """Adapter that adapts a meetingConfig implementing IMeetingConfig to the
