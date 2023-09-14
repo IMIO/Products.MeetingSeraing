@@ -13,7 +13,8 @@ Products.MeetingSeraing Changelog
   [gbastien]
 - MeetingManager may now edit MeetingManager fields in 'accepted', 'accepted_but_modified', 'delayed' states.
   [aduchene]
-
+- MeetingManager may delete every not decided items, ignoring the WFA 'only_creators_may_delete'.
+  [aduchene]
 
 4.2.1 (2023-08-23)
 ------------------

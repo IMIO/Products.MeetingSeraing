@@ -68,4 +68,8 @@
 
    </configure>
 
+  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
+       factory=".adapters.CustomSeraingMeetingItemContentDeletableAdapter"
+       provides="imio.actionspanel.interfaces.IContentDeletable" />
+
 </configure>
