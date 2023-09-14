@@ -6,6 +6,11 @@ Products.MeetingSeraing Changelog
 
 - `update_item_references` is now usable by powereditors.
   [aduchene]
+- Adapted code as field `MeetingConfig.useCopies` was removed.
+  [gbastien]
+- Keep WFA `meeting_remove_global_access` that is required to use functionnality
+  `MeetingConfig.usingGroups`.
+  [gbastien]
 
 
 4.2.1 (2023-08-23)
