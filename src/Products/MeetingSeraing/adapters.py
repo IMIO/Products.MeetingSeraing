@@ -11,6 +11,7 @@ from copy import deepcopy
 from DateTime import DateTime
 from plone import api
 from Products.Archetypes.atapi import DisplayList
+from Products.CMFCore.Expression import Expression
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.permissions import ReviewPortalContent
 from Products.CMFCore.utils import _checkPermission
@@ -473,6 +474,17 @@ class CustomSeraingMeeting(CustomMeeting):
         res = "%s %s %s" % (day, month, year)
         return res
 
+
+    security.declarePublic("may_update_item_references")
+    def may_update_item_references(self):
+        """If the user is a 'Manager' or a 'powereditor', he is allowed to
+        update the item references. This is used by
+        the WFA 'seraing_powereditors' feature."""
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(self.context)
+        powereditors_may_update = tool.userIsAmong(["powereditors"]) and \
+                                             self.context.query_state() != 'closed'
+        return tool.isManager(cfg) or powereditors_may_update
 
 class CustomSeraingMeetingItem(CustomMeetingItem):
     """Adapter that adapts a meeting item implementing IMeetingItem to the
@@ -1183,6 +1195,12 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
                     state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + ("Editor",)
+            # Allow power editors to update item references
+            meetingTypeName = meetingConfig.getMeetingTypeName()
+            fti = self.context.portal_types[meetingTypeName]
+            action = fti.getActionObject("object_buttons/update_item_references")
+            action.condition = Expression("python: object.adapted().may_update_item_references()")
+            action.permission = "View"
 
         if wfAdaptation == "seraing_returned_to_advise":
             if "returned_to_proposing_group" not in itemStates:

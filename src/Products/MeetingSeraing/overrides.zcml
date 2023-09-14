@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone">
+
     <!-- IPrettyLink for MeetingItem -->
     <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
              factory=".adapters.MSItemPrettyLinkAdapter"
@@ -12,6 +13,14 @@
       for="imio.annex.content.annex.IAnnex"
       name="insert-barcode"
       class=".browser.overrides.SeraingInsertBarcodeView"
+      permission="zope2.View"
+    />
+
+    <!-- Override @@update-item-references for IMeeting -->
+    <browser:view
+      for="Products.PloneMeeting.content.meeting.IMeeting"
+      name="update-item-references"
+      class="Products.PloneMeeting.browser.meeting.MeetingUpdateItemReferences"
       permission="zope2.View"
     />
 </configure>

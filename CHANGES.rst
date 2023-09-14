@@ -4,6 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.2 (unreleased)
 ------------------
 
+- `update_item_references` is now usable by powereditors.
+  [aduchene]
 - Adapted code as field `MeetingConfig.useCopies` was removed.
   [gbastien]
 - Keep WFA `meeting_remove_global_access` that is required to use functionnality
@@ -11,6 +13,7 @@ Products.MeetingSeraing Changelog
   [gbastien]
 - MeetingManager may now edit MeetingManager fields in 'accepted', 'accepted_but_modified', 'delayed' states.
   [aduchene]
+
 
 4.2.1 (2023-08-23)
 ------------------
