@@ -10,12 +10,11 @@ from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.permissions import ReviewPortalContent
 from Products.MeetingCommunes.tests.testWFAdaptations import testWFAdaptations as mctwfa
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
-from Products.PloneMeeting.model.adaptations import _performWorkflowAdaptations
+from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 
 import datetime as dt
-import logging
 
 
 class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
@@ -45,7 +44,8 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 "seraing_powereditors",
                 "return_to_proposing_group",
                 "return_to_proposing_group_with_last_validation",
-                "seraing_returned_to_advise"
+                "seraing_returned_to_advise",
+                MEETING_REMOVE_MOG_WFA
             }
         )
 
