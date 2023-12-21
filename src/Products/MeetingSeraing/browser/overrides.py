@@ -9,7 +9,6 @@
 from imio.zamqp.pm.browser.views import InsertBarcodeView
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import _checkPermission
-from Products.PloneMeeting.config import BARCODE_INSERTED_ATTR_ID
 
 
 class SeraingInsertBarcodeView(InsertBarcodeView):
@@ -25,7 +24,7 @@ class SeraingInsertBarcodeView(InsertBarcodeView):
             else:
                 cfg = self.tool.getMeetingConfig(self.context)
                 isManagerOrPowerEditor = self.tool.isManager(cfg) or self.context.adapted().powerEditorEditable()
-                barcode_inserted = getattr(self.context, BARCODE_INSERTED_ATTR_ID, False)
+                barcode_inserted = getattr(self.context, "scan_id", False)
                 if isManagerOrPowerEditor and \
                    not barcode_inserted and \
                    _checkPermission(ModifyPortalContent, self.context):

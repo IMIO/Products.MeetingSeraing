@@ -4,7 +4,14 @@ Products.MeetingSeraing Changelog
 4.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Removed unnecessary leading icons.
+  [aduchene]
+- Add missing translations.
+  [aduchene]
+- Fixed a bad import in `SeraingInsertBarcodeView.may_insert_barcode`.
+  [aduchene]
+- Add a simple view to the meeting to ease copy and paste.
+  [aduchene]
 
 
 4.2.2 (2023-09-14)

@@ -28,6 +28,26 @@ msgstr "Séance du Collège communal"
 msgid "MeetingCouncil"
 msgstr "Séance du Conseil communal"
 
+#. Default: "MeetingZCollege"
+msgid "MeetingZCollege"
+msgstr "Séance du Collège de police"
+
+#. Default: "MeetingZCouncil"
+msgid "MeetingZCouncil"
+msgstr "Séance du Conseil de police"
+
+#. Default: "Negociation assembly"
+msgid "MeetingNegociation"
+msgstr "Séance du comité de concertation et négociation"
+
+#. Default: "MeetingCCVC"
+msgid "MeetingCCVC"
+msgstr "Séance du comité de direction conjoint Ville-CPAS"
+
+#. Default: "MeetingNegociation"
+msgid "MeetingCDVC"
+msgstr "Séance du Conseil communal conjoint Ville-CPAS"
+
 #. Default: "MeetingItemCoDir"
 msgid "MeetingItemCoDir"
 msgstr "Point Comité de Direction"
@@ -39,6 +59,28 @@ msgstr "Point Collège communal"
 #. Default: "MeetingItemCouncil"
 msgid "MeetingItemCouncil"
 msgstr "Point Conseil communal"
+
+#. Default: "MeetingItemZCollege"
+msgid "MeetingItemZCollege"
+msgstr "Point Collège de police"
+
+#. Default: "MeetingItemZCouncil"
+msgid "MeetingItemZCouncil"
+msgstr "Point Conseil de police"
+
+
+#. Default: "Negociation assembly"
+msgid "MeetingItemNegociation"
+msgstr "Point du comité de concertation et négociation"
+
+#. Default: "MeetingItemCCVC"
+msgid "MeetingCCVC"
+msgstr "Point du comité de direction conjoint Ville-CPAS"
+
+#. Default: "MeetingItemNegociation"
+msgid "MeetingCDVC"
+msgstr "Point du Conseil communal conjoint Ville-CPAS"
+
 
 #. Default: "MeetingItemRecurringCoDir"
 msgid "MeetingItemRecurringCoDir"

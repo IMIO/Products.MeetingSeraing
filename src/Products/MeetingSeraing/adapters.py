@@ -1328,56 +1328,12 @@ class MSItemPrettyLinkAdapter(ItemPrettyLinkAdapter):
 
         itemState = self.context.query_state()
         # Add our icons for some review states
-        if itemState == "proposed":
-            icons.append(
-                (
-                    "proposeToDirector.png",
-                    translate(
-                        "icon_help_proposed_to_director",
-                        domain="PloneMeeting",
-                        context=self.request,
-                    ),
-                )
-            )
-        elif itemState == "proposed_to_divisionhead":
-            icons.append(
-                (
-                    "proposeToDivisionHead.png",
-                    translate(
-                        "icon_help_proposed_to_divisionhead",
-                        domain="PloneMeeting",
-                        context=self.request,
-                    ),
-                )
-            )
-        elif itemState == "proposed_to_officemanager":
-            icons.append(
-                (
-                    "proposeToOfficeManager.png",
-                    translate(
-                        "icon_help_proposed_to_officemanager",
-                        domain="PloneMeeting",
-                        context=self.request,
-                    ),
-                )
-            )
-        elif itemState == "validated_by_dg":
+        if itemState == "validated_by_dg":
             icons.append(
                 (
                     "itemValidateByDG.png",
                     translate(
                         "icon_help_validated_by_dg",
-                        domain="PloneMeeting",
-                        context=self.request,
-                    ),
-                )
-            )
-        elif itemState == "proposed_to_servicehead":
-            icons.append(
-                (
-                    "proposeToServiceHead.png",
-                    translate(
-                        "icon_help_proposed_to_servicehead",
                         domain="PloneMeeting",
                         context=self.request,
                     ),
