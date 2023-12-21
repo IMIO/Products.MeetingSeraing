@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.3 (unreleased)
+4.2.3 (2023-12-21)
 ------------------
 
 - Removed unnecessary leading icons.
