@@ -15,15 +15,15 @@ msgstr ""
 "Domain: plone\n"
 "X-is-fallback-for: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
+# types
 #. Default: "MeetingCoDir"
 msgid "MeetingCoDir"
 msgstr "Séance du Comité de Direction"
 
-# types
 #. Default: "MeetingCollege"
 msgid "MeetingCollege"
 msgstr "Séance du Collège communal"
-
+:
 #. Default: "MeetincCouncil"
 msgid "MeetingCouncil"
 msgstr "Séance du Conseil communal"
@@ -38,11 +38,11 @@ msgstr "Séance du Conseil de police"
 
 #. Default: "Negociation assembly"
 msgid "MeetingNegociation"
-msgstr "Séance du comité de concertation et négociation"
+msgstr "Séance du Comité de concertation et négociation"
 
 #. Default: "MeetingCCVC"
 msgid "MeetingCCVC"
-msgstr "Séance du comité de direction conjoint Ville-CPAS"
+msgstr "Séance du Comité de Direction conjoint Ville-CPAS"
 
 #. Default: "MeetingNegociation"
 msgid "MeetingCDVC"
@@ -68,19 +68,17 @@ msgstr "Point Collège de police"
 msgid "MeetingItemZCouncil"
 msgstr "Point Conseil de police"
 
-
 #. Default: "Negociation assembly"
 msgid "MeetingItemNegociation"
-msgstr "Point du comité de concertation et négociation"
+msgstr "Point du Comité de concertation et négociation"
 
 #. Default: "MeetingItemCCVC"
-msgid "MeetingCCVC"
-msgstr "Point du comité de direction conjoint Ville-CPAS"
-
-#. Default: "MeetingItemNegociation"
-msgid "MeetingCDVC"
+msgid "MeetingItemCCVC"
 msgstr "Point du Conseil communal conjoint Ville-CPAS"
 
+#. Default: "MeetingItemNegociation"
+msgid "MeetingItemCDVC"
+msgstr "Point du Comité de Direction conjoint Ville-CPAS"
 
 #. Default: "MeetingItemRecurringCoDir"
 msgid "MeetingItemRecurringCoDir"
