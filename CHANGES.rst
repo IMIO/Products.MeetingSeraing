@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed translations.
+  [aduchene]
 
 
 4.2.3 (2023-12-21)
