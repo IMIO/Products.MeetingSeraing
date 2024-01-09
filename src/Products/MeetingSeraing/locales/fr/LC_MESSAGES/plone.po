@@ -23,7 +23,7 @@ msgstr "Séance du Comité de Direction"
 #. Default: "MeetingCollege"
 msgid "MeetingCollege"
 msgstr "Séance du Collège communal"
-:
+
 #. Default: "MeetincCouncil"
 msgid "MeetingCouncil"
 msgstr "Séance du Conseil communal"

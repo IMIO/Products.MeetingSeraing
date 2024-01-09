@@ -39,7 +39,7 @@
     <metal:field use-macro="python:here.widget('groupsInCharge', mode='edit')"/>
     <metal:field use-macro="python:here.widget('category', mode='edit')"/>
     <metal:field use-macro="python:here.widget('classifier', mode='edit')"/>
-
+    <metal:field use-macro="python:here.widget('committees', mode='edit')"/>
     <metal:field use-macro="python:here.widget('toDiscuss', mode='edit')"/>
     <metal:field use-macro="python:here.widget('pollType', mode='edit')"/>
     <metal:field use-macro="python:here.widget('pollTypeObservations', mode='edit')"/>
@@ -134,6 +134,12 @@
     </tal:field>
     <tal:field define="fieldName python: 'notes'">
       <metal:f use-macro="context/@@pm-macros/editContentField"/>
+    </tal:field>
+    <tal:field define="fieldName python: 'committeeObservations'">
+        <metal:f use-macro="context/@@pm-macros/editContentField"/>
+    </tal:field>
+    <tal:field define="fieldName python: 'committeeTranscript'">
+        <metal:f use-macro="context/@@pm-macros/editContentField"/>
     </tal:field>
     <tal:field define="fieldName python: 'marginalNotes'">
       <metal:f use-macro="context/@@pm-macros/editContentField"/>

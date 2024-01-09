@@ -4,7 +4,10 @@ Products.MeetingSeraing Changelog
 4.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed typo in translation file.
+  [aduchene]
+- Adapt meetingitem_edit.pt to handle committees.
+  [aduchene]
 
 
 4.2.4 (2024-01-09)
