@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.5 (unreleased)
+4.2.5 (2024-01-09)
 ------------------
 
 - Fixed typo in translation file.
