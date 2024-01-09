@@ -9,6 +9,7 @@ from AccessControl.class_init import InitializeClass
 from appy.gen import No
 from copy import deepcopy
 from DateTime import DateTime
+from imio.helpers.workflow import get_transitions
 from plone import api
 from Products.Archetypes.atapi import DisplayList
 from Products.CMFCore.Expression import Expression
@@ -850,11 +851,14 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         # make sure we get freshly cloned item in case we delay self.context several times...
         clonedItem = self.context.get_successors()[0]
         wfTool = api.portal.get_tool("portal_workflow")
-
-        if clonedItem.query_state() != 'proposed':
-            # make sure item may be validated
+        if clonedItem.query_state() not in ('proposed', 'validated'):
             with api.env.adopt_roles(["Manager"]):
-                wfTool.doActionFor(clonedItem, "proposed")
+                if "propose" in get_transitions(clonedItem):
+                    # We make sure propose is available because it is not
+                    # always the case (e.g. suffix group is empty, ...)
+                    wfTool.doActionFor(clonedItem, "propose")
+                else:
+                    wfTool.doActionFor(clonedItem, "validate")
         # Send, if configured, a mail to the person who created the item
         sendMailIfRelevant(
             clonedItem,

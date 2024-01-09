@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed issue if 'propose' transition doesn't exist - SUP-33869.
+  [aduchene]
 
 
 4.2.5 (2024-01-09)
