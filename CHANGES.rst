@@ -4,7 +4,7 @@ Products.MeetingSeraing Changelog
 4.2.4 (unreleased)
 ------------------
 
-- Fixed translations.
+- Delayed item is now duplicated in 'proposed' state - SUP-33869.
   [aduchene]
 
 

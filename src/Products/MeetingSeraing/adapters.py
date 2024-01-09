@@ -851,10 +851,10 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         clonedItem = self.context.get_successors()[0]
         wfTool = api.portal.get_tool("portal_workflow")
 
-        if clonedItem.query_state() != 'validated':
+        if clonedItem.query_state() != 'proposed':
             # make sure item may be validated
             with api.env.adopt_roles(["Manager"]):
-                wfTool.doActionFor(clonedItem, "validate")
+                wfTool.doActionFor(clonedItem, "proposed")
         # Send, if configured, a mail to the person who created the item
         sendMailIfRelevant(
             clonedItem,
