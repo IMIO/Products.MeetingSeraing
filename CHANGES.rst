@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.6 (unreleased)
+4.2.6 (2024-01-09)
 ------------------
 
 - Fixed issue if 'propose' transition doesn't exist - SUP-33869.
