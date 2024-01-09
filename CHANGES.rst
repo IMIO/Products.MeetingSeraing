@@ -1,6 +1,12 @@
 Products.MeetingSeraing Changelog
 =================================
 
+4.2.7 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 4.2.6 (2024-01-09)
 ------------------
 
