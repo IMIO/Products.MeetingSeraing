@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.4 (unreleased)
+4.2.4 (2024-01-09)
 ------------------
 
 - Delayed item is now duplicated in 'proposed' state - SUP-33869.
