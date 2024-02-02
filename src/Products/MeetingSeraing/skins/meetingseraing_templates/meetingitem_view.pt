@@ -653,6 +653,16 @@
        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
     </tal:field>
 
+    <tal:comment replace="nothing">pvNote XXX Seraing specific field</tal:comment>
+    <tal:field define="fieldName python: 'pvNote'; ajaxEdit python:True">
+        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+    </tal:field>
+
+    <tal:comment replace="nothing">dgNote XXX Seraing specific field</tal:comment>
+    <tal:field define="fieldName python: 'dgNote'; ajaxEdit python:True">
+        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+    </tal:field>
+
     <tal:comment replace="nothing">Marginal notes</tal:comment>
     <tal:comment replace="nothing">XXX Seraing display marginalNotes at the bottom if empty</tal:comment>
     <tal:field tal:condition="python: not context.marginalNotes" define="fieldName python: 'marginalNotes'; ajaxEdit python:True">

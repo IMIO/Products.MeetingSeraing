@@ -62,6 +62,7 @@ def update_item_schema(baseSchema):
             optional=True,
         ),
         # specific field for mark if this item must be printing in meeting
+        # TODO: migrate me to itemIsSigned
         BooleanField(
             name='isToPrintInMeeting',
             default=False,
@@ -72,6 +73,7 @@ def update_item_schema(baseSchema):
                 label_msgid='PloneMeeting_label_item_print_in_meeting',
                 i18n_domain='PloneMeeting',
             ),
+            optional=True,
         ),
         # specific field for mark pv note
         TextField(
@@ -98,7 +100,7 @@ def update_item_schema(baseSchema):
             name='dgNote',
             widget=RichWidget(
                 rows=15,
-                condition="python: here.showMeetingManagerReservedField('meetingManagersNotes')",
+                condition="python: here.showMeetingManagerReservedField('dgNote')",
                 label='dgnote',
                 label_msgid='MeetingSeraing_label_dgnote',
                 description='DG Note',
