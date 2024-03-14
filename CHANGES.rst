@@ -6,6 +6,9 @@ Products.MeetingSeraing Changelog
 
 - Fixed issue with dgNote and pvNote field.
   [aduchene]
+- Fixed POD templates `deliberation.odt`, `MeetingItem.getCertifiedSignatures`
+  is no more an adaptable method (removed `.adapted()`).
+  [gbastien]
 
 
 4.2.6 (2024-01-09)
