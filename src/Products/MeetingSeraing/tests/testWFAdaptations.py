@@ -13,8 +13,10 @@ from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingT
 from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
+from imio.helpers.content import get_vocab_values
 
 import datetime as dt
+
 
 
 class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
@@ -23,7 +25,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
     def test_pm_WFA_availableWFAdaptations(self):
         '''Most of wfAdaptations makes no sense, just make sure most are disabled.'''
         self.assertSetEqual(
-            set(self.meetingConfig.listWorkflowAdaptations().keys()),
+            set(get_vocab_values(self.meetingConfig, 'WorkflowAdaptations')),
             {
                 'item_validation_shortcuts',
                 'item_validation_no_validate_shortcuts',
@@ -160,7 +162,6 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         '''Test the workflowAdaptation 'return_to_advise'.'''
         # ease override by subproducts
         cfg = self.meetingConfig
-        self.failIf('seraing_returned_to_advise' not in cfg.listWorkflowAdaptations())
         # activate the wfAdaptations and check
         self._activate_wfas(
             ('return_to_proposing_group_with_last_validation', 'seraing_returned_to_advise', 'seraing_validated_by_DG')

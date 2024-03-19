@@ -9,14 +9,14 @@ Products.MeetingSeraing Changelog
 - Fixed POD templates `deliberation.odt`, `MeetingItem.getCertifiedSignatures`
   is no more an adaptable method (removed `.adapted()`).
   [gbastien]
-
+- Adapted test regarding removal of `MeetingConfig.listWorkflowAdaptations`.
+  [aduchene]
 
 4.2.6 (2024-01-09)
 ------------------
 
 - Fixed issue if 'propose' transition doesn't exist - SUP-33869.
   [aduchene]
-
 
 4.2.5 (2024-01-09)
 ------------------
@@ -26,13 +26,11 @@ Products.MeetingSeraing Changelog
 - Adapt meetingitem_edit.pt to handle committees.
   [aduchene]
 
-
 4.2.4 (2024-01-09)
 ------------------
 
 - Delayed item is now duplicated in 'proposed' state - SUP-33869.
   [aduchene]
-
 
 4.2.3 (2023-12-21)
 ------------------
@@ -45,7 +43,6 @@ Products.MeetingSeraing Changelog
   [aduchene]
 - Add a simple view to the meeting to ease copy and paste.
   [aduchene]
-
 
 4.2.2 (2023-09-14)
 ------------------
@@ -67,7 +64,6 @@ Products.MeetingSeraing Changelog
 
 - Fixed bad import.
   [aduchene]
-
 
 4.2.0 (2023-07-06)
 ------------------
