@@ -46,6 +46,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 "seraing_powereditors",
                 "return_to_proposing_group",
                 "return_to_proposing_group_with_last_validation",
+                "seraing_return_to_proposing_group_with_last_validation_patch",
                 "seraing_returned_to_advise",
                 MEETING_REMOVE_MOG_WFA
             }
