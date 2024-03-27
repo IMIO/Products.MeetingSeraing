@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.7 (unreleased)
+4.2.7 (2024-03-27)
 ------------------
 
 - Fixed issue with dgNote and pvNote field.
