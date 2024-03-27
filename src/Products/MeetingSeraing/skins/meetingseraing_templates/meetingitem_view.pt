@@ -382,6 +382,10 @@
           </span>
       </div>
       <div id="collapsible-assembly-and-signatures" class="collapsible-content discreet">
+        <tal:comment replace="nothing">In and out moves XXX Specific MeetingSeraing</tal:comment>
+        <tal:field define="fieldName python: 'inAndOutMoves'; ajaxEdit python:True">
+           <metal:f use-macro="context/@@pm-macros/viewContentField"/>
+        </tal:field>
         <div class="collapsible-inner-content">
          <img tal:attributes="src string:${portal_url}/spinner_small.gif" />
         </div>
@@ -603,11 +607,6 @@
       </div>
     </tal:textCheckList>
 
-    <tal:comment replace="nothing">In and out moves</tal:comment>
-    <tal:field define="fieldName python: 'inAndOutMoves'; ajaxEdit python:True">
-       <metal:f use-macro="context/@@pm-macros/viewContentField"/>
-    </tal:field>
-
     <tal:comment replace="nothing">Notes</tal:comment>
     <tal:field define="fieldName python: 'notes'; ajaxEdit python:True">
        <metal:f use-macro="context/@@pm-macros/viewContentField"/>
@@ -657,7 +656,7 @@
     <tal:field define="fieldName python: 'pvNote'; ajaxEdit python:True">
         <metal:f use-macro="context/@@pm-macros/viewContentField"/>
     </tal:field>
-
+    
     <tal:comment replace="nothing">dgNote XXX Seraing specific field</tal:comment>
     <tal:field define="fieldName python: 'dgNote'; ajaxEdit python:True">
         <metal:f use-macro="context/@@pm-macros/viewContentField"/>

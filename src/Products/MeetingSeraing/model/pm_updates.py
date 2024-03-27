@@ -73,7 +73,6 @@ def update_item_schema(baseSchema):
                 label_msgid='PloneMeeting_label_item_print_in_meeting',
                 i18n_domain='PloneMeeting',
             ),
-            optional=True,
         ),
         # specific field for mark pv note
         TextField(

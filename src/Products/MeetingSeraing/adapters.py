@@ -630,7 +630,7 @@ class CustomSeraingMeetingItemContentDeletableAdapter(MeetingItemContentDeletabl
         '''See docstring in interfaces.py.'''
         tool = api.portal.get_tool('portal_plonemeeting')
         cfg = tool.getMeetingConfig(self.context)
-        if tool.isManager(cfg) and self.context.query_state() not in cfg.getItemDecidedStates() + ['accepted', 'accepted_but_modified', 'delayed']:
+        if tool.isManager(cfg) and self.context.query_state() not in cfg.getItemDecidedStates() + ['accepted', 'accepted_but_modified', 'delayed', 'itemfrozen']:
             return True
         return super(CustomSeraingMeetingItemContentDeletableAdapter, self).mayDelete()
 

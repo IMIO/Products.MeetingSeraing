@@ -11,6 +11,10 @@ Products.MeetingSeraing Changelog
   [gbastien]
 - Adapted test regarding removal of `MeetingConfig.listWorkflowAdaptations`.
   [aduchene]
+- Move inAndOutMoves field to collapsible assembly zone.
+  [aduchene]
+- Adapted mayDelete for MeetingManager.
+  [aduchene]
 
 4.2.6 (2024-01-09)
 ------------------
