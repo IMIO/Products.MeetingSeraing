@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.8 (unreleased)
+4.2.8 (2024-03-29)
 ------------------
 
 - Add missing import in adapters.py.
