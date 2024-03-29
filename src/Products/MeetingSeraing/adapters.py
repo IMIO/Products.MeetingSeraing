@@ -44,6 +44,7 @@ from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTempl
 from Products.PloneMeeting.config import AddAnnex, WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
+from Products.PloneMeeting.config import PMMessageFactory as _
 from Products.PloneMeeting.config import WriteMarginalNotes
 from Products.PloneMeeting.interfaces import IMeetingConfigCustom
 from Products.PloneMeeting.interfaces import IMeetingCustom
