@@ -1,6 +1,13 @@
 Products.MeetingSeraing Changelog
 =================================
 
+4.2.10 (unreleased)
+-------------------
+
+- Adapted `adapters.CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS`.
+  [aduchene]
+
+
 4.2.9 (2024-06-21)
 ------------------
 

@@ -27,9 +27,13 @@ from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
 from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowConditions
+from Products.MeetingSeraing.interfaces import (
+    IMeetingItemSeraingCollegeWorkflowConditions,
+)
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowActions
-from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowConditions
+from Products.MeetingSeraing.interfaces import (
+    IMeetingItemSeraingCouncilWorkflowConditions,
+)
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowActions
@@ -38,9 +42,14 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowAct
 from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
-from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter, MeetingItemContentDeletableAdapter
+from Products.PloneMeeting.adapters import (
+    ItemPrettyLinkAdapter,
+    MeetingItemContentDeletableAdapter,
+)
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
-from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
+from Products.PloneMeeting.browser.batchactions import (
+    MeetingStoreItemsPodTemplateAsAnnexBatchActionForm,
+)
 from Products.PloneMeeting.config import AddAnnex, WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
@@ -62,25 +71,24 @@ from Products.PloneMeeting.utils import sendMailIfRelevant
 from zope.i18n import translate
 from zope.interface import implements
 
-
 # disable most of wfAdaptations
 customWfAdaptations = (
-    'item_validation_shortcuts',
-    'item_validation_no_validate_shortcuts',
-    'only_creator_may_delete',
+    "item_validation_shortcuts",
+    "item_validation_no_validate_shortcuts",
+    "only_creator_may_delete",
     # first define meeting workflow state removal
-    'no_freeze',
-    'no_publication',
-    'no_decide',
+    "no_freeze",
+    "no_publication",
+    "no_decide",
     # then define added item decided states
-    'accepted_but_modified',
-    'postpone_next_meeting',
-    'mark_not_applicable',
-    'removed',
-    'removed_and_duplicated',
-    'refused',
-    'delayed',
-    'pre_accepted',
+    "accepted_but_modified",
+    "postpone_next_meeting",
+    "mark_not_applicable",
+    "removed",
+    "removed_and_duplicated",
+    "refused",
+    "delayed",
+    "pre_accepted",
     "seraing_add_item_closed_states",
     "seraing_validated_by_DG",
     "seraing_powereditors",
@@ -88,68 +96,104 @@ customWfAdaptations = (
     "return_to_proposing_group_with_last_validation",
     "seraing_return_to_proposing_group_with_last_validation_patch",
     "seraing_returned_to_advise",
-    MEETING_REMOVE_MOG_WFA
+    MEETING_REMOVE_MOG_WFA,
 )
 MeetingConfig.wfAdaptations = customWfAdaptations
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
-    "backTo_presented_from_returned_to_proposing_group": [
-        "created",
-    ],
-    "backTo_validated_by_dg_from_returned_to_proposing_group": [
-        "validated_by_dg",
-    ],
-    "backTo_itempublished_from_returned_to_proposing_group": [
-        "published",
-    ],
-    "backTo_itemfrozen_from_returned_to_proposing_group": [
-        "frozen",
-        "decided",
-        "decisions_published",
-    ],
-    "backTo_presented_from_returned_to_advise": [
-        "created",
-    ],
-    "backTo_validated_by_dg_from_returned_to_advise": [
-        "validated_by_dg",
-    ],
-    "backTo_itemfrozen_from_returned_to_advise": [
-        "frozen",
-        "decided",
-        "decisions_published",
-    ],
-    "backTo_returned_to_proposing_group_from_returned_to_advise": [
-        "created",
-        "validated_by_dg",
-        "frozen",
-        "decided",
-        "decisions_published",
-    ],
+    "backTo_presented_from_returned_to_proposing_group": {
+        "*": [
+            "created",
+        ]
+    },
+    "backTo_validated_by_dg_from_returned_to_proposing_group": {
+        "*": [
+            "validated_by_dg",
+        ]
+    },
+    "backTo_itempublished_from_returned_to_proposing_group": {
+        "*": [
+            "published",
+        ]
+    },
+    "backTo_itemfrozen_from_returned_to_proposing_group": {
+        "*": [
+            "frozen",
+            "decided",
+            "decisions_published",
+        ]
+    },
+    "backTo_presented_from_returned_to_advise": {
+        "*": [
+            "created",
+        ]
+    },
+    "backTo_validated_by_dg_from_returned_to_advise": {
+        "*": [
+            "validated_by_dg",
+        ]
+    },
+    "backTo_itemfrozen_from_returned_to_advise": {
+        "*": [
+            "frozen",
+            "decided",
+            "decisions_published",
+        ]
+    },
+    "backTo_returned_to_proposing_group_from_returned_to_advise": {
+        "*": [
+            "created",
+            "validated_by_dg",
+            "frozen",
+            "decided",
+            "decisions_published",
+        ]
+    },
     "NO_MORE_RETURNABLE_STATES": [
         "closed",
         "archived",
     ],
 }
-adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
-
-CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
-    "validated_by_dg",
+adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = (
+    CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
 )
-adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES \
-                                                         + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+
+CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ("validated_by_dg",)
+adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
+    adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+    + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+)
 
 POWEREDITORS_LOCALROLE_STATES = {
     "Contributor": (
-        "presented", "validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted",
-        "accepted_closed", "accepted_but_modified_closed", "delayed_closed", "returned_to_proposing_group",
-        "returned_to_proposing_group_proposed", "returned_to_advise"
+        "presented",
+        "validated_by_dg",
+        "itemfrozen",
+        "accepted",
+        "delayed",
+        "accepted_but_modified",
+        "pre_accepted",
+        "accepted_closed",
+        "accepted_but_modified_closed",
+        "delayed_closed",
+        "returned_to_proposing_group",
+        "returned_to_proposing_group_proposed",
+        "returned_to_advise",
     ),
     "Editor": (
-        "presented", "validated_by_dg", "itemfrozen", "accepted", "delayed", "accepted_but_modified", "pre_accepted"
+        "presented",
+        "validated_by_dg",
+        "itemfrozen",
+        "accepted",
+        "delayed",
+        "accepted_but_modified",
+        "pre_accepted",
     ),
     "MeetingManager": (
-        "accepted_closed", "accepted_but_modified_closed", "delayed_closed"
-    )
+        "accepted_closed",
+        "accepted_but_modified_closed",
+        "delayed_closed",
+    ),
 }
 
 
@@ -179,27 +223,27 @@ class CustomSeraingMeeting(CustomMeeting):
     security.declarePublic("getPrintableItemsByCategory")
 
     def getPrintableItemsByCategory(
-            self,
-            itemUids=[],
-            list_types=["normal"],
-            ignore_review_states=[],
-            by_proposing_group=False,
-            group_proposing_group=True,
-            group_prefixes={},
-            privacy="*",
-            oralQuestion="both",
-            toDiscuss="both",
-            categories=[],
-            excludedCategories=[],
-            groupIds=[],
-            excludedGroupIds=[],
-            firstNumber=1,
-            renumber=False,
-            includeEmptyCategories=False,
-            includeEmptyGroups=False,
-            isToPrintInMeeting="both",
-            forceCategOrderFromConfig=False,
-            unrestricted=False,
+        self,
+        itemUids=[],
+        list_types=["normal"],
+        ignore_review_states=[],
+        by_proposing_group=False,
+        group_proposing_group=True,
+        group_prefixes={},
+        privacy="*",
+        oralQuestion="both",
+        toDiscuss="both",
+        categories=[],
+        excludedCategories=[],
+        groupIds=[],
+        excludedGroupIds=[],
+        firstNumber=1,
+        renumber=False,
+        includeEmptyCategories=False,
+        includeEmptyGroups=False,
+        isToPrintInMeeting="both",
+        forceCategOrderFromConfig=False,
+        unrestricted=False,
     ):
         """Returns a list of (late or normal or both) items (depending on p_list_types)
         ordered by category. Items being in a state whose name is in
@@ -271,7 +315,7 @@ class CustomSeraingMeeting(CustomMeeting):
                 elif not (privacy == "*" or item.getPrivacy() == privacy):
                     continue
                 elif not (
-                        oralQuestion == "both" or item.getOralQuestion() == oralQuestion
+                    oralQuestion == "both" or item.getOralQuestion() == oralQuestion
                 ):
                     continue
                 elif not (toDiscuss == "both" or item.getToDiscuss() == toDiscuss):
@@ -285,8 +329,8 @@ class CustomSeraingMeeting(CustomMeeting):
                 elif excludedGroupIds and item.getProposingGroup() in excludedGroupIds:
                     continue
                 elif not (
-                        isToPrintInMeeting == "both"
-                        or item.getIsToPrintInMeeting() == isToPrintInMeeting
+                    isToPrintInMeeting == "both"
+                    or item.getIsToPrintInMeeting() == isToPrintInMeeting
                 ):
                     continue
                 if group_proposing_group:
@@ -328,7 +372,7 @@ class CustomSeraingMeeting(CustomMeeting):
                     categoryInserted = False
                     for i in range(len(usedCategories)):
                         if allCategories.index(cat) < allCategories.index(
-                                usedCategories[i]
+                            usedCategories[i]
                         ):
                             usedCategories.insert(i, cat)
                             res.insert(i, [cat])
@@ -382,7 +426,7 @@ class CustomSeraingMeeting(CustomMeeting):
         items = self.context.getItems(uids)
         for item in items:
             if (toPrint and item.getIsToPrintInMeeting()) or not (
-                    toPrint or item.getIsToPrintInMeeting()
+                toPrint or item.getIsToPrintInMeeting()
             ):
                 res.append(item)
         return res
@@ -402,9 +446,9 @@ class CustomSeraingMeeting(CustomMeeting):
                 for sub_obj in obj:
                     # separate normal items and late items
                     if (
-                            not find_late
-                            and IMeetingItem.providedBy(sub_obj)
-                            and sub_obj.isLate()
+                        not find_late
+                        and IMeetingItem.providedBy(sub_obj)
+                        and sub_obj.isLate()
                     ):
                         final_items.append("late")
                         find_late = True
@@ -476,17 +520,20 @@ class CustomSeraingMeeting(CustomMeeting):
         res = "%s %s %s" % (day, month, year)
         return res
 
-
     security.declarePublic("may_update_item_references")
+
     def may_update_item_references(self):
         """If the user is a 'Manager' or a 'powereditor', he is allowed to
         update the item references. This is used by
         the WFA 'seraing_powereditors' feature."""
-        tool = api.portal.get_tool('portal_plonemeeting')
+        tool = api.portal.get_tool("portal_plonemeeting")
         cfg = tool.getMeetingConfig(self.context)
-        powereditors_may_update = tool.userIsAmong(["powereditors"]) and \
-                                             self.context.query_state() != 'closed'
+        powereditors_may_update = (
+            tool.userIsAmong(["powereditors"])
+            and self.context.query_state() != "closed"
+        )
         return tool.isManager(cfg) or powereditors_may_update
+
 
 class CustomSeraingMeetingItem(CustomMeetingItem):
     """Adapter that adapts a meeting item implementing IMeetingItem to the
@@ -549,9 +596,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
             if item.query_state() in states:
                 powereditor_roles.append(role)
         if powereditor_roles:
-            item.manage_addLocalRoles(
-                powerEditorsGroupId, tuple(powereditor_roles)
-            )
+            item.manage_addLocalRoles(powerEditorsGroupId, tuple(powereditor_roles))
 
     def updateMeetingManagersLocalRoles(self):
         """Apply MeetingManagers local roles when seraing_add_item_closed_states is used.
@@ -559,21 +604,27 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         """
         item = self.getSelf()
         cfg = item.portal_plonemeeting.getMeetingConfig(item)
-        if 'seraing_add_item_closed_states' in cfg.getWorkflowAdaptations() and \
-            item.query_state() in ['accepted', 'delayed', 'accepted_but_modified']:
-            mmanagers_group_id = "{0}_{1}".format(cfg.getId(),
-                                                  MEETINGMANAGERS_GROUP_SUFFIX)
+        if (
+            "seraing_add_item_closed_states" in cfg.getWorkflowAdaptations()
+            and item.query_state() in ["accepted", "delayed", "accepted_but_modified"]
+        ):
+            mmanagers_group_id = "{0}_{1}".format(
+                cfg.getId(), MEETINGMANAGERS_GROUP_SUFFIX
+            )
             item.manage_addLocalRoles(
-                mmanagers_group_id, ('Reader', 'Reviewer', 'Editor', 'Contributor', 'MeetingManager')
+                mmanagers_group_id,
+                ("Reader", "Reviewer", "Editor", "Contributor", "MeetingManager"),
             )
 
     def powerEditorEditable(self):
-        tool = api.portal.get_tool('portal_plonemeeting')
-        return tool.userIsAmong(["powereditors"]) \
+        tool = api.portal.get_tool("portal_plonemeeting")
+        return (
+            tool.userIsAmong(["powereditors"])
             and self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Editor"]
+        )
 
     def getExtraFieldsToCopyWhenCloning(
-            self, cloned_to_same_mc, cloned_from_item_template
+        self, cloned_to_same_mc, cloned_from_item_template
     ):
         """
         Keep some new fields when item is cloned (to another mc or from itemtemplate).
@@ -597,7 +648,10 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         cfg = tool.getMeetingConfig(self)
 
         has_form = self.REQUEST and hasattr(self.REQUEST, "form")
-        is_transitioning = has_form and ("transition" in self.REQUEST.form or "form.widgets.transition" in self.REQUEST.form)
+        is_transitioning = has_form and (
+            "transition" in self.REQUEST.form
+            or "form.widgets.transition" in self.REQUEST.form
+        )
 
         if is_transitioning:
             current_transition = None
@@ -621,19 +675,31 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
 
     MeetingItem.setTakenOverBy = setTakenOverBy
 
-class CustomSeraingMeetingItemContentDeletableAdapter(MeetingItemContentDeletableAdapter):
+
+class CustomSeraingMeetingItemContentDeletableAdapter(
+    MeetingItemContentDeletableAdapter
+):
     """
-      Manage the mayDelete for MeetingItem.
-      Specific for MeetingSeraing: MeetingManager may delete the item in every
-      not decided states despite the WFA 'only_creator_may_delete'
+    Manage the mayDelete for MeetingItem.
+    Specific for MeetingSeraing: MeetingManager may delete the item in every
+    not decided states despite the WFA 'only_creator_may_delete'
     """
+
     def mayDelete(self, **kwargs):
-        '''See docstring in interfaces.py.'''
-        tool = api.portal.get_tool('portal_plonemeeting')
+        """See docstring in interfaces.py."""
+        tool = api.portal.get_tool("portal_plonemeeting")
         cfg = tool.getMeetingConfig(self.context)
-        if tool.isManager(cfg) and self.context.query_state() not in cfg.getItemDecidedStates() + ['accepted', 'accepted_but_modified', 'delayed', 'itemfrozen']:
+        if tool.isManager(
+            cfg
+        ) and self.context.query_state() not in cfg.getItemDecidedStates() + [
+            "accepted",
+            "accepted_but_modified",
+            "delayed",
+            "itemfrozen",
+        ]:
             return True
         return super(CustomSeraingMeetingItemContentDeletableAdapter, self).mayDelete()
+
 
 class CustomSeraingMeetingConfig(CustomMeetingConfig):
     """Adapter that adapts a meetingConfig implementing IMeetingConfig to the
@@ -647,7 +713,9 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
 
     security.declarePrivate("createPowerObserversGroup")
 
-    def _custom_createOrUpdateGroups(self, force_update_access=False, dry_run_return_group_ids=False):
+    def _custom_createOrUpdateGroups(
+        self, force_update_access=False, dry_run_return_group_ids=False
+    ):
         """Creates a Plone group that will be used to apply the 'Editor'
         local role on every items in itemFrozen state."""
         meetingConfig = self.getSelf()
@@ -689,37 +757,45 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         return ("event_item_delayed-service_heads", "event_add_advice-service_heads")
 
     def get_item_corresponding_state_to_assign_local_roles(self, item_state):
-        '''See doc in interfaces.py.'''
+        """See doc in interfaces.py."""
         corresponding_item_state = None
         # XXX returned_to_proposing_group_xxx is special in MeetingSeraing
         # returned_to_proposing_group_proposed is equivalent to proposed state
         # (see patch_return_to_proposing_group_with_last_validation WFA in MeetingSeraing 4.1)
         # BUT returned_to_proposing_group has no equivalent,
         # everybody from the proposing group can edit
-        if item_state == 'returned_to_proposing_group_proposed':
-            corresponding_item_state = 'proposed'
+        if item_state == "returned_to_proposing_group_proposed":
+            corresponding_item_state = "proposed"
         # waiting_advices WFAdaptation
-        elif item_state.endswith('_waiting_advices'):
-            corresponding_item_state = item_state.split('_waiting_advices')[0]
+        elif item_state.endswith("_waiting_advices"):
+            corresponding_item_state = item_state.split("_waiting_advices")[0]
         return corresponding_item_state
 
     def get_item_custom_suffix_roles(self, *args):
         item_state = args[-1]
         suffix_roles = None
-        if item_state == 'returned_to_proposing_group':
+        if item_state == "returned_to_proposing_group":
             SUFFIXES_THAT_MAY_EDIT_IN_RETURNED_TO_PROPOSING_GROUP = [
-                "creators", "serviceheads", "officemanagers", "divisionheads", "reviewers"
+                "creators",
+                "serviceheads",
+                "officemanagers",
+                "divisionheads",
+                "reviewers",
             ]
-            EDIT_ROLES = ['Reader', 'Contributor', 'Editor', 'Reviewer']
-            suffix_roles = {'observers': ['Reader']}
+            EDIT_ROLES = ["Reader", "Contributor", "Editor", "Reviewer"]
+            suffix_roles = {"observers": ["Reader"]}
             for suffix in SUFFIXES_THAT_MAY_EDIT_IN_RETURNED_TO_PROPOSING_GROUP:
                 suffix_roles[suffix] = EDIT_ROLES
-        if item_state == 'returned_to_advise':
+        if item_state == "returned_to_advise":
             SUFFIXES_THAT_MAY_REVIEW_IN_RETURNED_TO_ADVISE = [
-                "creators", "serviceheads", "officemanagers", "divisionheads", "reviewers"
+                "creators",
+                "serviceheads",
+                "officemanagers",
+                "divisionheads",
+                "reviewers",
             ]
-            REVIEW_ROLES = ['Reader', 'Reviewer']
-            suffix_roles = {'observers': ['Reader']}
+            REVIEW_ROLES = ["Reader", "Reviewer"]
+            suffix_roles = {"observers": ["Reader"]}
             for suffix in SUFFIXES_THAT_MAY_REVIEW_IN_RETURNED_TO_ADVISE:
                 suffix_roles[suffix] = REVIEW_ROLES
         return True, suffix_roles
@@ -731,17 +807,18 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         """
         cfg = self.getSelf()
         item_decided_states = [
-            'accepted_out_of_meeting',
-            'accepted_out_of_meeting_emergency',
-            'delayed',
-            'marked_not_applicable',
-            'postponed_next_meeting',
-            'refused',
-            'removed',
-            'transfered']
+            "accepted_out_of_meeting",
+            "accepted_out_of_meeting_emergency",
+            "delayed",
+            "marked_not_applicable",
+            "postponed_next_meeting",
+            "refused",
+            "removed",
+            "transfered",
+        ]
 
-        if 'seraing_add_item_closed_states' not in cfg.getWorkflowAdaptations():
-            item_decided_states += ['accepted', 'accepted_but_modified', 'delayed']
+        if "seraing_add_item_closed_states" not in cfg.getWorkflowAdaptations():
+            item_decided_states += ["accepted", "accepted_but_modified", "delayed"]
 
         item_decided_states += self.adapted().extra_item_decided_states()
         return item_decided_states
@@ -750,11 +827,7 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
     MeetingConfig.getItemDecidedStates = getItemDecidedStates
 
     def extra_item_decided_states(self):
-        return [
-            'accepted_closed',
-            'delayed_closed',
-            'accepted_but_modified_closed'
-        ]
+        return ["accepted_closed", "delayed_closed", "accepted_but_modified_closed"]
 
 
 class MeetingSeraingWorkflowActions(MeetingCommunesWorkflowActions):
@@ -852,7 +925,7 @@ class MeetingItemSeraingWorkflowActions(MeetingItemCommunesWorkflowActions):
         # make sure we get freshly cloned item in case we delay self.context several times...
         clonedItem = self.context.get_successors()[0]
         wfTool = api.portal.get_tool("portal_workflow")
-        if clonedItem.query_state() not in ('proposed', 'validated'):
+        if clonedItem.query_state() not in ("proposed", "validated"):
             with api.env.adopt_roles(["Manager"]):
                 if "propose" in get_transitions(clonedItem):
                     # We make sure propose is available because it is not
@@ -947,16 +1020,16 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         res = False
         meeting = self.context.getMeeting()
         if (
-                _checkPermission(ReviewPortalContent, self.context)
-                and meeting
-                and (
+            _checkPermission(ReviewPortalContent, self.context)
+            and meeting
+            and (
                 meeting.query_state()
                 in [
                     "decided",
                     "closed",
                     "decisions_published",
                 ]
-        )
+            )
         ):
             res = True
         return res
@@ -967,8 +1040,8 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         res = False
         if _checkPermission(ReviewPortalContent, self.context):
             if self.context.hasMeeting() and (
-                    self.context.getMeeting().query_state()
-                    in ("created", "validated_by_dg", "frozen", "decided", "closed")
+                self.context.getMeeting().query_state()
+                in ("created", "validated_by_dg", "frozen", "decided", "closed")
             ):
                 res = True
         return res
@@ -1009,16 +1082,19 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
 
     def mayBackToMeeting(self, transitionName):
         """Specific guard for the 'return_to_proposing_group' wfAdaptation.
-           As we have only one guard_expr for potentially several transitions departing
-           from the 'returned_to_proposing_group' state, we receive the p_transitionName."""
-        if not _checkPermission(ReviewPortalContent, self.context) and not \
-           self.tool.isManager(self.cfg):
+        As we have only one guard_expr for potentially several transitions departing
+        from the 'returned_to_proposing_group' state, we receive the p_transitionName."""
+        if not _checkPermission(
+            ReviewPortalContent, self.context
+        ) and not self.tool.isManager(self.cfg):
             return
         # when using validation states, may return when in last validation state
-        if 'return_to_proposing_group' not in self.cfg.getWorkflowAdaptations():
-            current_validation_state = 'itemcreated' \
-                if self.review_state == 'returned_to_proposing_group' \
-                else self.review_state.replace('returned_to_proposing_group_', '')
+        if "return_to_proposing_group" not in self.cfg.getWorkflowAdaptations():
+            current_validation_state = (
+                "itemcreated"
+                if self.review_state == "returned_to_proposing_group"
+                else self.review_state.replace("returned_to_proposing_group_", "")
+            )
             last_val_state = self._getLastValidationState()
             # we are in last validation state, or we are in state 'returned_to_proposing_group'
             # and there is no last validation state, aka it is "itemcreated"
@@ -1029,24 +1105,42 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         meetingState = meeting.query_state()
         # use RETURN_TO_PROPOSING_GROUP_MAPPINGS to know in wich meetingStates
         # the given p_transitionName can be triggered
-        authorizedMeetingStates = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS[transitionName]
+        authorizedMeetingStates = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS[
+            transitionName
+        ]
         if meetingState in authorizedMeetingStates:
             return True
         # if we did not return True, then return a No(...) message specifying that
         # it can no more be returned to the meeting because the meeting is in some
         # specific states (like 'closed' for example)
-        if meetingState in CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS['NO_MORE_RETURNABLE_STATES']:
+        if (
+            meetingState
+            in CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS["NO_MORE_RETURNABLE_STATES"]
+        ):
             # avoid to display No(...) message for each transition having the 'mayBackToMeeting'
             # guard expr, just return the No(...) msg for the first transitionName checking this...
-            if 'may_not_back_to_meeting_warned_by' not in self.context.REQUEST:
-                self.context.REQUEST.set('may_not_back_to_meeting_warned_by', transitionName)
-            if self.context.REQUEST.get('may_not_back_to_meeting_warned_by') == transitionName:
-                return No(_('can_not_return_to_meeting_because_of_meeting_state',
-                            mapping={'meetingState': translate(
+            if "may_not_back_to_meeting_warned_by" not in self.context.REQUEST:
+                self.context.REQUEST.set(
+                    "may_not_back_to_meeting_warned_by", transitionName
+                )
+            if (
+                self.context.REQUEST.get("may_not_back_to_meeting_warned_by")
+                == transitionName
+            ):
+                return No(
+                    _(
+                        "can_not_return_to_meeting_because_of_meeting_state",
+                        mapping={
+                            "meetingState": translate(
                                 meetingState,
-                                domain='plone',
-                                context=self.context.REQUEST)}))
+                                domain="plone",
+                                context=self.context.REQUEST,
+                            )
+                        },
+                    )
+                )
         return False
+
     security.declarePublic("mayClose")
 
     def mayClose(self):
@@ -1056,9 +1150,9 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         res = False
         meeting = self.context.getMeeting()
         if (
-                _checkPermission(ReviewPortalContent, self.context)
-                and meeting
-                and (meeting.query_state() in ["closed"])
+            _checkPermission(ReviewPortalContent, self.context)
+            and meeting
+            and (meeting.query_state() in ["closed"])
         ):
             res = True
         return res
@@ -1102,7 +1196,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         self.context.gotoReferer()
 
     def performCustomWFAdaptations(
-            self, meetingConfig, wfAdaptation, logger, itemWorkflow, meetingWorkflow
+        self, meetingConfig, wfAdaptation, logger, itemWorkflow, meetingWorkflow
     ):
         """This function applies workflow changes as specified by the
         p_meetingConfig."""
@@ -1111,93 +1205,129 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
 
         if wfAdaptation == "seraing_add_item_closed_states":
             state = itemWorkflow.states["accepted"]
-            state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("MeetingManager",)
+            state.permission_roles[
+                WriteItemMeetingManagerFields
+            ] = state.permission_roles[WriteItemMeetingManagerFields] + (
+                "MeetingManager",
+            )
             _addIsolatedState(
-                new_state_id='accepted_closed',
-                origin_state_id='accepted',
-                origin_transition_id='accept_close',
-                origin_transition_guard_expr_name='mayClose()',
+                new_state_id="accepted_closed",
+                origin_state_id="accepted",
+                origin_transition_id="accept_close",
+                origin_transition_guard_expr_name="mayClose()",
                 back_transition_guard_expr_name="mayCorrect()",
-                back_transition_id='backToItemAccepted',
+                back_transition_id="backToItemAccepted",
                 itemWorkflow=itemWorkflow,
-                base_state_id='accepted', )
+                base_state_id="accepted",
+            )
             if "delayed" in itemStates:
                 state = itemWorkflow.states["delayed"]
-                state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("MeetingManager",)
+                state.permission_roles[
+                    WriteItemMeetingManagerFields
+                ] = state.permission_roles[WriteItemMeetingManagerFields] + (
+                    "MeetingManager",
+                )
                 _addIsolatedState(
-                    new_state_id='delayed_closed',
-                    origin_state_id='delayed',
-                    origin_transition_id='delay_close',
-                    origin_transition_guard_expr_name='mayClose()',
+                    new_state_id="delayed_closed",
+                    origin_state_id="delayed",
+                    origin_transition_id="delay_close",
+                    origin_transition_guard_expr_name="mayClose()",
                     back_transition_guard_expr_name="mayCorrect()",
-                    back_transition_id='backToItemDelayed',
+                    back_transition_id="backToItemDelayed",
                     itemWorkflow=itemWorkflow,
-                    base_state_id='delayed', )
+                    base_state_id="delayed",
+                )
             if "accepted_but_modified" in itemStates:
                 state = itemWorkflow.states["accepted_but_modified"]
-                state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[WriteItemMeetingManagerFields] + ("MeetingManager",)
+                state.permission_roles[
+                    WriteItemMeetingManagerFields
+                ] = state.permission_roles[WriteItemMeetingManagerFields] + (
+                    "MeetingManager",
+                )
                 _addIsolatedState(
-                    new_state_id='accepted_but_modified_closed',
-                    origin_state_id='accepted_but_modified',
-                    origin_transition_id='accept_but_modify_close',
-                    origin_transition_guard_expr_name='mayClose()',
+                    new_state_id="accepted_but_modified_closed",
+                    origin_state_id="accepted_but_modified",
+                    origin_transition_id="accept_but_modify_close",
+                    origin_transition_guard_expr_name="mayClose()",
                     back_transition_guard_expr_name="mayCorrect()",
-                    back_transition_id='backToItemAcceptedButModified',
+                    back_transition_id="backToItemAcceptedButModified",
                     itemWorkflow=itemWorkflow,
-                    base_state_id='accepted_but_modified', )
+                    base_state_id="accepted_but_modified",
+                )
         if wfAdaptation == "seraing_validated_by_DG":
             # add state from itemfrozen? itempublished? presented? ...
             # same origin as mandatory transition 'accept'
             new_state = _addIsolatedState(
-                new_state_id='validated_by_dg',
-                origin_state_id='presented',
-                origin_transition_id='itemValidateByDG',
-                origin_transition_guard_expr_name='mayValidateByDG()',
+                new_state_id="validated_by_dg",
+                origin_state_id="presented",
+                origin_transition_id="itemValidateByDG",
+                origin_transition_guard_expr_name="mayValidateByDG()",
                 back_transition_guard_expr_name="mayCorrect()",
-                back_transition_id='backToPresented',
+                back_transition_id="backToPresented",
                 itemWorkflow=itemWorkflow,
-                base_state_id='presented', )
-            new_state.transitions = new_state.transitions + ('itemfreeze',)
-            itemWorkflow.states['presented'].transitions = ('backToValidated', 'itemValidateByDG')
+                base_state_id="presented",
+            )
+            new_state.transitions = new_state.transitions + ("itemfreeze",)
+            itemWorkflow.states["presented"].transitions = (
+                "backToValidated",
+                "itemValidateByDG",
+            )
 
             itemWorkflow.transitions.addTransition("backToItemValidatedByDG")
             transition = itemWorkflow.transitions["backToItemValidatedByDG"]
             transition.setProperties(
                 title="backToItemValidatedByDG",
-                new_state_id="validated_by_dg", trigger_type=1, script_name='',
-                actbox_name="backToItemValidatedByDG", actbox_url='',
-                actbox_icon='%(portal_url)s/{0}.png'.format("backToItemValidatedByDG"),
-                actbox_category='workflow',
-                props={'guard_expr': 'python:here.wfConditions().{0}'.format("mayCorrect()")})
-            itemfrozen = itemWorkflow.states['itemfrozen']
+                new_state_id="validated_by_dg",
+                trigger_type=1,
+                script_name="",
+                actbox_name="backToItemValidatedByDG",
+                actbox_url="",
+                actbox_icon="%(portal_url)s/{0}.png".format("backToItemValidatedByDG"),
+                actbox_category="workflow",
+                props={
+                    "guard_expr": "python:here.wfConditions().{0}".format(
+                        "mayCorrect()"
+                    )
+                },
+            )
+            itemfrozen = itemWorkflow.states["itemfrozen"]
             itemfrozen.transitions = tuple(
-                t for t in itemfrozen.transitions if t != 'backToPresented'
+                t for t in itemfrozen.transitions if t != "backToPresented"
             ) + ("backToItemValidatedByDG",)
 
             new_meeting_state = _addIsolatedState(
-                new_state_id='validated_by_dg',
-                origin_state_id='created',
-                origin_transition_id='validateByDG',
-                origin_transition_guard_expr_name='mayValidateByDG()',
+                new_state_id="validated_by_dg",
+                origin_state_id="created",
+                origin_transition_id="validateByDG",
+                origin_transition_guard_expr_name="mayValidateByDG()",
                 back_transition_guard_expr_name="mayCorrect()",
-                back_transition_id='backToCreated',
+                back_transition_id="backToCreated",
                 itemWorkflow=meetingWorkflow,
-                base_state_id='created', )
-            new_meeting_state.transitions = new_meeting_state.transitions + ('freeze',)
+                base_state_id="created",
+            )
+            new_meeting_state.transitions = new_meeting_state.transitions + ("freeze",)
 
-            meetingWorkflow.states['created'].transitions = ('validateByDG',)
+            meetingWorkflow.states["created"].transitions = ("validateByDG",)
             meetingWorkflow.transitions.addTransition("backToValidatedByDG")
             transition = meetingWorkflow.transitions["backToValidatedByDG"]
             transition.setProperties(
                 title="backToValidatedByDG",
-                new_state_id="validated_by_dg", trigger_type=1, script_name='',
-                actbox_name="backToValidatedByDG", actbox_url='',
-                actbox_icon='%(portal_url)s/{0}.png'.format("backToValidatedByDG"),
-                actbox_category='workflow',
-                props={'guard_expr': 'python:here.wfConditions().{0}'.format("mayCorrect()")})
-            frozen = meetingWorkflow.states['frozen']
+                new_state_id="validated_by_dg",
+                trigger_type=1,
+                script_name="",
+                actbox_name="backToValidatedByDG",
+                actbox_url="",
+                actbox_icon="%(portal_url)s/{0}.png".format("backToValidatedByDG"),
+                actbox_category="workflow",
+                props={
+                    "guard_expr": "python:here.wfConditions().{0}".format(
+                        "mayCorrect()"
+                    )
+                },
+            )
+            frozen = meetingWorkflow.states["frozen"]
             frozen.transitions = tuple(
-                t for t in frozen.transitions if t != 'backToCreated'
+                t for t in frozen.transitions if t != "backToCreated"
             ) + ("backToValidatedByDG",)
 
         if wfAdaptation == "seraing_powereditors":
@@ -1206,28 +1336,44 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             for state_id in POWEREDITORS_LOCALROLE_STATES["Editor"]:
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
-                    state.permission_roles[AddAnnex] = state.permission_roles[AddAnnex] + ("Editor",)
-                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + ("Editor",)
-            for state_id in ("accepted_closed", "delayed_closed", "accepted_but_modified_closed"):
+                    state.permission_roles[AddAnnex] = state.permission_roles[
+                        AddAnnex
+                    ] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[
+                        WriteMarginalNotes
+                    ] + ("Editor",)
+            for state_id in (
+                "accepted_closed",
+                "delayed_closed",
+                "accepted_but_modified_closed",
+            ):
                 # We also have to add closed state variants to WriteMarginalNotes for powereditors
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
-                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[
+                        WriteMarginalNotes
+                    ] + ("Editor",)
             # Allow power editors to update item references
             meetingTypeName = meetingConfig.getMeetingTypeName()
             fti = self.context.portal_types[meetingTypeName]
             action = fti.getActionObject("object_buttons/update_item_references")
-            action.condition = Expression("python: object.adapted().may_update_item_references()")
+            action.condition = Expression(
+                "python: object.adapted().may_update_item_references()"
+            )
             action.permission = "View"
 
         if wfAdaptation == "seraing_returned_to_advise":
             if "returned_to_proposing_group" not in itemStates:
-                raise ValueError("returned_to_proposing_group should be in itemStates for this WFA")
+                raise ValueError(
+                    "returned_to_proposing_group should be in itemStates for this WFA"
+                )
 
             if "returned_to_advise" not in itemStates:
                 itemStates.addState("returned_to_advise")
             returned_to_advise = getattr(itemStates, "returned_to_advise")
-            returned_to_advise.permission_roles = deepcopy(itemStates.returned_to_proposing_group.permission_roles)
+            returned_to_advise.permission_roles = deepcopy(
+                itemStates.returned_to_proposing_group.permission_roles
+            )
 
             if "return_to_advise" not in itemTransitions:
                 itemTransitions.addTransition("return_to_advise")
@@ -1258,9 +1404,12 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             return_to_advice_item_state = [
                 "presented",
                 "validated_by_dg",
-                "itemfrozen", ]
+                "itemfrozen",
+            ]
             if "returned_to_proposing_group_proposed" in itemStates:
-                return_to_advice_item_state.append("returned_to_proposing_group_proposed")
+                return_to_advice_item_state.append(
+                    "returned_to_proposing_group_proposed"
+                )
             if "returned_to_proposing_group" in itemStates:
                 return_to_advice_item_state.append("returned_to_proposing_group")
             for state_id in return_to_advice_item_state:
@@ -1269,16 +1418,23 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 )
                 itemStates[state_id].transitions = new_trx
 
-            logger.info(WF_APPLIED % ("seraing_returned_to_advise", meetingConfig.getId()))
+            logger.info(
+                WF_APPLIED % ("seraing_returned_to_advise", meetingConfig.getId())
+            )
             return True
 
-        if wfAdaptation == "seraing_return_to_proposing_group_with_last_validation_patch":
+        if (
+            wfAdaptation
+            == "seraing_return_to_proposing_group_with_last_validation_patch"
+        ):
             if "returned_to_proposing_group_proposed" not in itemStates:
-                raise ValueError("return_to_proposing_group_with_last_validation should be in itemStates for this WFA")
+                raise ValueError(
+                    "return_to_proposing_group_with_last_validation should be in itemStates for this WFA"
+                )
 
-            transition_id = 'goTo_%s' % ("returned_to_proposing_group_proposed")
+            transition_id = "goTo_%s" % ("returned_to_proposing_group_proposed")
             transition = itemTransitions[transition_id]
-            image_url = '%(portal_url)s/{0}.png'.format(transition_id)
+            image_url = "%(portal_url)s/{0}.png".format(transition_id)
             # Make sure shortcuts are handled
             transition.setProperties(
                 title=transition_id,
@@ -1290,17 +1446,23 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 actbox_category="workflow",
                 actbox_icon=image_url,
                 props={
-                    "guard_expr":
-                        "python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
-                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
-                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
-                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')"
+                    "guard_expr": "python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
+                    "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
+                    "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
+                    "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')"
                 },
             )
 
-            logger.info(WF_APPLIED % ("seraing_return_to_proposing_group_with_last_validation_patch", meetingConfig.getId()))
+            logger.info(
+                WF_APPLIED
+                % (
+                    "seraing_return_to_proposing_group_with_last_validation_patch",
+                    meetingConfig.getId(),
+                )
+            )
             return True
         return False
+
 
 # ------------------------------------------------------------------------------
 InitializeClass(CustomSeraingMeetingItem)
@@ -1402,9 +1564,12 @@ def may_store_podtemplate_as_annex(self, pod_template):
     """
     if not pod_template.store_as_annex:
         return False
-    tool = api.portal.get_tool('portal_plonemeeting')
+    tool = api.portal.get_tool("portal_plonemeeting")
     cfg = tool.getMeetingConfig(self.context)
-    return tool.isManager(cfg) or self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Contributor"]
+    return (
+        tool.isManager(cfg)
+        or self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Contributor"]
+    )
 
 
 PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_annex
@@ -1415,12 +1580,18 @@ def store_podtemplate_as_annex_batch_action_available(self):
     In MeetingSeraing, Power editors may store podtemplate as annex with a batch action but
     only in meeting states between created and closed
     """
-    tool = api.portal.get_tool('portal_plonemeeting')
-    powereditor_batch_action_available = tool.userIsAmong(["powereditors"]) and \
-                                         self.context.query_state() not in ('created', 'closed')
-    if self.cfg.getMeetingItemTemplatesToStoreAsAnnex() and \
-            _checkPermission(ModifyPortalContent, self.context) or powereditor_batch_action_available:
+    tool = api.portal.get_tool("portal_plonemeeting")
+    powereditor_batch_action_available = tool.userIsAmong(
+        ["powereditors"]
+    ) and self.context.query_state() not in ("created", "closed")
+    if (
+        self.cfg.getMeetingItemTemplatesToStoreAsAnnex()
+        and _checkPermission(ModifyPortalContent, self.context)
+        or powereditor_batch_action_available
+    ):
         return True
 
 
-MeetingStoreItemsPodTemplateAsAnnexBatchActionForm.available = store_podtemplate_as_annex_batch_action_available
+MeetingStoreItemsPodTemplateAsAnnexBatchActionForm.available = (
+    store_podtemplate_as_annex_batch_action_available
+)
