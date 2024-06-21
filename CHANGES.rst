@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.9 (unreleased)
+4.2.9 (2024-06-21)
 ------------------
 
 - Fixed `meetingitem_view.pt`.
