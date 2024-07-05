@@ -154,14 +154,11 @@ CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
         "archived",
     ],
 }
-adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = (
-    CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
-)
+adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ("validated_by_dg",)
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
-    adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
-    + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
+    adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES + CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES
 )
 
 POWEREDITORS_LOCALROLE_STATES = {
@@ -314,9 +311,7 @@ class CustomSeraingMeeting(CustomMeeting):
                     continue
                 elif not (privacy == "*" or item.getPrivacy() == privacy):
                     continue
-                elif not (
-                    oralQuestion == "both" or item.getOralQuestion() == oralQuestion
-                ):
+                elif not (oralQuestion == "both" or item.getOralQuestion() == oralQuestion):
                     continue
                 elif not (toDiscuss == "both" or item.getToDiscuss() == toDiscuss):
                     continue
@@ -328,10 +323,7 @@ class CustomSeraingMeeting(CustomMeeting):
                     continue
                 elif excludedGroupIds and item.getProposingGroup() in excludedGroupIds:
                     continue
-                elif not (
-                    isToPrintInMeeting == "both"
-                    or item.getIsToPrintInMeeting() == isToPrintInMeeting
-                ):
+                elif not (isToPrintInMeeting == "both" or item.getIsToPrintInMeeting() == isToPrintInMeeting):
                     continue
                 if group_proposing_group:
                     currentCat = item.getProposingGroup(theObject=True)
@@ -346,14 +338,10 @@ class CustomSeraingMeeting(CustomMeeting):
                         catExists = True
                         break
                 if catExists:
-                    self._insertItemInCategory(
-                        catList, item, by_proposing_group, group_prefixes, groups
-                    )
+                    self._insertItemInCategory(catList, item, by_proposing_group, group_prefixes, groups)
                 else:
                     res.append([currentCat])
-                    self._insertItemInCategory(
-                        res[-1], item, by_proposing_group, group_prefixes, groups
-                    )
+                    self._insertItemInCategory(res[-1], item, by_proposing_group, group_prefixes, groups)
         if forceCategOrderFromConfig or cmp(list_types.sort(), ["late", "normal"]) == 0:
             res.sort(cmp=_comp)
         if includeEmptyCategories:
@@ -371,9 +359,7 @@ class CustomSeraingMeeting(CustomMeeting):
                     # place.
                     categoryInserted = False
                     for i in range(len(usedCategories)):
-                        if allCategories.index(cat) < allCategories.index(
-                            usedCategories[i]
-                        ):
+                        if allCategories.index(cat) < allCategories.index(usedCategories[i]):
                             usedCategories.insert(i, cat)
                             res.insert(i, [cat])
                             categoryInserted = True
@@ -425,9 +411,7 @@ class CustomSeraingMeeting(CustomMeeting):
         res = []
         items = self.context.getItems(uids)
         for item in items:
-            if (toPrint and item.getIsToPrintInMeeting()) or not (
-                toPrint or item.getIsToPrintInMeeting()
-            ):
+            if (toPrint and item.getIsToPrintInMeeting()) or not (toPrint or item.getIsToPrintInMeeting()):
                 res.append(item)
         return res
 
@@ -445,11 +429,7 @@ class CustomSeraingMeeting(CustomMeeting):
                 # obj contain list like this [(num1, item1), (num2, item2), (num3, item3), (num4, item4)]
                 for sub_obj in obj:
                     # separate normal items and late items
-                    if (
-                        not find_late
-                        and IMeetingItem.providedBy(sub_obj)
-                        and sub_obj.isLate()
-                    ):
+                    if not find_late and IMeetingItem.providedBy(sub_obj) and sub_obj.isLate():
                         final_items.append("late")
                         find_late = True
                     final_items.append(sub_obj)
@@ -528,10 +508,7 @@ class CustomSeraingMeeting(CustomMeeting):
         the WFA 'seraing_powereditors' feature."""
         tool = api.portal.get_tool("portal_plonemeeting")
         cfg = tool.getMeetingConfig(self.context)
-        powereditors_may_update = (
-            tool.userIsAmong(["powereditors"])
-            and self.context.query_state() != "closed"
-        )
+        powereditors_may_update = tool.userIsAmong(["powereditors"]) and self.context.query_state() != "closed"
         return tool.isManager(cfg) or powereditors_may_update
 
 
@@ -578,9 +555,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         "freeze",
         "decide",
     )
-    MeetingItem.meetingTransitionsAcceptingRecurringItems = (
-        customMeetingTransitionsAcceptingRecurringItems
-    )
+    MeetingItem.meetingTransitionsAcceptingRecurringItems = customMeetingTransitionsAcceptingRecurringItems
 
     security.declarePublic("updatePowerEditorsLocalRoles")
 
@@ -604,13 +579,12 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
         """
         item = self.getSelf()
         cfg = item.portal_plonemeeting.getMeetingConfig(item)
-        if (
-            "seraing_add_item_closed_states" in cfg.getWorkflowAdaptations()
-            and item.query_state() in ["accepted", "delayed", "accepted_but_modified"]
-        ):
-            mmanagers_group_id = "{0}_{1}".format(
-                cfg.getId(), MEETINGMANAGERS_GROUP_SUFFIX
-            )
+        if "seraing_add_item_closed_states" in cfg.getWorkflowAdaptations() and item.query_state() in [
+            "accepted",
+            "delayed",
+            "accepted_but_modified",
+        ]:
+            mmanagers_group_id = "{0}_{1}".format(cfg.getId(), MEETINGMANAGERS_GROUP_SUFFIX)
             item.manage_addLocalRoles(
                 mmanagers_group_id,
                 ("Reader", "Reviewer", "Editor", "Contributor", "MeetingManager"),
@@ -619,13 +593,10 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
     def powerEditorEditable(self):
         tool = api.portal.get_tool("portal_plonemeeting")
         return (
-            tool.userIsAmong(["powereditors"])
-            and self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Editor"]
+            tool.userIsAmong(["powereditors"]) and self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Editor"]
         )
 
-    def getExtraFieldsToCopyWhenCloning(
-        self, cloned_to_same_mc, cloned_from_item_template
-    ):
+    def getExtraFieldsToCopyWhenCloning(self, cloned_to_same_mc, cloned_from_item_template):
         """
         Keep some new fields when item is cloned (to another mc or from itemtemplate).
         """
@@ -649,8 +620,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
 
         has_form = self.REQUEST and hasattr(self.REQUEST, "form")
         is_transitioning = has_form and (
-            "transition" in self.REQUEST.form
-            or "form.widgets.transition" in self.REQUEST.form
+            "transition" in self.REQUEST.form or "form.widgets.transition" in self.REQUEST.form
         )
 
         if is_transitioning:
@@ -676,9 +646,7 @@ class CustomSeraingMeetingItem(CustomMeetingItem):
     MeetingItem.setTakenOverBy = setTakenOverBy
 
 
-class CustomSeraingMeetingItemContentDeletableAdapter(
-    MeetingItemContentDeletableAdapter
-):
+class CustomSeraingMeetingItemContentDeletableAdapter(MeetingItemContentDeletableAdapter):
     """
     Manage the mayDelete for MeetingItem.
     Specific for MeetingSeraing: MeetingManager may delete the item in every
@@ -689,9 +657,7 @@ class CustomSeraingMeetingItemContentDeletableAdapter(
         """See docstring in interfaces.py."""
         tool = api.portal.get_tool("portal_plonemeeting")
         cfg = tool.getMeetingConfig(self.context)
-        if tool.isManager(
-            cfg
-        ) and self.context.query_state() not in cfg.getItemDecidedStates() + [
+        if tool.isManager(cfg) and self.context.query_state() not in cfg.getItemDecidedStates() + [
             "accepted",
             "accepted_but_modified",
             "delayed",
@@ -713,17 +679,13 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
 
     security.declarePrivate("createPowerObserversGroup")
 
-    def _custom_createOrUpdateGroups(
-        self, force_update_access=False, dry_run_return_group_ids=False
-    ):
+    def _custom_createOrUpdateGroups(self, force_update_access=False, dry_run_return_group_ids=False):
         """Creates a Plone group that will be used to apply the 'Editor'
         local role on every items in itemFrozen state."""
         meetingConfig = self.getSelf()
         groupId = "%s_%s" % (meetingConfig.getId(), POWEREDITORS_GROUP_SUFFIX)
         if groupId not in meetingConfig.portal_groups.listGroupIds():
-            enc = meetingConfig.portal_properties.site_properties.getProperty(
-                "default_charset"
-            )
+            enc = meetingConfig.portal_properties.site_properties.getProperty("default_charset")
             groupTitle = "%s (%s)" % (
                 meetingConfig.Title().decode(enc),
                 translate(
@@ -1040,8 +1002,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         res = False
         if _checkPermission(ReviewPortalContent, self.context):
             if self.context.hasMeeting() and (
-                self.context.getMeeting().query_state()
-                in ("created", "validated_by_dg", "frozen", "decided", "closed")
+                self.context.getMeeting().query_state() in ("created", "validated_by_dg", "frozen", "decided", "closed")
             ):
                 res = True
         return res
@@ -1084,9 +1045,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """Specific guard for the 'return_to_proposing_group' wfAdaptation.
         As we have only one guard_expr for potentially several transitions departing
         from the 'returned_to_proposing_group' state, we receive the p_transitionName."""
-        if not _checkPermission(
-            ReviewPortalContent, self.context
-        ) and not self.tool.isManager(self.cfg):
+        if not _checkPermission(ReviewPortalContent, self.context) and not self.tool.isManager(self.cfg):
             return
         # when using validation states, may return when in last validation state
         if "return_to_proposing_group" not in self.cfg.getWorkflowAdaptations():
@@ -1105,28 +1064,18 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         meetingState = meeting.query_state()
         # use RETURN_TO_PROPOSING_GROUP_MAPPINGS to know in wich meetingStates
         # the given p_transitionName can be triggered
-        authorizedMeetingStates = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS[
-            transitionName
-        ]
+        authorizedMeetingStates = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS[transitionName]
         if meetingState in authorizedMeetingStates:
             return True
         # if we did not return True, then return a No(...) message specifying that
         # it can no more be returned to the meeting because the meeting is in some
         # specific states (like 'closed' for example)
-        if (
-            meetingState
-            in CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS["NO_MORE_RETURNABLE_STATES"]
-        ):
+        if meetingState in CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS["NO_MORE_RETURNABLE_STATES"]:
             # avoid to display No(...) message for each transition having the 'mayBackToMeeting'
             # guard expr, just return the No(...) msg for the first transitionName checking this...
             if "may_not_back_to_meeting_warned_by" not in self.context.REQUEST:
-                self.context.REQUEST.set(
-                    "may_not_back_to_meeting_warned_by", transitionName
-                )
-            if (
-                self.context.REQUEST.get("may_not_back_to_meeting_warned_by")
-                == transitionName
-            ):
+                self.context.REQUEST.set("may_not_back_to_meeting_warned_by", transitionName)
+            if self.context.REQUEST.get("may_not_back_to_meeting_warned_by") == transitionName:
                 return No(
                     _(
                         "can_not_return_to_meeting_because_of_meeting_state",
@@ -1149,11 +1098,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         res = False
         meeting = self.context.getMeeting()
-        if (
-            _checkPermission(ReviewPortalContent, self.context)
-            and meeting
-            and (meeting.query_state() in ["closed"])
-        ):
+        if _checkPermission(ReviewPortalContent, self.context) and meeting and (meeting.query_state() in ["closed"]):
             res = True
         return res
 
@@ -1195,9 +1140,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
         self.context.plone_utils.addPortalMessage("Done.")
         self.context.gotoReferer()
 
-    def performCustomWFAdaptations(
-        self, meetingConfig, wfAdaptation, logger, itemWorkflow, meetingWorkflow
-    ):
+    def performCustomWFAdaptations(self, meetingConfig, wfAdaptation, logger, itemWorkflow, meetingWorkflow):
         """This function applies workflow changes as specified by the
         p_meetingConfig."""
         itemStates = itemWorkflow.states
@@ -1205,11 +1148,9 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
 
         if wfAdaptation == "seraing_add_item_closed_states":
             state = itemWorkflow.states["accepted"]
-            state.permission_roles[
+            state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[
                 WriteItemMeetingManagerFields
-            ] = state.permission_roles[WriteItemMeetingManagerFields] + (
-                "MeetingManager",
-            )
+            ] + ("MeetingManager",)
             _addIsolatedState(
                 new_state_id="accepted_closed",
                 origin_state_id="accepted",
@@ -1222,11 +1163,9 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             )
             if "delayed" in itemStates:
                 state = itemWorkflow.states["delayed"]
-                state.permission_roles[
+                state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[
                     WriteItemMeetingManagerFields
-                ] = state.permission_roles[WriteItemMeetingManagerFields] + (
-                    "MeetingManager",
-                )
+                ] + ("MeetingManager",)
                 _addIsolatedState(
                     new_state_id="delayed_closed",
                     origin_state_id="delayed",
@@ -1239,11 +1178,9 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 )
             if "accepted_but_modified" in itemStates:
                 state = itemWorkflow.states["accepted_but_modified"]
-                state.permission_roles[
+                state.permission_roles[WriteItemMeetingManagerFields] = state.permission_roles[
                     WriteItemMeetingManagerFields
-                ] = state.permission_roles[WriteItemMeetingManagerFields] + (
-                    "MeetingManager",
-                )
+                ] + ("MeetingManager",)
                 _addIsolatedState(
                     new_state_id="accepted_but_modified_closed",
                     origin_state_id="accepted_but_modified",
@@ -1284,16 +1221,12 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 actbox_url="",
                 actbox_icon="%(portal_url)s/{0}.png".format("backToItemValidatedByDG"),
                 actbox_category="workflow",
-                props={
-                    "guard_expr": "python:here.wfConditions().{0}".format(
-                        "mayCorrect()"
-                    )
-                },
+                props={"guard_expr": "python:here.wfConditions().{0}".format("mayCorrect()")},
             )
             itemfrozen = itemWorkflow.states["itemfrozen"]
-            itemfrozen.transitions = tuple(
-                t for t in itemfrozen.transitions if t != "backToPresented"
-            ) + ("backToItemValidatedByDG",)
+            itemfrozen.transitions = tuple(t for t in itemfrozen.transitions if t != "backToPresented") + (
+                "backToItemValidatedByDG",
+            )
 
             new_meeting_state = _addIsolatedState(
                 new_state_id="validated_by_dg",
@@ -1319,16 +1252,10 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 actbox_url="",
                 actbox_icon="%(portal_url)s/{0}.png".format("backToValidatedByDG"),
                 actbox_category="workflow",
-                props={
-                    "guard_expr": "python:here.wfConditions().{0}".format(
-                        "mayCorrect()"
-                    )
-                },
+                props={"guard_expr": "python:here.wfConditions().{0}".format("mayCorrect()")},
             )
             frozen = meetingWorkflow.states["frozen"]
-            frozen.transitions = tuple(
-                t for t in frozen.transitions if t != "backToCreated"
-            ) + ("backToValidatedByDG",)
+            frozen.transitions = tuple(t for t in frozen.transitions if t != "backToCreated") + ("backToValidatedByDG",)
 
         if wfAdaptation == "seraing_powereditors":
             # change permission for PloneMeeting: add annex for states in which
@@ -1336,12 +1263,10 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             for state_id in POWEREDITORS_LOCALROLE_STATES["Editor"]:
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
-                    state.permission_roles[AddAnnex] = state.permission_roles[
-                        AddAnnex
-                    ] + ("Editor",)
-                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[
-                        WriteMarginalNotes
-                    ] + ("Editor",)
+                    state.permission_roles[AddAnnex] = state.permission_roles[AddAnnex] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + (
+                        "Editor",
+                    )
             for state_id in (
                 "accepted_closed",
                 "delayed_closed",
@@ -1350,30 +1275,24 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 # We also have to add closed state variants to WriteMarginalNotes for powereditors
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
-                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[
-                        WriteMarginalNotes
-                    ] + ("Editor",)
+                    state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + (
+                        "Editor",
+                    )
             # Allow power editors to update item references
             meetingTypeName = meetingConfig.getMeetingTypeName()
             fti = self.context.portal_types[meetingTypeName]
             action = fti.getActionObject("object_buttons/update_item_references")
-            action.condition = Expression(
-                "python: object.adapted().may_update_item_references()"
-            )
+            action.condition = Expression("python: object.adapted().may_update_item_references()")
             action.permission = "View"
 
         if wfAdaptation == "seraing_returned_to_advise":
             if "returned_to_proposing_group" not in itemStates:
-                raise ValueError(
-                    "returned_to_proposing_group should be in itemStates for this WFA"
-                )
+                raise ValueError("returned_to_proposing_group should be in itemStates for this WFA")
 
             if "returned_to_advise" not in itemStates:
                 itemStates.addState("returned_to_advise")
             returned_to_advise = getattr(itemStates, "returned_to_advise")
-            returned_to_advise.permission_roles = deepcopy(
-                itemStates.returned_to_proposing_group.permission_roles
-            )
+            returned_to_advise.permission_roles = deepcopy(itemStates.returned_to_proposing_group.permission_roles)
 
             if "return_to_advise" not in itemTransitions:
                 itemTransitions.addTransition("return_to_advise")
@@ -1389,9 +1308,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 actbox_url="",
                 actbox_category="workflow",
                 actbox_icon="%(portal_url)s/return_to_advise.png",
-                props={
-                    "guard_expr": "python:here.wfConditions().mayReturnToProposingGroup()"
-                },
+                props={"guard_expr": "python:here.wfConditions().mayReturnToProposingGroup()"},
             )
             returned_to_advise.setProperties(
                 title="returned_to_advise",
@@ -1407,30 +1324,19 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 "itemfrozen",
             ]
             if "returned_to_proposing_group_proposed" in itemStates:
-                return_to_advice_item_state.append(
-                    "returned_to_proposing_group_proposed"
-                )
+                return_to_advice_item_state.append("returned_to_proposing_group_proposed")
             if "returned_to_proposing_group" in itemStates:
                 return_to_advice_item_state.append("returned_to_proposing_group")
             for state_id in return_to_advice_item_state:
-                new_trx = tuple(
-                    list(itemStates[state_id].getTransitions()) + ["return_to_advise"]
-                )
+                new_trx = tuple(list(itemStates[state_id].getTransitions()) + ["return_to_advise"])
                 itemStates[state_id].transitions = new_trx
 
-            logger.info(
-                WF_APPLIED % ("seraing_returned_to_advise", meetingConfig.getId())
-            )
+            logger.info(WF_APPLIED % ("seraing_returned_to_advise", meetingConfig.getId()))
             return True
 
-        if (
-            wfAdaptation
-            == "seraing_return_to_proposing_group_with_last_validation_patch"
-        ):
+        if wfAdaptation == "seraing_return_to_proposing_group_with_last_validation_patch":
             if "returned_to_proposing_group_proposed" not in itemStates:
-                raise ValueError(
-                    "return_to_proposing_group_with_last_validation should be in itemStates for this WFA"
-                )
+                raise ValueError("return_to_proposing_group_with_last_validation should be in itemStates for this WFA")
 
             transition_id = "goTo_%s" % ("returned_to_proposing_group_proposed")
             transition = itemTransitions[transition_id]
@@ -1566,10 +1472,7 @@ def may_store_podtemplate_as_annex(self, pod_template):
         return False
     tool = api.portal.get_tool("portal_plonemeeting")
     cfg = tool.getMeetingConfig(self.context)
-    return (
-        tool.isManager(cfg)
-        or self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Contributor"]
-    )
+    return tool.isManager(cfg) or self.context.query_state() in POWEREDITORS_LOCALROLE_STATES["Contributor"]
 
 
 PMDocumentGeneratorLinksViewlet.may_store_as_annex = may_store_podtemplate_as_annex
@@ -1581,9 +1484,10 @@ def store_podtemplate_as_annex_batch_action_available(self):
     only in meeting states between created and closed
     """
     tool = api.portal.get_tool("portal_plonemeeting")
-    powereditor_batch_action_available = tool.userIsAmong(
-        ["powereditors"]
-    ) and self.context.query_state() not in ("created", "closed")
+    powereditor_batch_action_available = tool.userIsAmong(["powereditors"]) and self.context.query_state() not in (
+        "created",
+        "closed",
+    )
     if (
         self.cfg.getMeetingItemTemplatesToStoreAsAnnex()
         and _checkPermission(ModifyPortalContent, self.context)
@@ -1592,6 +1496,4 @@ def store_podtemplate_as_annex_batch_action_available(self):
         return True
 
 
-MeetingStoreItemsPodTemplateAsAnnexBatchActionForm.available = (
-    store_podtemplate_as_annex_batch_action_available
-)
+MeetingStoreItemsPodTemplateAsAnnexBatchActionForm.available = store_podtemplate_as_annex_batch_action_available
