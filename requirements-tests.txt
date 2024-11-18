@@ -1,3 +1,7 @@
--r https://raw.githubusercontent.com/IMIO/buildout.pm/refs/heads/master/requirements.txt
-coverage==5.5
+pip==20.3.4
+setuptools==44.1.1
 zc.buildout==3.0.1
+wheel
+# mccabe fails to install during buildout?
+mccabe==0.6.1
+coverage==5.5
