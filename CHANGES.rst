@@ -6,7 +6,8 @@ Products.MeetingSeraing Changelog
 
 - Adapted `adapters.CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS`.
   [aduchene]
-
+- Add new helper methods used in pod templates.
+  [aduchene]
 
 4.2.9 (2024-06-21)
 ------------------
@@ -14,13 +15,11 @@ Products.MeetingSeraing Changelog
 - Fixed `meetingitem_view.pt`.
   [aduchene]
 
-
 4.2.8 (2024-03-29)
 ------------------
 
 - Add missing import in adapters.py.
   [aduchene]
-
 
 4.2.7 (2024-03-27)
 ------------------

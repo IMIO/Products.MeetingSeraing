@@ -437,6 +437,56 @@ class CustomSeraingMeeting(CustomMeeting):
             res.append(final_res)
         return res
 
+    security.declarePublic("get_oj_groups_in_charge")
+
+    def get_oj_groups_in_charge(self, unrestricted=False):
+        res = []
+        items = self.context.get_items(the_objects=True, ordered=True, unrestricted=unrestricted)
+        with api.env.adopt_roles(['Manager']):
+            for item in items:
+                if item.getGroupsInCharge() and item.getGroupsInCharge()[0] not in res:
+                    res.append(item.getGroupsInCharge()[0])
+            return res
+
+    security.declarePublic("get_oj_gp")
+
+    def get_oj_gp(self, in_charge, unrestricted=False):
+        res = []
+        items = self.context.get_items(the_objects=True,
+                               ordered=True,
+                               additional_catalog_query={'getGroupsInCharge': [in_charge]},
+                               unrestricted=unrestricted)
+        with api.env.adopt_roles(['Manager']):
+            for item in items:
+                if item.getProposingGroup() not in res:
+                    res.append(item.getProposingGroup())
+            return res
+
+    security.declarePublic("get_oj_items")
+
+    def get_oj_items(self, in_charge, proposing_group, unrestricted=False):
+        normal = []
+        late = []
+        query = {'getGroupsInCharge': [in_charge], 'getProposingGroup': proposing_group}
+        items = self.context.get_items(the_objects=True,
+                               ordered=True,
+                               additional_catalog_query=query,
+                               list_types=['normal'], unrestricted=unrestricted)
+        late_items = self.context.get_items(the_objects=True,
+                                   ordered=True,
+                                   additional_catalog_query=query,
+                                   list_types=['late'], unrestricted=unrestricted)
+        with api.env.adopt_roles(['Manager']):
+            num = 1
+            for item in items:
+                normal.append((num, item))
+                num += 1
+
+            for item in late_items:
+                late.append((num, item))
+                num += 1
+            return normal, late
+
     security.declarePublic("listSections")
 
     def listSections(self):
