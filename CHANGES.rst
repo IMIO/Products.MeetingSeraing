@@ -8,6 +8,8 @@ Products.MeetingSeraing Changelog
   [aduchene]
 - Add new helper methods used in pod templates.
   [aduchene]
+- Fixed various things related to a new validation level 'proposed to director'.
+  [aduchene]
 
 4.2.9 (2024-06-21)
 ------------------

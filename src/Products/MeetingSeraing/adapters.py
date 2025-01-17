@@ -8,6 +8,7 @@ from AccessControl import Unauthorized
 from AccessControl.class_init import InitializeClass
 from appy.gen import No
 from copy import deepcopy
+from collections import OrderedDict
 from DateTime import DateTime
 from imio.helpers.workflow import get_transitions
 from plone import api
@@ -27,13 +28,9 @@ from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
 from Products.MeetingSeraing.config import POWEREDITORS_GROUP_SUFFIX
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowActions
-from Products.MeetingSeraing.interfaces import (
-    IMeetingItemSeraingCollegeWorkflowConditions,
-)
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCollegeWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowActions
-from Products.MeetingSeraing.interfaces import (
-    IMeetingItemSeraingCouncilWorkflowConditions,
-)
+from Products.MeetingSeraing.interfaces import IMeetingItemSeraingCouncilWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingItemSeraingWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingCollegeWorkflowActions
@@ -42,14 +39,9 @@ from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowAct
 from Products.MeetingSeraing.interfaces import IMeetingSeraingCouncilWorkflowConditions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowActions
 from Products.MeetingSeraing.interfaces import IMeetingSeraingWorkflowConditions
-from Products.PloneMeeting.adapters import (
-    ItemPrettyLinkAdapter,
-    MeetingItemContentDeletableAdapter,
-)
+from Products.PloneMeeting.adapters import ItemPrettyLinkAdapter, MeetingItemContentDeletableAdapter
 from Products.PloneMeeting.browser.overrides import PMDocumentGeneratorLinksViewlet
-from Products.PloneMeeting.browser.batchactions import (
-    MeetingStoreItemsPodTemplateAsAnnexBatchActionForm,
-)
+from Products.PloneMeeting.browser.batchactions import MeetingStoreItemsPodTemplateAsAnnexBatchActionForm
 from Products.PloneMeeting.config import AddAnnex, WriteItemMeetingManagerFields
 from Products.PloneMeeting.config import MEETING_REMOVE_MOG_WFA
 from Products.PloneMeeting.config import MEETINGMANAGERS_GROUP_SUFFIX
@@ -96,6 +88,10 @@ customWfAdaptations = (
     "return_to_proposing_group_with_last_validation",
     "seraing_return_to_proposing_group_with_last_validation_patch",
     "seraing_returned_to_advise",
+    "accepted_out_of_meeting",
+    "accepted_out_of_meeting_and_duplicated",
+    "accepted_out_of_meeting_emergency",
+    "accepted_out_of_meeting_emergency_and_duplicated",
     MEETING_REMOVE_MOG_WFA,
 )
 MeetingConfig.wfAdaptations = customWfAdaptations
@@ -442,7 +438,7 @@ class CustomSeraingMeeting(CustomMeeting):
     def get_oj_groups_in_charge(self, unrestricted=False):
         res = []
         items = self.context.get_items(the_objects=True, ordered=True, unrestricted=unrestricted)
-        with api.env.adopt_roles(['Manager']):
+        with api.env.adopt_roles(["Manager"]):
             for item in items:
                 if item.getGroupsInCharge() and item.getGroupsInCharge()[0] not in res:
                     res.append(item.getGroupsInCharge()[0])
@@ -452,11 +448,13 @@ class CustomSeraingMeeting(CustomMeeting):
 
     def get_oj_gp(self, in_charge, unrestricted=False):
         res = []
-        items = self.context.get_items(the_objects=True,
-                               ordered=True,
-                               additional_catalog_query={'getGroupsInCharge': [in_charge]},
-                               unrestricted=unrestricted)
-        with api.env.adopt_roles(['Manager']):
+        items = self.context.get_items(
+            the_objects=True,
+            ordered=True,
+            additional_catalog_query={"getGroupsInCharge": [in_charge]},
+            unrestricted=unrestricted,
+        )
+        with api.env.adopt_roles(["Manager"]):
             for item in items:
                 if item.getProposingGroup() not in res:
                     res.append(item.getProposingGroup())
@@ -467,16 +465,22 @@ class CustomSeraingMeeting(CustomMeeting):
     def get_oj_items(self, in_charge, proposing_group, unrestricted=False):
         normal = []
         late = []
-        query = {'getGroupsInCharge': [in_charge], 'getProposingGroup': proposing_group}
-        items = self.context.get_items(the_objects=True,
-                               ordered=True,
-                               additional_catalog_query=query,
-                               list_types=['normal'], unrestricted=unrestricted)
-        late_items = self.context.get_items(the_objects=True,
-                                   ordered=True,
-                                   additional_catalog_query=query,
-                                   list_types=['late'], unrestricted=unrestricted)
-        with api.env.adopt_roles(['Manager']):
+        query = {"getGroupsInCharge": [in_charge], "getProposingGroup": proposing_group}
+        items = self.context.get_items(
+            the_objects=True,
+            ordered=True,
+            additional_catalog_query=query,
+            list_types=["normal"],
+            unrestricted=unrestricted,
+        )
+        late_items = self.context.get_items(
+            the_objects=True,
+            ordered=True,
+            additional_catalog_query=query,
+            list_types=["late"],
+            unrestricted=unrestricted,
+        )
+        with api.env.adopt_roles(["Manager"]):
             num = 1
             for item in items:
                 normal.append((num, item))
@@ -770,6 +774,7 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
 
     def get_item_corresponding_state_to_assign_local_roles(self, item_state):
         """See doc in interfaces.py."""
+        meetingConfig = self.getSelf()
         corresponding_item_state = None
         # XXX returned_to_proposing_group_xxx is special in MeetingSeraing
         # returned_to_proposing_group_proposed is equivalent to proposed state
@@ -777,7 +782,10 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         # BUT returned_to_proposing_group has no equivalent,
         # everybody from the proposing group can edit
         if item_state == "returned_to_proposing_group_proposed":
-            corresponding_item_state = "proposed"
+            if "proposed_to_director" in meetingConfig.getItemWFValidationLevels(data="state", only_enabled=True):
+                corresponding_item_state = "proposed_to_director"
+            else:
+                corresponding_item_state = "proposed"
         # waiting_advices WFAdaptation
         elif item_state.endswith("_waiting_advices"):
             corresponding_item_state = item_state.split("_waiting_advices")[0]
@@ -840,6 +848,25 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
 
     def extra_item_decided_states(self):
         return ["accepted_closed", "delayed_closed", "accepted_but_modified_closed"]
+
+    def _custom_reviewersFor(self):
+        """Manage reviewersFor Bourgmestre because as some 'creators' suffixes are
+        used after reviewers levels, this break the _highestReviewerLevel and other
+        related hierarchic level functionalities."""
+        cfg = self.getSelf()
+        if "proposed_to_director" not in cfg.getItemWFValidationLevels(data="state", only_enabled=True):
+            return None  # Nothing custom to do
+
+        # Custom: reviewers ('directors') can review items proposed to the representative ('proposed')
+        return OrderedDict(
+            [
+                ("representatives", ["proposed"]),
+                ("reviewers", ["proposed_to_director", "proposed"]),
+                ("divisionheads", ["proposed_to_divisionhead"]),
+                ("officemanagers", ["proposed_to_officemanager"]),
+                ("serviceheads", ["proposed_to_servicehead"]),
+            ]
+        )
 
 
 class MeetingSeraingWorkflowActions(MeetingCommunesWorkflowActions):
@@ -1089,6 +1116,19 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         """
         return _checkPermission(ReviewPortalContent, self.context)
 
+    security.declarePublic("mayCorrect")
+
+    def mayCorrect(self, destinationState=None):
+        """See docstring in interfaces.py"""
+        if (
+            self.context.query_state() == "proposed"
+            and "proposed_to_director" in self.cfg.getItemWFValidationLevels(data="state", only_enabled=True)
+            and destinationState != "proposed_to_director"
+        ):
+            return False
+        else:
+            return super(MeetingItemSeraingWorkflowConditions, self).mayCorrect(destinationState)
+
     security.declarePublic("mayBackToMeeting")
 
     def mayBackToMeeting(self, transitionName):
@@ -1104,7 +1144,9 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
                 if self.review_state == "returned_to_proposing_group"
                 else self.review_state.replace("returned_to_proposing_group_", "")
             )
+
             last_val_state = self._getLastValidationState()
+
             # we are in last validation state, or we are in state 'returned_to_proposing_group'
             # and there is no last validation state, aka it is "itemcreated"
             if current_validation_state != last_val_state:
@@ -1129,13 +1171,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
                 return No(
                     _(
                         "can_not_return_to_meeting_because_of_meeting_state",
-                        mapping={
-                            "meetingState": translate(
-                                meetingState,
-                                domain="plone",
-                                context=self.context.REQUEST,
-                            )
-                        },
+                        mapping={"meetingState": translate(meetingState, domain="plone", context=self.context.REQUEST)},
                     )
                 )
         return False
@@ -1410,11 +1446,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             )
 
             logger.info(
-                WF_APPLIED
-                % (
-                    "seraing_return_to_proposing_group_with_last_validation_patch",
-                    meetingConfig.getId(),
-                )
+                WF_APPLIED % ("seraing_return_to_proposing_group_with_last_validation_patch", meetingConfig.getId())
             )
             return True
         return False
