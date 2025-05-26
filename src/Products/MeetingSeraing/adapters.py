@@ -97,54 +97,38 @@ customWfAdaptations = (
 MeetingConfig.wfAdaptations = customWfAdaptations
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
-    "backTo_presented_from_returned_to_proposing_group": {
-        "*": [
-            "created",
-        ]
-    },
-    "backTo_validated_by_dg_from_returned_to_proposing_group": {
-        "*": [
-            "validated_by_dg",
-        ]
-    },
-    "backTo_itempublished_from_returned_to_proposing_group": {
-        "*": [
-            "published",
-        ]
-    },
-    "backTo_itemfrozen_from_returned_to_proposing_group": {
-        "*": [
-            "frozen",
-            "decided",
-            "decisions_published",
-        ]
-    },
-    "backTo_presented_from_returned_to_advise": {
-        "*": [
-            "created",
-        ]
-    },
-    "backTo_validated_by_dg_from_returned_to_advise": {
-        "*": [
-            "validated_by_dg",
-        ]
-    },
-    "backTo_itemfrozen_from_returned_to_advise": {
-        "*": [
-            "frozen",
-            "decided",
-            "decisions_published",
-        ]
-    },
-    "backTo_returned_to_proposing_group_from_returned_to_advise": {
-        "*": [
-            "created",
-            "validated_by_dg",
-            "frozen",
-            "decided",
-            "decisions_published",
-        ]
-    },
+    "backTo_presented_from_returned_to_proposing_group": [
+        "created",
+    ],
+    "backTo_validated_by_dg_from_returned_to_proposing_group": [
+        "validated_by_dg",
+    ],
+    "backTo_itempublished_from_returned_to_proposing_group": [
+        "published",
+    ],
+    "backTo_itemfrozen_from_returned_to_proposing_group": [
+        "frozen",
+        "decided",
+        "decisions_published",
+    ],
+    "backTo_presented_from_returned_to_advise": [
+        "created",
+    ],
+    "backTo_validated_by_dg_from_returned_to_advise": [
+        "validated_by_dg",
+    ],
+    "backTo_itemfrozen_from_returned_to_advise": [
+        "frozen",
+        "decided",
+        "decisions_published",
+    ],
+    "backTo_returned_to_proposing_group_from_returned_to_advise": [
+        "created",
+        "validated_by_dg",
+        "frozen",
+        "decided",
+        "decisions_published",
+    ],
     "NO_MORE_RETURNABLE_STATES": [
         "closed",
         "archived",
@@ -182,11 +166,7 @@ POWEREDITORS_LOCALROLE_STATES = {
         "accepted_but_modified",
         "pre_accepted",
     ),
-    "MeetingManager": (
-        "accepted_closed",
-        "accepted_but_modified_closed",
-        "delayed_closed",
-    ),
+    "MeetingManager": ("accepted_closed", "accepted_but_modified_closed", "delayed_closed"),
 }
 
 
@@ -465,6 +445,7 @@ class CustomSeraingMeeting(CustomMeeting):
     def get_oj_items(self, in_charge, proposing_group, unrestricted=False):
         normal = []
         late = []
+        num = 1
         query = {"getGroupsInCharge": [in_charge], "getProposingGroup": proposing_group}
         items = self.context.get_items(
             the_objects=True,
@@ -481,7 +462,6 @@ class CustomSeraingMeeting(CustomMeeting):
             unrestricted=unrestricted,
         )
         with api.env.adopt_roles(["Manager"]):
-            num = 1
             for item in items:
                 normal.append((num, item))
                 num += 1
@@ -857,10 +837,9 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         if "proposed_to_director" not in cfg.getItemWFValidationLevels(data="state", only_enabled=True):
             return None  # Nothing custom to do
 
-        # Custom: reviewers ('directors') can review items proposed to the representative ('proposed')
         return OrderedDict(
             [
-                ("representatives", ["proposed"]),
+                ("representatives", ["proposed_to_representative", "proposed"]),
                 ("reviewers", ["proposed_to_director", "proposed"]),
                 ("divisionheads", ["proposed_to_divisionhead"]),
                 ("officemanagers", ["proposed_to_officemanager"]),
@@ -1121,7 +1100,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
     def mayCorrect(self, destinationState=None):
         """See docstring in interfaces.py"""
         if (
-            self.context.query_state() == "proposed"
+            self.context.query_state() == "proposed_to_representative"
             and "proposed_to_director" in self.cfg.getItemWFValidationLevels(data="state", only_enabled=True)
             and destinationState != "proposed_to_director"
         ):
@@ -1149,7 +1128,7 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
 
             # we are in last validation state, or we are in state 'returned_to_proposing_group'
             # and there is no last validation state, aka it is "itemcreated"
-            if current_validation_state != last_val_state:
+            if current_validation_state != "proposed":
                 return
         # get the linked meeting
         meeting = self.context.getMeeting()
@@ -1277,6 +1256,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     itemWorkflow=itemWorkflow,
                     base_state_id="accepted_but_modified",
                 )
+
         if wfAdaptation == "seraing_validated_by_DG":
             # add state from itemfrozen? itempublished? presented? ...
             # same origin as mandatory transition 'accept'
@@ -1291,10 +1271,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 base_state_id="presented",
             )
             new_state.transitions = new_state.transitions + ("itemfreeze",)
-            itemWorkflow.states["presented"].transitions = (
-                "backToValidated",
-                "itemValidateByDG",
-            )
+            itemWorkflow.states["presented"].transitions = ("backToValidated", "itemValidateByDG")
 
             itemWorkflow.transitions.addTransition("backToItemValidatedByDG")
             transition = itemWorkflow.transitions["backToItemValidatedByDG"]
@@ -1353,11 +1330,7 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                     state.permission_roles[WriteMarginalNotes] = state.permission_roles[WriteMarginalNotes] + (
                         "Editor",
                     )
-            for state_id in (
-                "accepted_closed",
-                "delayed_closed",
-                "accepted_but_modified_closed",
-            ):
+            for state_id in ("accepted_closed", "delayed_closed", "accepted_but_modified_closed"):
                 # We also have to add closed state variants to WriteMarginalNotes for powereditors
                 if state_id in itemWorkflow.states:
                     state = itemWorkflow.states[state_id]
