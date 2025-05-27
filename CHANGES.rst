@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix `meetingitem_view.pt`.
+  [aduchene]
 
 
 4.2.10 (2025-05-26)
