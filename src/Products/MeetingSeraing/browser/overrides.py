@@ -6,6 +6,7 @@
 #
 # GNU General Public License (GPL)
 #
+from imio.annex.content.annex import IAnnex
 from imio.zamqp.pm.browser.views import InsertBarcodeView
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import _checkPermission
@@ -23,7 +24,10 @@ class SeraingInsertBarcodeView(InsertBarcodeView):
                 res = True
             else:
                 cfg = self.tool.getMeetingConfig(self.context)
-                isManagerOrPowerEditor = self.tool.isManager(cfg) or self.context.adapted().powerEditorEditable()
+                ctx = self.context
+                if IAnnex.providedBy(self.ctx):
+                    ctx = ctx.aq_parent
+                isManagerOrPowerEditor = self.tool.isManager(cfg) or ctx.adapted().powerEditorEditable()
                 barcode_inserted = getattr(self.context, "scan_id", False)
                 if isManagerOrPowerEditor and \
                    not barcode_inserted and \

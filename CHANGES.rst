@@ -6,7 +6,8 @@ Products.MeetingSeraing Changelog
 
 - Fix `meetingitem_view.pt`.
   [aduchene]
-
+- Fix an issue in `SeraingInsertBarcodeView.may_insert_barcode` when context was an Annex.
+  [aduchene]
 
 4.2.10 (2025-05-26)
 -------------------
