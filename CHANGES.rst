@@ -4,7 +4,8 @@ Products.MeetingSeraing Changelog
 4.2.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix an issue in `SeraingInsertBarcodeView.may_insert_barcode`.
+  [aduchene]
 
 
 4.2.11 (2025-08-19)
