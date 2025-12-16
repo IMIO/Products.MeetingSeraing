@@ -86,6 +86,7 @@ customWfAdaptations = (
     "seraing_powereditors",
     "return_to_proposing_group",
     "return_to_proposing_group_with_last_validation",
+    "return_to_proposing_group_with_before_last_validation",
     "seraing_return_to_proposing_group_with_last_validation_patch",
     "seraing_returned_to_advise",
     "accepted_out_of_meeting",
@@ -1124,11 +1125,11 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
                 else self.review_state.replace("returned_to_proposing_group_", "")
             )
 
-            last_val_state = self._getLastValidationState()
-
+            is_before_last = "return_to_proposing_group_with_before_last_validation" in self.cfg.getWorkflowAdaptations()
+            last_val_state = self._getLastValidationState(before_last=is_before_last)
             # we are in last validation state, or we are in state 'returned_to_proposing_group'
             # and there is no last validation state, aka it is "itemcreated"
-            if current_validation_state != "proposed":
+            if current_validation_state != last_val_state:
                 return
         # get the linked meeting
         meeting = self.context.getMeeting()
