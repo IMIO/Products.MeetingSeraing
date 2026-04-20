@@ -1,40 +1,18 @@
 # -*- coding: utf-8 -*-
-# ------------------------------------------------------------------------------
 #
-# File: adapters.py
-#
-# Copyright (c) 2013 by Imio.be
+# File: pm_updates.py
 #
 # GNU General Public License (GPL)
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
-# ------------------------------------------------------------------------------
+
 from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import RichWidget
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import TextField
 from Products.Archetypes.Field import LinesField
 from Products.Archetypes.Widget import InAndOutWidget
-from Products.DataGridField import DataGridField
-from Products.DataGridField.Column import Column
-from Products.DataGridField.SelectColumn import SelectColumn
 from Products.PloneMeeting.config import registerClasses
 from Products.PloneMeeting.config import WriteRiskyConfig
-from Products.PloneMeeting.Meeting import Meeting
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
 
