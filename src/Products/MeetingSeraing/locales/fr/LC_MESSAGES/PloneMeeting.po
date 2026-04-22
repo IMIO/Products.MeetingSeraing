@@ -69,6 +69,10 @@ msgstr "Cette zone sera reprise dans le pv."
 msgid "MeetingSeraing_descr_signatures"
 msgstr "Si vous ne remplissez pas le champ, les signatures certifiées définies sur la configuration de séance seront utilisées.  Si vous utilisez ce champ, il est obligatoire de définir 12 lignes (les 6 premières pour le collège et les 6 dernières pour le conseil).  Si une signature ne doit pas être surchagée, utilisez des tirets '-'."
 
+#. Default: "Commissions"
+msgid "MeetingSeraing_label_commissions"
+msgstr "Commissions"
+
 #. Default: "Deliberation"
 msgid "MeetingSeraing_label_councildecision"
 msgstr "Délibération"
@@ -97,9 +101,9 @@ msgstr "Avant-séance"
 msgid "MeetingSeraing_label_pvNote"
 msgstr "Note de pv"
 
-#. Default: "Commissions"
-msgid "MeetingSeraing_label_commissions"
-msgstr "Commissions"
+#. Default: "Transitions reinitializing taken over by"
+msgid "MeetingSeraing_label_transitions_reinitializing_taken_over_by"
+msgstr "Transitions qui réinitialisent la prise en charge"
 
 #. Default: "Personal Note for DG on Meeting"
 msgid "MeetingSeraing_msgid_meeting_notes"
@@ -113,12 +117,6 @@ msgstr "Instructions"
 msgid "PloneMeeting_label_deadlineFreeze"
 msgstr "Echéance pour valider les points supplémentaires"
 
-# import what was done in MeetingCommunes
-# MeetingItem
-#. Default: "Decision"
-msgid "PloneMeeting_label_decision"
-msgstr "Décision"
-
 #. Default: "Detailed description"
 msgid "PloneMeeting_label_detailedDescription"
 msgstr "Note de synthèse"
@@ -126,6 +124,10 @@ msgstr "Note de synthèse"
 #. Default: "Default deadline for validating late items for a given meeting"
 msgid "PloneMeeting_label_freezeDeadlineDefault"
 msgstr "Echéance par défaut pour valider les points supplémentaires pour une séance donnée"
+
+#. Default: "Notes groups in charge"
+msgid "PloneMeeting_label_groupsInChargeNotes"
+msgstr "Notes politiques"
 
 #. Default: "Description"
 msgid "PloneMeeting_label_itemDescription"
@@ -330,22 +332,18 @@ msgstr "chefs de service"
 msgid "signatures_length_error"
 msgstr "Renseignez 12 lignes pour les signatures.  Si une signature ne doit pas être surchargée (si la signature définie dans la configuration de séance dans le champ 'Signatures certifiées' doit être utilisée), renseignez un tiret (-)."
 
-#. Default: "Return to advise (MeetingSeraing)"
-msgid "wa_seraing_returned_to_advise"
-msgstr "Renvoyer pour avis (MeetingSeraing)"
-
 #. Default: "Closed and decided states (MeetingSeraing)"
 msgid "wa_seraing_add_item_closed_states"
 msgstr "États décidés et clôturés (MeetingSeraing)"
-
-#. Default: "Validated by DG (MeetingSeraing)"
-msgid "wa_seraing_validated_by_DG"
-msgstr "État validé par DG (MeetingSeraing)"
 
 #. Default: "Power editors (MeetingSeraing)"
 msgid "wa_seraing_powereditors"
 msgstr "Super éditeurs (MeetingSeraing)"
 
-#. Default: "Transitions reinitializing taken over by"
-msgid "MeetingSeraing_label_transitions_reinitializing_taken_over_by"
-msgstr "Transitions qui réinitialisent la prise en charge"
+#. Default: "Return to advise (MeetingSeraing)"
+msgid "wa_seraing_returned_to_advise"
+msgstr "Renvoyer pour avis (MeetingSeraing)"
+
+#. Default: "Validated by DG (MeetingSeraing)"
+msgid "wa_seraing_validated_by_DG"
+msgstr "État validé par DG (MeetingSeraing)"
