@@ -4,8 +4,12 @@ Products.MeetingSeraing Changelog
 4.2.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Updated item templates (view and edit).
+  [gbastien]
+- Completed and cleaned locales.
+  [gbastien]
+- Adapted french translation for field `MeetingItem.groupsInChargeNote`.
+  [gbastien]
 
 4.2.12 (2025-08-20)
 -------------------

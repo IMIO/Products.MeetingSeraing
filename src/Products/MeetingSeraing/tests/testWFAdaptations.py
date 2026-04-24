@@ -44,6 +44,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
                 "seraing_validated_by_DG",
                 "seraing_powereditors",
                 "return_to_proposing_group",
+                "return_to_proposing_group_with_before_last_validation",
                 "return_to_proposing_group_with_last_validation",
                 "seraing_return_to_proposing_group_with_last_validation_patch",
                 "seraing_returned_to_advise",

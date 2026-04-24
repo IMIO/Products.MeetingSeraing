@@ -20,65 +20,9 @@ msgstr ""
 msgid "MeetingCoDir"
 msgstr "Séance du Comité de Direction"
 
-#. Default: "MeetingCollege"
-msgid "MeetingCollege"
-msgstr "Séance du Collège communal"
-
-#. Default: "MeetincCouncil"
-msgid "MeetingCouncil"
-msgstr "Séance du Conseil communal"
-
-#. Default: "MeetingZCollege"
-msgid "MeetingZCollege"
-msgstr "Séance du Collège de police"
-
-#. Default: "MeetingZCouncil"
-msgid "MeetingZCouncil"
-msgstr "Séance du Conseil de police"
-
-#. Default: "Negociation assembly"
-msgid "MeetingNegociation"
-msgstr "Séance du Comité de concertation et négociation"
-
-#. Default: "MeetingCCVC"
-msgid "MeetingCCVC"
-msgstr "Séance du Comité de Direction conjoint Ville-CPAS"
-
-#. Default: "MeetingNegociation"
-msgid "MeetingCDVC"
-msgstr "Séance du Conseil communal conjoint Ville-CPAS"
-
 #. Default: "MeetingItemCoDir"
 msgid "MeetingItemCoDir"
 msgstr "Point Comité de Direction"
-
-#. Default: "MeetingItemCollege"
-msgid "MeetingItemCollege"
-msgstr "Point Collège communal"
-
-#. Default: "MeetingItemCouncil"
-msgid "MeetingItemCouncil"
-msgstr "Point Conseil communal"
-
-#. Default: "MeetingItemZCollege"
-msgid "MeetingItemZCollege"
-msgstr "Point Collège de police"
-
-#. Default: "MeetingItemZCouncil"
-msgid "MeetingItemZCouncil"
-msgstr "Point Conseil de police"
-
-#. Default: "Negociation assembly"
-msgid "MeetingItemNegociation"
-msgstr "Point du Comité de concertation et négociation"
-
-#. Default: "MeetingItemCCVC"
-msgid "MeetingItemCCVC"
-msgstr "Point du Conseil communal conjoint Ville-CPAS"
-
-#. Default: "MeetingItemNegociation"
-msgid "MeetingItemCDVC"
-msgstr "Point du Comité de Direction conjoint Ville-CPAS"
 
 #. Default: "MeetingItemRecurringCoDir"
 msgid "MeetingItemRecurringCoDir"
@@ -211,10 +155,6 @@ msgstr "Envoyer vers Collège de Police"
 msgid "create_to_meeting-config-zcouncil_from_meeting-config-zcollege"
 msgstr "Envoyer vers Conseil de Police"
 
-#. Default: "Decisions"
-msgid "decisions"
-msgstr "Décisions"
-
 #. Default: "Delay On Closed Meeting"
 msgid "delay_close"
 msgstr "Reporter (c)"
@@ -242,10 +182,6 @@ msgstr "Valider le point par le DG"
 #. Default: "frozen"
 msgid "itemfrozen"
 msgstr "Gelé"
-
-#. Default: "Description"
-msgid "meeting_item_description"
-msgstr "Description dans l'ordre du jour"
 
 msgid "propose"
 msgstr "Proposer au directeur"

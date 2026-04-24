@@ -11,23 +11,6 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
-# types
-#. Default: "MeetingCollege"
-msgid "MeetingCollege"
-msgstr ""
-
-#. Default: "MeetincCouncil"
-msgid "MeetingCouncil"
-msgstr ""
-
-#. Default: "MeetingItemCollege"
-msgid "MeetingItemCollege"
-msgstr ""
-
-#. Default: "MeetingItemCouncil"
-msgid "MeetingItemCouncil"
-msgstr ""
-
 # various
 # MeetingItem
 #. Default: "Decision"
@@ -57,10 +40,6 @@ msgstr ""
 msgid "return_to_secretary"
 msgstr ""
 
-#. Default: "Decisions"
-msgid "decisions"
-msgstr ""
-
 #. Default: "Freeze"
 msgid "freeze"
 msgstr ""
@@ -71,10 +50,6 @@ msgstr ""
 
 #. Default: "Frozen"
 msgid "itemfrozen"
-msgstr ""
-
-#. Default: "Description"
-msgid "meeting_item_description"
 msgstr ""
 
 msgid "propose"
@@ -180,8 +155,8 @@ msgstr ""
 msgid "some_item_still_in_service"
 msgstr ""
 
-#. Default: "Create an item council from an item college" 
-msgid "create_to_meeting-config-council_from_meeting-config-college" 
+#. Default: "Create an item council from an item college"
+msgid "create_to_meeting-config-council_from_meeting-config-college"
 msgstr ""
 
 #. Default: "Accepted but modified On Closed Meeting"
@@ -323,5 +298,5 @@ msgstr ""
 
 #. Default: "Go to returned to proposing group (proposed)"
 msgid "goTo_returned_to_proposing_group_proposed"
-msgstr "Proposer au directeur"
+msgstr ""
 

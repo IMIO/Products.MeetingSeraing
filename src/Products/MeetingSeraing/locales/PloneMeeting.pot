@@ -48,13 +48,6 @@ msgstr ""
 msgid "divisionheads"
 msgstr ""
 
-#import what was done in MeetingCommunes
-
-# MeetingItem
-#. Default: "Decision"
-msgid "PloneMeeting_label_decision"
-msgstr ""
-
 # searches
 #. Default: "proposed items"
 msgid "searchproposeditems"
@@ -183,50 +176,50 @@ msgstr ""
 msgid "icon_help_to_print"
 msgstr ""
 
-#. Default: "Alderman of the following services (departments)" 
-msgid "MeetingCommunes_label_echevinServices" 
+#. Default: "Alderman of the following services (departments)"
+msgid "MeetingCommunes_label_echevinServices"
 msgstr ""
 
 
-#. Default: "Initialize the item decision when deciding meeting" 
-msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide" 
-msgstr "" 
+#. Default: "Initialize the item decision when deciding meeting"
+msgid "MeetingCommunes_label_initItemDecisionIfEmptyOnDecide"
+msgstr ""
 
-#. Default: "If you check this box, when a meeting will be decided, if an item does not have a decision defined, this decision will be automatically filled with title and description of the item" 
-msgid "init_item_decision_if_empty_on_decide" 
-msgstr "" 
+#. Default: "If you check this box, when a meeting will be decided, if an item does not have a decision defined, this decision will be automatically filled with title and description of the item"
+msgid "init_item_decision_if_empty_on_decide"
+msgstr ""
 
-#searches 
+#searches
 #. Default: "Add a finances advice"
 msgid "add_new_meetingadvicefinances"
-msgstr "" 
+msgstr ""
 
 #. Default: "Finances advice"
 msgid "MeetingAdviceFinances"
-msgstr "" 
+msgstr ""
 
-#. Default: "Choose proposing group for cdld advice" 
-msgid "MeetingCommunes_descr_cdldProposingGroup" 
+#. Default: "Choose proposing group for cdld advice"
+msgid "MeetingCommunes_descr_cdldProposingGroup"
 msgstr ""
 
 #. Default: "Observations"
 msgid "PloneMeeting_itemObservations"
 msgstr ""
 
-#. Default: "PV Note" 
-msgid "MeetingSeraing_label_pvNote" 
+#. Default: "PV Note"
+msgid "MeetingSeraing_label_pvNote"
 msgstr ""
 
-#. Default: "Note in pv" 
-msgid "MeetingSeraing_descr_pvNote" 
+#. Default: "Note in pv"
+msgid "MeetingSeraing_descr_pvNote"
 msgstr ""
 
-#. Default: "DG Note" 
-msgid "MeetingSeraing_label_dgnote" 
+#. Default: "DG Note"
+msgid "MeetingSeraing_label_dgnote"
 msgstr ""
 
-#. Default: "Personal Note for DG" 
-msgid "MeetingSeraing_descr_dgnote" 
+#. Default: "Personal Note for DG"
+msgid "MeetingSeraing_descr_dgnote"
 msgstr ""
 
 #. Default: "Personal Note for DG on Meeting"
@@ -237,8 +230,8 @@ msgstr ""
 msgid "MeetingSeraing_msgid_meeting_notes"
 msgstr ""
 
-#. Default: "Motivation help field" 
-msgid "MeetingSeraing_descr_motivation" 
+#. Default: "Motivation help field"
+msgid "MeetingSeraing_descr_motivation"
 msgstr ""
 
 #. Default: "Accepted but modified On Closed Meeting"
@@ -305,9 +298,9 @@ msgstr ""
 msgid "MeetingSeraing_label_commissions"
 msgstr ""
 
-#. Default: "Description" 
-msgid "PloneMeeting_label_itemDescription" 
-msgstr "" 
+#. Default: "Description"
+msgid "PloneMeeting_label_itemDescription"
+msgstr ""
 
 #. Default: "Synthesis finance advices"
 msgid "searchitemswithfinanceadvice"
@@ -343,4 +336,12 @@ msgstr ""
 
 #. Default: "An advice was added or updated on an item (notify the \"Service Heads\")"
 msgid "event_add_advice-service_heads"
+msgstr ""
+
+#. Default: "Transitions reinitializing taken over by"
+msgid "MeetingSeraing_label_transitions_reinitializing_taken_over_by"
+msgstr ""
+
+#. Default: "Notes groups in charge"
+msgid "PloneMeeting_label_groupsInChargeNotes"
 msgstr ""

@@ -6,7 +6,6 @@
 from collective.iconifiedcategory.utils import get_config_root
 from collective.iconifiedcategory.utils import get_group
 from DateTime import DateTime
-from Products.CMFCore.permissions import View
 from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mctmi
 from Products.MeetingSeraing.tests.MeetingSeraingTestCase import MeetingSeraingTestCase
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
