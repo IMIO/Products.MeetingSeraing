@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.13 (unreleased)
+4.2.13 (2026-04-24)
 -------------------
 
 - Updated item templates (view and edit).
