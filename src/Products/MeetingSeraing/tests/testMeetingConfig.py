@@ -35,7 +35,8 @@ class testMeetingConfig(MeetingSeraingTestCase, mctmc):
            - powerobservers groups;
            - budgetimpacteditors group.
            """
-        self.changeUser('siteadmin')
+        # only Zope admin can remove a MeetingConfig containing POD templates
+        self.changeUser('admin')
         newCfg = self.create('MeetingConfig')
         newCfgId = newCfg.getId()
         # this created 6 groups
