@@ -97,45 +97,23 @@ customWfAdaptations = (
 )
 MeetingConfig.wfAdaptations = customWfAdaptations
 
+
 CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS = {
-    "backTo_presented_from_returned_to_proposing_group": [
-        "created",
-    ],
-    "backTo_validated_by_dg_from_returned_to_proposing_group": [
-        "validated_by_dg",
-    ],
-    "backTo_itempublished_from_returned_to_proposing_group": [
-        "published",
-    ],
-    "backTo_itemfrozen_from_returned_to_proposing_group": [
-        "frozen",
-        "decided",
-        "decisions_published",
-    ],
-    "backTo_presented_from_returned_to_advise": [
-        "created",
-    ],
-    "backTo_validated_by_dg_from_returned_to_advise": [
-        "validated_by_dg",
-    ],
-    "backTo_itemfrozen_from_returned_to_advise": [
-        "frozen",
-        "decided",
-        "decisions_published",
-    ],
-    "backTo_returned_to_proposing_group_from_returned_to_advise": [
+    'backTo_validated_by_dg_from_returned_to_proposing_group':
+        {'*': ['validated_by_dg']},
+    "backTo_presented_from_returned_to_advise": {'*': ["created", ]},
+    "backTo_validated_by_dg_from_returned_to_advise": {'*': ["validated_by_dg", ]},
+    "backTo_itemfrozen_from_returned_to_advise": {'*': ["frozen", "decided", "decisions_published", ]},
+    "backTo_returned_to_proposing_group_from_returned_to_advise": {'*': [
         "created",
         "validated_by_dg",
         "frozen",
         "decided",
         "decisions_published",
-    ],
-    "NO_MORE_RETURNABLE_STATES": [
-        "closed",
-        "archived",
-    ],
+    ]}
 }
-adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS
+
+adaptations.RETURN_TO_PROPOSING_GROUP_MAPPINGS.update(CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS)
 
 CUSTOM_RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = ("validated_by_dg",)
 adaptations.RETURN_TO_PROPOSING_GROUP_FROM_ITEM_STATES = (
@@ -753,24 +731,6 @@ class CustomSeraingMeetingConfig(CustomMeetingConfig):
         """Override pm method"""
         return ("event_item_delayed-service_heads", "event_add_advice-service_heads")
 
-    def get_item_corresponding_state_to_assign_local_roles(self, item_state):
-        """See doc in interfaces.py."""
-        meetingConfig = self.getSelf()
-        corresponding_item_state = None
-        # XXX returned_to_proposing_group_xxx is special in MeetingSeraing
-        # returned_to_proposing_group_proposed is equivalent to proposed state
-        # (see patch_return_to_proposing_group_with_last_validation WFA in MeetingSeraing 4.1)
-        # BUT returned_to_proposing_group has no equivalent,
-        # everybody from the proposing group can edit
-        if item_state == "returned_to_proposing_group_proposed":
-            if "proposed_to_director" in meetingConfig.getItemWFValidationLevels(data="state", only_enabled=True):
-                corresponding_item_state = "proposed_to_director"
-            else:
-                corresponding_item_state = "proposed"
-        # waiting_advices WFAdaptation
-        elif item_state.endswith("_waiting_advices"):
-            corresponding_item_state = item_state.split("_waiting_advices")[0]
-        return corresponding_item_state
 
     def get_item_custom_suffix_roles(self, *args):
         item_state = args[-1]
@@ -1109,53 +1069,6 @@ class MeetingItemSeraingWorkflowConditions(MeetingItemCommunesWorkflowConditions
         else:
             return super(MeetingItemSeraingWorkflowConditions, self).mayCorrect(destinationState)
 
-    security.declarePublic("mayBackToMeeting")
-
-    def mayBackToMeeting(self, transitionName):
-        """Specific guard for the 'return_to_proposing_group' wfAdaptation.
-        As we have only one guard_expr for potentially several transitions departing
-        from the 'returned_to_proposing_group' state, we receive the p_transitionName."""
-        if not _checkPermission(ReviewPortalContent, self.context) and not self.tool.isManager(self.cfg):
-            return
-        # when using validation states, may return when in last validation state
-        if "return_to_proposing_group" not in self.cfg.getWorkflowAdaptations():
-            current_validation_state = (
-                "itemcreated"
-                if self.review_state == "returned_to_proposing_group"
-                else self.review_state.replace("returned_to_proposing_group_", "")
-            )
-
-            is_before_last = "return_to_proposing_group_with_before_last_validation" in self.cfg.getWorkflowAdaptations()
-            last_val_state = self._getLastValidationState(before_last=is_before_last)
-            # we are in last validation state, or we are in state 'returned_to_proposing_group'
-            # and there is no last validation state, aka it is "itemcreated"
-            if current_validation_state != last_val_state:
-                return
-        # get the linked meeting
-        meeting = self.context.getMeeting()
-        meetingState = meeting.query_state()
-        # use RETURN_TO_PROPOSING_GROUP_MAPPINGS to know in wich meetingStates
-        # the given p_transitionName can be triggered
-        authorizedMeetingStates = CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS[transitionName]
-        if meetingState in authorizedMeetingStates:
-            return True
-        # if we did not return True, then return a No(...) message specifying that
-        # it can no more be returned to the meeting because the meeting is in some
-        # specific states (like 'closed' for example)
-        if meetingState in CUSTOM_RETURN_TO_PROPOSING_GROUP_MAPPINGS["NO_MORE_RETURNABLE_STATES"]:
-            # avoid to display No(...) message for each transition having the 'mayBackToMeeting'
-            # guard expr, just return the No(...) msg for the first transitionName checking this...
-            if "may_not_back_to_meeting_warned_by" not in self.context.REQUEST:
-                self.context.REQUEST.set("may_not_back_to_meeting_warned_by", transitionName)
-            if self.context.REQUEST.get("may_not_back_to_meeting_warned_by") == transitionName:
-                return No(
-                    _(
-                        "can_not_return_to_meeting_because_of_meeting_state",
-                        mapping={"meetingState": translate(meetingState, domain="plone", context=self.context.REQUEST)},
-                    )
-                )
-        return False
-
     security.declarePublic("mayClose")
 
     def mayClose(self):
@@ -1395,29 +1308,29 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
             return True
 
         if wfAdaptation == "seraing_return_to_proposing_group_with_last_validation_patch":
-            if "returned_to_proposing_group_proposed" not in itemStates:
-                raise ValueError("return_to_proposing_group_with_last_validation should be in itemStates for this WFA")
-
-            transition_id = "goTo_%s" % ("returned_to_proposing_group_proposed")
-            transition = itemTransitions[transition_id]
-            image_url = "%(portal_url)s/{0}.png".format(transition_id)
-            # Make sure shortcuts are handled
-            transition.setProperties(
-                title=transition_id,
-                new_state_id="returned_to_proposing_group_proposed",
-                trigger_type=1,
-                script_name="",
-                actbox_name=transition_id,
-                actbox_url="",
-                actbox_category="workflow",
-                actbox_icon=image_url,
-                props={
-                    "guard_expr": "python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
-                    "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
-                    "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
-                    "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')"
-                },
-            )
+            for returned_state in ("returned_to_proposing_group_proposed", "returned_to_proposing_group_proposed_to_director"):
+                transition_id = "goTo_%s" % (returned_state)
+                if transition_id not in itemTransitions:
+                    continue
+                transition = itemTransitions[transition_id]
+                image_url = "%(portal_url)s/{0}.png".format(transition_id)
+                # Make sure shortcuts are handled
+                transition.setProperties(
+                    title=transition_id,
+                    new_state_id=returned_state,
+                    trigger_type=1,
+                    script_name="",
+                    actbox_name=transition_id,
+                    actbox_url="",
+                    actbox_category="workflow",
+                    actbox_icon=image_url,
+                    props={
+                        "guard_expr": "python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
+                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
+                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
+                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')"
+                    },
+                )
 
             logger.info(
                 WF_APPLIED % ("seraing_return_to_proposing_group_with_last_validation_patch", meetingConfig.getId())
