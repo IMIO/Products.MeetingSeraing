@@ -1309,29 +1309,16 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
 
         if wfAdaptation == "seraing_return_to_proposing_group_with_last_validation_patch":
             for returned_state in ("returned_to_proposing_group_proposed", "returned_to_proposing_group_proposed_to_director"):
-                transition_id = "goTo_%s" % (returned_state)
+                transition_id = "goTo_%s" % returned_state
                 if transition_id not in itemTransitions:
                     continue
                 transition = itemTransitions[transition_id]
-                image_url = "%(portal_url)s/{0}.png".format(transition_id)
                 # Make sure shortcuts are handled
-                transition.setProperties(
-                    title=transition_id,
-                    new_state_id=returned_state,
-                    trigger_type=1,
-                    script_name="",
-                    actbox_name=transition_id,
-                    actbox_url="",
-                    actbox_category="workflow",
-                    actbox_icon=image_url,
-                    props={
-                        "guard_expr": "python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
-                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
-                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
-                        "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')"
-                    },
-                )
-
+                transition.guard.expr.text = \
+                    ("python:here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_servicehead') "
+                     "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_officemanager') "
+                     "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed_to_divisionhead') "
+                     "or here.wfConditions().mayProposeToNextValidationLevel(destinationState='proposed')")
             logger.info(
                 WF_APPLIED % ("seraing_return_to_proposing_group_with_last_validation_patch", meetingConfig.getId())
             )
