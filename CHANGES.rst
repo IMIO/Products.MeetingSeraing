@@ -4,8 +4,9 @@ Products.MeetingSeraing Changelog
 4.2.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Only change the `guard_expr` of the `returned_to_proposing_group_proposed_to_director`
+  transition as transition title and other properties are already correct.
+  [gbastien]
 
 4.2.13 (2026-04-24)
 -------------------
