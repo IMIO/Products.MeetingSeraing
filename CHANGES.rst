@@ -1,7 +1,7 @@
 Products.MeetingSeraing Changelog
 =================================
 
-4.2.14 (unreleased)
+4.2.14 (2026-09-28)
 -------------------
 
 - Only change the `guard_expr` of the `returned_to_proposing_group_proposed_to_director`
