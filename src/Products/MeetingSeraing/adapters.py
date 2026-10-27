@@ -1287,8 +1287,8 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 title="returned_to_advise",
                 description="",
                 transitions=(
-                    "backTo_returned_to_proposing_group_from_returned_to_proposing_group_proposed",
-                    "goTo_returned_to_proposing_group_proposed",
+                    "backTo_returned_to_proposing_group",
+                    "goTo_returned_to_proposing_group_proposed_to_director",
                 ),
             )
             return_to_advice_item_state = [
@@ -1296,8 +1296,8 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 "validated_by_dg",
                 "itemfrozen",
             ]
-            if "returned_to_proposing_group_proposed" in itemStates:
-                return_to_advice_item_state.append("returned_to_proposing_group_proposed")
+            if "returned_to_proposing_group_proposed_to_director" in itemStates:
+                return_to_advice_item_state.append("returned_to_proposing_group_proposed_to_director")
             if "returned_to_proposing_group" in itemStates:
                 return_to_advice_item_state.append("returned_to_proposing_group")
             for state_id in return_to_advice_item_state:

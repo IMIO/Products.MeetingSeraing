@@ -15,8 +15,6 @@ from Products.PloneMeeting.model.adaptations import RETURN_TO_PROPOSING_GROUP_FR
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 from imio.helpers.content import get_vocab_values
 
-import datetime as dt
-
 
 class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
     '''Tests various aspects of votes management.'''
@@ -125,7 +123,7 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         cfg = self.meetingConfig
         # activate the wfAdaptations and check
         self._activate_wfas(
-            ('return_to_proposing_group_with_last_validation', 'seraing_returned_to_advise', 'seraing_validated_by_DG')
+            ('return_to_proposing_group_with_before_last_validation', 'seraing_returned_to_advise', 'seraing_validated_by_DG')
         )
         # test what should happen to the wf (added states and transitions)
         # self._return_to_advise_active()
@@ -179,36 +177,35 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
             self.changeUser(userId)
             self.failIf(self.wfTool.getTransitionsFor(item))
         self.changeUser('pmManager')
-        self.failUnless(
-            'return_to_advise'
-            in [tr['name'] for tr in self.wfTool.getTransitionsFor(item)]
-        )
+        self.assertTrue('return_to_advise' in self.transitions(item))
         # send the item back to the proposing group so the proposing group as an edit access to it
         self.do(item, 'return_to_proposing_group')
         self.changeUser('pmCreator1')
         self.failUnless(self.hasPermission(ModifyPortalContent, item))
         self.failUnless(self.hasPermission(ReviewPortalContent, item))
-        self.failUnless('return_to_advise' in self.transitions(item))
-        self.failUnless('goTo_returned_to_proposing_group_proposed' in self.transitions(item))
+        self.assertEqual(
+            self.transitions(item),
+            ['goTo_returned_to_proposing_group_proposed_to_director', 'return_to_advise'])
 
         self.do(item, 'return_to_advise')
         for userId in ('pmCreator1', 'pmReviewer1'):
             self.changeUser(userId)
             self.failIf(self.hasPermission(ModifyPortalContent, item))
             self.failUnless(self.hasPermission(ReviewPortalContent, item))
-            self.failUnless('goTo_returned_to_proposing_group_proposed' in self.transitions(item))
+            self.failUnless('goTo_returned_to_proposing_group_proposed_to_director' in self.transitions(item))
 
         # MeetingManagers can edit it also
         self.changeUser('pmManager')
         self.failUnless(self.hasPermission(ModifyPortalContent, item))
         # XXX specific to MeetingSeraing
         self.assertListEqual(self.transitions(item),
-                             ['goTo_returned_to_proposing_group_proposed'])
-        self.do(item, 'goTo_returned_to_proposing_group_proposed')
+                             ['backTo_returned_to_proposing_group',
+                              'goTo_returned_to_proposing_group_proposed_to_director'])
+        self.do(item, 'goTo_returned_to_proposing_group_proposed_to_director')
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
-        self.do(item, 'goTo_returned_to_proposing_group_proposed')
-        self.assertEqual(item.query_state(), 'returned_to_proposing_group_proposed')
+        self.do(item, 'goTo_returned_to_proposing_group_proposed_to_director')
+        self.assertEqual(item.query_state(), 'returned_to_proposing_group_proposed_to_director')
         self.assertTrue('return_to_advise' in self.transitions(item))
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
         self.do(meeting, 'validateByDG')
@@ -222,14 +219,16 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         self.changeUser('pmManager')
         self.failUnless(self.hasPermission(ModifyPortalContent, item))
 
-        # assert item may only go back to returned_to_proposing_group or to returned_to_proposing_group_proposed
+        # assert item may only go back to returned_to_proposing_group
+        # or to returned_to_proposing_group_proposed_to_director
         self.assertListEqual(self.transitions(item),
-                             ['goTo_returned_to_proposing_group_proposed'])
-        self.do(item, 'goTo_returned_to_proposing_group_proposed')
+                             ['backTo_returned_to_proposing_group',
+                              'goTo_returned_to_proposing_group_proposed_to_director'])
+        self.do(item, 'goTo_returned_to_proposing_group_proposed_to_director')
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
-        self.do(item, 'goTo_returned_to_proposing_group_proposed')
-        self.assertEqual(item.query_state(), 'returned_to_proposing_group_proposed')
+        self.do(item, 'goTo_returned_to_proposing_group_proposed_to_director')
+        self.assertEqual(item.query_state(), 'returned_to_proposing_group_proposed_to_director')
         self.assertTrue('return_to_advise' in self.transitions(item))
         self.do(item, 'backTo_validated_by_dg_from_returned_to_proposing_group')
         self.assertEqual(item.query_state(), 'validated_by_dg')
@@ -246,12 +245,13 @@ class testWFAdaptations(MeetingSeraingTestCase, mctwfa):
         # on the meeting state.  Here, when meeting is 'frozen', the item is back to 'itemfrozen'
         # assert item may only go back to returned_to_proposing_group or to returned_to_proposing_group_proposed
         self.assertListEqual(self.transitions(item),
-                             ['goTo_returned_to_proposing_group_proposed'])
-        self.do(item, 'goTo_returned_to_proposing_group_proposed')
+                             ['backTo_returned_to_proposing_group',
+                              'goTo_returned_to_proposing_group_proposed_to_director'])
+        self.do(item, 'goTo_returned_to_proposing_group_proposed_to_director')
         self.do(item, 'return_to_advise')
         # on the meeting state.  Here, when meeting is 'created', the item is back to 'presented'
-        self.do(item, 'goTo_returned_to_proposing_group_proposed')
-        self.assertEqual(item.query_state(), 'returned_to_proposing_group_proposed')
+        self.do(item, 'goTo_returned_to_proposing_group_proposed_to_director')
+        self.assertEqual(item.query_state(), 'returned_to_proposing_group_proposed_to_director')
         self.assertTrue('return_to_advise' in self.transitions(item))
         self.do(item, 'backTo_itemfrozen_from_returned_to_proposing_group')
         self.assertEqual(item.query_state(), 'itemfrozen')

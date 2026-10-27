@@ -4,8 +4,9 @@ Products.MeetingSeraing Changelog
 4.2.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Fixed WFA `return_to_advise` as we use WFA `return_to_proposing_group_with_before_last_validation`
+  instead WFA `return_to_proposing_group_with_last_validation` now.
+  [gbastien]
 
 4.2.14 (2026-09-28)
 -------------------

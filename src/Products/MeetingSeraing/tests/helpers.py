@@ -15,12 +15,14 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         "proposeToServiceHead",
         "proposeToOfficeManager",
         "proposeToDivisionHead",
+        "proposeToDirector",
         "propose",
     )
     TRANSITIONS_FOR_VALIDATING_ITEM_1 = TRANSITIONS_FOR_VALIDATING_ITEM_2 = (
         "proposeToServiceHead",
         "proposeToOfficeManager",
         "proposeToDivisionHead",
+        "proposeToDirector",
         "propose",
         "validate",
     )
@@ -28,6 +30,7 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
         "proposeToServiceHead",
         "proposeToOfficeManager",
         "proposeToDivisionHead",
+        "proposeToDirector",
         "propose",
         "validate",
         "present",
@@ -58,6 +61,7 @@ class MeetingSeraingTestingHelpers(MeetingCommunesTestingHelpers):
             "backToPresented",
             "backToValidated",
             "backToProposed",
+            "backToProposedToDirector",
             "backToProposedToDivisionHead",
             "backToProposedToOfficeManager",
             "backToProposedToServiceHead",
