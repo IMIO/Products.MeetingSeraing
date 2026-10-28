@@ -13,6 +13,7 @@ from Products.Archetypes.Field import LinesField
 from Products.Archetypes.Widget import InAndOutWidget
 from Products.PloneMeeting.config import registerClasses
 from Products.PloneMeeting.config import WriteRiskyConfig
+from Products.PloneMeeting.MeetingConfig import ITEM_WF_TRANSITION_ATTRS
 from Products.PloneMeeting.MeetingConfig import MeetingConfig
 from Products.PloneMeeting.MeetingItem import MeetingItem
 
@@ -121,6 +122,9 @@ def update_meetingconfig_schema(baseSchema):
 
 
 MeetingConfig.schema = update_meetingconfig_schema(MeetingConfig.schema)
+# make sure custom field using item transitions is managed when WF changed
+if 'transitionsReinitializingTakenOverBy' not in ITEM_WF_TRANSITION_ATTRS:
+    ITEM_WF_TRANSITION_ATTRS.append('transitionsReinitializingTakenOverBy')
 
 
 # Classes have already been registered, but we register them again here

@@ -8,6 +8,9 @@ Products.MeetingSeraing Changelog
   as well as with WFA `return_to_proposing_group_with_last_validation`, transitions of state
   `returned_to_advise` are now computed depending on the returned validation state that exists.
   [gbastien]
+- Added custom field `MeetingConfig.transitionsReinitializingTakenOverBy`
+  to `ITEM_WF_TRANSITION_ATTRS` so it is managed when item WF transitions changed.
+  [gbastien]
 
 4.2.14 (2026-09-28)
 -------------------
