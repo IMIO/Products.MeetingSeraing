@@ -1283,23 +1283,26 @@ class CustomSeraingToolPloneMeeting(CustomToolPloneMeeting):
                 actbox_icon="%(portal_url)s/return_to_advise.png",
                 props={"guard_expr": "python:here.wfConditions().mayReturnToProposingGroup()"},
             )
-            returned_to_advise.setProperties(
-                title="returned_to_advise",
-                description="",
-                transitions=(
-                    "backTo_returned_to_proposing_group",
-                    "goTo_returned_to_proposing_group_proposed_to_director",
-                ),
-            )
             return_to_advice_item_state = [
                 "presented",
                 "validated_by_dg",
                 "itemfrozen",
             ]
-            if "returned_to_proposing_group_proposed_to_director" in itemStates:
-                return_to_advice_item_state.append("returned_to_proposing_group_proposed_to_director")
+            returned_to_advise_transitions = ["backTo_returned_to_proposing_group"]
+            # depends on WFA return_to_proposing_group_with_before_last_validation
+            # or return_to_proposing_group_with_last_validation
+            for returned_state in ("returned_to_proposing_group_proposed_to_director",
+                                   "returned_to_proposing_group_proposed"):
+                if returned_state in itemStates:
+                    return_to_advice_item_state.append(returned_state)
+                    returned_to_advise_transitions.append("goTo_%s" % returned_state)
             if "returned_to_proposing_group" in itemStates:
                 return_to_advice_item_state.append("returned_to_proposing_group")
+            returned_to_advise.setProperties(
+                title="returned_to_advise",
+                description="",
+                transitions=tuple(returned_to_advise_transitions),
+            )
             for state_id in return_to_advice_item_state:
                 new_trx = tuple(list(itemStates[state_id].getTransitions()) + ["return_to_advise"])
                 itemStates[state_id].transitions = new_trx

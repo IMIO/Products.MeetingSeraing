@@ -64,11 +64,12 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         # the DivisionHead validation level
         self.changeUser('pmDivisionHead1')
         self.failUnless(self.hasPermission('Modify portal content', (item1, annex1)))
-        self.do(item1, 'proposeToDirector')
-        self.assertRaises(Unauthorized, self.addAnnex, item1)
-        # pmReviewer1 is director and representative
-        self.changeUser('pmReviewer1')
         self.do(item1, 'propose')
+        self.assertRaises(Unauthorized, self.addAnnex, item1)
+        self.failIf(self.transitions(item1))  # He may trigger no more action
+        self.failIf(self.hasPermission('PloneMeeting: Add annex', item1))
+        # the Director validation level
+        self.changeUser('pmReviewer1')
         self.failUnless(self.hasPermission('Modify portal content', (item1, annex1)))
         self.do(item1, 'validate')
         self.assertRaises(Unauthorized, self.addAnnex, item1)
@@ -94,7 +95,6 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.changeUser('admin')
         self.do(item2, 'proposeToOfficeManager')
         self.do(item2, 'proposeToDivisionHead')
-        self.do(item2, 'proposeToDirector')
         self.do(item2, 'propose')
         # pmManager inserts item1 into the meeting and publishes it
         self.changeUser('pmManager')
