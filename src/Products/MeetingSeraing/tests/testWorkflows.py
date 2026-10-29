@@ -77,7 +77,7 @@ class testWorkflows(MeetingSeraingTestCase, mctw):
         self.failIf(self.hasPermission('PloneMeeting: Add annex', item1))
         # pmManager creates a meeting
         self.changeUser('pmManager')
-        meeting = self.create('Meeting', date=DateTime('2007/01/10').asdatetime())
+        meeting = self.create('Meeting')
         self.addAnnex(item1, relatedTo='item_decision')
         # pmCreator2 creates and proposes an item
         self.changeUser('pmCreator2')
